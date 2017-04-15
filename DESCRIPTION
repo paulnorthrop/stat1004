@@ -1,4 +1,5 @@
 Package: stat1004
+Type: Package
 Title: stat1004: Introduction to Probability and Statistics at UCL
 Version: 0.0.0.9000
 Date: 2017-04-02
