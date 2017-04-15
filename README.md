@@ -1,0 +1,28 @@
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+stat1004: Introduction to Probability and Statistics at UCL
+-----------------------------------------------------------
+
+### What does stat1004 do?
+
+The `stat1004` package provides R code, datasets and vignettes to help students taking STAT1004 Introduction to Probability and Statistics at University College London to understand the course material and to see how R can be used to perform some of the analyses in the course.
+
+The package is:
+
+-   in the very early stages of development;
+-   probably of little use to people not taking STAT1004 at UCL.
+
+### Installation
+
+To install the package from GitHub use:
+
+``` r
+library(devtools)
+devtools::install_github("paulnorthrop/stat1004")
+```
+
+### Getting started
+
+Type `?stat1004` at the R command prompt `>` to open the main help page, which contains links to vgnettes, datasets and other sources of information.
+
+If you have any questions about this package please ask them via the [STAT1004 Moodle Discussion Forum](https://moodle.ucl.ac.uk/mod/hsuforum/view.php?id=1410864).

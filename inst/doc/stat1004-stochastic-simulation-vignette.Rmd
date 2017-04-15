@@ -1,0 +1,21 @@
+---
+title: "Stochastic simulation"
+author: "Paul Northrop"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{A (Very) Brief Introduction to Stochastic Simulation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+bibliography: stat1004.bib
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
+devtools::load_all() 
+```
+
+As you can see this vignette hasn't been written yet.  When it has, it will serve to complement the final section of the [Challenger Space Shuttle disaster](stat1004-shuttle-vignette.html) vignette.
+
