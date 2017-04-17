@@ -12,12 +12,50 @@
 
 <meta name="author" content="Paul Northrop" />
 
-<meta name="date" content="2017-04-15" />
+<meta name="date" content="2017-04-17" />
 
 <title>Stochastic simulation</title>
 
 
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
 
 
 
@@ -32,11 +70,127 @@
 
 <h1 class="title toc-ignore">Stochastic simulation</h1>
 <h4 class="author"><em>Paul Northrop</em></h4>
-<h4 class="date"><em>2017-04-15</em></h4>
+<h4 class="date"><em>2017-04-17</em></h4>
 
 
+<div id="TOC">
+<ul>
+<li><a href="#pseudo-random-numbers-in-01">Pseudo-random numbers in (0,1)</a></li>
+<li><a href="#simulation-from-a-binomial-distribution">Simulation from a binomial distribution</a></li>
+<li><a href="#simulation-from-a-exponential-distribution">Simulation from a exponential distribution</a></li>
+<li><a href="#the-inversion-method">The inversion method</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
 
-<p>As you can see this vignette hasn’t been written yet. When it has, it will serve to complement the final section of the <a href="stat1004-shuttle-vignette.html">Challenger Space Shuttle disaster</a> vignette.</p>
+<p>Stochastic simulation uses computer-generated <em>pseudo-random numbers</em> to mimic a stochastic real event or dataset. Pseudo-random numbers are not random (they are produced by an algorithm) but the algorithm is constructed in order to imitate randomness closely enough. A typical use of stochastic simulation is to generate numbers that behave approximately like a random sample from an particular probability distribution.</p>
+<p>In this vignette we concentrate on using R to perform stochastic simulation. For a more general introduction to stochastic simulation, and a more detailed explanation of the ideas underlying the R code, see the short <a href="https://moodle.ucl.ac.uk/mod/url/view.php?id=2180273">Stochastic simulation video</a>. If you want to know more then good sources of information are <span class="citation">Morgan (1984)</span> and <span class="citation">Jasra (unknown year)</span>.</p>
+<div id="pseudo-random-numbers-in-01" class="section level2">
+<h2>Pseudo-random numbers in (0,1)</h2>
+<p>The basic building block of stochastic simulation methods is the ability to simulate numbers (pseudo-) randomly from the interval (0,1). As we will see in Section 5.7 of the <a href="https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf">STAT1004 notes</a> this is equivalent to generating numbers that behave approximately like a random sample from a standard uniform U(0,1) distribution. The function in R that does this is <code>runif</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">runif</span>(<span class="dv">10</span>)
+<span class="co">#&gt;  [1] 0.2716465 0.2459657 0.7786462 0.9790115 0.4347586 0.9141322 0.4885213</span>
+<span class="co">#&gt;  [8] 0.3757858 0.5054086 0.4264149</span></code></pre></div>
+</div>
+<div id="simulation-from-a-binomial-distribution" class="section level2">
+<h2>Simulation from a binomial distribution</h2>
+<p>In the <a href="stat1004-shuttle-vignette.html">Challenger Space Shuttle disaster</a> vignette we needed to simulate numbers from a binomial distribution with parameters <span class="math inline">\(6\)</span> and <span class="math inline">\(p\)</span>, for a given value of <span class="math inline">\(p\)</span>. As we will see in Section 5.3 of the <a href="https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf">STAT1004 notes</a> this distribution arises as the number of ‘successes’ (perversely, in the space shuttle example thermal distress of an O-ring is a ‘success’) in a fixed number (here, this is 6) of independent trials, where each trial results either in a ‘success’ or a ‘failure’.</p>
+<p>Suppose that <span class="math inline">\(p=0.2\)</span>, which is the approximate estimated probability (under a linear logistic model) that an O-ring suffers thermal distress when the space shuttle is launched at 58 degrees Fahrenheit.</p>
+<p>The function in R that simulates from a binomial distribution is <code>rbinom</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rbinom</span>(<span class="dt">n =</span> <span class="dv">1</span>, <span class="dt">size =</span> <span class="dv">6</span>, <span class="dt">prob =</span> <span class="fl">0.2</span>)
+<span class="co">#&gt; [1] 0</span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li><strong>Can you see the convention in the way that R’s simulation functions are named?</strong></li>
+</ol>
+<p>Underlying <code>rbinom</code> is an algorithm that works quickly even in cases where the number of trials (<code>size</code>) is large. With a small number of trials, like 6, we could work more directly, using numbers produced by <code>runif</code> to assign the result of each trial to ‘success’ or ‘failure’. This is like tossing a coin that is biased so that ‘heads’ is obtained with probability 0.2. The function <code>rbinomial</code> below simulates <em>one</em> value from a binomial distribution with parameters <code>size</code> and <code>prob</code>. Use <code>?rbinomial</code> to view the help file. This function is less general and less efficient than <code>rbinom</code>. However, it is useful to illustrate a simple way to simulate from a binomial distribution and as an example of how we can write our own R functions to perform calculations.</p>
+<pre><code>rbinomial &lt;- function(size, prob) {
+  # Simulate size values (pseudo-)randomly between 0 and 1.
+  u &lt;- runif(size)
+  # Find out whether (TRUE) or not (FALSE) each value of u is less than prob.
+  distress &lt;- u &lt; prob
+  # Count the number of TRUEs, i.e. the number of successes.
+  n_successes &lt;- sum(distress)
+  # Return the number of successes.
+  return(n_successes)
+}</code></pre>
+<p>We simulate one value from a binomial(6, 0.2) distribution. [We use <code>set.seed</code> to initialize the pseudo-random number sequence in a particular place. This will enable us to repeat these calculations below using exactly the same random numbers.]</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1826</span>)
+<span class="kw">rbinomial</span>(<span class="dt">size =</span> <span class="dv">6</span>, <span class="dt">prob =</span> <span class="fl">0.2</span>)
+<span class="co">#&gt; [1] 1</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Can you work out what is happening in each line of the code inside <code>rbinomial</code>? The following should help.</strong></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1826</span>)
+size &lt;-<span class="st"> </span><span class="dv">6</span>
+prob &lt;-<span class="st"> </span><span class="fl">0.2</span>
+u &lt;-<span class="st"> </span><span class="kw">runif</span>(size)
+u
+<span class="co">#&gt; [1] 0.3561567 0.9131876 0.5627795 0.1879185 0.3193222 0.6738423</span>
+distress &lt;-<span class="st"> </span>u &lt;<span class="st"> </span>prob
+distress
+<span class="co">#&gt; [1] FALSE FALSE FALSE  TRUE FALSE FALSE</span>
+n_successes &lt;-<span class="st"> </span><span class="kw">sum</span>(distress)
+n_successes
+<span class="co">#&gt; [1] 1</span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>The effect of <code>sum(distress)</code> is quite subtle. Can you see what is happening? Check your answer using <code>?sum</code>.</strong></li>
+</ol>
+<p>A related point is that is we turn the logical vector <code>distress</code> (which contains <code>TRUE</code>s and <code>FALSE</code>s) into a numeric vector, then we get …</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.numeric</span>(distress)
+<span class="co">#&gt; [1] 0 0 0 1 0 0</span></code></pre></div>
+</div>
+<div id="simulation-from-a-exponential-distribution" class="section level2">
+<h2>Simulation from a exponential distribution</h2>
+<p>The exponential distribution (see Section 5.6 of the <a href="https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf">STAT1004 notes</a>) is an example of a probability distribution of a continuous random variable (see Section 4.2 of the <a href="https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf">STAT1004 notes</a>).</p>
+<ol start="4" style="list-style-type: decimal">
+<li><strong>Can you guess the name of the R function for simulating from an exponential distribution?</strong></li>
+</ol>
+<p>We simulate a sample of size 1000 from an exponential distribution with (rate) parameter equal to 2.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lambda &lt;-<span class="st"> </span><span class="dv">2</span>
+exp_sim &lt;-<span class="st"> </span><span class="kw">rexp</span>(<span class="dt">n =</span> <span class="dv">1000</span>, <span class="dt">rate =</span> lambda)</code></pre></div>
+<p>We produce a histogram of these simulated values (see Section 2.5 of the <a href="https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf">STAT1004 notes</a>) and superimpose the probability density function (p.d.f.) of the exponential distribution from which these values have been simulated.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># A histogram (see Section 2.5 of the STAT1004 notes)</span>
+<span class="kw">hist</span>(exp_sim, <span class="dt">probability =</span> <span class="ot">TRUE</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, lambda), <span class="dt">main =</span> <span class="st">&quot;&quot;</span>)
+x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="kw">max</span>(exp_sim), <span class="dt">len =</span> <span class="dv">500</span>)
+<span class="kw">lines</span>(x, <span class="kw">dexp</span>(x, <span class="dt">rate =</span> lambda))</code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<ol start="5" style="list-style-type: decimal">
+<li><strong>Can you guess what the function <code>dexp</code> does? Use <code>?dexp</code> to find out.</strong></li>
+</ol>
+<p>After you have answered Question 5 of the <a href="https://moodle.ucl.ac.uk/mod/quiz/view.php?id=2671329">Quiz for Exercises 6</a> you will see why the following R code could be used to simulate from an exponential distribution.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">u &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">1000</span>)
+exp_inv &lt;-<span class="st"> </span>-<span class="kw">log</span>(u)/lambda
+<span class="kw">hist</span>(exp_inv, <span class="dt">probability =</span> <span class="ot">TRUE</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, lambda), <span class="dt">main =</span> <span class="st">&quot;&quot;</span>, <span class="dt">breaks =</span> <span class="dv">14</span>, <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>)
+<span class="kw">lines</span>(x, <span class="kw">dexp</span>(x, <span class="dt">rate =</span> lambda))</code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+<div id="the-inversion-method" class="section level2">
+<h2>The inversion method</h2>
+<p>The code immediately above is an example of the <em>inversion method</em> of simulation. See the <a href="https://moodle.ucl.ac.uk/mod/url/view.php?id=2180273">Stochastic simulation video</a> for some detail. The following code implements this for the normal distribution (see Section 5.7 of the <a href="https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf">STAT1004 notes</a>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">u &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">1000</span>)
+mu &lt;-<span class="st"> </span><span class="dv">0</span>
+sigma &lt;-<span class="st"> </span><span class="dv">1</span>
+norm_sim &lt;-<span class="st"> </span><span class="kw">qnorm</span>(u, <span class="dt">mean =</span> mu, <span class="dt">sd =</span> sigma)
+<span class="kw">hist</span>(norm_sim, <span class="dt">probability =</span> <span class="ot">TRUE</span>, <span class="dt">main =</span> <span class="st">&quot;&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>)
+x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="kw">min</span>(norm_sim), <span class="kw">max</span>(norm_sim), <span class="dt">len =</span> <span class="dv">500</span>)
+<span class="kw">lines</span>(x, <span class="kw">dnorm</span>(x, <span class="dt">mean =</span> mu, <span class="dt">sd =</span> sigma))</code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<ol start="6" style="list-style-type: decimal">
+<li><strong>Use <code>?qnorm</code> to find out what <code>qnorm</code> does.</strong></li>
+</ol>
+<p>Note that the help page calls this the <em>quantile function</em>. An alternative name is the <em>inverse cumulative distribution function</em> or <em>inverse c.d.f</em> (see Section 5.7 of the <a href="https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf">STAT1004 notes</a>).</p>
+</div>
+<div id="references" class="section level2 unnumbered">
+<h2>References</h2>
+<div id="refs" class="references">
+<div id="ref-Jasra">
+<p>Jasra, A. unknown year. <em>M3/M4S9 Stochastic Simulation (Course Notes)</em>. Imperial College, London. <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.188.5510&amp;rep=rep1&amp;type=pdf" class="uri">http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.188.5510&amp;rep=rep1&amp;type=pdf</a>.</p>
+</div>
+<div id="ref-Morgan">
+<p>Morgan, B. J. T. 1984. <em>Elements of Simulation</em>. Chapman &amp; Hall.</p>
+</div>
+</div>
+</div>
 
 
 

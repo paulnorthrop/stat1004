@@ -127,7 +127,7 @@ Consider the six O-rings on the space shuttle.  We suppose that on a launch cond
 * each O-ring has a probability $p(t)$ of suffering thermal distress;
 * whether or not a given O-ring suffers thermal distress is not affected by whether or not other O-rings suffer thermal distress, that is, the O-rings are independent of each other in this respect.
 
-Under these assumptions the number of O-rings that suffer thermal distress has a Binomial distribution with parameters $6$ and $p(t)$.  We have reason to believe that $p(t)$ depends on $t$, that is, the probability that an O-ring suffers thermal distress is different for different launch temperatures.  A simple model that is used in this kind of situation is a *linear logistic regression model*, in which 
+Under these assumptions the number of O-rings that suffer thermal distress has a binomial distribution with parameters $6$ and $p(t)$.  We will study this distribution in Section 5.3 of the [STAT1004 notes](https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf).  We have reason to believe that $p(t)$ depends on $t$, that is, the probability that an O-ring suffers thermal distress is different for different launch temperatures.  A simple model that is used in this kind of situation is a *linear logistic regression model*, in which 
 $$ \ln \left(\frac{p(t)}{1-p(t)}\right) = \alpha + \beta t, $$
 for some unknown constants $\alpha$ and $\beta$.  That is, the *logit* $\log[p(t) / (1-p(t))]$ of $p(t)$ is assumed to be a linear function of $t$. Inverting this equation gives
 $$ p(t) = \frac{e^{\alpha + \beta t}}{1 + e^{\alpha + \beta t}}. $$
