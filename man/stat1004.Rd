@@ -42,6 +42,7 @@ If you have any questions about this package please ask them via the
 \itemize{
   \item {\href{../doc/stat1004-shuttle-vignette.html}{Chapter 1: Challenger Space Shuttle Disaster}}
   \item {\href{../doc/stat1004-stochastic-simulation-vignette.html}{Chapter 1: Stochastic Simulation}}
+  \item {\href{../doc/stat1004-descriptive-statistics-vignette.html}{Chapter 2: Descriptive Statistics}}
 }
 }
 
@@ -50,6 +51,7 @@ If you have any questions about this package please ask them via the
 
 \itemize{
   \item {\link[=shuttle]{Challenger Space Shuttle Disaster}}
+  \item {\link[=ox_births]{Oxford Birth Times}}
 }
 }
 

@@ -31,12 +31,14 @@
 #' \itemize{
 #'   \item {\href{../doc/stat1004-shuttle-vignette.html}{Chapter 1: Challenger Space Shuttle Disaster}}
 #'   \item {\href{../doc/stat1004-stochastic-simulation-vignette.html}{Chapter 1: Stochastic Simulation}}
+#'   \item {\href{../doc/stat1004-descriptive-statistics-vignette.html}{Chapter 2: Descriptive Statistics}}
 #' }
 #'
 #' @section Datasets:
 #'
 #' \itemize{
 #'   \item {\link[=shuttle]{Challenger Space Shuttle Disaster}}
+#'   \item {\link[=ox_births]{Oxford Birth Times}}
 #' }
 #'
 #'
@@ -82,3 +84,18 @@ NULL
 #'   \strong{84}(408), 945-957.
 #'   \url{http://dx.doi.org/10.1080/01621459.1989.10478858}
 "shuttle"
+
+#' Oxford Birth Times
+#'
+#' Times spent in delivery suite by 95 women giving birth at the John Radcliffe
+#' Hospital, Oxford. These data have been taken from the SMPracticals package
+#' to which they were provided by Ethel Burns.
+#'
+#' @format A data frame with 95 observations on the following 2 variables.
+#' \itemize{
+#' \item{\code{day:}}{ Day on which the woman arrived}
+#' \item{\code{time:}}{ Time (hours) spent on delivery suite}}
+#'
+#' @source Davison, A. C. (2003) Statistical Models. Cambridge University Press.
+#'   Page 18.
+"ox_births"
