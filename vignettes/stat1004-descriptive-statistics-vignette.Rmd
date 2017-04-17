@@ -1,12 +1,12 @@
 ---
-title: "Chapter 2: Stochastic simulation"
+title: "Chapter 2: Descriptive Statistics"
 author: "Paul Northrop"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
     toc: true
 vignette: >
-  %\VignetteIndexEntry{Chapter 2: Stochastic Simulation}
+  %\VignetteIndexEntry{Chapter 2: Descriptive Statistics}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 bibliography: stat1004.bib

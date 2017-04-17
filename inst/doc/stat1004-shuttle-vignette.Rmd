@@ -1,12 +1,12 @@
 ---
-title: "Lecture 1: The Challenger Space Shuttle Disaster"
+title: "Chapter 1: The Challenger Space Shuttle Disaster"
 author: "Paul Northrop"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
     toc: true
 vignette: >
-  %\VignetteIndexEntry{Lecture 1: The Challenger Space Shuttle Disaster}
+  %\VignetteIndexEntry{Chapter 1: The Challenger Space Shuttle Disaster}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 bibliography: stat1004.bib

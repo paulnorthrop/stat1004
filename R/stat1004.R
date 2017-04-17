@@ -29,8 +29,8 @@
 #' @section Vignettes (tutorials demonstrating how to use R code):
 #'
 #' \itemize{
-#'   \item {\href{../doc/stat1004-shuttle-vignette.html}{Lecture 1: Challenger Space Shuttle Disaster}}
-#'   \item {\href{../doc/stat1004-stochastic-simulation-vignette.html}{Lecture 1: A (Very) Brief Introduction to Stochastic Simulation}}
+#'   \item {\href{../doc/stat1004-shuttle-vignette.html}{Chapter 1: Challenger Space Shuttle Disaster}}
+#'   \item {\href{../doc/stat1004-stochastic-simulation-vignette.html}{Chapter 1: Stochastic Simulation}}
 #' }
 #'
 #' @section Datasets:
