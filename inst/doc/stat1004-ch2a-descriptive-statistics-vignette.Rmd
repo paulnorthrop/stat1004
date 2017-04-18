@@ -19,6 +19,9 @@ devtools::load_all()
 
 The main purpose of this vignette is to provide R code to calculate the summary statistics that feature in Section 2.3 of the [STAT1004 notes](https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf) (apart from correlation, which we defer until Chapter 9).  An important point to appreciate is that usually there is more than one way to estimate from data a particular theoretical property of the distribution from which the data came. For example, we will see that there are many different rules (*estimators*) that can be used to estimate a quantile of a distribution.
 
+The R code used in this vignette are available [here](stat1004-ch2a-descriptive-statistics-vignette.R).
+ The functions `five_number`, `skew` and `q_skew` can be viewed either by typing the name of the function at R command prompt `>` or at  [GitHub](https://github.com/paulnorthrop/stat1004/tree/master/R/descriptive_statistics.R)
+
 ## The Oxford Birth Times data 
 
 These data are available in the data frame `ox_births`.

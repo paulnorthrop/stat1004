@@ -32,6 +32,7 @@
 #'   \item {\href{../doc/stat1004-shuttle-vignette.html}{Chapter 1: Challenger Space Shuttle Disaster}}
 #'   \item {\href{../doc/stat1004-stochastic-simulation-vignette.html}{Chapter 1: Stochastic Simulation}}
 #'   \item {\href{../doc/stat1004-descriptive-statistics-vignette.html}{Chapter 2: Descriptive Statistics}}
+#'   \item {\href{../doc/stat1004-graphs-vignette.html}{Chapter 2: Graphs}}
 #' }
 #'
 #' @section Datasets:

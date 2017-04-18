@@ -48,3 +48,11 @@ q_skew(birth_times)
 ## ------------------------------------------------------------------------
 q_skew(birth_times, type = 7)
 
+## ------------------------------------------------------------------------
+five_number(ox_mat, na.rm = TRUE)
+summary(ox_mat)
+colMeans(ox_mat, na.rm = TRUE)
+apply(ox_mat, 2, sd, na.rm = TRUE)
+skew(ox_mat, na.rm = TRUE)
+q_skew(ox_mat, na.rm = TRUE)
+

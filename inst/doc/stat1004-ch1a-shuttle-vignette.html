@@ -12,7 +12,7 @@
 
 <meta name="author" content="Paul Northrop" />
 
-<meta name="date" content="2017-04-17" />
+<meta name="date" content="2017-04-18" />
 
 <title>Chapter 1: The Challenger Space Shuttle Disaster</title>
 
@@ -70,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Chapter 1: The Challenger Space Shuttle Disaster</h1>
 <h4 class="author"><em>Paul Northrop</em></h4>
-<h4 class="date"><em>2017-04-17</em></h4>
+<h4 class="date"><em>2017-04-18</em></h4>
 
 
 <div id="TOC">
@@ -89,7 +89,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2>Preliminaries</h2>
 <p>This vignette contains ideas and techniques that are not covered until later in STAT1004 and others (stochastic simulation and logistic regression) that are not part of the STAT1004 syllabus. Therefore, you should not worry too much about these details: just try to get a sense of how the R code works. The questions and comments below are there to prompt you to think about things.</p>
 <p>For information about R see <a href="https://moodle.ucl.ac.uk/course/view.php?id=7596">STAT1006 Moodle page</a> (if you are taking STAT1006) or <a href="https://moodle.ucl.ac.uk/course/view.php?id=37877">Introduction to R Moodle page</a> (if you are not taking STAT1006, e.g. Natural Sciences students).</p>
-<p>The R code used in this vignette are available <a href="stat1004-shuttle-vignette.R">here</a>.</p>
+<p>The R code used in this vignette are available <a href="stat1004-ch1a-shuttle-vignette.R">here</a>. The functions <code>shuttle_sim</code> and <code>shuttle_sim_plot</code> can be viewed either by typing the name of the function at R command prompt <code>&gt;</code> or at <a href="https://github.com/paulnorthrop/stat1004/tree/master/R/shuttle_sim.R">GitHub</a></p>
 <p>If you have any questions please ask them using the <a href="https://moodle.ucl.ac.uk/mod/hsuforum/view.php?id=1410864">STAT1004 discussion forum</a>.</p>
 </div>
 <div id="the-challenger-space-shuttle-disaster" class="section level2">
@@ -294,7 +294,7 @@ Number of Fisher Scoring iterations:<span class="st"> </span><span class="dv">5<
 <h3>Using stochastic simulation to assess uncertainty</h3>
 <p>The smooth curve superimposed on the plot immediately above cannot be thought of as “the truth”: it is merely an estimate <span class="math inline">\(\hat{p}(t)\)</span>, based on a single dataset and some simple modelling assumptions, of how the probability <span class="math inline">\(p(t)\)</span> of O-ring distress might depend on launch temperature <span class="math inline">\(t\)</span>. If the launches were repeated, under exactly the same conditions that produced the original data, then we would (with high probability) obtain a different dataset and hence a different fitted smooth curve. That is, different experiments produce different datasets, which leads to different estimated curves and therefore <em>uncertainty</em> about <span class="math inline">\(p(t)\)</span>.</p>
 <p>In reality we are not able to repeat the launches and so we have only one dataset, producing one estimated curve. However, we should appreciate that this dataset (and its estimated curve) is one example taken from a <em>population</em> of datasets (and their respective estimated curves) could be obtained. The size of our uncertainty based on this one dataset is related to how variable is this population of estimated curves. If the estimated curves are very similar then it may not matter which of them we get from our real dataset, because our findings will be similar for all datasets. However, if the estimated curves are very different then our findings will vary a lot depending on which dataset we have obtained.</p>
-<p>Although we cannot repeat the launches we can get an idea of how much uncertainty there is about <span class="math inline">\(p(t)\)</span> for given values of <span class="math inline">\(t\)</span> by simulating fake datasets from the model fitted to the real data. This involves getting a computer to `decide’ whether or not a given O-ring suffers thermal distress during a launch at temperature <span class="math inline">\(t\)</span>, in a random manner such that the probability of distress equals <span class="math inline">\(\hat{p}(t)\)</span>. For more details about how we can use a computer to generate <em>pseudo-random numbers</em> (numbers that are close enough to being random for our purposes) see the vignette <a href="stat1004-stochastic-simulation-vignette.html">Stochastic simulation</a> and/or the short <a href="https://moodle.ucl.ac.uk/mod/url/view.php?id=2180273">Stochastic simulation video</a>.</p>
+<p>Although we cannot repeat the launches we can get an idea of how much uncertainty there is about <span class="math inline">\(p(t)\)</span> for given values of <span class="math inline">\(t\)</span> by simulating fake datasets from the model fitted to the real data. This involves getting a computer to `decide’ whether or not a given O-ring suffers thermal distress during a launch at temperature <span class="math inline">\(t\)</span>, in a random manner such that the probability of distress equals <span class="math inline">\(\hat{p}(t)\)</span>. For more details about how we can use a computer to generate <em>pseudo-random numbers</em> (numbers that are close enough to being random for our purposes) see the vignette <a href="stat1004-ch1b-stochastic-simulation-vignette.html">Stochastic simulation</a> and/or the short <a href="https://moodle.ucl.ac.uk/mod/url/view.php?id=2180273">Stochastic simulation video</a>.</p>
 <p>The function <code>shuttle_sim</code> simulates fake O-ring thermal distress data for Challenger Space Shuttle launches at different launch temperatures. The following code simulates 10 fake datasets of size 23, using the real launch temperatures.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="co"># Simulate 10 fake datasets of size 23, using the real temperatures.</span>
 <span class="er">&gt;</span><span class="st"> </span>res &lt;-<span class="st"> </span><span class="kw">shuttle_sim</span>(<span class="dt">n_sim =</span> <span class="dv">10</span>)

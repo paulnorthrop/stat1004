@@ -23,7 +23,7 @@ This vignette contains ideas and techniques that are not covered until later in 
 
 For information about R see [STAT1006 Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=7596) (if you are taking STAT1006) or [Introduction to R Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=37877) (if you are not taking STAT1006, e.g. Natural Sciences students).
 
-The R code used in this vignette are available [here](stat1004-shuttle-vignette.R).
+The R code used in this vignette are available [here](stat1004-ch1a-shuttle-vignette.R).  The functions `shuttle_sim` and `shuttle_sim_plot` can be viewed either by typing the name of the function at R command prompt `>` or at  [GitHub](https://github.com/paulnorthrop/stat1004/tree/master/R/shuttle_sim.R)
 
 If you have any questions please ask them using the [STAT1004 discussion forum](https://moodle.ucl.ac.uk/mod/hsuforum/view.php?id=1410864).
 
@@ -202,7 +202,7 @@ The smooth curve superimposed on the plot immediately above cannot be thought of
 
 In reality we are not able to repeat the launches and so we have only one dataset, producing one estimated curve.  However, we should appreciate that this dataset (and its estimated curve) is one example taken from a *population* of datasets (and their respective estimated curves) could be obtained.  The size of our uncertainty based on this one dataset is related to how variable is this population of estimated curves.  If the estimated curves are very similar then it may not matter which of them we get from our real dataset, because our findings will be similar for all datasets.  However, if the estimated curves are very different then our findings will vary a lot depending on which dataset we have obtained.
 
-Although we cannot repeat the launches we can get an idea of how much uncertainty there is about $p(t)$ for given values of $t$ by simulating fake datasets from the model fitted to the real data.  This involves getting a computer to `decide' whether or not a given O-ring suffers thermal distress during a launch at temperature $t$, in a random manner such that the probability of distress equals $\hat{p}(t)$.  For more details about how we can use a computer to generate *pseudo-random numbers* (numbers that are close enough to being random for our purposes) see the vignette [Stochastic simulation](stat1004-stochastic-simulation-vignette.html) and/or the short [Stochastic simulation video](https://moodle.ucl.ac.uk/mod/url/view.php?id=2180273).
+Although we cannot repeat the launches we can get an idea of how much uncertainty there is about $p(t)$ for given values of $t$ by simulating fake datasets from the model fitted to the real data.  This involves getting a computer to `decide' whether or not a given O-ring suffers thermal distress during a launch at temperature $t$, in a random manner such that the probability of distress equals $\hat{p}(t)$.  For more details about how we can use a computer to generate *pseudo-random numbers* (numbers that are close enough to being random for our purposes) see the vignette [Stochastic simulation](stat1004-ch1b-stochastic-simulation-vignette.html) and/or the short [Stochastic simulation video](https://moodle.ucl.ac.uk/mod/url/view.php?id=2180273).
 
 The function `shuttle_sim` simulates fake O-ring thermal distress data for Challenger Space Shuttle launches at different launch temperatures.  The following code simulates 10 fake datasets of size 23, using the real launch temperatures.
 

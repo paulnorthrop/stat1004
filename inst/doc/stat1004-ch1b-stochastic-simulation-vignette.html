@@ -12,9 +12,9 @@
 
 <meta name="author" content="Paul Northrop" />
 
-<meta name="date" content="2017-04-17" />
+<meta name="date" content="2017-04-18" />
 
-<title>Chapter 2: Stochastic simulation</title>
+<title>Chapter 1: Stochastic simulation</title>
 
 
 
@@ -68,9 +68,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 
 
-<h1 class="title toc-ignore">Chapter 2: Stochastic simulation</h1>
+<h1 class="title toc-ignore">Chapter 1: Stochastic simulation</h1>
 <h4 class="author"><em>Paul Northrop</em></h4>
-<h4 class="date"><em>2017-04-17</em></h4>
+<h4 class="date"><em>2017-04-18</em></h4>
 
 
 <div id="TOC">
@@ -86,6 +86,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <p>Stochastic simulation uses computer-generated <em>pseudo-random numbers</em> to mimic a stochastic real event or dataset. Pseudo-random numbers are not random (they are produced by an algorithm) but the algorithm is constructed in order to imitate randomness closely enough. A typical use of stochastic simulation is to generate numbers that behave approximately like a random sample from an particular probability distribution.</p>
 <p>In this vignette we concentrate on using R to perform stochastic simulation. For a more general introduction to stochastic simulation, and a more detailed explanation of the ideas underlying the R code, see the short <a href="https://moodle.ucl.ac.uk/mod/url/view.php?id=2180273">Stochastic simulation video</a>. If you want to know more then good sources of information are <span class="citation">Morgan (1984)</span> and <span class="citation">Jasra (unknown year)</span>.</p>
+<p>The R code used in this vignette are available <a href="stat1004-ch1b-stochastic-simulation-vignette.R">here</a>. The function <code>rbinomial</code> can be viewed either by typing <code>rbinomial</code> at R command prompt <code>&gt;</code> or at <a href="https://github.com/paulnorthrop/stat1004/tree/master/R/stochastic_simulation.R">GitHub</a></p>
 <div id="pseudo-random-numbers-in-01" class="section level2">
 <h2>Pseudo-random numbers in (0,1)</h2>
 <p>The basic building block of stochastic simulation methods is the ability to simulate numbers (pseudo-) randomly from the interval (0,1). As we will see in Section 5.7 of the <a href="https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf">STAT1004 notes</a> this is equivalent to generating numbers that behave approximately like a random sample from a standard uniform U(0,1) distribution. The function in R that does this is <code>runif</code>.</p>
@@ -95,7 +96,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="simulation-from-a-binomial-distribution" class="section level2">
 <h2>Simulation from a binomial distribution</h2>
-<p>In the <a href="stat1004-shuttle-vignette.html">Challenger Space Shuttle disaster</a> vignette we needed to simulate numbers from a binomial distribution with parameters <span class="math inline">\(6\)</span> and <span class="math inline">\(p\)</span>, for a given value of <span class="math inline">\(p\)</span>. As we will see in Section 5.3 of the <a href="https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf">STAT1004 notes</a> this distribution arises as the number of ‘successes’ (perversely, in the space shuttle example thermal distress of an O-ring is a ‘success’) in a fixed number (here, this is 6) of independent trials, where each trial results either in a ‘success’ or a ‘failure’.</p>
+<p>In the <a href="stat1004-ch1a-shuttle-vignette.html">Challenger Space Shuttle disaster</a> vignette we needed to simulate numbers from a binomial distribution with parameters <span class="math inline">\(6\)</span> and <span class="math inline">\(p\)</span>, for a given value of <span class="math inline">\(p\)</span>. As we will see in Section 5.3 of the <a href="https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf">STAT1004 notes</a> this distribution arises as the number of ‘successes’ (perversely, in the space shuttle example thermal distress of an O-ring is a ‘success’) in a fixed number (here, this is 6) of independent trials, where each trial results either in a ‘success’ or a ‘failure’.</p>
 <p>Suppose that <span class="math inline">\(p=0.2\)</span>, which is the approximate estimated probability (under a linear logistic model) that an O-ring suffers thermal distress when the space shuttle is launched at 58 degrees Fahrenheit.</p>
 <p>The function in R that simulates from a binomial distribution is <code>rbinom</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rbinom</span>(<span class="dt">n =</span> <span class="dv">1</span>, <span class="dt">size =</span> <span class="dv">6</span>, <span class="dt">prob =</span> <span class="fl">0.2</span>)

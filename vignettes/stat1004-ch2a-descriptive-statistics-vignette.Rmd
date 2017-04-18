@@ -19,6 +19,9 @@ devtools::load_all()
 
 The main purpose of this vignette is to provide R code to calculate the summary statistics that feature in Section 2.3 of the [STAT1004 notes](https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf) (apart from correlation, which we defer until Chapter 9).  An important point to appreciate is that usually there is more than one way to estimate from data a particular theoretical property of the distribution from which the data came. For example, we will see that there are many different rules (*estimators*) that can be used to estimate a quantile of a distribution.
 
+The R code used in this vignette are available [here](stat1004-ch2a-descriptive-statistics-vignette.R).
+ The functions `five_number`, `skew` and `q_skew` can be viewed either by typing the name of the function at R command prompt `>` or at  [GitHub](https://github.com/paulnorthrop/stat1004/tree/master/R/descriptive_statistics.R)
+
 ## The Oxford Birth Times data 
 
 These data are available in the data frame `ox_births`.
@@ -39,7 +42,7 @@ for (i in 1:7) {
 ox_mat
 ```
 
-We return to this matrix later.  Until then we calculate summary statistics of the birth times data from all days of the week.  
+We return to this matrix later.  Until then we calculate summary statistics of the dataset containg the birth times from all days of the week.  
 
 ```{r}
 birth_times <- ox_births[, "time"]
@@ -103,4 +106,16 @@ q_skew(birth_times)
 q_skew(birth_times, type = 7)
 ```
 
+## Summary statistics for each day
+
+We can also calculate summary statistics for each of the seven days of the week, i.e. for each of the columns of `ox_mat`.  The effect of the `colMeans` function is fairly obvious. `apply` is a useful function.  Use `?apply` to see what it does.
+
+```{r}
+five_number(ox_mat, na.rm = TRUE)
+summary(ox_mat)
+colMeans(ox_mat, na.rm = TRUE)
+apply(ox_mat, 2, sd, na.rm = TRUE)
+skew(ox_mat, na.rm = TRUE)
+q_skew(ox_mat, na.rm = TRUE)
+```
 

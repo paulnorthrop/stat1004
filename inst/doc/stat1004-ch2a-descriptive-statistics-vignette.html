@@ -12,7 +12,7 @@
 
 <meta name="author" content="Paul Northrop" />
 
-<meta name="date" content="2017-04-17" />
+<meta name="date" content="2017-04-18" />
 
 <title>Chapter 2: Descriptive Statistics</title>
 
@@ -70,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Chapter 2: Descriptive Statistics</h1>
 <h4 class="author"><em>Paul Northrop</em></h4>
-<h4 class="date"><em>2017-04-17</em></h4>
+<h4 class="date"><em>2017-04-18</em></h4>
 
 
 <div id="TOC">
@@ -80,10 +80,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="#sample-mean">Sample mean</a></li>
 <li><a href="#sample-standard-deviation-and-variance">Sample standard deviation and variance</a></li>
 <li><a href="#measures-of-skewness">Measures of skewness</a></li>
+<li><a href="#summary-statistics-for-each-day">Summary statistics for each day</a></li>
 </ul>
 </div>
 
 <p>The main purpose of this vignette is to provide R code to calculate the summary statistics that feature in Section 2.3 of the <a href="https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf">STAT1004 notes</a> (apart from correlation, which we defer until Chapter 9). An important point to appreciate is that usually there is more than one way to estimate from data a particular theoretical property of the distribution from which the data came. For example, we will see that there are many different rules (<em>estimators</em>) that can be used to estimate a quantile of a distribution.</p>
+<p>The R code used in this vignette are available <a href="stat1004-ch2a-descriptive-statistics-vignette.R">here</a>. The functions <code>five_number</code>, <code>skew</code> and <code>q_skew</code> can be viewed either by typing the name of the function at R command prompt <code>&gt;</code> or at <a href="https://github.com/paulnorthrop/stat1004/tree/master/R/descriptive_statistics.R">GitHub</a></p>
 <div id="the-oxford-birth-times-data" class="section level2">
 <h2>The Oxford Birth Times data</h2>
 <p>These data are available in the data frame <code>ox_births</code>.</p>
@@ -114,7 +116,7 @@ ox_mat
 <span class="co">#&gt; [14,] 10.40 11.20    NA    NA 14.30    NA    NA</span>
 <span class="co">#&gt; [15,] 16.00 15.00    NA    NA    NA    NA    NA</span>
 <span class="co">#&gt; [16,] 19.00 16.50    NA    NA    NA    NA    NA</span></code></pre></div>
-<p>We return to this matrix later. Until then we calculate summary statistics of the birth times data from all days of the week.</p>
+<p>We return to this matrix later. Until then we calculate summary statistics of the dataset containg the birth times from all days of the week.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">birth_times &lt;-<span class="st"> </span>ox_births[, <span class="st">&quot;time&quot;</span>]
 <span class="kw">sort</span>(birth_times)
 <span class="co">#&gt;  [1]  1.50  2.00  2.10  2.50  2.50  2.60  2.70  2.75  3.40  3.40  3.40</span>
@@ -172,6 +174,46 @@ ox_mat
 <p>[Until 2017/18 the STAT1004 notes gave -0.063 as the sample quartile skewness. This was because I used the default setting, type = 7, in the <code>quantile</code> function when calculating it …]</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">q_skew</span>(birth_times, <span class="dt">type =</span> <span class="dv">7</span>)
 <span class="co">#&gt; [1] -0.0625</span></code></pre></div>
+</div>
+<div id="summary-statistics-for-each-day" class="section level2">
+<h2>Summary statistics for each day</h2>
+<p>We can also calculate summary statistics for each of the seven days of the week, i.e. for each of the columns of <code>ox_mat</code>. The effect of the <code>colMeans</code> function is fairly obvious. <code>apply</code> is a useful function. Use <code>?apply</code> to see what it does.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">five_number</span>(ox_mat, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+<span class="co">#&gt;       day1    day2   day3 day4    day5   day6    day7</span>
+<span class="co">#&gt; min  2.100  4.0000  2.600  1.5  2.5000  4.000  2.0000</span>
+<span class="co">#&gt; 25%  5.800  5.5500  5.000  4.7  4.0000  5.675  2.9125</span>
+<span class="co">#&gt; 50%  8.825  7.4000  7.500  8.1  7.4000  7.000  4.6000</span>
+<span class="co">#&gt; 75% 10.300 10.6875 10.575  9.5  8.7875 10.150  8.5000</span>
+<span class="co">#&gt; max 19.000 16.5000 14.500 11.5 14.3000 14.600 10.7000</span>
+<span class="kw">summary</span>(ox_mat)
+<span class="co">#&gt;       day1             day2             day3            day4       </span>
+<span class="co">#&gt;  Min.   : 2.100   Min.   : 4.000   Min.   : 2.60   Min.   : 1.500  </span>
+<span class="co">#&gt;  1st Qu.: 6.200   1st Qu.: 5.650   1st Qu.: 6.40   1st Qu.: 5.950  </span>
+<span class="co">#&gt;  Median : 8.825   Median : 7.400   Median : 7.50   Median : 8.100  </span>
+<span class="co">#&gt;  Mean   : 8.766   Mean   : 8.312   Mean   : 8.05   Mean   : 7.532  </span>
+<span class="co">#&gt;  3rd Qu.:10.100   3rd Qu.:10.062   3rd Qu.:10.40   3rd Qu.: 9.350  </span>
+<span class="co">#&gt;  Max.   :19.000   Max.   :16.500   Max.   :14.50   Max.   :11.500  </span>
+<span class="co">#&gt;                                    NA's   :3       NA's   :5       </span>
+<span class="co">#&gt;       day5             day6             day7       </span>
+<span class="co">#&gt;  Min.   : 2.500   Min.   : 4.000   Min.   : 2.000  </span>
+<span class="co">#&gt;  1st Qu.: 4.625   1st Qu.: 6.100   1st Qu.: 3.237  </span>
+<span class="co">#&gt;  Median : 7.400   Median : 7.000   Median : 4.600  </span>
+<span class="co">#&gt;  Mean   : 7.243   Mean   : 8.085   Mean   : 5.537  </span>
+<span class="co">#&gt;  3rd Qu.: 8.300   3rd Qu.:10.100   3rd Qu.: 7.500  </span>
+<span class="co">#&gt;  Max.   :14.300   Max.   :14.600   Max.   :10.700  </span>
+<span class="co">#&gt;  NA's   :2        NA's   :3        NA's   :4</span>
+<span class="kw">colMeans</span>(ox_mat, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+<span class="co">#&gt;     day1     day2     day3     day4     day5     day6     day7 </span>
+<span class="co">#&gt; 8.765625 8.312500 8.050000 7.531818 7.242857 8.084615 5.537500</span>
+<span class="kw">apply</span>(ox_mat, <span class="dv">2</span>, sd, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+<span class="co">#&gt;     day1     day2     day3     day4     day5     day6     day7 </span>
+<span class="co">#&gt; 4.296654 3.629348 3.733798 2.937880 3.565532 3.223313 2.887286</span>
+<span class="kw">skew</span>(ox_mat, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+<span class="co">#&gt; [1]  0.6868543  0.8553875  0.2874617 -0.5639013  0.4105886  0.5136015</span>
+<span class="co">#&gt; [7]  0.4524077</span>
+<span class="kw">q_skew</span>(ox_mat, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+<span class="co">#&gt; [1] -0.3444444  0.2798054  0.1031390 -0.4166667 -0.4203655  0.4078212</span>
+<span class="co">#&gt; [7]  0.3959732</span></code></pre></div>
 </div>
 
 
