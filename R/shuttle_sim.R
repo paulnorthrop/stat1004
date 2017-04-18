@@ -57,7 +57,6 @@
 #'   vignette.
 #' @seealso \code{link{shuttle_sim_plot}} for assessing uncertainty concerning
 #'   the modelling of the space shuttle data using simulation.
-#' @export
 shuttle_sim <- function(n_sim = 1, temperature = NULL) {
   #
   # Set up the data ----------
@@ -156,7 +155,6 @@ shuttle_sim <- function(n_sim = 1, temperature = NULL) {
 #'   vignette.
 #' @seealso \code{\link{shuttle_sim}} for simulating fake space shuttle data.
 #' @seealso \code{\link{lines}} for arguments that can be supplied in ....
-#' @export
 shuttle_sim_plot <- function(n_sim = 50, plot_real_data = TRUE, n_reps = 1,
                              ...) {
   #

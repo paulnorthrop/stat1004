@@ -17,186 +17,102 @@ knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
 devtools::load_all() 
 ```
 
-Stochastic simulation uses computer-generated *pseudo-random numbers* to mimic a stochastic real event or dataset.  Pseudo-random numbers are not random (they are produced by an algorithm) but the algorithm is constructed in order to imitate randomness closely enough.  A typical use of stochastic simulation is to generate numbers that behave approximately like a random sample from an particular probability distribution.  
+The main purpose of this vignette is to provide R code to calculate the summary statistics that feature in Section 2.3 of the [STAT1004 notes](https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf) (apart from correlation, which we defer until Chapter 9).  An important point to appreciate is that usually there is more than one way to estimate from data a particular theoretical property of the distribution from which the data came. For example, we will see that there are many different rules (*estimators*) that can be used to estimate a quantile of a distribution.
 
-In this vignette we concentrate on using R to perform stochastic simulation.  For a more general introduction to stochastic simulation, and a more detailed explanation of the ideas underlying the R code, see the short [Stochastic simulation video](https://moodle.ucl.ac.uk/mod/url/view.php?id=2180273).  If you want to know more then good sources of information are @Morgan and @Jasra.
+## The Oxford Birth Times data 
 
-## Pseudo-random numbers in (0,1)
-
-The basic building block of stochastic simulation methods is the ability to simulate numbers (pseudo-) randomly from the interval (0,1).  As we will see in Section 5.7 of the [STAT1004 notes](https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf) this is equivalent to generating numbers that behave approximately like a random sample from a standard uniform U(0,1) distribution.
-The function in R that does this is `runif`.
-
-```{r, include = FALSE}
-# Set a random number `seed'.  
-set.seed(1004)
+These data are available in the data frame `ox_births`.
+```{r, message = FALSE}
+library(stat1004)
+?ox_births
 ```
+
+We manipulate the data into a matrix that is of the same format as Table 2.1 in the notes.  The number of birth times varies between days so we pad the matrix with R's missing values code `NA` in order that each column of the matrix has the same number of rows.
 
 ```{r}
-runif(10)
+ox_mat <- matrix(NA, ncol = 7, nrow = 16)
+for (i in 1:7) {
+  day_i_times <- ox_births$time[which(ox_births$day == i)]
+  ox_mat[1:length(day_i_times), i] <- sort(day_i_times)
+  colnames(ox_mat) <- paste("day", 1:7, sep = "")
+}  
+ox_mat
 ```
 
-## Simulation from a binomial distribution
-
-In the [Challenger Space Shuttle disaster](stat1004-shuttle-vignette.html) vignette we needed to simulate numbers from a binomial distribution with parameters $6$ and $p$, for a given value of $p$.  As we will see in Section 5.3 of the [STAT1004 notes](https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf) this distribution arises as the number of 'successes' (perversely, in the space shuttle example thermal distress of an O-ring is a 'success') in a fixed number (here, this is 6) of independent trials, where each trial results either in a 'success' or a 'failure'.
-
-Suppose that $p=0.2$, which is the approximate estimated probability (under a linear logistic model) that an O-ring suffers thermal distress when the space shuttle is launched at 58 degrees Fahrenheit.
-
-The function in R that simulates from a binomial distribution is `rbinom`.
+We return to this matrix later.  Until then we calculate summary statistics of the dataset containg the birth times from all days of the week.  
 
 ```{r}
-rbinom(n = 1, size = 6, prob = 0.2)
+birth_times <- ox_births[, "time"]
+sort(birth_times)
 ```
 
-1. **Can you see the convention in the way that R's simulation functions are named?**
+## Five number summary
 
-Underlying `rbinom` is an algorithm that works quickly even in cases where the number of trials (`size`) is large.  With a small number of trials, like 6, we could work more directly, using numbers produced by `runif` to assign the result of each trial to 'success' or 'failure'.  This is like tossing a coin that is biased so that 'heads' is obtained with probability 0.2.  The function `rbinomial` below simulates *one* value from a binomial distribution with parameters `size` and `prob`.  Use `?rbinomial` to view the help file. This function is less general and less efficient than `rbinom`.  However, it is useful to illustrate a simple way to simulate from a binomial distribution and as an example of how we can write our own R functions to perform calculations.  
-
-    rbinomial <- function(size, prob) {
-      # Simulate size values (pseudo-)randomly between 0 and 1.
-      u <- runif(size)
-      # Find out whether (TRUE) or not (FALSE) each value of u is less than prob.
-      distress <- u < prob
-      # Count the number of TRUEs, i.e. the number of successes.
-      n_successes <- sum(distress)
-      # Return the number of successes.
-      return(n_successes)
-    }
-
-We simulate one value from a binomial(6, 0.2) distribution.  [We use `set.seed` to initialize the pseudo-random number sequence in a particular place.  This will enable us to repeat these calculations below using exactly the same random numbers.]
+The function `five_number` calculates the five number summary of data, using the particular method for estimating the lower quartile, median and upper quartile described in the STAT1004 notes.
 
 ```{r}
-set.seed(1826)
-rbinomial(size = 6, prob = 0.2)
+five_number(birth_times)
 ```
 
-2. **Can you work out what is happening in each line of the code inside `rbinomial`? The following should help.**
+The `summary` function can also be used to calculate a five number summary.
 
 ```{r}
-set.seed(1826)
-size <- 6
-prob <- 0.2
-u <- runif(size)
-u
-distress <- u < prob
-distress
-n_successes <- sum(distress)
-n_successes
+summary(birth_times)
 ```
 
-3. **The effect of `sum(distress)` is quite subtle.  Can you see what is happening?  Check your answer using `?sum`.**
+1. **(If we ignore the fact that `summary` also calculates the sample mean) does `summary` produce the same values as `five_number`?**
 
-A related point is that is we turn the logical vector `distress` (which contains `TRUE`s and `FALSE`s) into a numeric vector, then we get ...
+No, the estimates of the lower quartile differ.  This is because the functions `summary` and `five_number` use different rules to estimate quantiles: `summary` calls `quantile` using `type = 7` whereas `five_number` uses `type = 6`.  If we call `five_number` with `type = 7` we get the same numbers as `summary`.
 
 ```{r}
-as.numeric(distress)
+five_number(birth_times, type = 7)
 ```
 
-## Simulation from a exponential distribution
-
-The exponential distribution (see Section 5.6 of the [STAT1004 notes](https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf)) is an example of a probability distribution of a continuous random variable (see Section 4.2 of the [STAT1004 notes](https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf)).
-
-4. **Can you guess the name of the R function for simulating from an exponential distribution?**
-
-We simulate a sample of size 1000 from an exponential distribution with (rate) parameter equal to 2.
-```{r, fig.show='hold'}
-lambda <- 2
-exp_sim <- rexp(n = 1000, rate = lambda)
-```
-
-We produce a histogram of these simulated values 
-(see Section 2.5 of the [STAT1004 notes](https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf)) and superimpose the probability density function (p.d.f.) of the exponential distribution from which these values have been simulated.
-
-```{r, fig.width = 6, fig.height = 4}
-# A histogram (see Section 2.5 of the STAT1004 notes)
-hist(exp_sim, probability = TRUE, ylim = c(0, lambda), main = "")
-x <- seq(0, max(exp_sim), len = 500)
-lines(x, dexp(x, rate = lambda))
-```
-
-5. **Can you guess what the function `dexp` does?  Use `?dexp` to find out.**
-
-After you have answered Question 5 of the [Quiz for Exercises 6](https://moodle.ucl.ac.uk/mod/quiz/view.php?id=2671329) you will see why the following R code could be used to simulate from an exponential distribution.
-
-```{r, fig.width = 6, fig.height = 4}
-u <- runif(1000)
-exp_inv <- -log(u)/lambda
-hist(exp_inv, probability = TRUE, ylim = c(0, lambda), main = "", breaks = 14, col = "grey")
-lines(x, dexp(x, rate = lambda))
-```
-
-## The inversion method
-
-The code immediately above is an example of the *inversion method* of simulation.
-See the 
-[Stochastic simulation video](https://moodle.ucl.ac.uk/mod/url/view.php?id=2180273) for some detail.  The following code implements this for the normal distribution
-(see Section 5.7 of the [STAT1004 notes](https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf)).
-
-```{r, fig.width = 6, fig.height = 4}
-u <- runif(1000)
-mu <- 0
-sigma <- 1
-norm_sim <- qnorm(u, mean = mu, sd = sigma)
-hist(norm_sim, probability = TRUE, main = "", col = "grey")
-x <- seq(min(norm_sim), max(norm_sim), len = 500)
-lines(x, dnorm(x, mean = mu, sd = sigma))
-```
-
-6. **Use `?qnorm` to find out what `qnorm` does.**
-
-Note that the help page calls this the *quantile function*.  An alternative name is the *inverse cumulative distribution function* or *inverse c.d.f* (see Section 5.7 of the [STAT1004 notes](https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf)).
-
-## More general methods of simulation
-
-Often the most efficient method of simulating values from a probability distribution is one that has been devised for that particular distribution.  However, it is useful to have more general methods that can, in principle, be used to simulate from any distribution, although, in practice, there are constraints on the type of distribution to which a method can be applied.  Many of these methods work by proposing values and then accepting or rejecting them using a rule (hence they are often called *acceptance-rejection* or *rejection* methods).  See @Morgan and @Jasra for details.
-One such method is the *generalized ratio-of-uniforms* method (@WGS1991 and references therein), which can be used for univariate distributions (involving one random variable) and for multivariate distributions (involving two or more random variables), provided that the p.d.f. of the distributions satisfies some conditions.  
-
-The *rust* R package [@rust] implements this algorithm.  The code below can be used to simulate from a standard normal distribution using the function `ru`.  
-
-```{r, fig.width = 6, fig.height = 4, message = FALSE}
-library(rust)
-?ru
-# Simulate from a standard normal N(0,1) distribution
-ru_sim <- ru(logf = function(x) -x ^ 2 / 2, d = 1, n = 1000, init = 0.1)
-# The function ru returns an object of class "ru"
-class(ru_sim)
-# The default plot method for objects of class "ru" produces a plot to compare the 
-# simulated values and the p.d.f. of the distribution from which they are simulated
-plot(ru_sim, xlab = "x")
-```
-
-Note that 
-
-* the main input to this function is the (natural) log of the p.d.f of a standard normal distribution, i.e. the log of $\frac{1}{\sqrt{2\pi}} e^{-\frac12 x^2}$;  
-* we don't need to include the normalizing constant $1/\sqrt{2\pi}$, that is, the constant that is included to ensure that the p.d.f. integrates to 1 over the support $-\infty < x < \infty$ of this distribution. 
-
-The second point, a typical feature of *rejection* methods, can be important because there are cases where we can't easily calculate the normalizing constant.
-
-We the use of `ru` to simulate from a multivariate distribution using the bivariate normal distribution. This distribution will be studied in the second-year statistics module [STAT2001](https://moodle.ucl.ac.uk/course/view.php?id=2907).  See the Wikipedia page for the 
-[multivariate normal distribution](https://en.wikipedia.org/wiki/Multivariate_normal_distribution#Non-degenerate_case) for the form of the p.d.f. of this distribution.  The function `log_dmvnorm` below calculates the log of the p.d.f. of the multivariate normal distribution with mean vector `mean` and variance-covariance matrix `sigma`, again ignoring the normalizing constant.
-
-```{r, fig.width = 6, fig.height = 4}
-# two-dimensional normal with positive association ----------------
-rho <- 0.9
-covmat <- matrix(c(1, rho, rho, 1), 2, 2)
-log_dmvnorm <- function(x, mean = rep(0, d), sigma = diag(d)) {
-  x <- matrix(x, ncol = length(x))
-  d <- ncol(x)
-  return(- 0.5 * (x - mean) %*% solve(sigma) %*% t(x - mean))
-}
-ru_sim2 <- ru(logf = log_dmvnorm, sigma = covmat, d = 2, n = 1000, init = c(0, 0))
-```
-
-In the bivariate case the `plot` method for objects of class "ru" produces a scatter plot of the simulated values of the random variables $(X_1, X_2)$ with the contours of the value of the p.d.f. superimposed.  Each contour is labelled by a number indicating the percentage of the simulated values that should lie within that contour.
-
-```{r, fig.width = 6, fig.height = 4}
-plot(ru_sim2, xlab = expression(X[1]), ylab = expression(X[2]))
-```
-
-The generalized ratio-of-uniforms method works well enough for this example but it is not the most efficient way to simulate from a multivariate normal distribution.  A better function is the `mvrnorm` in the MASS package [@MASS].
+In fact the function `quantile` has 9 different options for `type`.
 
 ```{r, message = FALSE}
-library(MASS)
-?mvrnorm
+?quantile
 ```
 
-## References
+## Sample mean 
+
+```{r}
+mean(birth_times)
+```
+
+## Sample standard deviation and variance
+
+```{r}
+sd(birth_times)
+var(birth_times)
+sd(birth_times) ^ 2
+```
+
+## Measures of skewness
+
+```{r}
+# Standardized sample skewness
+skew(birth_times)
+# Sample quartile skewness
+q_skew(birth_times)
+```
+
+[Until 2017/18 the STAT1004 notes gave -0.063 as the sample quartile skewness.  This was because I used the default setting, type = 7, in the `quantile` function when calculating it ...]
+
+```{r}
+q_skew(birth_times, type = 7)
+```
+
+## Summary statistics for each day
+
+We can also calculate summary statistics for each of the seven days of the week, i.e. for each of the columns of `ox_mat`.  The effect of the `colMeans` function is fairly obvious. `apply` is a useful function.  Use `?apply` to see what it does.
+
+```{r}
+five_number(ox_mat, na.rm = TRUE)
+summary(ox_mat)
+colMeans(ox_mat, na.rm = TRUE)
+apply(ox_mat, 2, sd, na.rm = TRUE)
+skew(ox_mat, na.rm = TRUE)
+q_skew(ox_mat, na.rm = TRUE)
+```
+

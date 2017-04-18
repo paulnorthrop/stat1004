@@ -25,8 +25,8 @@
 #' @seealso \code{\link{quantile}} for calculating sample quantiles.
 five_number <- function(x, type = 6, na.rm = FALSE) {
   five_number_vec <- function(x, type, na.rm) {
-    c(min(x, na.rm = na.rm), quantile(x, probs = c(0.25, 0.5, 0.75),
-                                      type = type, na.rm = na.rm),
+    c(min(x, na.rm = na.rm), stats::quantile(x, probs = c(0.25, 0.5, 0.75),
+                                            type = type, na.rm = na.rm),
       max(x, na.rm = na.rm))
   }
   x <- apply(cbind(x), 2, five_number_vec, type = type, na.rm = na.rm)
@@ -62,7 +62,8 @@ five_number <- function(x, type = 6, na.rm = FALSE) {
 #' @seealso \code{\link{quantile}} for calculating sample quantiles.
 q_skew <- function(x, type = 6, na.rm = FALSE) {
   q_skew_vec <- function(x, type, na.rm) {
-    qq <- quantile(x, type = type, probs=c(0.25, 0.5, 0.75), na.rm = na.rm)
+    qq <- stats::quantile(x, type = type, probs=c(0.25, 0.5, 0.75),
+                          na.rm = na.rm)
     return(((qq[3] - qq[2]) - (qq[2] - qq[1]))/(qq[3] - qq[1]))
   }
   x <- apply(cbind(x), 2, q_skew_vec, type = type, na.rm = na.rm)
@@ -91,7 +92,7 @@ q_skew <- function(x, type = 6, na.rm = FALSE) {
 #' @seealso \code{\link{quantile}} for calculating sample quantiles.
 skew <- function(x, type = 6, na.rm = FALSE) {
   skew_vec <- function(x, type, na.rm) {
-    s <- sd(x, na.rm = na.rm)
+    s <- stats::sd(x, na.rm = na.rm)
     m <- mean(x, na.rm = na.rm)
     m3 <- mean((x - m) ^ 3, na.rm = na.rm)
     return(m3 / s ^ 3)
