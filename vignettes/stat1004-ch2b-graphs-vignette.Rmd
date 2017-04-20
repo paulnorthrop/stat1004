@@ -13,13 +13,14 @@ bibliography: stat1004.bib
 ---
 
 ```{r, include = FALSE}
-knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
+knitr::opts_chunk$set(comment = "", prompt = TRUE, collapse = TRUE)
 devtools::load_all() 
 ```
 
 The main purpose of this vignette is to provide R code to produce graphs that feature in Sections 2.4 and 2.5 of the [STAT1004 notes](https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf).
 
 The R code used in this vignette are available [here](stat1004-ch2b-graphs-vignette.R).
+The code underlying the `box_plot` function is available at  [GitHub](https://github.com/paulnorthrop/stat1004/tree/master/R/graphs.R).
 
 ## The Oxford Birth Times data 
 
@@ -27,12 +28,13 @@ These data are available in the data frame `ox_births`.
 ```{r, message = FALSE}
 library(stat1004)
 birth_times <- ox_births[, "time"]
+day <- ox_births[, "day"]
 sort(birth_times)
 ```
 
 ## Empirical cumulative distribution function
 
-1. **Can you work out from the output below what the function `ecdf` does? You could also use `?ecdf`**
+1. **Can you work out from the output below what the function `ecdf` does? Use `?ecdf` to check our answer.**
 
 ```{r, fig.width = 6, fig.height = 4}
 ox_ecdf <- ecdf(birth_times)
@@ -47,19 +49,29 @@ ox_ecdf(100)
 
 The `plot` method for an object returned by `ecdf` produces a plot much like (the hollow circles in) Figure 2.3 in the STAT1004 notes.
 
-```{r, fig.width = 6, fig.height = 4}
-plot(ox_ecdf, main = "", xlab = "time (hours)", ylab = "cumulative relative frequency", pch = 1)
+We are going to label a lot of axes with "time (hours)". To make our lives a little easier we create a character variable called `xlab`.
+
+```{r}
+xlab <- "time (hours)"
 ```
+
+```{r, fig.width = 6, fig.height = 4}
+plot(ox_ecdf, main = "", xlab = xlab, ylab = "cumulative relative frequency", pch = 1)
+```
+
+2. **It should be obvious what the arguments `xlab` and `ylab` do.  What do you think that `main = ""` and `pch = 1` do?  Use `?title` and `?par` (respectively) to find out more. `?par` lists lots of arguments that can be used to adjust a graph.**
 
 ## Histogram
 
 For an explanation of how to construct a histogram, and why it is constructed in this way, see the short [How to draw a histogram video](https://moodle.ucl.ac.uk/mod/url/view.php?id=2085771).  The following code produces the plots on the right side of Figure 2.4 in the notes.  Note that in the first plot the `probability = TRUE` (or `prob = TRUE` for short) argument is important: it ensures that the total area of the rectangles of the histogram is equal to 1.   In the second plot it isn't necessary to include `prob = TRUE` because if the bin widths are unequal then (sensibly) `hist` uses `prob = TRUE`.
 
 ```{r, fig.show='hold', fig.width = 6.5}
-hist(birth_times, prob = TRUE, col = 8, main = "", xlab = "time (hours)")
+hist(birth_times, prob = TRUE, col = 8, main = "", xlab = xlab)
 br <- c(seq(from = 0, to = 12, by = 2), 20)
-hist(birth_times, breaks = br, col = 8, main = "", xlab = "time (hours)")
+hist(birth_times, breaks = br, col = 8, main = "", xlab = xlab)
 ```
+
+3. **Can you see what the argument `breaks` does?  ... and the function and `seq`?**
 
 The `hist` function returns an object (a *list* of several objects in fact) containing the information used to construct the plot.  If we assign this to an R object, `ox_tab` say, then we can look at this information and perhaps use it.  The `ls` function tells us the names of the objects in this list.  Use `?hist` to find out what these objects are.
 
@@ -72,30 +84,32 @@ We use the information in `ox_tab` to reproduce the plot in Figure 2.2 of the no
 
 ```{r, fig.width = 6.5, fig.height = 4}
 cum_rel_freq <- cumsum(c(0, ox_tab$counts)) / length(birth_times)
-plot(ox_tab$breaks, cum_rel_freq, type = "b", pch = 16, ylab = "cumulative relative frequency", xlab = "time (hours)")
+plot(ox_tab$breaks, cum_rel_freq, type = "b", pch = 16, ylab = "cumulative relative frequency", xlab = xlab)
 abline(h = 1, lty = 2)
 ```
 
-The following code produces the `histogram-like` alternative plots in the lecture slides [STAT1004 lecture slides](https://moodle.ucl.ac.uk/mod/resource/view.php?id=92031).  As you can see we can do many things to change the appearance of plots. Use `?par` to see a list of the graphical parameters that we can use.
+4. **What do you think the function `cumsum` does?**
+
+The following code produces the histogram-like alternative plots in the lecture slides [STAT1004 lecture slides](https://moodle.ucl.ac.uk/mod/resource/view.php?id=92031).  As you can see we can do many things to change the appearance of plots. Use `?par` to see a list of the graphical parameters that we can use.
 
 ```{r, fig.width = 6.5, fig.height = 4}
 # adjust plot margins, produce a 2 by 2 array of plots (fill row 1 then row 2)
 par(mar = c(4, 4, 1, 1), mfrow = c(2, 2))
 # no vertical axis
-hist(birth_times, col = 8, prob = TRUE, axes = FALSE, xlab = "time (hours)", ylab = "", main = "")
+hist(birth_times, col = 8, prob = TRUE, axes = FALSE, xlab = xlab, ylab = "", main = "")
 axis(1, line = 0.5)
 # no vertical axis plus rug of points
-hist(birth_times, col = 8, prob = TRUE, axes = FALSE, xlab = "time (hours)", ylab = "",main = "")
+hist(birth_times, col = 8, prob = TRUE, axes = FALSE, xlab = xlab, ylab = "",main = "")
 axis(1, line = 0.5)
 rug(birth_times, line = 0.5, ticksize = 0.05)
 # non-shaded frequency polygon
 n <- length(ox_tab$mids)
 ox_tab$mids <- c(ox_tab$mids[1], ox_tab$mids, ox_tab$mids[n])
 ox_tab$density <- c(0, ox_tab$density, 0)
-plot(ox_tab$mids, ox_tab$density, xlab = "time (hours)", ylab = "density", type = "l", las = 1) 
+plot(ox_tab$mids, ox_tab$density, xlab = xlab, ylab = "density", type = "l", las = 1) 
 axis(1, line = 0)
 # shaded frequency polygon with no vertical axis
-plot(ox_tab$mids, ox_tab$density, xlab="time (hours)", ylab = "", type = "l", bty= "l", axes = FALSE)
+plot(ox_tab$mids, ox_tab$density, xlab = xlab, ylab = "", type = "l", bty= "l", axes = FALSE)
 axis(1, line = -0.4)
 polygon(ox_tab$mids, ox_tab$density, col = 8)
 ```
@@ -107,23 +121,84 @@ The short [How to draw a histogram video](https://moodle.ucl.ac.uk/mod/url/view.
 ```{r}
 # The default plot
 stem(birth_times)
+
 # The plot that appears in the notes
 stem(birth_times, scale = 2)
 ```
 
+5. **Use `?stem` to see what `scale` does.**
+
 ## Dotplot
 
-It is surprisingly difficult to produce nice-looking dotplot using standard R functions.  One possibility is to use `stripchart`.  The code below also produces the plots Figure 2.5 in the notes.
+It is surprisingly difficult to produce a nice-looking dotplot using standard R functions.  One possibility is to use `stripchart`.  The code below also produces the plots Figure 2.5 in the notes.
 
 ```{r, fig.width = 6.5, fig.height = 4}
 stripchart(birth_times, method = "stack", pch = 16, at = 0, offset = 2/3)
-title(xlab = "time (hours)")
+title(xlab = xlab)
 x <- round(birth_times)
 stripchart(x, method = "stack", pch = 16, at = 0, axes = FALSE, offset = 2/3)
-title(xlab = "time (hours)")
+title(xlab = xlab)
 x_labs <- c(min(x), pretty(x), max(x))
 axis(1, at = x_labs)
 ```
 
+6. **Find out what the functions `pretty` and `axis` do.**
+
 ## Boxplot
 
+The function that produces a boxplot (or *box-and-whisker* plot) is called `boxplot`.  Inside `boxplot` the estimation of the quartiles, on which the box part of the plot is based, uses the default value of the argument `type` (i.e. `type = 7`) in a call to `quantile`.  In order that we can change the value of `type` if we wish `stat1004` contains a function `box_plot`, which is a copy of `boxplot` with the extra argument `type` added. In `box_plot` the default is `type = 6`, which corresponds to the particular way of estimating quartiles that is desribed in the STAT1004 lecture notes and slides. See the [Descriptive Statistics](stat1004-descriptive-statistics-vignette.html) vignette for more information about `quantile` and the argument `type`.  In many cases we will not need to worry about the choice of the value of `type`.  Unless the dataset is small the value of `type` will not have enough of an effect on the appearance of the boxplot to matter.  This is certainly the case for the `birth_times` data. 
+
+```{r, fig.width = 6.5, fig.height = 4}
+# type = 6
+b1 <- box_plot(birth_times, horizontal = TRUE, main = "type = 6", xlab = xlab)
+# type = 7
+b2 <- boxplot(birth_times, horizontal = TRUE, main = "type = 7")
+```
+
+We know from the [Descriptive Statistics](stat1004-descriptive-statistics-vignette.html) vignette that only the estimates of the lower quartile differ between the `type = 6` and `type = 7` cases.  We can check this using the objects `b1` and `b2` returned above.
+
+```{r}
+as.vector(b1$stats)
+as.vector(b2$stats)
+```
+
+5. **Can you work out from the output and graphs above what `boxplot` returns in the list component `stats`? Check your answer using `?boxplot`.  How could we obtain the values of any data points that lie outside the whiskers?**
+
+If we read the documentation of `boxplot` carefully (see `?boxplot` and `?bxp`) we can have a lot of control over the graph that it produces.  The following code produces the plots in Figure 2.7 of the STAT1004 notes.
+
+```{r, fig.show = 'hold', fig.width = 3.4, fig.height = 2.5}
+par(mar = c(4, 1, 0.5, 1))
+x_labs <- c(min(birth_times), pretty(birth_times), max(birth_times))
+# top left
+box_plot(birth_times, horizontal = TRUE, col = 8, xlab = xlab, pch = 16)
+# top right
+boxplot(birth_times, horizontal = TRUE, col = 8, axes = FALSE, xlab = xlab, pch = 16)
+axis(1, at = x_labs, labels = x_labs)
+# bottom left
+boxplot(birth_times, horizontal = TRUE, axes = FALSE, xlab = xlab, pch = 16, lty = 1, range = 0, staplewex = 0)
+axis(1, at = x_labs, labels = x_labs)
+# bottom right
+boxplot(birth_times, horizontal = TRUE, axes = FALSE, xlab = xlab, pch = 16, lty = 1, range = 0, boxcol = "white", staplewex = 0, medlty = "blank", medpch = 16)
+axis(1, at = x_labs, labels = x_labs)
+```
+
+The following code produces the graphs in the [STAT1004 lecture slides](https://moodle.ucl.ac.uk/mod/resource/view.php?id=92031) that contain a plot of birth_times for each day of the week. 
+
+```{r, fig.show = 'hold', fig.width = 3.4, fig.height = 2.75}
+par(mar = c(4, 4, 0.5, 1))
+x_labs <- c(min(birth_times), pretty(birth_times), max(birth_times))
+# top left
+box_plot(birth_times~day, col = 8, ylab = xlab, pch = 16, xlab = "day")
+# top right
+box_plot(birth_times~day, col = 8, horizontal = TRUE,  axes = FALSE, xlab = xlab, ylab = "day", pch = 16)
+axis(1, at = x_labs, labels = x_labs)
+axis(2, at = 1:7, labels = 1:7, lwd = 0, lty = 0)
+# bottom left
+box_plot(birth_times~day, axes = FALSE, ylab = xlab, pch = 16, lty = 1, range = 0, boxcol = "white", staplewex = 0, medlty = "blank", medpch = 16, xlab = "day")
+axis(1, at = 1:7, labels = 1:7, lwd = 0, lty = 0)
+axis(2, at = x_labs, labels = x_labs)
+# bottom right
+box_plot(birth_times~day, horizontal = TRUE, axes = FALSE, xlab = xlab, pch = 16, lty = 1, range = 0, boxcol = "white", staplewex = 0, medlty = "blank", medpch = 16)
+axis(1, at = x_labs, labels = x_labs)
+axis(2, at = 1:7, labels = 1:7, lwd = 0, lty = 0, las = 1)
+```
