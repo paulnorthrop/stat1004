@@ -6,15 +6,15 @@
 #' option (using the argument \code{type}) to change the estimator used
 #' to estimate the quartiles.  The only argument described below is
 #' \code{type}.  For details of the other arguments see the
-#' \strong{Arguments} section of \code{\link{boxplot}}.
+#' \strong{Arguments} section of \code{\link[graphics]{boxplot}}.
 #'
 #' @section \strong{Usage}:
-#'   See the \strong{Usage} section of the \code{\link{boxplot}}
+#'   See the \strong{Usage} section of the \code{\link[graphics]{boxplot}}
 #'   documentation.
 #'
 #' @param type an integer between 1 and 9 selecting one of the nine quantile
 #'   algorithms detailed in the \strong{Details} section of the
-#'   \code{\link{quantile}} documentation.
+#'   \code{\link[stats]{quantile}} documentation.
 #' @details See the \strong{Details} section of the \code{\link{boxplot}}
 #'   documentation.
 #' @return A list with the same contents as described in the \strong{Value}
