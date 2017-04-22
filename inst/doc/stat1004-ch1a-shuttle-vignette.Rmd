@@ -42,9 +42,10 @@ First we load the `stat1004` package.
 library(stat1004)
 ```
 
-### The data
+### The O-ring data
 
-The data are available in a **data frame** called `shuttle`.  A data frame is what R calls a table of data.
+The data are available in a **data frame** called `shuttle`.  A data frame is what R calls a table of data.  Use `?shuttle` to find out about these data.
+
 ```{r}
 # Print the data to the screen 
 shuttle

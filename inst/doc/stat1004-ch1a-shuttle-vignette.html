@@ -12,7 +12,7 @@
 
 <meta name="author" content="Paul Northrop" />
 
-<meta name="date" content="2017-04-18" />
+<meta name="date" content="2017-04-22" />
 
 <title>Chapter 1: The Challenger Space Shuttle Disaster</title>
 
@@ -70,14 +70,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Chapter 1: The Challenger Space Shuttle Disaster</h1>
 <h4 class="author"><em>Paul Northrop</em></h4>
-<h4 class="date"><em>2017-04-18</em></h4>
+<h4 class="date"><em>2017-04-22</em></h4>
 
 
 <div id="TOC">
 <ul>
 <li><a href="#preliminaries">Preliminaries</a></li>
 <li><a href="#the-challenger-space-shuttle-disaster">The Challenger Space Shuttle Disaster</a><ul>
-<li><a href="#the-data">The data</a></li>
+<li><a href="#the-o-ring-data">The O-ring data</a></li>
 <li><a href="#relating-the-probability-of-o-ring-damage-to-temperature">Relating the probability of O-ring damage to temperature</a></li>
 <li><a href="#using-stochastic-simulation-to-assess-uncertainty">Using stochastic simulation to assess uncertainty</a></li>
 </ul></li>
@@ -100,9 +100,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>In the following R commands follow the command prompt <code>&gt;</code> and <code>#</code> is used to create a comment, that is, to prevent R from trying to execute text that contains comments rather than a command.</p>
 <p>First we load the <code>stat1004</code> package.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="kw">library</span>(stat1004)</code></pre></div>
-<div id="the-data" class="section level3">
-<h3>The data</h3>
-<p>The data are available in a <strong>data frame</strong> called <code>shuttle</code>. A data frame is what R calls a table of data.</p>
+<div id="the-o-ring-data" class="section level3">
+<h3>The O-ring data</h3>
+<p>The data are available in a <strong>data frame</strong> called <code>shuttle</code>. A data frame is what R calls a table of data. Use <code>?shuttle</code> to find out about these data.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="co"># Print the data to the screen </span>
 <span class="er">&gt;</span><span class="st"> </span>shuttle
    flight       date damaged temperature pressure

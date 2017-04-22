@@ -12,7 +12,7 @@
 
 <meta name="author" content="Paul Northrop" />
 
-<meta name="date" content="2017-04-18" />
+<meta name="date" content="2017-04-22" />
 
 <title>Chapter 2: Descriptive Statistics</title>
 
@@ -70,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Chapter 2: Descriptive Statistics</h1>
 <h4 class="author"><em>Paul Northrop</em></h4>
-<h4 class="date"><em>2017-04-18</em></h4>
+<h4 class="date"><em>2017-04-22</em></h4>
 
 
 <div id="TOC">
@@ -88,132 +88,152 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>The R code used in this vignette are available <a href="stat1004-ch2a-descriptive-statistics-vignette.R">here</a>. The functions <code>five_number</code>, <code>skew</code> and <code>q_skew</code> can be viewed either by typing the name of the function at R command prompt <code>&gt;</code> or at <a href="https://github.com/paulnorthrop/stat1004/tree/master/R/descriptive_statistics.R">GitHub</a></p>
 <div id="the-oxford-birth-times-data" class="section level2">
 <h2>The Oxford Birth Times data</h2>
-<p>These data are available in the data frame <code>ox_births</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(stat1004)
-?ox_births</code></pre></div>
+<p>These data are available in the data frame <code>ox_births</code>. Use <code>?ox_births</code> to find out about these data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="kw">library</span>(stat1004)</code></pre></div>
 <p>We manipulate the data into a matrix that is of the same format as Table 2.1 in the notes. The number of birth times varies between days so we pad the matrix with R’s missing values code <code>NA</code> in order that each column of the matrix has the same number of rows.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ox_mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">ncol =</span> <span class="dv">7</span>, <span class="dt">nrow =</span> <span class="dv">16</span>)
-for (i in <span class="dv">1</span>:<span class="dv">7</span>) {
-  day_i_times &lt;-<span class="st"> </span>ox_births$time[<span class="kw">which</span>(ox_births$day ==<span class="st"> </span>i)]
-  ox_mat[<span class="dv">1</span>:<span class="kw">length</span>(day_i_times), i] &lt;-<span class="st"> </span><span class="kw">sort</span>(day_i_times)
-  <span class="kw">colnames</span>(ox_mat) &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;day&quot;</span>, <span class="dv">1</span>:<span class="dv">7</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)
-}  
-ox_mat
-<span class="co">#&gt;        day1  day2  day3  day4  day5  day6  day7</span>
-<span class="co">#&gt;  [1,]  2.10  4.00  2.60  1.50  2.50  4.00  2.00</span>
-<span class="co">#&gt;  [2,]  3.40  4.10  3.60  4.70  2.50  4.00  2.70</span>
-<span class="co">#&gt;  [3,]  4.25  5.00  3.60  4.70  3.40  5.25  2.75</span>
-<span class="co">#&gt;  [4,]  5.60  5.50  6.40  7.20  4.20  6.10  3.40</span>
-<span class="co">#&gt;  [5,]  6.40  5.70  6.80  7.25  5.90  6.50  4.20</span>
-<span class="co">#&gt;  [6,]  7.30  6.50  7.50  8.10  6.25  6.90  4.30</span>
-<span class="co">#&gt;  [7,]  8.50  7.25  7.50  8.50  7.30  7.00  4.90</span>
-<span class="co">#&gt;  [8,]  8.75  7.30  8.25  9.20  7.50  8.45  6.25</span>
-<span class="co">#&gt;  [9,]  8.90  7.50  8.50  9.50  7.80  9.25  7.00</span>
-<span class="co">#&gt; [10,]  9.50  8.20 10.40 10.70  8.30 10.10  9.00</span>
-<span class="co">#&gt; [11,]  9.75  8.50 10.75 11.50  8.30 10.20  9.25</span>
-<span class="co">#&gt; [12,] 10.00  9.75 14.25    NA 10.25 12.75 10.70</span>
-<span class="co">#&gt; [13,] 10.40 11.00 14.50    NA 12.90 14.60    NA</span>
-<span class="co">#&gt; [14,] 10.40 11.20    NA    NA 14.30    NA    NA</span>
-<span class="co">#&gt; [15,] 16.00 15.00    NA    NA    NA    NA    NA</span>
-<span class="co">#&gt; [16,] 19.00 16.50    NA    NA    NA    NA    NA</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span>ox_mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">ncol =</span> <span class="dv">7</span>, <span class="dt">nrow =</span> <span class="dv">16</span>)
+&gt;<span class="st"> </span>for (i in <span class="dv">1</span>:<span class="dv">7</span>) {
++<span class="st">   </span>day_i_times &lt;-<span class="st"> </span>ox_births$time[<span class="kw">which</span>(ox_births$day ==<span class="st"> </span>i)]
++<span class="st">   </span>ox_mat[<span class="dv">1</span>:<span class="kw">length</span>(day_i_times), i] &lt;-<span class="st"> </span><span class="kw">sort</span>(day_i_times)
++<span class="st">   </span><span class="kw">colnames</span>(ox_mat) &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;day&quot;</span>, <span class="dv">1</span>:<span class="dv">7</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)
++<span class="st"> </span>}  
+&gt;<span class="st"> </span>ox_mat
+       day1  day2  day3  day4  day5  day6  day7
+ [<span class="dv">1</span>,]  <span class="fl">2.10</span>  <span class="fl">4.00</span>  <span class="fl">2.60</span>  <span class="fl">1.50</span>  <span class="fl">2.50</span>  <span class="fl">4.00</span>  <span class="fl">2.00</span>
+ [<span class="dv">2</span>,]  <span class="fl">3.40</span>  <span class="fl">4.10</span>  <span class="fl">3.60</span>  <span class="fl">4.70</span>  <span class="fl">2.50</span>  <span class="fl">4.00</span>  <span class="fl">2.70</span>
+ [<span class="dv">3</span>,]  <span class="fl">4.25</span>  <span class="fl">5.00</span>  <span class="fl">3.60</span>  <span class="fl">4.70</span>  <span class="fl">3.40</span>  <span class="fl">5.25</span>  <span class="fl">2.75</span>
+ [<span class="dv">4</span>,]  <span class="fl">5.60</span>  <span class="fl">5.50</span>  <span class="fl">6.40</span>  <span class="fl">7.20</span>  <span class="fl">4.20</span>  <span class="fl">6.10</span>  <span class="fl">3.40</span>
+ [<span class="dv">5</span>,]  <span class="fl">6.40</span>  <span class="fl">5.70</span>  <span class="fl">6.80</span>  <span class="fl">7.25</span>  <span class="fl">5.90</span>  <span class="fl">6.50</span>  <span class="fl">4.20</span>
+ [<span class="dv">6</span>,]  <span class="fl">7.30</span>  <span class="fl">6.50</span>  <span class="fl">7.50</span>  <span class="fl">8.10</span>  <span class="fl">6.25</span>  <span class="fl">6.90</span>  <span class="fl">4.30</span>
+ [<span class="dv">7</span>,]  <span class="fl">8.50</span>  <span class="fl">7.25</span>  <span class="fl">7.50</span>  <span class="fl">8.50</span>  <span class="fl">7.30</span>  <span class="fl">7.00</span>  <span class="fl">4.90</span>
+ [<span class="dv">8</span>,]  <span class="fl">8.75</span>  <span class="fl">7.30</span>  <span class="fl">8.25</span>  <span class="fl">9.20</span>  <span class="fl">7.50</span>  <span class="fl">8.45</span>  <span class="fl">6.25</span>
+ [<span class="dv">9</span>,]  <span class="fl">8.90</span>  <span class="fl">7.50</span>  <span class="fl">8.50</span>  <span class="fl">9.50</span>  <span class="fl">7.80</span>  <span class="fl">9.25</span>  <span class="fl">7.00</span>
+[<span class="dv">10</span>,]  <span class="fl">9.50</span>  <span class="fl">8.20</span> <span class="fl">10.40</span> <span class="fl">10.70</span>  <span class="fl">8.30</span> <span class="fl">10.10</span>  <span class="fl">9.00</span>
+[<span class="dv">11</span>,]  <span class="fl">9.75</span>  <span class="fl">8.50</span> <span class="fl">10.75</span> <span class="fl">11.50</span>  <span class="fl">8.30</span> <span class="fl">10.20</span>  <span class="fl">9.25</span>
+[<span class="dv">12</span>,] <span class="fl">10.00</span>  <span class="fl">9.75</span> <span class="fl">14.25</span>    <span class="ot">NA</span> <span class="fl">10.25</span> <span class="fl">12.75</span> <span class="fl">10.70</span>
+[<span class="dv">13</span>,] <span class="fl">10.40</span> <span class="fl">11.00</span> <span class="fl">14.50</span>    <span class="ot">NA</span> <span class="fl">12.90</span> <span class="fl">14.60</span>    <span class="ot">NA</span>
+[<span class="dv">14</span>,] <span class="fl">10.40</span> <span class="fl">11.20</span>    <span class="ot">NA</span>    <span class="ot">NA</span> <span class="fl">14.30</span>    <span class="ot">NA</span>    <span class="ot">NA</span>
+[<span class="dv">15</span>,] <span class="fl">16.00</span> <span class="fl">15.00</span>    <span class="ot">NA</span>    <span class="ot">NA</span>    <span class="ot">NA</span>    <span class="ot">NA</span>    <span class="ot">NA</span>
+[<span class="dv">16</span>,] <span class="fl">19.00</span> <span class="fl">16.50</span>    <span class="ot">NA</span>    <span class="ot">NA</span>    <span class="ot">NA</span>    <span class="ot">NA</span>    <span class="ot">NA</span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li><strong>Can you see what the following parts of the code do?</strong></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span>i &lt;-<span class="st"> </span><span class="dv">4</span>
+&gt;<span class="st"> </span>ox_births$day ==<span class="st"> </span>i
+ [<span class="dv">1</span>] <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span>
+[<span class="dv">12</span>] <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span>
+[<span class="dv">23</span>] <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span>
+[<span class="dv">34</span>] <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span>  <span class="ot">TRUE</span>
+[<span class="dv">45</span>]  <span class="ot">TRUE</span>  <span class="ot">TRUE</span>  <span class="ot">TRUE</span>  <span class="ot">TRUE</span>  <span class="ot">TRUE</span>  <span class="ot">TRUE</span>  <span class="ot">TRUE</span>  <span class="ot">TRUE</span>  <span class="ot">TRUE</span>  <span class="ot">TRUE</span> <span class="ot">FALSE</span>
+[<span class="dv">56</span>] <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span>
+[<span class="dv">67</span>] <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span>
+[<span class="dv">78</span>] <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span>
+[<span class="dv">89</span>] <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span>
+&gt;<span class="st"> </span><span class="kw">which</span>(ox_births$day ==<span class="st"> </span>i)
+ [<span class="dv">1</span>] <span class="dv">44</span> <span class="dv">45</span> <span class="dv">46</span> <span class="dv">47</span> <span class="dv">48</span> <span class="dv">49</span> <span class="dv">50</span> <span class="dv">51</span> <span class="dv">52</span> <span class="dv">53</span> <span class="dv">54</span>
+&gt;<span class="st"> </span>ox_births$time[<span class="kw">which</span>(ox_births$day ==<span class="st"> </span>i)]
+ [<span class="dv">1</span>]  <span class="fl">8.10</span> <span class="fl">10.70</span> <span class="fl">11.50</span>  <span class="fl">7.20</span>  <span class="fl">7.25</span>  <span class="fl">9.50</span>  <span class="fl">8.50</span>  <span class="fl">1.50</span>  <span class="fl">4.70</span>  <span class="fl">4.70</span>  <span class="fl">9.20</span>
+&gt;<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;day&quot;</span>, <span class="dv">1</span>:<span class="dv">7</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)
+[<span class="dv">1</span>] <span class="st">&quot;day1&quot;</span> <span class="st">&quot;day2&quot;</span> <span class="st">&quot;day3&quot;</span> <span class="st">&quot;day4&quot;</span> <span class="st">&quot;day5&quot;</span> <span class="st">&quot;day6&quot;</span> <span class="st">&quot;day7&quot;</span>
+&gt;<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;day&quot;</span>, <span class="dv">1</span>:<span class="dv">7</span>, <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>)
+[<span class="dv">1</span>] <span class="st">&quot;day 1&quot;</span> <span class="st">&quot;day 2&quot;</span> <span class="st">&quot;day 3&quot;</span> <span class="st">&quot;day 4&quot;</span> <span class="st">&quot;day 5&quot;</span> <span class="st">&quot;day 6&quot;</span> <span class="st">&quot;day 7&quot;</span></code></pre></div>
 <p>We return to this matrix later. Until then we calculate summary statistics of the dataset containg the birth times from all days of the week.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">birth_times &lt;-<span class="st"> </span>ox_births[, <span class="st">&quot;time&quot;</span>]
-<span class="kw">sort</span>(birth_times)
-<span class="co">#&gt;  [1]  1.50  2.00  2.10  2.50  2.50  2.60  2.70  2.75  3.40  3.40  3.40</span>
-<span class="co">#&gt; [12]  3.60  3.60  4.00  4.00  4.00  4.10  4.20  4.20  4.25  4.30  4.70</span>
-<span class="co">#&gt; [23]  4.70  4.90  5.00  5.25  5.50  5.60  5.70  5.90  6.10  6.25  6.25</span>
-<span class="co">#&gt; [34]  6.40  6.40  6.50  6.50  6.80  6.90  7.00  7.00  7.20  7.25  7.25</span>
-<span class="co">#&gt; [45]  7.30  7.30  7.30  7.50  7.50  7.50  7.50  7.80  8.10  8.20  8.25</span>
-<span class="co">#&gt; [56]  8.30  8.30  8.45  8.50  8.50  8.50  8.50  8.75  8.90  9.00  9.20</span>
-<span class="co">#&gt; [67]  9.25  9.25  9.50  9.50  9.75  9.75 10.00 10.10 10.20 10.25 10.40</span>
-<span class="co">#&gt; [78] 10.40 10.40 10.70 10.70 10.75 11.00 11.20 11.50 12.75 12.90 14.25</span>
-<span class="co">#&gt; [89] 14.30 14.50 14.60 15.00 16.00 16.50 19.00</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span>birth_times &lt;-<span class="st"> </span>ox_births[, <span class="st">&quot;time&quot;</span>]
+&gt;<span class="st"> </span><span class="kw">sort</span>(birth_times)
+ [<span class="dv">1</span>]  <span class="fl">1.50</span>  <span class="fl">2.00</span>  <span class="fl">2.10</span>  <span class="fl">2.50</span>  <span class="fl">2.50</span>  <span class="fl">2.60</span>  <span class="fl">2.70</span>  <span class="fl">2.75</span>  <span class="fl">3.40</span>  <span class="fl">3.40</span>  <span class="fl">3.40</span>
+[<span class="dv">12</span>]  <span class="fl">3.60</span>  <span class="fl">3.60</span>  <span class="fl">4.00</span>  <span class="fl">4.00</span>  <span class="fl">4.00</span>  <span class="fl">4.10</span>  <span class="fl">4.20</span>  <span class="fl">4.20</span>  <span class="fl">4.25</span>  <span class="fl">4.30</span>  <span class="fl">4.70</span>
+[<span class="dv">23</span>]  <span class="fl">4.70</span>  <span class="fl">4.90</span>  <span class="fl">5.00</span>  <span class="fl">5.25</span>  <span class="fl">5.50</span>  <span class="fl">5.60</span>  <span class="fl">5.70</span>  <span class="fl">5.90</span>  <span class="fl">6.10</span>  <span class="fl">6.25</span>  <span class="fl">6.25</span>
+[<span class="dv">34</span>]  <span class="fl">6.40</span>  <span class="fl">6.40</span>  <span class="fl">6.50</span>  <span class="fl">6.50</span>  <span class="fl">6.80</span>  <span class="fl">6.90</span>  <span class="fl">7.00</span>  <span class="fl">7.00</span>  <span class="fl">7.20</span>  <span class="fl">7.25</span>  <span class="fl">7.25</span>
+[<span class="dv">45</span>]  <span class="fl">7.30</span>  <span class="fl">7.30</span>  <span class="fl">7.30</span>  <span class="fl">7.50</span>  <span class="fl">7.50</span>  <span class="fl">7.50</span>  <span class="fl">7.50</span>  <span class="fl">7.80</span>  <span class="fl">8.10</span>  <span class="fl">8.20</span>  <span class="fl">8.25</span>
+[<span class="dv">56</span>]  <span class="fl">8.30</span>  <span class="fl">8.30</span>  <span class="fl">8.45</span>  <span class="fl">8.50</span>  <span class="fl">8.50</span>  <span class="fl">8.50</span>  <span class="fl">8.50</span>  <span class="fl">8.75</span>  <span class="fl">8.90</span>  <span class="fl">9.00</span>  <span class="fl">9.20</span>
+[<span class="dv">67</span>]  <span class="fl">9.25</span>  <span class="fl">9.25</span>  <span class="fl">9.50</span>  <span class="fl">9.50</span>  <span class="fl">9.75</span>  <span class="fl">9.75</span> <span class="fl">10.00</span> <span class="fl">10.10</span> <span class="fl">10.20</span> <span class="fl">10.25</span> <span class="fl">10.40</span>
+[<span class="dv">78</span>] <span class="fl">10.40</span> <span class="fl">10.40</span> <span class="fl">10.70</span> <span class="fl">10.70</span> <span class="fl">10.75</span> <span class="fl">11.00</span> <span class="fl">11.20</span> <span class="fl">11.50</span> <span class="fl">12.75</span> <span class="fl">12.90</span> <span class="fl">14.25</span>
+[<span class="dv">89</span>] <span class="fl">14.30</span> <span class="fl">14.50</span> <span class="fl">14.60</span> <span class="fl">15.00</span> <span class="fl">16.00</span> <span class="fl">16.50</span> <span class="fl">19.00</span></code></pre></div>
 </div>
 <div id="five-number-summary" class="section level2">
 <h2>Five number summary</h2>
 <p>The function <code>five_number</code> calculates the five number summary of data, using the particular method for estimating the lower quartile, median and upper quartile described in the STAT1004 notes.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">five_number</span>(birth_times)
-<span class="co">#&gt;   min   25%   50%   75%   max </span>
-<span class="co">#&gt;  1.50  4.90  7.50  9.75 19.00</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="kw">five_number</span>(birth_times)
+  min   <span class="dv">25</span>%   50%<span class="st">   </span><span class="dv">75</span>%   max 
+ <span class="fl">1.50</span>  <span class="fl">4.90</span>  <span class="fl">7.50</span>  <span class="fl">9.75</span> <span class="fl">19.00</span> </code></pre></div>
 <p>The <code>summary</code> function can also be used to calculate a five number summary.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(birth_times)
-<span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span>
-<span class="co">#&gt;   1.500   4.950   7.500   7.723   9.750  19.000</span></code></pre></div>
-<ol style="list-style-type: decimal">
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="kw">summary</span>(birth_times)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  <span class="fl">1.500</span>   <span class="fl">4.950</span>   <span class="fl">7.500</span>   <span class="fl">7.723</span>   <span class="fl">9.750</span>  <span class="fl">19.000</span> </code></pre></div>
+<ol start="2" style="list-style-type: decimal">
 <li><strong>(If we ignore the fact that <code>summary</code> also calculates the sample mean) does <code>summary</code> produce the same values as <code>five_number</code>?</strong></li>
 </ol>
 <p>No, the estimates of the lower quartile differ. This is because the functions <code>summary</code> and <code>five_number</code> use different rules to estimate quantiles: <code>summary</code> calls <code>quantile</code> using <code>type = 7</code> whereas <code>five_number</code> uses <code>type = 6</code>. If we call <code>five_number</code> with <code>type = 7</code> we get the same numbers as <code>summary</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">five_number</span>(birth_times, <span class="dt">type =</span> <span class="dv">7</span>)
-<span class="co">#&gt;   min   25%   50%   75%   max </span>
-<span class="co">#&gt;  1.50  4.95  7.50  9.75 19.00</span></code></pre></div>
-<p>In fact the function <code>quantile</code> has 9 different options for <code>type</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?quantile</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="kw">five_number</span>(birth_times, <span class="dt">type =</span> <span class="dv">7</span>)
+  min   <span class="dv">25</span>%   50%<span class="st">   </span><span class="dv">75</span>%   max 
+ <span class="fl">1.50</span>  <span class="fl">4.95</span>  <span class="fl">7.50</span>  <span class="fl">9.75</span> <span class="fl">19.00</span> </code></pre></div>
+<p>In fact the function <code>quantile</code> has 9 different options for <code>type</code>. Use <code>?quantile</code> for more information.</p>
 </div>
 <div id="sample-mean" class="section level2">
 <h2>Sample mean</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(birth_times)
-<span class="co">#&gt; [1] 7.723158</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="kw">mean</span>(birth_times)
+[<span class="dv">1</span>] <span class="fl">7.723158</span></code></pre></div>
 </div>
 <div id="sample-standard-deviation-and-variance" class="section level2">
 <h2>Sample standard deviation and variance</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sd</span>(birth_times)
-<span class="co">#&gt; [1] 3.568097</span>
-<span class="kw">var</span>(birth_times)
-<span class="co">#&gt; [1] 12.73132</span>
-<span class="kw">sd</span>(birth_times) ^<span class="st"> </span><span class="dv">2</span>
-<span class="co">#&gt; [1] 12.73132</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="kw">sd</span>(birth_times)
+[<span class="dv">1</span>] <span class="fl">3.568097</span>
+&gt;<span class="st"> </span><span class="kw">var</span>(birth_times)
+[<span class="dv">1</span>] <span class="fl">12.73132</span>
+&gt;<span class="st"> </span><span class="kw">sd</span>(birth_times) ^<span class="st"> </span><span class="dv">2</span>
+[<span class="dv">1</span>] <span class="fl">12.73132</span></code></pre></div>
 </div>
 <div id="measures-of-skewness" class="section level2">
 <h2>Measures of skewness</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Standardized sample skewness</span>
-<span class="kw">skew</span>(birth_times)
-<span class="co">#&gt; [1] 0.6254774</span>
-<span class="co"># Sample quartile skewness</span>
-<span class="kw">q_skew</span>(birth_times)
-<span class="co">#&gt; [1] -0.07216495</span></code></pre></div>
-<p>[Until 2017/18 the STAT1004 notes gave -0.063 as the sample quartile skewness. This was because I used the default setting, type = 7, in the <code>quantile</code> function when calculating it …]</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">q_skew</span>(birth_times, <span class="dt">type =</span> <span class="dv">7</span>)
-<span class="co">#&gt; [1] -0.0625</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="co"># Standardized sample skewness</span>
+<span class="er">&gt;</span><span class="st"> </span><span class="kw">skew</span>(birth_times)
+[<span class="dv">1</span>] <span class="fl">0.6254774</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="co"># Sample quartile skewness</span>
+<span class="er">&gt;</span><span class="st"> </span><span class="kw">q_skew</span>(birth_times)
+[<span class="dv">1</span>] -<span class="fl">0.07216495</span></code></pre></div>
+<p>Until 2017/18 the STAT1004 notes gave -0.063 as the sample quartile skewness. This was because I used the default setting, <code>type = 7</code>, in the <code>quantile</code> function when calculating it …</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="kw">q_skew</span>(birth_times, <span class="dt">type =</span> <span class="dv">7</span>)
+[<span class="dv">1</span>] -<span class="fl">0.0625</span></code></pre></div>
 </div>
 <div id="summary-statistics-for-each-day" class="section level2">
 <h2>Summary statistics for each day</h2>
-<p>We can also calculate summary statistics for each of the seven days of the week, i.e. for each of the columns of <code>ox_mat</code>. The effect of the <code>colMeans</code> function is fairly obvious. <code>apply</code> is a useful function. Use <code>?apply</code> to see what it does.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">five_number</span>(ox_mat, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
-<span class="co">#&gt;       day1    day2   day3 day4    day5   day6    day7</span>
-<span class="co">#&gt; min  2.100  4.0000  2.600  1.5  2.5000  4.000  2.0000</span>
-<span class="co">#&gt; 25%  5.800  5.5500  5.000  4.7  4.0000  5.675  2.9125</span>
-<span class="co">#&gt; 50%  8.825  7.4000  7.500  8.1  7.4000  7.000  4.6000</span>
-<span class="co">#&gt; 75% 10.300 10.6875 10.575  9.5  8.7875 10.150  8.5000</span>
-<span class="co">#&gt; max 19.000 16.5000 14.500 11.5 14.3000 14.600 10.7000</span>
-<span class="kw">summary</span>(ox_mat)
-<span class="co">#&gt;       day1             day2             day3            day4       </span>
-<span class="co">#&gt;  Min.   : 2.100   Min.   : 4.000   Min.   : 2.60   Min.   : 1.500  </span>
-<span class="co">#&gt;  1st Qu.: 6.200   1st Qu.: 5.650   1st Qu.: 6.40   1st Qu.: 5.950  </span>
-<span class="co">#&gt;  Median : 8.825   Median : 7.400   Median : 7.50   Median : 8.100  </span>
-<span class="co">#&gt;  Mean   : 8.766   Mean   : 8.312   Mean   : 8.05   Mean   : 7.532  </span>
-<span class="co">#&gt;  3rd Qu.:10.100   3rd Qu.:10.062   3rd Qu.:10.40   3rd Qu.: 9.350  </span>
-<span class="co">#&gt;  Max.   :19.000   Max.   :16.500   Max.   :14.50   Max.   :11.500  </span>
-<span class="co">#&gt;                                    NA's   :3       NA's   :5       </span>
-<span class="co">#&gt;       day5             day6             day7       </span>
-<span class="co">#&gt;  Min.   : 2.500   Min.   : 4.000   Min.   : 2.000  </span>
-<span class="co">#&gt;  1st Qu.: 4.625   1st Qu.: 6.100   1st Qu.: 3.237  </span>
-<span class="co">#&gt;  Median : 7.400   Median : 7.000   Median : 4.600  </span>
-<span class="co">#&gt;  Mean   : 7.243   Mean   : 8.085   Mean   : 5.537  </span>
-<span class="co">#&gt;  3rd Qu.: 8.300   3rd Qu.:10.100   3rd Qu.: 7.500  </span>
-<span class="co">#&gt;  Max.   :14.300   Max.   :14.600   Max.   :10.700  </span>
-<span class="co">#&gt;  NA's   :2        NA's   :3        NA's   :4</span>
-<span class="kw">colMeans</span>(ox_mat, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
-<span class="co">#&gt;     day1     day2     day3     day4     day5     day6     day7 </span>
-<span class="co">#&gt; 8.765625 8.312500 8.050000 7.531818 7.242857 8.084615 5.537500</span>
-<span class="kw">apply</span>(ox_mat, <span class="dv">2</span>, sd, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
-<span class="co">#&gt;     day1     day2     day3     day4     day5     day6     day7 </span>
-<span class="co">#&gt; 4.296654 3.629348 3.733798 2.937880 3.565532 3.223313 2.887286</span>
-<span class="kw">skew</span>(ox_mat, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
-<span class="co">#&gt; [1]  0.6868543  0.8553875  0.2874617 -0.5639013  0.4105886  0.5136015</span>
-<span class="co">#&gt; [7]  0.4524077</span>
-<span class="kw">q_skew</span>(ox_mat, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
-<span class="co">#&gt; [1] -0.3444444  0.2798054  0.1031390 -0.4166667 -0.4203655  0.4078212</span>
-<span class="co">#&gt; [7]  0.3959732</span></code></pre></div>
+<p>We can also calculate summary statistics for each of the seven days of the week, i.e. for each of the columns of <code>ox_mat</code>. In the following the effect of the <code>colMeans</code> function is fairly obvious. <code>apply</code> is a useful function. Use <code>?apply</code> to see what it does.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="kw">five_number</span>(ox_mat, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+      day1    day2   day3 day4    day5   day6    day7
+min  <span class="fl">2.100</span>  <span class="fl">4.0000</span>  <span class="fl">2.600</span>  <span class="fl">1.5</span>  <span class="fl">2.5000</span>  <span class="fl">4.000</span>  <span class="fl">2.0000</span>
+<span class="dv">25</span>%  <span class="fl">5.800</span>  <span class="fl">5.5500</span>  <span class="fl">5.000</span>  <span class="fl">4.7</span>  <span class="fl">4.0000</span>  <span class="fl">5.675</span>  <span class="fl">2.9125</span>
+<span class="dv">50</span>%  <span class="fl">8.825</span>  <span class="fl">7.4000</span>  <span class="fl">7.500</span>  <span class="fl">8.1</span>  <span class="fl">7.4000</span>  <span class="fl">7.000</span>  <span class="fl">4.6000</span>
+<span class="dv">75</span>% <span class="fl">10.300</span> <span class="fl">10.6875</span> <span class="fl">10.575</span>  <span class="fl">9.5</span>  <span class="fl">8.7875</span> <span class="fl">10.150</span>  <span class="fl">8.5000</span>
+max <span class="fl">19.000</span> <span class="fl">16.5000</span> <span class="fl">14.500</span> <span class="fl">11.5</span> <span class="fl">14.3000</span> <span class="fl">14.600</span> <span class="fl">10.7000</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="kw">summary</span>(ox_mat)
+      day1             day2             day3            day4       
+ Min.   :<span class="st"> </span><span class="fl">2.100</span>   Min.   :<span class="st"> </span><span class="fl">4.000</span>   Min.   :<span class="st"> </span><span class="fl">2.60</span>   Min.   :<span class="st"> </span><span class="fl">1.500</span>  
+ 1st Qu.:<span class="st"> </span><span class="fl">6.200</span>   1st Qu.:<span class="st"> </span><span class="fl">5.650</span>   1st Qu.:<span class="st"> </span><span class="fl">6.40</span>   1st Qu.:<span class="st"> </span><span class="fl">5.950</span>  
+ Median :<span class="st"> </span><span class="fl">8.825</span>   Median :<span class="st"> </span><span class="fl">7.400</span>   Median :<span class="st"> </span><span class="fl">7.50</span>   Median :<span class="st"> </span><span class="fl">8.100</span>  
+ Mean   :<span class="st"> </span><span class="fl">8.766</span>   Mean   :<span class="st"> </span><span class="fl">8.312</span>   Mean   :<span class="st"> </span><span class="fl">8.05</span>   Mean   :<span class="st"> </span><span class="fl">7.532</span>  
+ 3rd Qu.:<span class="fl">10.100</span>   3rd Qu.:<span class="fl">10.062</span>   3rd Qu.:<span class="fl">10.40</span>   3rd Qu.:<span class="st"> </span><span class="fl">9.350</span>  
+ Max.   :<span class="fl">19.000</span>   Max.   :<span class="fl">16.500</span>   Max.   :<span class="fl">14.50</span>   Max.   :<span class="fl">11.500</span>  
+                                   NA<span class="st">'s   :3       NA'</span>s   :<span class="dv">5</span>       
+      day5             day6             day7       
+ Min.   :<span class="st"> </span><span class="fl">2.500</span>   Min.   :<span class="st"> </span><span class="fl">4.000</span>   Min.   :<span class="st"> </span><span class="fl">2.000</span>  
+ 1st Qu.:<span class="st"> </span><span class="fl">4.625</span>   1st Qu.:<span class="st"> </span><span class="fl">6.100</span>   1st Qu.:<span class="st"> </span><span class="fl">3.237</span>  
+ Median :<span class="st"> </span><span class="fl">7.400</span>   Median :<span class="st"> </span><span class="fl">7.000</span>   Median :<span class="st"> </span><span class="fl">4.600</span>  
+ Mean   :<span class="st"> </span><span class="fl">7.243</span>   Mean   :<span class="st"> </span><span class="fl">8.085</span>   Mean   :<span class="st"> </span><span class="fl">5.537</span>  
+ 3rd Qu.:<span class="st"> </span><span class="fl">8.300</span>   3rd Qu.:<span class="fl">10.100</span>   3rd Qu.:<span class="st"> </span><span class="fl">7.500</span>  
+ Max.   :<span class="fl">14.300</span>   Max.   :<span class="fl">14.600</span>   Max.   :<span class="fl">10.700</span>  
+ NA<span class="st">'s   :2        NA'</span>s   :<span class="dv">3</span>        NA<span class="st">'s   :4       </span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="kw">colMeans</span>(ox_mat, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+    day1     day2     day3     day4     day5     day6     day7 
+<span class="fl">8.765625</span> <span class="fl">8.312500</span> <span class="fl">8.050000</span> <span class="fl">7.531818</span> <span class="fl">7.242857</span> <span class="fl">8.084615</span> <span class="fl">5.537500</span> </code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="kw">apply</span>(ox_mat, <span class="dv">2</span>, sd, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+    day1     day2     day3     day4     day5     day6     day7 
+<span class="fl">4.296654</span> <span class="fl">3.629348</span> <span class="fl">3.733798</span> <span class="fl">2.937880</span> <span class="fl">3.565532</span> <span class="fl">3.223313</span> <span class="fl">2.887286</span> </code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="kw">skew</span>(ox_mat, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+[<span class="dv">1</span>]  <span class="fl">0.6868543</span>  <span class="fl">0.8553875</span>  <span class="fl">0.2874617</span> -<span class="fl">0.5639013</span>  <span class="fl">0.4105886</span>  <span class="fl">0.5136015</span>
+[<span class="dv">7</span>]  <span class="fl">0.4524077</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="kw">q_skew</span>(ox_mat, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+[<span class="dv">1</span>] -<span class="fl">0.3444444</span>  <span class="fl">0.2798054</span>  <span class="fl">0.1031390</span> -<span class="fl">0.4166667</span> -<span class="fl">0.4203655</span>  <span class="fl">0.4078212</span>
+[<span class="dv">7</span>]  <span class="fl">0.3959732</span></code></pre></div>
 </div>
 
 

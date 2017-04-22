@@ -13,7 +13,7 @@ bibliography: stat1004.bib
 ---
 
 ```{r, include = FALSE}
-knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
+knitr::opts_chunk$set(comment = "", prompt = TRUE, collapse = TRUE)
 devtools::load_all() 
 ```
 
@@ -24,10 +24,9 @@ The R code used in this vignette are available [here](stat1004-ch2a-descriptive-
 
 ## The Oxford Birth Times data 
 
-These data are available in the data frame `ox_births`.
+These data are available in the data frame `ox_births`.  Use `?ox_births` to find out about these data.
 ```{r, message = FALSE}
 library(stat1004)
-?ox_births
 ```
 
 We manipulate the data into a matrix that is of the same format as Table 2.1 in the notes.  The number of birth times varies between days so we pad the matrix with R's missing values code `NA` in order that each column of the matrix has the same number of rows.
@@ -40,6 +39,17 @@ for (i in 1:7) {
   colnames(ox_mat) <- paste("day", 1:7, sep = "")
 }  
 ox_mat
+```
+
+1. **Can you see what the following parts of the code do?**
+
+```{r}
+i <- 4
+ox_births$day == i
+which(ox_births$day == i)
+ox_births$time[which(ox_births$day == i)]
+paste("day", 1:7, sep = "")
+paste("day", 1:7, sep = " ")
 ```
 
 We return to this matrix later.  Until then we calculate summary statistics of the dataset containg the birth times from all days of the week.  
@@ -63,7 +73,7 @@ The `summary` function can also be used to calculate a five number summary.
 summary(birth_times)
 ```
 
-1. **(If we ignore the fact that `summary` also calculates the sample mean) does `summary` produce the same values as `five_number`?**
+2. **(If we ignore the fact that `summary` also calculates the sample mean) does `summary` produce the same values as `five_number`?**
 
 No, the estimates of the lower quartile differ.  This is because the functions `summary` and `five_number` use different rules to estimate quantiles: `summary` calls `quantile` using `type = 7` whereas `five_number` uses `type = 6`.  If we call `five_number` with `type = 7` we get the same numbers as `summary`.
 
@@ -71,11 +81,7 @@ No, the estimates of the lower quartile differ.  This is because the functions `
 five_number(birth_times, type = 7)
 ```
 
-In fact the function `quantile` has 9 different options for `type`.
-
-```{r, message = FALSE}
-?quantile
-```
+In fact the function `quantile` has 9 different options for `type`.  Use `?quantile` for more information.
 
 ## Sample mean 
 
@@ -96,11 +102,13 @@ sd(birth_times) ^ 2
 ```{r}
 # Standardized sample skewness
 skew(birth_times)
+```
+```{r}
 # Sample quartile skewness
 q_skew(birth_times)
 ```
 
-[Until 2017/18 the STAT1004 notes gave -0.063 as the sample quartile skewness.  This was because I used the default setting, type = 7, in the `quantile` function when calculating it ...]
+Until 2017/18 the STAT1004 notes gave -0.063 as the sample quartile skewness.  This was because I used the default setting, `type = 7`, in the `quantile` function when calculating it ...
 
 ```{r}
 q_skew(birth_times, type = 7)
@@ -108,14 +116,24 @@ q_skew(birth_times, type = 7)
 
 ## Summary statistics for each day
 
-We can also calculate summary statistics for each of the seven days of the week, i.e. for each of the columns of `ox_mat`.  The effect of the `colMeans` function is fairly obvious. `apply` is a useful function.  Use `?apply` to see what it does.
+We can also calculate summary statistics for each of the seven days of the week, i.e. for each of the columns of `ox_mat`.  In the following the effect of the `colMeans` function is fairly obvious. `apply` is a useful function.  Use `?apply` to see what it does.
 
 ```{r}
 five_number(ox_mat, na.rm = TRUE)
+```
+```{r}
 summary(ox_mat)
+```
+```{r}
 colMeans(ox_mat, na.rm = TRUE)
+```
+```{r}
 apply(ox_mat, 2, sd, na.rm = TRUE)
+```
+```{r}
 skew(ox_mat, na.rm = TRUE)
+```
+```{r}
 q_skew(ox_mat, na.rm = TRUE)
 ```
 
