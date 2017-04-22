@@ -32,7 +32,7 @@
 #'   \item {\href{../doc/stat1004-shuttle-vignette.html}{Chapter 1: Challenger Space Shuttle Disaster}}
 #'   \item {\href{../doc/stat1004-stochastic-simulation-vignette.html}{Chapter 1: Stochastic Simulation}}
 #'   \item {\href{../doc/stat1004-descriptive-statistics-vignette.html}{Chapter 2: Descriptive Statistics}}
-#'   \item {\href{../doc/stat1004-graphs-vignette.html}{Chapter 2: Graphs}}
+#'   \item {\href{../doc/stat1004-graphs-vignette.html}{Chapter 2: Graphs (one variable)}}
 #' }
 #'
 #' @section Datasets:
@@ -40,6 +40,9 @@
 #' \itemize{
 #'   \item {\link[=shuttle]{Challenger Space Shuttle Disaster}}
 #'   \item {\link[=ox_births]{Oxford Birth Times}}
+#'   \item {\link[=blood_types]{Blood Types}}
+#'   \item {\link[=ftse]{FTSE 100 Share Index}}
+#'   \item {\link[=flu]{Influenza data}}
 #' }
 #'
 #'
@@ -70,11 +73,11 @@ NULL
 #'
 #' @format A dataframe with 24 rows and 5 columns:
 #' \itemize{
-#' \item{\code{flight}:}{ the flight number}
-#' \item{\code{date}:}{ the date}
-#' \item{\code{damaged}:}{ the number of O-rings with thermal distress}
-#' \item{\code{temperature}:}{ temperature, in degrees Fahrenheit}
-#' \item{\code{pressure}:}{ pressure, pounds per square inch}}
+#' \item{\code{flight}:}{ the flight number.}
+#' \item{\code{date}:}{ the date.}
+#' \item{\code{damaged}:}{ the number of O-rings with thermal distress.}
+#' \item{\code{temperature}:}{ temperature, in degrees Fahrenheit.}
+#' \item{\code{pressure}:}{ pressure, pounds per square inch.}}
 #'
 #' The first 23 rows contain data for test flights.  The last row
 #' contains the data for the ill-fated flight on 28th January 1986,
@@ -94,8 +97,8 @@ NULL
 #'
 #' @format A data frame with 95 observations on the following 2 variables.
 #' \itemize{
-#' \item{\code{day:}}{ Day on which the woman arrived}
-#' \item{\code{time:}}{ Time (hours) spent on delivery suite}}
+#' \item{\code{day:}}{ Day on which the woman arrived.}
+#' \item{\code{time:}}{ Time (hours) spent on delivery suite.}}
 #'
 #' @source Davison, A. C. (2003) Statistical Models. Cambridge University Press.
 #'   Page 18.
@@ -107,9 +110,34 @@ NULL
 #'
 #' @format A data frame with 8 observations on the following 3 variables.
 #' \itemize{
-#' \item{\code{ABO:}}{ Blood type in the ABO system (A, B or O)}
-#' \item{\code{rhesus:}}{ Blood type in the Rhesus system (Rh+ or Rh-)}}
-#' \item{\code{percentage:}}{ Percentage of people in the ABO-Rhesus blood type}}
+#' \item{\code{ABO:}}{ Blood type in the ABO system (A, B or O).}
+#' \item{\code{rhesus:}}{ Blood type in the Rhesus system (Rh+ or Rh-).}
+#' \item{\code{percentage:}}{ Percentage of people in the ABO-Rhesus blood type}.}
 #'
-#' @source Unknown.
 "blood_types"
+
+#' FTSE 100 Share Index
+#'
+#' Weekly closing prices of the FTSE 100 share index from 2nd April 1984 to
+#' 13th Augugst 2007.
+#'
+#' @format A data frame with 1220 observations on the following 2 variables.
+#' \itemize{
+#' \item{\code{date:}}{ the date.}
+#' \item{\code{price:}}{ the closing price on that date.}}
+#'
+"ftse"
+
+#' Influenza data
+#'
+#' The numbers of people (in thousands of people) in the UK visiting their
+#' doctor with symptoms of influenza (’flu) during four-weekly time periods
+#' over the time period 28th January 1967 to 13th November 2004.
+#'
+#' @format A data frame with 494 observations on the following 2 variables.
+#' \itemize{
+#' \item{\code{date:}}{ the date.}
+#' \item{\code{visits:}}{ the number of people visitng their doctor with
+#' symptoms of 'flu.}}
+#'
+"flu"

@@ -43,7 +43,7 @@ If you have any questions about this package please ask them via the
   \item {\href{../doc/stat1004-shuttle-vignette.html}{Chapter 1: Challenger Space Shuttle Disaster}}
   \item {\href{../doc/stat1004-stochastic-simulation-vignette.html}{Chapter 1: Stochastic Simulation}}
   \item {\href{../doc/stat1004-descriptive-statistics-vignette.html}{Chapter 2: Descriptive Statistics}}
-  \item {\href{../doc/stat1004-graphs-vignette.html}{Chapter 2: Graphs}}
+  \item {\href{../doc/stat1004-graphs-vignette.html}{Chapter 2: Graphs (one variable)}}
 }
 }
 
@@ -53,6 +53,9 @@ If you have any questions about this package please ask them via the
 \itemize{
   \item {\link[=shuttle]{Challenger Space Shuttle Disaster}}
   \item {\link[=ox_births]{Oxford Birth Times}}
+  \item {\link[=blood_types]{Blood Types}}
+  \item {\link[=ftse]{FTSE 100 Share Index}}
+  \item {\link[=flu]{Influenza data}}
 }
 }
 

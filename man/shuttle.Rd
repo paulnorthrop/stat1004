@@ -6,11 +6,11 @@
 \title{Challenger space shuttle disaster dataset}
 \format{A dataframe with 24 rows and 5 columns:
 \itemize{
-\item{\code{flight}:}{ the flight number}
-\item{\code{date}:}{ the date}
-\item{\code{damaged}:}{ the number of O-rings with thermal distress}
-\item{\code{temperature}:}{ temperature, in degrees Fahrenheit}
-\item{\code{pressure}:}{ pressure, pounds per square inch}}
+\item{\code{flight}:}{ the flight number.}
+\item{\code{date}:}{ the date.}
+\item{\code{damaged}:}{ the number of O-rings with thermal distress.}
+\item{\code{temperature}:}{ temperature, in degrees Fahrenheit.}
+\item{\code{pressure}:}{ pressure, pounds per square inch.}}
 
 The first 23 rows contain data for test flights.  The last row
 contains the data for the ill-fated flight on 28th January 1986,

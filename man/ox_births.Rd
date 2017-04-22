@@ -6,8 +6,8 @@
 \title{Oxford Birth Times}
 \format{A data frame with 95 observations on the following 2 variables.
 \itemize{
-\item{\code{day:}}{ Day on which the woman arrived}
-\item{\code{time:}}{ Time (hours) spent on delivery suite}}}
+\item{\code{day:}}{ Day on which the woman arrived.}
+\item{\code{time:}}{ Time (hours) spent on delivery suite.}}}
 \source{
 Davison, A. C. (2003) Statistical Models. Cambridge University Press.
   Page 18.
