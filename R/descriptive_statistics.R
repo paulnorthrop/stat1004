@@ -16,13 +16,13 @@
 #' @details The five number summary contains the sample minimum and maximum and
 #'   estimates of the lower quartile, median and upper quartile, i.e. the
 #'   25\%, 50\% and 75\% quantiles.  These quantiles are estimated using the
-#'   \code{\link{quantile}} function.  By default, \code{type = 6} is used in
+#'   \code{\link[stats]{quantile}} function.  By default, \code{type = 6} is used in
 #'   the call to \code{quantile} in order to use the estimator defined in the
 #'   STAT1004 notes.
 #' @examples
 #' birth_times <- ox_births[, "time"]
 #' summary(birth_times)
-#' @seealso \code{\link{quantile}} for calculating sample quantiles.
+#' @seealso \code{\link[stats]{quantile}} for calculating sample quantiles.
 five_number <- function(x, type = 6, na.rm = FALSE) {
   five_number_vec <- function(x, type, na.rm) {
     if (any(is.na(x)) & !na.rm) {
@@ -62,7 +62,7 @@ five_number <- function(x, type = 6, na.rm = FALSE) {
 #' @examples
 #' birth_times <- ox_births[, "time"]
 #' q_skew(birth_times)
-#' @seealso \code{\link{quantile}} for calculating sample quantiles.
+#' @seealso \code{\link[stats]{quantile}} for calculating sample quantiles.
 q_skew <- function(x, type = 6, na.rm = FALSE) {
   q_skew_vec <- function(x, type, na.rm) {
     qq <- stats::quantile(x, type = type, probs=c(0.25, 0.5, 0.75),
@@ -92,7 +92,7 @@ q_skew <- function(x, type = 6, na.rm = FALSE) {
 #' @examples
 #' birth_times <- ox_births[, "time"]
 #' skew(birth_times)
-#' @seealso \code{\link{quantile}} for calculating sample quantiles.
+#' @seealso \code{\link[stats]{quantile}} for calculating sample quantiles.
 skew <- function(x, type = 6, na.rm = FALSE) {
   skew_vec <- function(x, type, na.rm) {
     s <- stats::sd(x, na.rm = na.rm)
