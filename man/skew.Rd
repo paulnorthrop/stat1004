@@ -30,5 +30,5 @@ birth_times <- ox_births[, "time"]
 skew(birth_times)
 }
 \seealso{
-\code{\link{quantile}} for calculating sample quantiles.
+\code{\link[stats]{quantile}} for calculating sample quantiles.
 }
