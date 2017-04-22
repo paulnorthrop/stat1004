@@ -100,3 +100,16 @@ NULL
 #' @source Davison, A. C. (2003) Statistical Models. Cambridge University Press.
 #'   Page 18.
 "ox_births"
+
+#' Blood Types
+#'
+#' Percentages of people in the UK in the 8 main ABO-Rhesus blood groups.
+#'
+#' @format A data frame with 8 observations on the following 3 variables.
+#' \itemize{
+#' \item{\code{ABO:}}{ Blood type in the ABO system (A, B or O)}
+#' \item{\code{rhesus:}}{ Blood type in the Rhesus system (Rh+ or Rh-)}}
+#' \item{\code{percentage:}}{ Percentage of people in the ABO-Rhesus blood type}}
+#'
+#' @source Unknown.
+"blood_types"
