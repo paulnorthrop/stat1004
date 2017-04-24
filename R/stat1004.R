@@ -29,10 +29,11 @@
 #' @section Vignettes (tutorials demonstrating how to use R code):
 #'
 #' \itemize{
-#'   \item {\href{../doc/stat1004-shuttle-vignette.html}{Chapter 1: Challenger Space Shuttle Disaster}}
-#'   \item {\href{../doc/stat1004-stochastic-simulation-vignette.html}{Chapter 1: Stochastic Simulation}}
-#'   \item {\href{../doc/stat1004-descriptive-statistics-vignette.html}{Chapter 2: Descriptive Statistics}}
-#'   \item {\href{../doc/stat1004-graphs-vignette.html}{Chapter 2: Graphs (one variable)}}
+#'   \item {\href{../doc/stat1004-ch1a-shuttle-vignette.html}{Chapter 1: Challenger Space Shuttle Disaster}}
+#'   \item {\href{../doc/stat1004-ch1b-stochastic-simulation-vignette.html}{Chapter 1: Stochastic Simulation}}
+#'   \item {\href{../doc/stat1004-ch2a-descriptive-statistics-vignette.html}{Chapter 2: Descriptive Statistics}}
+#'   \item {\href{../doc/stat1004-ch2b-graphs-vignette.html}{Chapter 2: Graphs (one variable)}}
+#'   \item {\href{../doc/stat1004-ch2c-graphs-vignette.html}{Chapter 2: Graphs (more than one variable)}}
 #' }
 #'
 #' @section Datasets:
@@ -43,12 +44,13 @@
 #'   \item {\link[=blood_types]{Blood Types}}
 #'   \item {\link[=ftse]{FTSE 100 Share Index}}
 #'   \item {\link[=flu]{Influenza data}}
+#'   \item {\link[=USelection]{The 2000 U.S. Presidential Election}}
 #' }
 #'
 #' @section Movies:
 #'
 #' \itemize{
-#'   \item {\link[=shuttle_movie]{Challenger Space Shuttle Disaster Movie}}
+#'   \item {\link[=shuttle_movie]{Challenger Space Shuttle Disaster}}
 #' }
 #'
 #' @seealso The \href{https://moodle.ucl.ac.uk/course/view.php?id=3419&section=0}{STAT1004 Moodle page}
@@ -148,3 +150,40 @@ NULL
 #' symptoms of 'flu.}}
 #'
 "flu"
+
+#' The 2000 U.S. Presidential Election in Florida
+#'
+#' Voting results and demographic data for the state of Florida in the
+#' United States presidential election in the year 2000.
+#'
+#' @format A data frame with 67 observations on 22 variables.
+#' Each row relates to a county in Florida.
+#' \itemize{
+#' \item{Columns 1-4, county identifiers and location: }
+#'   {county number \code{co}, county name \code{co_name},
+#'   latitude in degrees north \code{lat},
+#'   longitude in degrees west \code{lon}.}
+#' \item{Columns 5-12, county demographic variables: }
+#' {population in 1997 \code{npop},
+#' percentage of whites in 1996 \code{whit},
+#' percentage of blacks in 1996 \code{blac},
+#' percentage of Hispanics in 1996 \code{hisp},
+#' percentage of the population aged 65 and over in 1996 \code{o65},
+#' percentage of the population that graduated from high school
+#' (1990 census) \code{hsed},
+#' percentage of the population that graduated from college
+#' (1990 census) \code{coll},
+#' mean personal income (1994) \code{inco}.}
+#' \item{Columns 13-22, numbers of votes for candidates: }{
+#' Bush \code{bush}, Gore \code{gore}, Browne \code{brow},
+#' Nader \code{nade}, Harris \code{harr}, Hagelin \code{hage},
+#' Buchanan \code{buch}, McReynolds \code{mcre}, Phillips \code{phil},
+#' Moorehead \code{moor}}.
+#' \item{Column 23, total number of votes cast: \code{tvot}}.}
+#'
+#' For full details see Tables 1 to 4 of
+#' \href{http://dx.doi.org/10.1214/ss/1049993203}{Smith (2002)}.
+#' @references Smith, R. L. (2002) A Statistical Assessment of Buchanan's
+#'   Vote in Palm Beach County, \emph{Statistical Science}, \strong{17(4)},
+#'   441-457, \url{http://dx.doi.org/10.1214/ss/1049993203}.
+"USelection"

@@ -40,10 +40,11 @@ If you have any questions about this package please ask them via the
 
 
 \itemize{
-  \item {\href{../doc/stat1004-shuttle-vignette.html}{Chapter 1: Challenger Space Shuttle Disaster}}
-  \item {\href{../doc/stat1004-stochastic-simulation-vignette.html}{Chapter 1: Stochastic Simulation}}
-  \item {\href{../doc/stat1004-descriptive-statistics-vignette.html}{Chapter 2: Descriptive Statistics}}
-  \item {\href{../doc/stat1004-graphs-vignette.html}{Chapter 2: Graphs (one variable)}}
+  \item {\href{../doc/stat1004-ch1a-shuttle-vignette.html}{Chapter 1: Challenger Space Shuttle Disaster}}
+  \item {\href{../doc/stat1004-ch1b-stochastic-simulation-vignette.html}{Chapter 1: Stochastic Simulation}}
+  \item {\href{../doc/stat1004-ch2a-descriptive-statistics-vignette.html}{Chapter 2: Descriptive Statistics}}
+  \item {\href{../doc/stat1004-ch2b-graphs-vignette.html}{Chapter 2: Graphs (one variable)}}
+  \item {\href{../doc/stat1004-ch2c-graphs-vignette.html}{Chapter 2: Graphs (more than one variable)}}
 }
 }
 
@@ -56,6 +57,7 @@ If you have any questions about this package please ask them via the
   \item {\link[=blood_types]{Blood Types}}
   \item {\link[=ftse]{FTSE 100 Share Index}}
   \item {\link[=flu]{Influenza data}}
+  \item {\link[=USelection]{The 2000 U.S. Presidential Election}}
 }
 }
 
@@ -63,7 +65,7 @@ If you have any questions about this package please ask them via the
 
 
 \itemize{
-  \item {\link[=shuttle_movie]{Challenger Space Shuttle Disaster Movie}}
+  \item {\link[=shuttle_movie]{Challenger Space Shuttle Disaster}}
 }
 }
 
