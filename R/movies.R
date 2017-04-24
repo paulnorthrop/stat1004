@@ -32,7 +32,7 @@
 #' @return Nothing is returned, only the animation is produced.
 #' @references Bowman, A., Crawford, E., Alexander, G. and Bowman, R. W.
 #'  (2007). rpanel: Simple Interactive Controls for R Functions Using the
-#'  tcltk Package.  Journal of Statistical Software, 17(9), 1-18.
+#'  tcltk Package.  \emph{Journal of Statistical Software}, \strong{17(9)}, 1-18.
 #'  \url{http://www.jstatsoft.org/v17/i09/}.
 #' @examples
 #' # Load package rpanel

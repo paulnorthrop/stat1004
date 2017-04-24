@@ -47,6 +47,7 @@ Clicking - removes the mostly recently added dataset.
 library(rpanel, help = TRUE)
 
 # Challenger space shuttle data -------------
+
 # Movie based on datasets of size 23
 shuttle_movie()
 # Movie based on datasets of size 23
@@ -56,6 +57,6 @@ shuttle_movie(n_reps = 1)
 \references{
 Bowman, A., Crawford, E., Alexander, G. and Bowman, R. W.
  (2007). rpanel: Simple Interactive Controls for R Functions Using the
- tcltk Package.  Journal of Statistical Software, 17(9), 1-18.
+ tcltk Package.  \emph{Journal of Statistical Software}, \strong{17(9)}, 1-18.
  \url{http://www.jstatsoft.org/v17/i09/}.
 }
