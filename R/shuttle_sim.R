@@ -1,6 +1,6 @@
 # =========================== shuttle_sim ===========================
 
-#' Fake space shuttle data
+#' Simulate fake space shuttle data
 #'
 #' Simulates fake O-ring thermal distress data for Challenger Space Shuttle
 #' launches at different launch temperatures.  The simulated data are based
