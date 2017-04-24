@@ -14,7 +14,7 @@ The package is:
 
 ### Installation
 
-To install the package from GitHub use:
+To install the package from GitHub type the following at the R Console command prompt `>`
 
 ``` r
 library(devtools)
@@ -23,7 +23,14 @@ devtools::install_github("paulnorthrop/stat1004")
 
 ### Getting started
 
-Type `?stat1004` at the R command prompt `>` to open the main help page, which contains links to vignettes, datasets and other sources of information.
+Then type
+
+``` r
+library(stat1004)
+?stat1004
+```
+
+to open the main help page, which contains links to vignettes, datasets and other sources of information.
 
 You will find that some vignettes contain ideas that we have not yet covered in lectures. If you want to try to understand these ideas before we cover them then please use the links to further information that have been provided.
 
