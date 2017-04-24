@@ -2,7 +2,7 @@
 % Please edit documentation in R/shuttle_sim.R
 \name{shuttle_sim}
 \alias{shuttle_sim}
-\title{Fake space shuttle data}
+\title{Simulate fake space shuttle data}
 \usage{
 shuttle_sim(n_sim = 1, temperature = NULL)
 }
