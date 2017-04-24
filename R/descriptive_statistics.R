@@ -53,7 +53,8 @@ five_number <- function(x, type = 6, na.rm = FALSE) {
 #' @param type Relevant to \code{q_skew} only.  Argument \code{type} used in
 #'   the call to \code{quantile} to estimate the 25\%, 50\% and 75\% quantiles.
 #' @param na.rm A logical scalar.  If true, any \code{\link{NA}} and NaN's
-#'   are removed from \code{x} before the sample quantiles are computed.
+#'   are removed from \code{x} before the constituent parts of the sample
+#'   skewness are computed.
 #' @details See Section 2.3 of the
 #' \href{https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf}{STAT1004 notes.}
 #'
@@ -64,11 +65,17 @@ five_number <- function(x, type = 6, na.rm = FALSE) {
 #'   \deqn{[ (q_U - m) - (m - qL) ] / (q_U - q_L).}
 #'
 #' \emph{Standardized sample skewness}.
-#' Denote a vector of data by \eqn{(x_1, ..., x_n)} and let \eqn{\bar{x}} and
-#' \eqn{s} be the
+#' Denote a vector of data by \eqn{(x_1, ..., x_n)} and let \eqn{xbar} and
+#' \eqn{s} be the sample mean and sample standard deviation respectively.
+#' The standardized sample skewness is given by
+#' \deqn{(1 / n) \sum (x_i - xbar) ^ 3 / s ^ 3,}
+#' where the summation \eqn{\sum} is over \eqn{i = 1, ..., n}.
 #'
 #' @return A numeric scalar (if the input was a vector) or vector (if the input
 #'   was a matrix).
+#' @seealso \code{\link[stats]{quantile}} for calculating sample quantiles.
+#' @seealso \code{\link{mean}} for the sample mean.
+#' @seealso \code{\link[stats]{sd}} for the sample standard deviation.
 #' @examples
 #' birth_times <- ox_births[, "time"]
 #' skew(birth_times)
