@@ -22,10 +22,8 @@ table(shuttle[, "damaged"])
 o_ring_table <- table(shuttle[, 3])
 
 ## ---- fig.show='hold'----------------------------------------------------
-# A barplot of the numbers of distressed O-rings
 barplot(o_ring_table, xlab = "number of distressed O-rings", ylab = "frequency")
 attach(shuttle)
-# A scatter plot of temperature against pressure
 plot(pressure, temperature)
 
 ## ------------------------------------------------------------------------
@@ -40,7 +38,7 @@ pairs(shuttle[, 3:5])
 not_zero <- shuttle$damaged > 0
 not_zero
 
-## ---- fig.show='hold'----------------------------------------------------
+## ---- fig.show='hold', fig.width = 3.4, fig.height = 3.5-----------------
 xlim <- range(shuttle$temperature)
 xlim
 # Plot with no zeros

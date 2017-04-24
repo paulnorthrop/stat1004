@@ -35,3 +35,23 @@ box_plot(birth_times~day, horizontal = TRUE, axes = FALSE, xlab = xlab, pch = 16
 axis(1, at = x_labs, labels = x_labs)
 axis(2, at = 1:7, labels = 1:7, lwd = 0, lty = 0, las = 1)
 
+## ------------------------------------------------------------------------
+# County identifiers and location
+head(USelection[, 1:4])
+# County demographic variables
+head(USelection[, 5:12])
+# Numbers of votes for candidates
+head(USelection[, 13:22])
+
+## ---- fig.width = 6, fig.height = 5--------------------------------------
+plot(-USelection[, "lon"], USelection[, "lat"], xlab = "longitude (degrees north)", ylab = "latitude (degrees east)", pch = 16)
+
+## ---- fig.width = 6, fig.height = 5--------------------------------------
+pbuch <- USelection$buch/USelection$tvot
+pch <- 1 + 3 * (USelection[, "co_names"] == "PalmBeach")
+pch
+plot(USelection$npop, pbuch, xlab = "population", ylab = "Buchanan % vote", pch = pch)
+
+## ---- fig.width = 7, fig.height = 7--------------------------------------
+pairs(USelection[, 5:12])
+

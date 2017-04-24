@@ -31,8 +31,6 @@ If you have any questions please ask them using the [STAT1004 discussion forum](
 
 In the first lecture of STAT1004 we discussed the Challenger Space Shuttle Disaster.   In this vignette we are concerned mainly with the R code, so there is very little discussion of the problem, the data or statistical ideas.  For discussion of these see the notes and/or lecture slides in the [Notes](https://moodle.ucl.ac.uk/course/view.php?id=3419&section=3) section of the STAT1004 Moodle page.
 
-**Please refer to the discussion of this plot in the lecture slides.**
-
 In this vignette we consider how R can be used to analyse data related to this disaster.  See @shuttle for more information about these data and analyses to estimate the probability of a catastrophic failure of the Challenger space shuttle under the launch conditions on 28th January 1986.  This paper is used as a [worked example](https://moodle.ucl.ac.uk/mod/resource/view.php?id=2125123) for the [STAT1004 Meet your Professor ICA](https://moodle.ucl.ac.uk/course/view.php?id=3419&section=4).
 
 In the following R commands follow the command prompt `>` and `#` is used to create a comment, that is, to prevent R from trying to execute text that contains comments rather than a command.
@@ -72,11 +70,11 @@ o_ring_table <- table(shuttle[, 3])
 
 **Note the different way to get the column that we want.**
 
+We produce a bar plot of the numbers of distressed O-rings and a scatter plot of temperature against pressure.  See also the vignette [Chapter 2: Graphs (more than one variable)](stat1004-ch2c-graphs-simulation-vignette.html).
+
 ```{r, fig.show='hold'}
-# A barplot of the numbers of distressed O-rings
 barplot(o_ring_table, xlab = "number of distressed O-rings", ylab = "frequency")
 attach(shuttle)
-# A scatter plot of temperature against pressure
 plot(pressure, temperature)
 ```
 
@@ -103,7 +101,7 @@ not_zero
 
 5. **Can you see what the vector `not_zero` contains?**
 
-```{r, fig.show='hold'}
+```{r, fig.show='hold', fig.width = 3.4, fig.height = 3.5}
 xlim <- range(shuttle$temperature)
 xlim
 # Plot with no zeros
@@ -123,7 +121,7 @@ title(xlab = "temperature / deg F", ylab = "number of distressed O-rings")
 
 This section involves a statistical model, a *logistic regression model*, that is not part of the STAT1004 syllabus, so don't worry too much about the details that follow.  However, this section involves things that we *will* study later in STAT1004, namely *independence*, the *binomial distribution* and (the general concept of) *regression*.  We fit the model using a general fitting method called *maximum likelihood estimation*.  This method is not formally part of the STAT1004 syllabus, but we will look at it very briefly later in the course.
 
-Consider the six O-rings on the space shuttle.  We suppose that on a launch conducted at temperature $t$ degrees F:
+Consider the six O-rings on the space shuttle.  We suppose that on a launch at temperature $t$ degrees F:
 
 * each O-ring has a probability $p(t)$ of suffering thermal distress;
 * whether or not a given O-ring suffers thermal distress is not affected by whether or not other O-rings suffer thermal distress, that is, the O-rings are independent of each other in this respect.
@@ -244,6 +242,9 @@ Now we consider the case where the simulated datasets each have size 2300.
 ```{r, fig.width = 7, fig.height = 5}
 shuttle_sim_plot(n_sim = 50, n_reps = 100, plot_real_data = FALSE, lty = 1)
 ```
+
+See also the function `shuttle_movie` for an animated version of 
+`shuttle_sim_plot`.
 
 ## References
 

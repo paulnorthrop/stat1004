@@ -17,11 +17,9 @@ knitr::opts_chunk$set(comment = "", prompt = TRUE, collapse = TRUE)
 devtools::load_all() 
 ```
 
-The main purpose of this vignette is to provide R code to produce graphs that involve more than one variable.  In particular we consider scatterplots, which feature in Section 2.6 of the [STAT1004 notes](https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf).
-See also the [Chapter 2: Graphs (one variable)](stat1004-ch2b-graphs-vignette.html).
+The main purpose of this vignette is to provide R code to produce graphs that involve more than one variable.  We consider two general situations: (i) plotting the values of a continuous variable for different values of a categorical variable (see [The Oxford Birth Times data](#the-oxford-birth-times-data)) and (ii) scatter plots of oner variable against another (see [The 2000 US Presidential Election data](#the-2000-us-presidential-election-data)).  The latter feature in Section 2.6 of the [STAT1004 notes](https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf).  See also the [Chapter 2: Graphs (one variable)](stat1004-ch2b-graphs-vignette.html).
 
-The R code used in this vignette are available [here](stat1004-ch2b-graphs-2-vignette.R).
-The code underlying the `box_plot` function is available at  [GitHub](https://github.com/paulnorthrop/stat1004/tree/master/R/graphs.R).
+The R code used in this vignette are available [here](stat1004-ch2b-graphs-2-vignette.R).  The code underlying the `box_plot` function is available at  [GitHub](https://github.com/paulnorthrop/stat1004/tree/master/R/graphs.R).
 
 ## The Oxford Birth Times data 
 
@@ -66,6 +64,41 @@ axis(1, at = x_labs, labels = x_labs)
 axis(2, at = 1:7, labels = 1:7, lwd = 0, lty = 0, las = 1)
 ```
 
-## The 2000 US Presidential Election data
+## The 2000 US Presidential Election in Florida
 
+These data are available in the data frame `USelection`.  See `?USelection` for details.
 
+```{r}
+# County identifiers and location
+head(USelection[, 1:4])
+# County demographic variables
+head(USelection[, 5:12])
+# Numbers of votes for candidates
+head(USelection[, 13:22])
+```
+
+For the moment we simply produce some scatter plots.  A separate vignette will be devoted to these data.
+
+A plot to show the locations of the counties.
+
+```{r, fig.width = 6, fig.height = 5}
+plot(-USelection[, "lon"], USelection[, "lat"], xlab = "longitude (degrees north)", ylab = "latitude (degrees east)", pch = 16)
+```
+
+**1. Can you see the outline of the state of Florida?**
+
+A plot of the percentage of the vote for Buchanan against population size.  
+```{r, fig.width = 6, fig.height = 5}
+pbuch <- USelection$buch/USelection$tvot
+pch <- 1 + 3 * (USelection[, "co_names"] == "PalmBeach")
+pch
+plot(USelection$npop, pbuch, xlab = "population", ylab = "Buchanan % vote", pch = pch)
+```
+
+**2. Can you see how we have managed to identify Palm Beach County by using a different plotting character?**
+
+Pairwise scatter plots of the demographic variables.
+
+```{r, fig.width = 7, fig.height = 7}
+pairs(USelection[, 5:12])
+```
