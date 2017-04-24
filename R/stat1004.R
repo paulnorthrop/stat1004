@@ -45,6 +45,11 @@
 #'   \item {\link[=flu]{Influenza data}}
 #' }
 #'
+#' @section Movies:
+#'
+#' \itemize{
+#'   \item {\link[=shuttle_movie]{Challenger Space Shuttle Disaster Movie}}
+#' }
 #'
 #' @seealso The \href{https://moodle.ucl.ac.uk/course/view.php?id=3419&section=0}{STAT1004 Moodle page}
 #'   for: various forms of feedback, a discussion forum, lecturecast recordings,
@@ -87,6 +92,8 @@ NULL
 #'   of Failure. \emph{Journal of the American Statistical Association},
 #'   \strong{84}(408), 945-957.
 #'   \url{http://dx.doi.org/10.1080/01621459.1989.10478858}
+#' @seealso \code{\link{shuttle_sim}}, \code{\link{shuttle_sim_plot}},
+#'   \code{\link{shuttle_movie}}
 "shuttle"
 
 #' Oxford Birth Times

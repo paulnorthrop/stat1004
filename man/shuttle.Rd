@@ -35,4 +35,8 @@ launch conditions on 28th January 1986 is used as a
 for the
 \href{https://moodle.ucl.ac.uk/course/view.php?id=3419&section=4}{STAT1004 Meet your Professor ICA}.
 }
+\seealso{
+\code{\link{shuttle_sim}}, \code{\link{shuttle_sim_plot}},
+  \code{\link{shuttle_movie}}
+}
 \keyword{datasets}

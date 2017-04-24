@@ -59,6 +59,14 @@ If you have any questions about this package please ask them via the
 }
 }
 
+\section{Movies}{
+
+
+\itemize{
+  \item {\link[=shuttle_movie]{Challenger Space Shuttle Disaster Movie}}
+}
+}
+
 \seealso{
 The \href{https://moodle.ucl.ac.uk/course/view.php?id=3419&section=0}{STAT1004 Moodle page}
   for: various forms of feedback, a discussion forum, lecturecast recordings,

@@ -245,5 +245,8 @@ Now we consider the case where the simulated datasets each have size 2300.
 shuttle_sim_plot(n_sim = 50, n_reps = 100, plot_real_data = FALSE, lty = 1)
 ```
 
+See also the function `shuttle_movie` for an animated version of 
+`shuttle_sim_plot`.
+
 ## References
 

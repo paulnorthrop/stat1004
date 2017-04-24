@@ -2,7 +2,7 @@
 % Please edit documentation in R/shuttle_sim.R
 \name{shuttle_sim_plot}
 \alias{shuttle_sim_plot}
-\title{Uncertainty in fitted linear logistic regression curve}
+\title{Space shuttle: uncertainty in fitted linear logistic regression curve}
 \usage{
 shuttle_sim_plot(n_sim = 50, plot_real_data = TRUE, n_reps = 1, ...)
 }
@@ -24,7 +24,7 @@ size 230.}
 used to draw the curves for the simulated datasets.}
 }
 \value{
-Nothing is returned, just the plot is produced.
+Nothing is returned, only the plot is produced.
 }
 \description{
 Illustrates the uncertainty in the fitted values of the probability

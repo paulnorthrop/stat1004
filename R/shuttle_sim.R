@@ -119,7 +119,7 @@ shuttle_sim <- function(n_sim = 1, temperature = NULL) {
 
 # ========================= shuttle_sim_plot ========================
 
-#' Uncertainty in fitted linear logistic regression curve
+#' Space shuttle: uncertainty in fitted linear logistic regression curve
 #'
 #' Illustrates the uncertainty in the fitted values of the probability
 #' of O-ring distress for different values of temperature, based on the
@@ -148,7 +148,7 @@ shuttle_sim <- function(n_sim = 1, temperature = NULL) {
 #'   vignette and for simulation from this model see
 #'   \code{\link{shuttle_sim}}.
 #'
-#' @return Nothing is returned, just the plot is produced.
+#' @return Nothing is returned, only the plot is produced.
 #' @examples
 #' shuttle_sim_plot(n_sim = 50)
 #' @seealso The \href{../doc/stat1004-shuttle-vignette.html}{Challenger Space Shuttle Disaster}
@@ -195,14 +195,15 @@ shuttle_sim_plot <- function(n_sim = 50, plot_real_data = TRUE, n_reps = 1,
   linear_predictor <- alpha_hat + beta_hat * temperature
   fitted_probs <- exp(linear_predictor) / (1 + exp(linear_predictor))
   #
-  # Plot the real data and add the fitted logistic curve ----------
+  # Set up a plot area for the real data and the fitted logistic curve --------
   #
   new_damaged <- stat1004::shuttle[, 3]
   new_damaged[c(11, 13, 17, 22)] <- new_damaged[c(11, 13, 17, 22)] + 0.2
   new_damaged[15] <- new_damaged[15] - 0.2
   graphics::plot(stat1004::shuttle[, 4], new_damaged / 6, ann = FALSE,
                  ylim = c(0, 1), pch = 16, type = "n")
-  graphics::title(xlab = "temperature (deg F)", ylab = "proportion of distressed O-rings")
+  graphics::title(xlab = "temperature (deg F)",
+                  ylab = "proportion of distressed O-rings")
   temp <- seq(from = 30, to = 85, by = 0.1)
   linear_predictor <- alpha_hat + beta_hat * temp
   fitted_curve <- exp(linear_predictor) / (1 + exp(linear_predictor))

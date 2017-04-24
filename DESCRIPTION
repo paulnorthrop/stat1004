@@ -19,7 +19,8 @@ Imports: stats,
     graphics,
     methods,
     utils,
-    rust (>= 1.1.0)
+    rust (>= 1.1.0),
+    rpanel
 Suggests: knitr,
     rmarkdown,
     devtools,
