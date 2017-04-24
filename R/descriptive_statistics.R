@@ -40,29 +40,46 @@ five_number <- function(x, type = 6, na.rm = FALSE) {
   return(x)
 }
 
-# =========================== quartile_skewness ===========================
+# ========================== sample skewness functions =========================
 
-#' Quartile skewness
+#' Sample skewness functions
 #'
-#' Calculates the sample quartile skewness of a vector of data or of each column
-#' of a matrix of data, based on the estimators of the lower quartile,
-#' median and upper quartile in the STAT1004 notes.
+#' Calculates sample measures of skewness (the sample quartile skewness or
+#' standardized sample skewness) of a vector of data, or of each
+#' column of a matrix of data, based on the estimators described in the
+#' the STAT1004 notes.
 #'
 #' @param x A numeric vector or matrix.
-#' @param type Argument \code{type} used in the call to \code{quantile} to
-#'   estimate the 25\%, 50\% and 75\% quantiles.
+#' @param type Relevant to \code{q_skew} only.  Argument \code{type} used in
+#'   the call to \code{quantile} to estimate the 25\%, 50\% and 75\% quantiles.
 #' @param na.rm A logical scalar.  If true, any \code{\link{NA}} and NaN's
-#'   are removed from \code{x} before the quantiles are computed.
-#' @return A numeric scalar (if the input was a vector) or vector (if the input
-#'   was a matrix).
-#' @details Let \eqn{q_L}, \eqn{m} and \eqn{q_U} be the sample lower quartile,
+#'   are removed from \code{x} before the sample quantiles are computed.
+#' @details See Section 2.3 of the
+#' \href{https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf}{STAT1004 notes.}
+#'
+#' \emph{Sample quartile skewness}.
+#' Let \eqn{q_L}, \eqn{m} and \eqn{q_U} be the sample lower quartile,
 #'   mean and upper quartile respectively.  A measure of skewness often called
 #'   the \emph{quartile skewness} is given by
 #'   \deqn{[ (q_U - m) - (m - qL) ] / (q_U - q_L).}
+#'
+#' \emph{Standardized sample skewness}.
+#' Denote a vector of data by \eqn{(x_1, ..., x_n)} and let \eqn{\bar{x}} and
+#' \eqn{s} be the
+#'
+#' @return A numeric scalar (if the input was a vector) or vector (if the input
+#'   was a matrix).
 #' @examples
 #' birth_times <- ox_births[, "time"]
+#' skew(birth_times)
 #' q_skew(birth_times)
-#' @seealso \code{\link[stats]{quantile}} for calculating sample quantiles.
+#' @name skewness
+NULL
+## NULL
+
+# =========================== quartile_skewness ===========================
+
+#' @rdname skewness
 q_skew <- function(x, type = 6, na.rm = FALSE) {
   q_skew_vec <- function(x, type, na.rm) {
     qq <- stats::quantile(x, type = type, probs=c(0.25, 0.5, 0.75),
@@ -76,23 +93,7 @@ q_skew <- function(x, type = 6, na.rm = FALSE) {
 
 # ======================== standardized sample skewness =======================
 
-#' Standardized sample skewness
-#'
-#' Calculates the standardized sample skewness of a vector of data or of each
-#' column of a matrix of data, based on the estimators of the lower quartile,
-#' median and upper quartile in the STAT1004 notes.
-#'
-#' @param x A numeric vector or matrix.
-#' @param na.rm A logical scalar.  If true, any \code{\link{NA}} and NaN's
-#'   are removed from \code{x} before the quantiles are computed.
-#' @return A numeric scalar (if the input was a vector) or vector (if the input
-#'   was a matrix).
-#' @details See Section 2.3 of the
-#' \href{https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf}{STAT1004 notes.}
-#' @examples
-#' birth_times <- ox_births[, "time"]
-#' skew(birth_times)
-#' @seealso \code{\link[stats]{quantile}} for calculating sample quantiles.
+#' @rdname skewness
 skew <- function(x, type = 6, na.rm = FALSE) {
   skew_vec <- function(x, type, na.rm) {
     s <- stats::sd(x, na.rm = na.rm)
