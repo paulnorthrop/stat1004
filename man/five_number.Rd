@@ -9,11 +9,11 @@ five_number(x, type = 6, na.rm = FALSE)
 \arguments{
 \item{x}{A numeric vector or matrix.}
 
-\item{type}{Argument \code{type} used in the call to \code{quantile} to
-estimate the 25\%, 50\% and 75\% quantiles.}
+\item{type}{Argument \code{type} used in the call to
+\code{\link{quantile}} to estimate the 25\%, 50\% and 75\% quantiles.}
 
 \item{na.rm}{A logical scalar.  If true, any \code{\link{NA}} and NaN's
-are removed from \code{x} before the quantiles are computed.}
+are removed from \code{x} before the sample quantiles are computed.}
 }
 \value{
 A numeric vector (if the input was a vector) or matrix (if the input

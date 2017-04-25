@@ -7,10 +7,10 @@
 #' median and upper quartile in the STAT1004 notes.
 #'
 #' @param x A numeric vector or matrix.
-#' @param type Argument \code{type} used in the call to \code{quantile} to
-#'   estimate the 25\%, 50\% and 75\% quantiles.
+#' @param type Argument \code{type} used in the call to
+#'   \code{\link{quantile}} to estimate the 25\%, 50\% and 75\% quantiles.
 #' @param na.rm A logical scalar.  If true, any \code{\link{NA}} and NaN's
-#'   are removed from \code{x} before the quantiles are computed.
+#'   are removed from \code{x} before the sample quantiles are computed.
 #' @return A numeric vector (if the input was a vector) or matrix (if the input
 #'   was a matrix).
 #' @details The five number summary contains the sample minimum and maximum and
