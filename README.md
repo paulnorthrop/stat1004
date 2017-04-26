@@ -9,7 +9,7 @@ The `stat1004` package provides R code, datasets and vignettes (tutorials demons
 
 The package is:
 
--   in the very early stages of development;
+-   in the early stages of development;
 -   probably of little use to people not taking STAT1004 at UCL.
 
 ### Installation
@@ -17,6 +17,7 @@ The package is:
 To install the package from GitHub type the following at the R Console command prompt `>`
 
 ``` r
+install.packages("devtools")
 library(devtools)
 devtools::install_github("paulnorthrop/stat1004")
 ```
