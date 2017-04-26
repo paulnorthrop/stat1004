@@ -111,3 +111,7 @@ shuttle_sim_plot(n_sim = 50, n_reps = 10, plot_real_data = FALSE, lty = 1)
 ## ---- fig.width = 7, fig.height = 5--------------------------------------
 shuttle_sim_plot(n_sim = 50, n_reps = 100, plot_real_data = FALSE, lty = 1)
 
+## ---- fig.width = 7, fig.height = 12-------------------------------------
+x <- shuttle_sim_plot(n_sim = 1000, plot = FALSE)
+shuttle_sim_hists(x, temps = c(31, 50, 65, 80), col = 8)
+

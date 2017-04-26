@@ -80,7 +80,3 @@ ru_sim2 <- ru(logf = log_dmvnorm, sigma = covmat, d = 2, n = 1000, init = c(0, 0
 ## ---- fig.width = 6, fig.height = 4--------------------------------------
 plot(ru_sim2, xlab = expression(X[1]), ylab = expression(X[2]))
 
-## ---- message = FALSE----------------------------------------------------
-library(MASS)
-?mvrnorm
-

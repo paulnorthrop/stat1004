@@ -85,20 +85,55 @@ A plot to show the locations of the counties.
 plot(-USelection[, "lon"], USelection[, "lat"], xlab = "longitude (degrees north)", ylab = "latitude (degrees east)", pch = 16)
 ```
 
-**1. Can you see the outline of the state of Florida?**
+1. **Can you see the outline of the state of Florida?**
 
 A plot of the percentage of the vote for Buchanan against population size.  
+
 ```{r, fig.width = 6, fig.height = 5}
-pbuch <- USelection$buch/USelection$tvot
-pch <- 1 + 3 * (USelection[, "co_names"] == "PalmBeach")
+pbuch <- 100*USelection$buch/USelection$tvot
+is_PB <- USelection[, "co_names"] == "PalmBeach"
+pch <- 1 + 3 * is_PB
 pch
 plot(USelection$npop, pbuch, xlab = "population", ylab = "Buchanan % vote", pch = pch)
+which_PB <- which(is_PB)
+text(USelection[which_PB, "npop"], pbuch[which_PB] + 0.1, "Palm Beach", cex = 0.8)
 ```
 
-**2. Can you see how we have managed to identify Palm Beach County by using a different plotting character?**
+2. **Can you see how the code used to identify Palm Beach on the plot works?**
 
 Pairwise scatter plots of the demographic variables.
 
 ```{r, fig.width = 7, fig.height = 7}
 pairs(USelection[, 5:12])
+```
+
+A plot of the square root of the percentage of the vote for Buchanan against population size, in thousands of people.  The horizontal axis has been plotted on a log scale.  
+
+```{r, fig.width = 7, fig.height = 7}
+x <- USelection$npop / 1000
+y <- sqrt(pbuch)
+ystring <- expression(sqrt("% Buchanan vote"))
+rm_PB <- which(!is_PB)
+scatter(x[rm_PB], y[rm_PB], pch = 16, xlab ="Total Population (1000s)", ylab = ystring, log = "x")
+points(x[which_PB], y[which_PB], pch = "X")
+text(x[which_PB], y[which_PB] + 0.04, "Palm Beach", cex = 0.8)
+```
+
+3. **Can you see how the different method to identify Palm Beach works?**
+
+4. **Can you guess what the numbers on the axes are?  See `scatter` to find out.**
+
+Similarly, we use `scatter_hist` to create a scatter plot in which the distribution of each variable is summarized by a histogram.
+
+```{r, fig.width = 6, fig.height = 6}
+scatter_hist(x, y, log = "x", pch = 16, xlab ="Total Population (1000s)", ylab = ystring)
+```
+
+The plot in the lecture slides is produced by specifying particular bins for the histograms.
+
+```{r, fig.width = 6, fig.height = 6}
+logx <- log(x)
+xbreaks <- seq(from = min(logx), to = max(logx), len = 25)
+ybreaks <- seq(from = min(y), to = max(y), len = 25)
+scatter_hist(x, y, log = "x", pch = 16, xlab ="Total Population (1000s)", ylab = ystring, xbreaks = xbreaks, ybreaks = ybreaks)
 ```

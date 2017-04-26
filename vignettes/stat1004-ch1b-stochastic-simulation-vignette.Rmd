@@ -195,11 +195,6 @@ In the bivariate case the `plot` method for objects of class "ru" produces a sca
 plot(ru_sim2, xlab = expression(X[1]), ylab = expression(X[2]))
 ```
 
-The generalized ratio-of-uniforms method works well enough for this example but it is not the most efficient way to simulate from a multivariate normal distribution.  A better function is the `mvrnorm` in the MASS package [@MASS].
-
-```{r, message = FALSE}
-library(MASS)
-?mvrnorm
-```
+The generalized ratio-of-uniforms method works well enough for this example but it is not the most efficient way to simulate from a multivariate normal distribution.  A better function is the `mvrnorm` in the MASS package [@MASS].  Use `library(MASS)` and `?mvrnorm` to find out about it.
 
 ## References

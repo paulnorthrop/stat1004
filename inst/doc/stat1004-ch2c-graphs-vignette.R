@@ -47,11 +47,32 @@ head(USelection[, 13:22])
 plot(-USelection[, "lon"], USelection[, "lat"], xlab = "longitude (degrees north)", ylab = "latitude (degrees east)", pch = 16)
 
 ## ---- fig.width = 6, fig.height = 5--------------------------------------
-pbuch <- USelection$buch/USelection$tvot
-pch <- 1 + 3 * (USelection[, "co_names"] == "PalmBeach")
+pbuch <- 100*USelection$buch/USelection$tvot
+is_PB <- USelection[, "co_names"] == "PalmBeach"
+pch <- 1 + 3 * is_PB
 pch
 plot(USelection$npop, pbuch, xlab = "population", ylab = "Buchanan % vote", pch = pch)
+which_PB <- which(is_PB)
+text(USelection[which_PB, "npop"], pbuch[which_PB] + 0.1, "Palm Beach", cex = 0.8)
 
 ## ---- fig.width = 7, fig.height = 7--------------------------------------
 pairs(USelection[, 5:12])
+
+## ---- fig.width = 7, fig.height = 7--------------------------------------
+x <- USelection$npop / 1000
+y <- sqrt(pbuch)
+ystring <- expression(sqrt("% Buchanan vote"))
+rm_PB <- which(!is_PB)
+scatter(x[rm_PB], y[rm_PB], pch = 16, xlab ="Total Population (1000s)", ylab = ystring, log = "x")
+points(x[which_PB], y[which_PB], pch = "X")
+text(x[which_PB], y[which_PB] + 0.04, "Palm Beach", cex = 0.8)
+
+## ---- fig.width = 6, fig.height = 6--------------------------------------
+scatter_hist(x, y, log = "x", pch = 16, xlab ="Total Population (1000s)", ylab = ystring)
+
+## ---- fig.width = 6, fig.height = 6--------------------------------------
+logx <- log(x)
+xbreaks <- seq(from = min(logx), to = max(logx), len = 25)
+ybreaks <- seq(from = min(y), to = max(y), len = 25)
+scatter_hist(x, y, log = "x", pch = 16, xlab ="Total Population (1000s)", ylab = ystring, xbreaks = xbreaks, ybreaks = ybreaks)
 
