@@ -12,7 +12,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-## stat1004: Introduction to Probability and Statistics at UCL
+# stat1004 <img src="standalone.png" align="right" />
+
+## Introduction to Probability and Statistics
 
 ### What does stat1004 do?
 
