@@ -4,7 +4,8 @@
 \alias{shuttle_sim_plot}
 \title{Space shuttle: uncertainty in fitted linear logistic regression curve}
 \usage{
-shuttle_sim_plot(n_sim = 50, plot_real_data = TRUE, n_reps = 1, ...)
+shuttle_sim_plot(n_sim = 50, plot_real_data = TRUE, n_reps = 1,
+  plot = TRUE, ...)
 }
 \arguments{
 \item{n_sim}{An integer scalar.  The number of fake datasets to simulate,
@@ -13,18 +14,25 @@ and hence the number of curves from simulated data to appear in the plot.}
 \item{plot_real_data}{A logical scalar.  Should we add to the plot the
 real data and the linear logistic curve fitted to the real data?
 \code{real_data = TRUE} for ``yes'' and \code{real_data = FALSE}
-for ``no``.}
+for ``no''.}
 
 \item{n_reps}{An integer scalar.  The number of flights to simulate
 for each of the 23 (pre-disaster) temperatures in the real dataset.
 For example, \code{n_reps = 10} means that we simulate a dataset of
 size 230.}
 
+\item{plot}{A logical scalar indicating whether or not to produce the plot.}
+
 \item{...}{Further argments to be passed to the \code{lines} function
 used to draw the curves for the simulated datasets.}
 }
 \value{
-Nothing is returned, only the plot is produced.
+A numeric matrix with 2 columns and \code{n_sim} rows.
+  Each row contains the estimates of the parameters of the linear
+  logistic regression model fitted to a simulated dataset.
+  The first column, \code{alpha_hat}, contains the estimates of the
+  intercept parameter, the second column, \code{beta_hat},
+  the estimates of the slope parameter.
 }
 \description{
 Illustrates the uncertainty in the fitted values of the probability

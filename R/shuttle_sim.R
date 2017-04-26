@@ -57,6 +57,7 @@
 #'   vignette.
 #' @seealso \code{link{shuttle_sim_plot}} for assessing uncertainty concerning
 #'   the modelling of the space shuttle data using simulation.
+#' @export
 shuttle_sim <- function(n_sim = 1, temperature = NULL) {
   #
   # Set up the data ----------
@@ -136,11 +137,12 @@ shuttle_sim <- function(n_sim = 1, temperature = NULL) {
 #' @param plot_real_data A logical scalar.  Should we add to the plot the
 #'   real data and the linear logistic curve fitted to the real data?
 #'   \code{real_data = TRUE} for ``yes'' and \code{real_data = FALSE}
-#'   for ``no``.
+#'   for ``no''.
 #' @param n_reps An integer scalar.  The number of flights to simulate
 #'   for each of the 23 (pre-disaster) temperatures in the real dataset.
 #'   For example, \code{n_reps = 10} means that we simulate a dataset of
 #'   size 230.
+#' @param plot A logical scalar indicating whether or not to produce the plot.
 #' @param ... Further argments to be passed to the \code{lines} function
 #'   used to draw the curves for the simulated datasets.
 #' @details For details of the linear logistic model see
@@ -148,15 +150,21 @@ shuttle_sim <- function(n_sim = 1, temperature = NULL) {
 #'   vignette and for simulation from this model see
 #'   \code{\link{shuttle_sim}}.
 #'
-#' @return Nothing is returned, only the plot is produced.
+#' @return A numeric matrix with 2 columns and \code{n_sim} rows.
+#'   Each row contains the estimates of the parameters of the linear
+#'   logistic regression model fitted to a simulated dataset.
+#'   The first column, \code{alpha_hat}, contains the estimates of the
+#'   intercept parameter, the second column, \code{beta_hat},
+#'   the estimates of the slope parameter.
 #' @examples
 #' shuttle_sim_plot(n_sim = 50)
 #' @seealso The \href{../doc/stat1004-shuttle-vignette.html}{Challenger Space Shuttle Disaster}
 #'   vignette.
 #' @seealso \code{\link{shuttle_sim}} for simulating fake space shuttle data.
 #' @seealso \code{\link{lines}} for arguments that can be supplied in ....
+#' @export
 shuttle_sim_plot <- function(n_sim = 50, plot_real_data = TRUE, n_reps = 1,
-                             ...) {
+                             plot = TRUE, ...) {
   #
   # Extract user-supplied arguments in ... (if any) that will apply to the
   # curves for the simulated data.
@@ -200,20 +208,26 @@ shuttle_sim_plot <- function(n_sim = 50, plot_real_data = TRUE, n_reps = 1,
   new_damaged <- stat1004::shuttle[, 3]
   new_damaged[c(11, 13, 17, 22)] <- new_damaged[c(11, 13, 17, 22)] + 0.2
   new_damaged[15] <- new_damaged[15] - 0.2
-  graphics::plot(stat1004::shuttle[, 4], new_damaged / 6, ann = FALSE,
-                 ylim = c(0, 1), pch = 16, type = "n")
-  graphics::title(xlab = "temperature (deg F)",
-                  ylab = "proportion of distressed O-rings")
+  if (plot) {
+    graphics::plot(stat1004::shuttle[, 4], new_damaged / 6, ann = FALSE,
+                   ylim = c(0, 1), pch = 16, type = "n")
+    graphics::title(xlab = "temperature (deg F)",
+                    ylab = "proportion of distressed O-rings")
+  }
   temp <- seq(from = 30, to = 85, by = 0.1)
   linear_predictor <- alpha_hat + beta_hat * temp
   fitted_curve <- exp(linear_predictor) / (1 + exp(linear_predictor))
   #
   # Simulate data from the fitted logistic regression model ----------
   #
+  sim_pars <- matrix(NA, ncol = 2, nrow = n_sim)
+  colnames(sim_pars) <- c("alpha_hat", "beta_hat")
   for (i in 1:n_sim){
     y_sim <- stats::rbinom(n_temps, size = 6, prob = fitted_probs)
     if (sum(y_sim) == 0){
       p <- rep(0, length(temp))
+      alpha_hat <- -Inf
+      beta_hat <- 0
     } else {
       y_sim <- cbind(y_sim, 6 - y_sim)
       shuttle_fit <- stats::glm(y_sim ~ temperature,
@@ -223,8 +237,14 @@ shuttle_sim_plot <- function(n_sim = 50, plot_real_data = TRUE, n_reps = 1,
       linear_predictor <- alpha_hat + beta_hat * temp
       sim_curve <- exp(linear_predictor) / (1 + exp(linear_predictor))
     }
+    sim_pars[i,] <- c(alpha_hat, beta_hat)
     lines_args <-c(list(x = temp, y = sim_curve), for_lines)
-    do.call(graphics::lines, lines_args)
+    if (plot) {
+      do.call(graphics::lines, lines_args)
+    }
+  }
+  if (!plot) {
+    return(invisible(sim_pars))
   }
   # Plot again the real data and the fitted curve to avoid them being hidden.
   if (plot_real_data) {
@@ -239,5 +259,54 @@ shuttle_sim_plot <- function(n_sim = 50, plot_real_data = TRUE, n_reps = 1,
                      lwd = c(-1, 2.25, for_lines$lwd),
                      col = c("black", "blue", for_lines$col), cex = 0.8)
   }
+  invisible(sim_pars)
+}
+
+# ========================= shuttle_sim_hists ========================
+
+#' Space shuttle: uncertainty in estimated probability of O-ring damage
+#'
+#' Illustrates the uncertainty in the estimated probability of an O-ring
+#' suffering thermal distress for a given launch temperature.
+#'
+#' @param x A 2-column matrix returned from a call to
+#'   \code{\link{shuttle_sim_plot}}
+#' @param temps A numeric vector of temperatures, in degrees Fahrenheit.
+#' @param ... Further arguments to be passed to \code{hist}. [Apart from
+#'  \code{probability}, \code{xlab}, \code{ylab} and \code{main},
+#'  which are set inside \code{shuttle_sim_hists}.]
+#' @details
+#'
+#' For details of the linear logistic model see
+#'   \href{../doc/stat1004-shuttle-vignette.html}{Challenger Space Shuttle Disaster}
+#'   vignette and for simulation from this model see
+#'   \code{\link{shuttle_sim}}.
+#'
+#' @return Nothing, just the plot.
+#' @examples
+#' x <- shuttle_sim_plot(n_sim = 1000, plot = FALSE)
+#' shuttle_sim_hists(x, temps = c(31, 50, 65, 80), col = 8)
+#' @seealso \code{\link{shuttle_sim_plot}} and \code{\link{shuttle_sim}}.
+#' @seealso The \href{../doc/stat1004-shuttle-vignette.html}{Challenger Space Shuttle Disaster}
+#'   vignette.
+#' @export
+shuttle_sim_hists <- function(x, temps, ...) {
+  # save default, for resetting...
+  def.par <- graphics::par(no.readonly = TRUE)
+  # Sort temperatures into decreasing order
+  temps <- sort(temps, decreasing = TRUE)
+  ntemps <- length(temps)
+  graphics::par(mfrow=c(ntemps, 1), oma = c(0, 0, 0, 0), font.main = 1,
+                mar = c(4, 4, 2, 1))
+  for (i in 1:ntemps) {
+    linear_predictor <- x[, 1] + x[, 2] * temps[i]
+    fitted_probs <- exp(linear_predictor) / (1 + exp(linear_predictor))
+    graphics::hist(fitted_probs, prob = TRUE, main = "", xlim = c(0,1),
+                   xlab = "", ylab = "", ...)
+    graphics::title(xlab = paste("proportion of damaged O-rings at",
+                                 temps[i], "deg F"), ylab = "density")
+  }
+  #- reset to default
+  graphics::par(def.par)
   invisible()
 }

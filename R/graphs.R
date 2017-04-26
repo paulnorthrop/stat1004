@@ -27,13 +27,15 @@
 NULL
 ## NULL
 
+#' @export
 box_plot <- function(x, ...) {
   UseMethod("box_plot")
 }
 
+#' @export
 box_plot.default <- function (x, ..., range = 1.5, width = NULL,
                               varwidth = FALSE, notch = FALSE, outline = TRUE,
-                              names, plot = TRUE, border = par("fg"),
+                              names, plot = TRUE, border = graphics::par("fg"),
                               col = NULL, log = "",
                               pars = list(boxwex = 0.8, staplewex = 0.5,
                                           outwex = 0.5), horizontal = FALSE,
@@ -160,6 +162,12 @@ boxplot_stats <- function (x, coef = 1.5, do.conf = TRUE, do.out = TRUE,
 #' @param na.rm A logical scalar.  If true, any \code{\link{NA}} and NaN's
 #'   are removed before the sample quantiles are computed.
 #' @param ... Further arguments to be passed to \code{plot}.
+#' @return Nothing, just the plot.
+#' @examples
+#' x <- rnorm(100)
+#' y <- rnorm(100)
+#' scatter(x, y)
+#' @export
 scatter <- function(x, y, ndec = 1, type = 6, na.rm = FALSE, ...) {
   # Make sure that ndec has length 2
   ndec <- rep_len(ndec, 2)
@@ -170,14 +178,15 @@ scatter <- function(x, y, ndec = 1, type = 6, na.rm = FALSE, ...) {
   lx <- round(fx, ndec)
   ly <- round(fy, ndec)
   # Produce the plot, but with no axes.
-  plot(x, y, axes = FALSE, ...)
+  graphics::plot(x, y, axes = FALSE, ...)
   # Add axes with only the five number summaries labelled.
-  axis(1, at = fx, labels = lx)
-  axis(2, at = fy, labels = ly)
+  graphics::axis(1, at = fx, labels = lx)
+  graphics::axis(2, at = fy, labels = ly)
+  invisible()
 }
 
 
-# ================================ scatter ===============================
+# ============================== scatter_hist =============================
 
 #' Scatter plot with marginal histograms
 #'
@@ -193,10 +202,15 @@ scatter <- function(x, y, ndec = 1, type = 6, na.rm = FALSE, ...) {
 #'   to \code{\link[graphics]{hist}} when plotting the histogram
 #'   on the vertical axis.
 #' @param ... Further arguments to be passed to \code{plot}.
-
+#' @return Nothing, just the plot.
+#' @examples
+#' x <- rnorm(100)
+#' y <- rnorm(100)
+#' scatter_hist(x, y)
+#' @export
 scatter_hist <- function(x, y, xbreaks = NULL, ybreaks = NULL, ...) {
   # save default, for resetting...
-  def.par <- par(no.readonly = TRUE)
+  def.par <- graphics::par(no.readonly = TRUE)
   # Extract any arguments supplied in ....
   user_args <- list(...)
   # If the user wants a log-scale on an axis make a transformation of
@@ -219,28 +233,28 @@ scatter_hist <- function(x, y, xbreaks = NULL, ybreaks = NULL, ...) {
     yh <- y
   }
   # create a layout to contain the main scatter plot and the histograms.
-  nf <- layout(matrix(c(2, 0, 1, 3), 2, 2, byrow = TRUE), c(3, 1), c(1, 3),
-               TRUE)
-  par(mar = c(4.5, 4.5, 1, 1), oma = c(0, 0, 0, 0))
+  nf <- graphics::layout(matrix(c(2, 0, 1, 3), 2, 2, byrow = TRUE), c(3, 1),
+                         c(1, 3), TRUE)
+  graphics::par(mar = c(4.5, 4.5, 1, 1), oma = c(0, 0, 0, 0))
   # Produce the scatter plot.
-  plot(x, y, ...)
-  par(mar = c(0, 3, 1, 1))
+  graphics::plot(x, y, ...)
+  graphics::par(mar = c(0, 3, 1, 1))
   # Produce the histogram for the horizontal axis.
   if (is.null(xbreaks)) {
-    xhist <- hist(xh, plot = FALSE)
+    xhist <- graphics::hist(xh, plot = FALSE)
   } else {
-    xhist <- hist(xh, breaks = xbreaks, plot = FALSE)
+    xhist <- graphics::hist(xh, breaks = xbreaks, plot = FALSE)
   }
-  barplot(xhist$count, axes = FALSE, space = 0)
-  par(mar = c(3, 0, 1, 1))
+  graphics::barplot(xhist$count, axes = FALSE, space = 0)
+  graphics::par(mar = c(3, 0, 1, 1))
   # Produce the histogram for the vertical axis.
   if (is.null(ybreaks)) {
-    yhist <- hist(yh, plot = FALSE)
+    yhist <- graphics::hist(yh, plot = FALSE)
   } else {
-    yhist <- hist(yh, breaks = ybreaks, plot = FALSE)
+    yhist <- graphics::hist(yh, breaks = ybreaks, plot = FALSE)
   }
-  barplot(yhist$count, axes = FALSE, space = 0, horiz = TRUE)
+  graphics::barplot(yhist$count, axes = FALSE, space = 0, horiz = TRUE)
   #- reset to default
-  par(def.par)
+  graphics::par(def.par)
   invisible()
 }

@@ -5,14 +5,21 @@
 \alias{shuttle_movie}
 \title{Movies}
 \usage{
-shuttle_movie(n_reps = 1)
+shuttle_movie(n_reps = 1, pos = 1, envir = as.environment(pos))
 }
 \arguments{
-\item{n_reps}{An integer scalar.  Relevant to `shuttle_movie` only.
+\item{n_reps}{An integer scalar.  Relevant to \code{shuttle_movie} only.
 The number of flights to simulate
 for each of the 23 (pre-disaster) temperatures in the real dataset.
 For example, \code{n_reps = 10} means that we simulate a dataset of
 size 230.}
+
+\item{pos}{A numeric integer.  Used in calls to \code{\link{assign}}
+to make information available across successive frames of a movie.
+By default, uses the current environment.}
+
+\item{envir}{An alternative way (to \code{pos}) of specifying the
+environment. See \code{\link{environment}}.}
 }
 \value{
 Nothing is returned, only the animation is produced.
@@ -22,12 +29,23 @@ Animations used to illustrate key ideas in STAT1004.  The animations
 are produced using the package \code{\link[rpanel]{rpanel}}.
 The rpanel package must be loaded, using
 `library(rpanel)`, in order that these functions work.
+If \code{rpanel} is not loaded then an error message similar to
+\code{Error in shuttle_movie() : could not find function "rp.control"}
+will be produced.
 }
 \details{
 When one of thes functions is called R opens up a small
 \emph{parameter window} containing clickable buttons that can be
 used to change parameters underlying the plot. For the effects of
 these buttons see the documentation of the individual functions below.
+
+The parameter window does not close automatically after the movie:
+the user needs to close it manually.
+
+Some movies create objects in the global environment, that is, objects
+that will be listed when \code{ls()} is used.  `rm` can be used to remove
+these objects if desired.  For example `rm(name)` can be used to remove
+object `name`.
 }
 \section{Space shuttle movie}{
 
@@ -50,8 +68,8 @@ library(rpanel, help = TRUE)
 
 # Movie based on datasets of size 23
 shuttle_movie()
-# Movie based on datasets of size 23
-shuttle_movie(n_reps = 1)
+# Movie based on datasets of size 230
+shuttle_movie(n_reps = 10)
 
 }
 \references{

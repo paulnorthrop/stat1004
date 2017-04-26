@@ -18,6 +18,7 @@
 #' rbinomial(size = 6, prob = 0.2)
 #' @seealso \code{link{rbinom}} for the official R function for simulating
 #'   from a binomial distribution.
+#' @export
 rbinomial <- function(size, prob) {
   # Simulate size values (pseudo-)randomly between 0 and 1.
   u <- runif(size)

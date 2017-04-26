@@ -23,6 +23,7 @@
 #' birth_times <- ox_births[, "time"]
 #' summary(birth_times)
 #' @seealso \code{\link[stats]{quantile}} for calculating sample quantiles.
+#' @export
 five_number <- function(x, type = 6, na.rm = FALSE) {
   five_number_vec <- function(x, type, na.rm) {
     if (any(is.na(x)) & !na.rm) {
@@ -87,6 +88,7 @@ NULL
 # =========================== quartile_skewness ===========================
 
 #' @rdname skewness
+#' @export
 q_skew <- function(x, type = 6, na.rm = FALSE) {
   q_skew_vec <- function(x, type, na.rm) {
     qq <- stats::quantile(x, type = type, probs=c(0.25, 0.5, 0.75),
@@ -101,6 +103,7 @@ q_skew <- function(x, type = 6, na.rm = FALSE) {
 # ======================== standardized sample skewness =======================
 
 #' @rdname skewness
+#' @export
 skew <- function(x, type = 6, na.rm = FALSE) {
   skew_vec <- function(x, type, na.rm) {
     s <- stats::sd(x, na.rm = na.rm)
