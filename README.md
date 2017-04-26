@@ -1,7 +1,10 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-stat1004: Introduction to Probability and Statistics at UCL
------------------------------------------------------------
+stat1004 <img src="standalone.png" align="right" />
+===================================================
+
+Introduction to Probability and Statistics
+------------------------------------------
 
 ### What does stat1004 do?
 
