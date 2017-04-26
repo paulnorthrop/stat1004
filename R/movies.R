@@ -6,17 +6,33 @@
 #' are produced using the package \code{\link[rpanel]{rpanel}}.
 #' The rpanel package must be loaded, using
 #' `library(rpanel)`, in order that these functions work.
+#' If \code{rpanel} is not loaded then an error message similar to
+#' \code{Error in shuttle_movie() : could not find function "rp.control"}
+#' will be produced.
 #'
-#' @param n_reps An integer scalar.  Relevant to `shuttle_movie` only.
+#' @param n_reps An integer scalar.  Relevant to \code{shuttle_movie} only.
 #'   The number of flights to simulate
 #'   for each of the 23 (pre-disaster) temperatures in the real dataset.
 #'   For example, \code{n_reps = 10} means that we simulate a dataset of
 #'   size 230.
+#' @param pos A numeric integer.  Used in calls to \code{\link{assign}}
+#'   to make information available across successive frames of a movie.
+#'   By default, uses the current environment.
+#' @param envir An alternative way (to \code{pos}) of specifying the
+#'   environment. See \code{\link{environment}}.
 #' @details
 #' When one of thes functions is called R opens up a small
 #' \emph{parameter window} containing clickable buttons that can be
 #' used to change parameters underlying the plot. For the effects of
 #' these buttons see the documentation of the individual functions below.
+#'
+#' The parameter window does not close automatically after the movie:
+#' the user needs to close it manually.
+#'
+#' Some movies create objects in the global environment, that is, objects
+#' that will be listed when \code{ls()} is used.  `rm` can be used to remove
+#' these objects if desired.  For example `rm(name)` can be used to remove
+#' object `name`.
 #'
 #' @section Space shuttle movie:
 #' A movie to illustrate uncertainty in the linear logistic regression curves
@@ -42,8 +58,8 @@
 #'
 #' # Movie based on datasets of size 23
 #' shuttle_movie()
-#' # Movie based on datasets of size 23
-#' shuttle_movie(n_reps = 1)
+#' # Movie based on datasets of size 230
+#' shuttle_movie(n_reps = 10)
 #'
 #' @name movies
 NULL
@@ -52,28 +68,30 @@ NULL
 # =========================== shuttle_movie ===========================
 
 #' @rdname movies
-shuttle_movie <- function(n_reps = 1) {
+#' @export
+shuttle_movie <- function(n_reps = 1, pos = 1, envir = as.environment(pos)) {
+  n_sim <- 0
   # Set up vectors in which to store estimates from the logistic regression.
   asim <- NULL
   bsim <- NULL
   ysim_mat <- matrix(NA, nrow = 23 * n_reps, ncol = 1000)
-  # Assign them to an enviroment so that they can be accessed inside
+  # Assign them to an environment so that they can be accessed inside
   # shuttle_sim_rpanel_plot()
-  assign("asim", asim, envir = .GlobalEnv)
-  assign("bsim", bsim, envir = .GlobalEnv)
-  assign("ysim_mat", ysim_mat, envir = .GlobalEnv)
+  assign("asim", asim, envir = envir)
+  assign("bsim", bsim, envir = envir)
+  assign("ysim_mat", ysim_mat, envir = envir)
   # Do this also with n_reps
-  assign("n_reps", n_reps, envir = .GlobalEnv)
+  assign("n_reps", n_reps, envir = envir)
   # Initialize n_sim_max, which keeps track of the number of fake datasets that
   # have been simulated.
   n_sim_max <- 0
-  assign("n_sim_max", n_sim_max, envir = .GlobalEnv)
-  shuttle_panel <- rp.control("Simulate new fake data")
+  assign("n_sim_max", n_sim_max, envir = envir)
+  shuttle_panel <- rpanel::rp.control("Simulate new fake data", envir = envir)
   #
-  rp.doublebutton(panel = shuttle_panel, variable = n_sim, step = 1,
+  rpanel::rp.doublebutton(panel = shuttle_panel, variable = n_sim, step = 1,
                   range=c(0, 1000), repeatinterval = 20, initval = 0,
                   title = "number of simulations:", action = shuttle_movie_plot)
-  rp.do(shuttle_panel, shuttle_movie_plot)
+  rpanel::rp.do(shuttle_panel, shuttle_movie_plot)
   invisible()
 }
 
@@ -139,10 +157,10 @@ shuttle_movie_plot <- function(panel){
       }
       #
     }
-    assign("asim", asim, envir = .GlobalEnv)
-    assign("bsim", bsim, envir = .GlobalEnv)
-    assign("ysim_mat", ysim_mat, envir = .GlobalEnv)
-    assign("n_sim_max", n_sim_max, envir = .GlobalEnv)
+    assign("asim", asim, envir = envir)
+    assign("bsim", bsim, envir = envir)
+    assign("ysim_mat", ysim_mat, envir = envir)
+    assign("n_sim_max", n_sim_max, envir = envir)
     #
     if (n_sim > 1) {
       for (i in 1:n_sim){
