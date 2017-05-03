@@ -18,7 +18,7 @@ head(shuttle)
 table(shuttle[, "damaged"])
 
 ## ------------------------------------------------------------------------
-# Repeat and assign the outut to the vector o_ring_table 
+# Repeat and assign the output to the vector o_ring_table 
 o_ring_table <- table(shuttle[, 3])
 
 ## ---- fig.show='hold'----------------------------------------------------
