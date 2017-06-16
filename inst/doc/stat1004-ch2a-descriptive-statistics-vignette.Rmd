@@ -137,3 +137,6 @@ skew(ox_mat, na.rm = TRUE)
 q_skew(ox_mat, na.rm = TRUE)
 ```
 
+<script type="text/x-mathjax-config">
+   MathJax.Hub.Config({  "HTML-CSS": { minScaleAdjust: 125, availableFonts: [] }  });
+</script>

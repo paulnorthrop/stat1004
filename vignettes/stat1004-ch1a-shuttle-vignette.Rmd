@@ -255,3 +255,6 @@ shuttle_sim_hists(x, temps = c(31, 50, 65, 80), col = 8)
 
 ## References
 
+<script type="text/x-mathjax-config">
+   MathJax.Hub.Config({  "HTML-CSS": { minScaleAdjust: 125, availableFonts: [] }  });
+</script>

@@ -137,3 +137,7 @@ xbreaks <- seq(from = min(logx), to = max(logx), len = 25)
 ybreaks <- seq(from = min(y), to = max(y), len = 25)
 scatter_hist(x, y, log = "x", pch = 16, xlab ="Total Population (1000s)", ylab = ystring, xbreaks = xbreaks, ybreaks = ybreaks)
 ```
+
+<script type="text/x-mathjax-config">
+   MathJax.Hub.Config({  "HTML-CSS": { minScaleAdjust: 125, availableFonts: [] }  });
+</script>

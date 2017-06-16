@@ -358,3 +358,7 @@ axis(4, at = q2, labels = round(q2, 1), las = 1)
 abline(h=0)
 axis(1,pos=-1)
 ```
+
+<script type="text/x-mathjax-config">
+   MathJax.Hub.Config({  "HTML-CSS": { minScaleAdjust: 125, availableFonts: [] }  });
+</script>

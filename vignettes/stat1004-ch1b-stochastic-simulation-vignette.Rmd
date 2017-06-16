@@ -198,3 +198,7 @@ plot(ru_sim2, xlab = expression(X[1]), ylab = expression(X[2]))
 The generalized ratio-of-uniforms method works well enough for this example but it is not the most efficient way to simulate from a multivariate normal distribution.  A better function is the `mvrnorm` in the MASS package [@MASS].  Use `library(MASS)` and `?mvrnorm` to find out about it.
 
 ## References
+
+<script type="text/x-mathjax-config">
+   MathJax.Hub.Config({  "HTML-CSS": { minScaleAdjust: 125, availableFonts: [] }  });
+</script>
