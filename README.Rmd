@@ -29,10 +29,16 @@ The package is:
 
 To install the package from GitHub type the following at the R Console command prompt `>`
 
-```{r installation, eval = FALSE}
+```{r installation1, eval = FALSE}
 install.packages("devtools")
+```
+
+You only need to do this (install the `devtools` package) once.  Then install `stat1004` (or reinstall it to get the latest version) using 
+
+```{r installation2, eval = FALSE}
 devtools::install_github("paulnorthrop/stat1004")
 ```
+
 
 ### Getting started
 
