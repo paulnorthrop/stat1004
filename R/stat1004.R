@@ -40,6 +40,8 @@
 #'
 #' \itemize{
 #'   \item {\link[=shuttle]{Challenger Space Shuttle Disaster}}
+#'   \item {\link[=days]{Mystery data in Exercises 1}}
+#'   \item {\link[=lymphoma]{T-cell count data in Exercises 2}}
 #'   \item {\link[=ox_births]{Oxford Birth Times}}
 #'   \item {\link[=blood_types]{Blood Types}}
 #'   \item {\link[=ftse]{FTSE 100 Share Index}}
@@ -112,6 +114,28 @@ NULL
 #' @source Davison, A. C. (2003) Statistical Models. Cambridge University Press.
 #'   Page 18.
 "ox_births"
+
+#' Mystery data in Exercises 1
+#'
+#' Your task in Exercises 1 is to guess what these data represent using only
+#' summary plots and statistics.
+#'
+#' @format A numeric vector.  The unit of measurement is days.
+"days"
+
+#' T-cell count data in Exercises 2
+#'
+#' The numbers of a certain type of T-cell (a white blood cell) per cubic mm
+#' in blood samples taken from 42 patients suffering from lymphoma.
+#' 21 of the patients have Hodgkin's lymphoma, the other 21 have non-Hodgkin's
+#' lymphoma.
+#'
+#' @format A data frame with 42 observations on the following 2 variables.
+#' \itemize{
+#' \item{\code{tcell:}}{ a numeric vector giving the number of T-cells.}
+#' \item{\code{type:}}{ a factor giving the type of lymphoma: Hodgkin's or
+#'   non-Hodgkin's.}}
+"lymphoma"
 
 #' Blood Types
 #'
