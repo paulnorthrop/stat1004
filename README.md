@@ -21,7 +21,6 @@ To install the package from GitHub type the following at the R Console command p
 
 ``` r
 install.packages("devtools")
-library(devtools)
 devtools::install_github("paulnorthrop/stat1004")
 ```
 
