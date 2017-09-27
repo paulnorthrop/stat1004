@@ -17,7 +17,9 @@ The package is:
 
 ### Installation
 
-To install the package from GitHub type the following at the R Console command prompt `>`
+If you need to install R you can get it from [CRAN](https://cran.r-project.org/).
+
+To install the `stat1004` package from GitHub type the following at the R Console command prompt `>`
 
 ``` r
 install.packages("devtools")
