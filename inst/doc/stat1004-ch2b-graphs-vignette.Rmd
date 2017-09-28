@@ -14,7 +14,7 @@ bibliography: stat1004.bib
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(comment = "", prompt = TRUE, collapse = TRUE)
-devtools::load_all() 
+devtools::load_all()
 ```
 
 The main purpose of this vignette is to provide R code to produce graphs that feature in Sections 2.4 and 2.5 of the [STAT1004 notes](https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf).  All these graphs involve one variable only.

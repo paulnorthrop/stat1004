@@ -1,6 +1,6 @@
 ## ---- include = FALSE----------------------------------------------------
 knitr::opts_chunk$set(comment = "", prompt = TRUE, collapse = TRUE)
-devtools::load_all() 
+devtools::load_all()
 
 ## ---- message = FALSE----------------------------------------------------
 library(stat1004)
@@ -157,19 +157,19 @@ par(mar = c(1, 1, 0, 1))
 slices <- rep(c("white","grey66","grey33","black"), 2)
 pie(blood_types$percentage, labels = lab, col = slices)
 
-## ----------------------------------------------------------------------------------
+## ------------------------------------------------------------------------
 head(ftse)
 tail(ftse)
 
-## ----------------------------------------------------------------------------------
+## ------------------------------------------------------------------------
 ftse_ts <- ts(ftse$price, frequency = 52, start = c(1984, 14))
 head(ftse_ts)
 attributes(ftse_ts)
 
-## ---- fig.width = 6.5, fig.height = 4----------------------------------------------
+## ---- fig.width = 6.5, fig.height = 4------------------------------------
 plot(as.Date(ftse$date), ftse$price, type = "l", ylab = "weekly FTSE 100 share index", xlab = "year")
 
-## ---- fig.width = 6.5, fig.height = 4----------------------------------------------
+## ---- fig.width = 6.5, fig.height = 4------------------------------------
 plot(ftse_ts, ylab = "FTSE 100 (in 1000s)", xlab = "year", las = 1, axes = FALSE)
 q2 <- c(min(ftse_ts), (2:6) * 1000, max(ftse_ts))
 axis(2, at = q2, labels = round(q2 / 1000, 1), las = 1)
@@ -177,11 +177,11 @@ axis(4, at= q2, labels = round(q2 / 1000, 1), las=1)
 axis(1)
 abline(h = par("usr")[3])
 
-## ----------------------------------------------------------------------------------
+## ------------------------------------------------------------------------
 head(flu)
 tail(flu)
 
-## ---- fig.width = 6.5, fig.height = 4----------------------------------------------
+## ---- fig.width = 6.5, fig.height = 4------------------------------------
 par(mar = c(5, 5, 4, 3) + 0.1, cex.axis = 0.8, cex.lab = 0.75)
 flu_ts <- ts(flu[,2], frequency = 13, start = c(1967, 4))
 plot(flu_ts, ylab="number of 'flu consultations (in 1000s)", xlab = "year", las = 1, axes=FALSE)

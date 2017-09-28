@@ -14,7 +14,7 @@ bibliography: stat1004.bib
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(comment = "", prompt = TRUE, collapse = TRUE)
-devtools::load_all() 
+devtools::load_all()
 ```
 
 Stochastic simulation uses computer-generated *pseudo-random numbers* to mimic a stochastic real event or dataset.  Pseudo-random numbers are not random (they are produced by an algorithm) but the algorithm is constructed in order to imitate randomness closely enough.  A typical use of stochastic simulation is to generate numbers that behave approximately like a random sample from an particular probability distribution.  
