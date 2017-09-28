@@ -22,8 +22,7 @@ Imports: stats,
     rust (>= 1.1.0),
     rpanel
 Suggests: knitr,
-    rmarkdown,
-    devtools
+    rmarkdown
 VignetteBuilder: knitr
 URL: http://github.com/paulnorthrop/stat1004
 BugReports: http://github.com/paulnorthrop/stat1004/issues
