@@ -1,12 +1,12 @@
 ---
-title: "Chapter 2: Graphs (more than one variable)"
+title: "Chapter 2: Graphs (More Than One Variable)"
 author: "Paul Northrop"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
     toc: true
 vignette: >
-  %\VignetteIndexEntry{Chapter 2: Graphs (more than one variable)}
+  %\VignetteIndexEntry{Chapter 2: Graphs (More Than One Variable)}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 bibliography: stat1004.bib

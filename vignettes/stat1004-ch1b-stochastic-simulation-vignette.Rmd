@@ -1,5 +1,5 @@
 ---
-title: "Chapter 1: Stochastic simulation"
+title: "Chapter 1: Stochastic Simulation"
 author: "Paul Northrop"
 date: "`r Sys.Date()`"
 output: 
@@ -151,51 +151,7 @@ Note that the help page calls this the *quantile function*.  An alternative name
 ## More general methods of simulation
 
 Often the most efficient method of simulating values from a probability distribution is one that has been devised for that particular distribution.  However, it is useful to have more general methods that can, in principle, be used to simulate from any distribution, although, in practice, there are constraints on the type of distribution to which a method can be applied.  Many of these methods work by proposing values and then accepting or rejecting them using a rule (hence they are often called *acceptance-rejection* or *rejection* methods).  See @Morgan and @Jasra for details.
-One such method is the *generalized ratio-of-uniforms* method (@WGS1991 and references therein), which can be used for univariate distributions (involving one random variable) and for multivariate distributions (involving two or more random variables), provided that the p.d.f. of the distributions satisfies some conditions.  
-
-The *rust* R package [@rust] implements this algorithm.  The code below can be used to simulate from a standard normal distribution using the function `ru`.  
-
-```{r, fig.width = 6, fig.height = 4, message = FALSE}
-library(rust)
-?ru
-# Simulate from a standard normal N(0,1) distribution
-ru_sim <- ru(logf = function(x) -x ^ 2 / 2, d = 1, n = 1000, init = 0.1)
-# The function ru returns an object of class "ru"
-class(ru_sim)
-# The default plot method for objects of class "ru" produces a plot to compare the 
-# simulated values and the p.d.f. of the distribution from which they are simulated
-plot(ru_sim, xlab = "x")
-```
-
-Note that 
-
-* the main input to this function is the (natural) log of the p.d.f of a standard normal distribution, i.e. the log of $\frac{1}{\sqrt{2\pi}} e^{-\frac12 x^2}$;  
-* we don't need to include the normalizing constant $1/\sqrt{2\pi}$, that is, the constant that is included to ensure that the p.d.f. integrates to 1 over the support $-\infty < x < \infty$ of this distribution. 
-
-The second point, a typical feature of *rejection* methods, can be important because there are cases where we can't easily calculate the normalizing constant.
-
-We the use of `ru` to simulate from a multivariate distribution using the bivariate normal distribution. This distribution will be studied in the second-year statistics module [STAT2001](https://moodle.ucl.ac.uk/course/view.php?id=2907).  See the Wikipedia page for the 
-[multivariate normal distribution](https://en.wikipedia.org/wiki/Multivariate_normal_distribution#Non-degenerate_case) for the form of the p.d.f. of this distribution.  The function `log_dmvnorm` below calculates the log of the p.d.f. of the multivariate normal distribution with mean vector `mean` and variance-covariance matrix `sigma`, again ignoring the normalizing constant.
-
-```{r, fig.width = 6, fig.height = 4}
-# two-dimensional normal with positive association ----------------
-rho <- 0.9
-covmat <- matrix(c(1, rho, rho, 1), 2, 2)
-log_dmvnorm <- function(x, mean = rep(0, d), sigma = diag(d)) {
-  x <- matrix(x, ncol = length(x))
-  d <- ncol(x)
-  return(- 0.5 * (x - mean) %*% solve(sigma) %*% t(x - mean))
-}
-ru_sim2 <- ru(logf = log_dmvnorm, sigma = covmat, d = 2, n = 1000, init = c(0, 0))
-```
-
-In the bivariate case the `plot` method for objects of class "ru" produces a scatter plot of the simulated values of the random variables $(X_1, X_2)$ with the contours of the value of the p.d.f. superimposed.  Each contour is labelled by a number indicating the percentage of the simulated values that should lie within that contour.
-
-```{r, fig.width = 6, fig.height = 4}
-plot(ru_sim2, xlab = expression(X[1]), ylab = expression(X[2]))
-```
-
-The generalized ratio-of-uniforms method works well enough for this example but it is not the most efficient way to simulate from a multivariate normal distribution.  A better function is the `mvrnorm` in the MASS package [@MASS].  Use `library(MASS)` and `?mvrnorm` to find out about it.
+One such method is the *generalized ratio-of-uniforms* method (@WGS1991 and references therein), which can be used for univariate distributions (involving one random variable) and for multivariate distributions (involving two or more random variables), provided that the p.d.f. of the distributions satisfies some conditions.  The *rust* R package [@rust] implements this algorithm.  
 
 ## References
 

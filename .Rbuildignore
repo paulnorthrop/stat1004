@@ -4,3 +4,4 @@
 ^README-.*\.png$
 ^standalone\.png$
 ^create_datasets$
+^vignettes/stat1004-ch1b-stochastic-simulation-vignette-inc-rust\.Rmd$
