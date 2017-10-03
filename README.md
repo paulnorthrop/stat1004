@@ -17,7 +17,9 @@ The package is:
 
 ### Installation
 
-If you need to install R you can get it from [CRAN](https://cran.r-project.org/).
+If you need to install R then you can get it from [CRAN](https://cran.r-project.org/).
+
+If you would like to use RStudio the you can get it from [here](https://www.rstudio.com/products/rstudio/download/) \[See "Installers for Supported Platforms" near the bottom of the page\]
 
 To install the `stat1004` package from GitHub type the following at the R Console command prompt `>`
 
