@@ -62,7 +62,7 @@ Clicking - removes the mostly recently added dataset.
 
 \examples{
 # Load package rpanel
-library(rpanel, help = TRUE)
+library(rpanel)
 
 # Challenger space shuttle data -------------
 

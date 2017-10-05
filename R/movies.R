@@ -52,7 +52,7 @@
 #'  \url{http://www.jstatsoft.org/v17/i09/}.
 #' @examples
 #' # Load package rpanel
-#' library(rpanel, help = TRUE)
+#' library(rpanel)
 #'
 #' # Challenger space shuttle data -------------
 #'
