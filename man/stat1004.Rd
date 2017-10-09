@@ -58,6 +58,7 @@ If you have any questions about this package please ask them via the
   \item {\link[=ox_births]{Oxford Birth Times}}
   \item {\link[=blood_types]{Blood Types}}
   \item {\link[=ftse]{FTSE 100 Share Index}}
+  \item {\link[=world_bank]{World Bank Development Indicators}}
   \item {\link[=flu]{Influenza data}}
   \item {\link[=USelection]{The 2000 U.S. Presidential Election}}
 }

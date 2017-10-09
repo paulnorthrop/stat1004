@@ -45,6 +45,7 @@
 #'   \item {\link[=ox_births]{Oxford Birth Times}}
 #'   \item {\link[=blood_types]{Blood Types}}
 #'   \item {\link[=ftse]{FTSE 100 Share Index}}
+#'   \item {\link[=world_bank]{World Bank Development Indicators}}
 #'   \item {\link[=flu]{Influenza data}}
 #'   \item {\link[=USelection]{The 2000 U.S. Presidential Election}}
 #' }
@@ -73,7 +74,7 @@ NULL
 #'
 #' These data are discussed in the first STAT1004 lecture.
 #' A paper (Dalal \emph{et al.}, 1989), in which these data are analysed
-#' with a view to estimating (retrospecitvely) the probability of a
+#' with a view to estimating (retrospectively) the probability of a
 #' catastrophic failure of the Challenger space shuttle under the
 #' launch conditions on 28th January 1986 is used as a
 #' \href{https://moodle.ucl.ac.uk/mod/resource/view.php?id=2125123}{worked example}
@@ -211,3 +212,39 @@ NULL
 #'   Vote in Palm Beach County, \emph{Statistical Science}, \strong{17(4)},
 #'   441-457, \url{http://dx.doi.org/10.1214/ss/1049993203}.
 "USelection"
+
+# ========================== World Bank data =========================
+
+#' World Bank Data
+#'
+#' Selected annual World Development Indicators provided in the World Bank's
+#' World Development Indicators database.  The indicators are
+#' \itemize{
+#'   \item{\strong{co2_pc}: }{total carbon dioxide emissions per capita, in metric tons
+#'     per person, 1960-2014}
+#'   \item{\strong{gdp_pc}: }{Gross Domestic Product (GDP) per capita, in current
+#'     US dollars per person, 1960-2016}
+#'   \item{\strong{popn}: }{total population size, 1960-2016}
+#'   \item{\strong{life}: }{life expectancy at birth, in years, 1960-2015}
+#' }
+#' @format A data frame with 217 rows (one for each country) and one column
+#'   for each year in the data, e.g. 55 columns for \code{co2_pc}.
+#'   The names of the countries are given in the row names of the dataset,
+#'   e.g. by \code{rownames(popn)}.
+#' @source The World Bank's
+#' \href{https://data.worldbank.org/data-catalog/world-development-indicators}{World Development Indicators database}.
+#' @name world_bank
+NULL
+## NULL
+
+#' @rdname world_bank
+"co2_pc"
+
+#' @rdname world_bank
+"gdp_pc"
+
+#' @rdname world_bank
+"popn"
+
+#' @rdname world_bank
+"life"
