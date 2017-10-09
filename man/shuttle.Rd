@@ -28,7 +28,7 @@ shuttle
 \description{
 These data are discussed in the first STAT1004 lecture.
 A paper (Dalal \emph{et al.}, 1989), in which these data are analysed
-with a view to estimating (retrospecitvely) the probability of a
+with a view to estimating (retrospectively) the probability of a
 catastrophic failure of the Challenger space shuttle under the
 launch conditions on 28th January 1986 is used as a
 \href{https://moodle.ucl.ac.uk/mod/resource/view.php?id=2125123}{worked example}

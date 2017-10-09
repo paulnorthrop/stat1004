@@ -67,6 +67,6 @@ table(res)
 The \href{../doc/stat1004-shuttle-vignette.html}{Challenger Space Shuttle Disaster}
   vignette.
 
-\code{link{shuttle_sim_plot}} for assessing uncertainty concerning
+\code{\link{shuttle_sim_plot}} for assessing uncertainty concerning
   the modelling of the space shuttle data using simulation.
 }

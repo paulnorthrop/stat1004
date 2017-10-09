@@ -55,7 +55,7 @@
 #' table(res)
 #' @seealso The \href{../doc/stat1004-shuttle-vignette.html}{Challenger Space Shuttle Disaster}
 #'   vignette.
-#' @seealso \code{link{shuttle_sim_plot}} for assessing uncertainty concerning
+#' @seealso \code{\link{shuttle_sim_plot}} for assessing uncertainty concerning
 #'   the modelling of the space shuttle data using simulation.
 #' @export
 shuttle_sim <- function(n_sim = 1, temperature = NULL) {
