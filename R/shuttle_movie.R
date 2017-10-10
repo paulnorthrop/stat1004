@@ -1,6 +1,44 @@
 # =========================== shuttle_movie ===========================
 
-#' @rdname movies
+#' Challenger Space Shuttle Disaster Movie
+#'
+#' A movie to illustrate uncertainty in the linear logistic regression curves
+#' fitted to the real space shuttle data.
+#'
+#' @param n_reps An integer scalar.  Relevant to \code{shuttle_movie} only.
+#'   The number of flights to simulate
+#'   for each of the 23 (pre-disaster) temperatures in the real dataset.
+#'   For example, \code{n_reps = 10} means that we simulate a dataset of
+#'   size 230.
+#' @param pos A numeric integer.  Used in calls to \code{\link{assign}}
+#'   to make information available across successive frames of a movie.
+#'   By default, uses the current environment.
+#' @param envir An alternative way (to \code{pos}) of specifying the
+#'   environment. See \code{\link{environment}}.
+#' @details
+#' \code{shuttle_movie} produces an
+#' animated version of the plot produced by \code{\link{shuttle_sim_plot}}.
+#' Calling `shuttle_movie` creates a plot containing the real data
+#' and the logistic curve fitted to the real data and opens a
+#' parameter window containing buttons labelled + and -.
+#' Clicking + adds to the plot a new simulated dataset and the logistic curve
+#' fitted to this dataset.
+#' Clicking - removes the mostly recently added dataset.
+#' @return Nothing is returned, only the animation is produced.
+#' @seealso \code{\link{movies}}: general information about STAT1004 movies.
+#' @seealso \code{\link{shuttle_sim}} and \code{\link{shuttle_sim}} simulation
+#'   of fake space shuttle data (from a linear logistic regression model)
+#'   and plotting these data, respectively.
+#' @examples
+#' # Load package rpanel
+#' # [Use install.packages("rpanel") if necessary]
+#' library(rpanel)
+#'
+#' # Movie based on datasets of size 23
+#' shuttle_movie()
+#'
+#' # Movie based on datasets of size 230
+#' shuttle_movie(n_reps = 10)
 #' @export
 shuttle_movie <- function(n_reps = 1, pos = 1, envir = as.environment(pos)) {
   n_sim <- 0
