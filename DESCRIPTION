@@ -21,7 +21,8 @@ Imports: stats,
     utils,
     rpanel
 Suggests: knitr,
-    rmarkdown
+    rmarkdown,
+    tkrplot
 VignetteBuilder: knitr
 URL: http://github.com/paulnorthrop/stat1004
 BugReports: http://github.com/paulnorthrop/stat1004/issues
