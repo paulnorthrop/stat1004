@@ -1,9 +1,9 @@
 # ========================== movies =========================
 
-#' Movies
+#' General information about STAT1004 movies
 #'
-#' Animations used to illustrate key ideas in STAT1004.  The animations
-#' are produced using the package \code{\link[rpanel]{rpanel}}.
+#' These movies are animations used to illustrate key ideas in STAT1004.
+#' They are produced using the package \code{\link[rpanel]{rpanel}}.
 #' You need to install \code{rpanel} once, using RStudio's Install button
 #' in the Packages menu or \code{install.packages("rpanel")} on the command
 #' line).
@@ -15,16 +15,6 @@
 #' For the one of the movies the \code{tkrplot} package is also required.
 #' See \strong{Examples} below.
 #'
-#' @param n_reps An integer scalar.  Relevant to \code{shuttle_movie} only.
-#'   The number of flights to simulate
-#'   for each of the 23 (pre-disaster) temperatures in the real dataset.
-#'   For example, \code{n_reps = 10} means that we simulate a dataset of
-#'   size 230.
-#' @param pos A numeric integer.  Used in calls to \code{\link{assign}}
-#'   to make information available across successive frames of a movie.
-#'   By default, uses the current environment.
-#' @param envir An alternative way (to \code{pos}) of specifying the
-#'   environment. See \code{\link{environment}}.
 #' @details
 #' When one of these functions is called R opens up a small
 #' \emph{parameter window} containing clickable buttons that can be
@@ -39,22 +29,14 @@
 #' these objects if desired.  For example `rm(name)` can be used to remove
 #' object `name`.
 #'
-#' @section Space shuttle movie:
-#' A movie to illustrate uncertainty in the linear logistic regression curves
-#' fitted to the real space shuttle data. \code{shuttle_movie} produces an
-#' animated version of the plot produced by \code{\link{shuttle_sim_plot}}.
-#' Calling `shuttle_movie` creates a plot containing the real data
-#' and the logistic curve fitted to the real data and opens a
-#' parameter window containing buttons labelled + and -.
-#' Clicking + adds to the plot a new simulated dataset and the logistic curve
-#' fitted to this dataset.
-#' Clicking - removes the mostly recently added dataset.
-#'
 #' @return Nothing is returned, only the animation is produced.
 #' @references Bowman, A., Crawford, E., Alexander, G. and Bowman, R. W.
 #'  (2007). rpanel: Simple Interactive Controls for R Functions Using the
-#'  tcltk Package.  \emph{Journal of Statistical Software}, \strong{17(9)}, 1-18.
+#'  tcltk Package.  \emph{Journal of Statistical Software}, \strong{17(9)},
+#'  1-18.
 #'  \url{http://www.jstatsoft.org/v17/i09/}.
+#' @seealso \code{\link{shuttle_movie}}: illustrates uncertainty in the
+#'   linear logistic regression curves fitted to the real space shuttle data.
 #' @examples
 #' # Load package rpanel
 #' # [Use install.packages("rpanel") if necessary]

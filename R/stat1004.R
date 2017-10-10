@@ -54,6 +54,7 @@
 #'
 #' \itemize{
 #'   \item {\link[=shuttle_movie]{Challenger Space Shuttle Disaster}}
+#'   \item {\link[=world_bank_movie]{World Bank Development Indicator Movie}}
 #' }
 #'
 #' @seealso The \href{https://moodle.ucl.ac.uk/course/view.php?id=3419&section=0}{STAT1004 Moodle page}
