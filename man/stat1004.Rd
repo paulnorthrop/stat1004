@@ -69,7 +69,7 @@ If you have any questions about this package please ask them via the
 
 \itemize{
   \item {\link[=shuttle_movie]{Challenger Space Shuttle Disaster}}
-  \item {\link[=world_bank_movie]{World Bank Development Indicator Movie}}
+  \item {\link[=world_bank_movie]{World Bank Development Indicators}}
 }
 }
 
