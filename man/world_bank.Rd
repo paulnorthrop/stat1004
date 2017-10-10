@@ -3,13 +3,13 @@
 \docType{data}
 \name{world_bank}
 \alias{world_bank}
-\alias{co2_pc}
-\alias{gdp_pc}
-\alias{popn}
-\alias{life}
+\alias{co2_per_capita}
+\alias{gdp_per_capita}
+\alias{population_size}
+\alias{life_expectancy}
 \title{World Bank Data}
 \format{A data frame with 217 rows (one for each country) and one column
-  for each year in the data, e.g. 55 columns for \code{co2_pc}.
+  for each year in the data, i.e 55 columns.
   The names of the countries are given in the row names of the dataset,
   e.g. by \code{rownames(popn)}.}
 \source{
@@ -17,24 +17,25 @@ The World Bank's
 \href{https://data.worldbank.org/data-catalog/world-development-indicators}{World Development Indicators database}.
 }
 \usage{
-co2_pc
+co2_per_capita
 
-gdp_pc
+gdp_per_capita
 
-popn
+population_size
 
-life
+life_expectancy
 }
 \description{
 Selected annual World Development Indicators provided in the World Bank's
-World Development Indicators database.  The indicators are
+World Development Indicators database for the countries of the world,
+1960-2014.  The indicators are
 \itemize{
-  \item{\strong{co2_pc}: }{total carbon dioxide emissions per capita, in metric tons
-    per person, 1960-2014}
-  \item{\strong{gdp_pc}: }{Gross Domestic Product (GDP) per capita, in current
-    US dollars per person, 1960-2016}
-  \item{\strong{popn}: }{total population size, 1960-2016}
-  \item{\strong{life}: }{life expectancy at birth, in years, 1960-2015}
+  \item{\strong{co2_per_capita}: }{total carbon dioxide emissions per
+    capita, in metric tons per person}
+  \item{\strong{gdp_per_capita}: }{Gross Domestic Product (GDP) per
+    capita, in current US dollars per person}
+  \item{\strong{population_size}: }{total population size}
+  \item{\strong{life_expectancy}: }{life expectancy at birth, in years}
 }
 }
 \keyword{datasets}
