@@ -28,12 +28,16 @@ median and upper quartile in the STAT1004 notes.
 The five number summary contains the sample minimum and maximum and
   estimates of the lower quartile, median and upper quartile, i.e. the
   25\%, 50\% and 75\% quantiles.  These quantiles are estimated using the
-  \code{\link[stats]{quantile}} function.  By default, \code{type = 6} is used in
-  the call to \code{quantile} in order to use the estimator defined in the
-  STAT1004 notes.
+  \code{\link[stats]{quantile}} function.  By default, \code{type = 6} is
+  used in the call to \code{quantile} in order to use the estimator defined
+  in the STAT1004 notes.
 }
 \examples{
 birth_times <- ox_births[, "time"]
+five_number(birth_times)
+
+# Note: summary() uses type = 7 in the call to quantile()
+five_number(birth_times, type = 7)
 summary(birth_times)
 }
 \seealso{

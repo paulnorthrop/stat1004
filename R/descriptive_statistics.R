@@ -33,9 +33,9 @@ five_number <- function(x, type = 6, na.rm = FALSE) {
     if (any(is.na(x)) & !na.rm) {
       return(rep(NA, 5))
     }
-    c(min(x, na.rm = na.rm), stats::quantile(x, probs = c(0.25, 0.5, 0.75),
+    return(c(min(x, na.rm = na.rm), stats::quantile(x, probs = c(0.25, 0.5, 0.75),
                                             type = type, na.rm = na.rm),
-      max(x, na.rm = na.rm))
+      max(x, na.rm = na.rm)))
   }
   x <- apply(cbind(x), 2, FUN = five_number_vec, type = type, na.rm = na.rm)
   rownames(x) <- c("min", "25%", "50%", "75%", "max")
