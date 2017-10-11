@@ -72,7 +72,7 @@
 #' @importFrom stats runif
 NULL
 
-#' Challenger space shuttle disaster dataset
+#' Challenger Space Shuttle Disaster Dataset
 #'
 #' These data are discussed in the first STAT1004 lecture.
 #' A paper (Dalal \emph{et al.}, 1989), in which these data are analysed

@@ -30,11 +30,12 @@ The parameter window does not close automatically after the movie:
 the user needs to close it manually.
 
 Some movies create objects in the global environment, that is, objects
-that will be listed when \code{ls()} is used.  `rm` can be used to remove
-these objects if desired.  For example `rm(name)` can be used to remove
-object `name`.
+that will be listed when \code{ls()} is used.  \code{rm} can be used to remove
+these objects if desired.  For example \code{rm(name)} can be used to remove
+object \code{name}.
 }
 \examples{
+
 # Load package rpanel
 # [Use install.packages("rpanel") if necessary]
 library(rpanel)
@@ -67,4 +68,11 @@ Bowman, A., Crawford, E., Alexander, G. and Bowman, R. W.
 \seealso{
 \code{\link{shuttle_movie}}: illustrates uncertainty in the
   linear logistic regression curves fitted to the real space shuttle data.
+
+\code{\link{scatterplot_movie}}: straightening scatter plots
+  using variable transformation (US 2000 Presidential Election).
+
+\code{\link{world_bank_movie}}: explores graphically relationships
+  between four annual World Bank Development Indicators and how this changes
+  over time.
 }

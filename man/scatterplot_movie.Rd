@@ -2,7 +2,7 @@
 % Please edit documentation in R/USelection_movie.R
 \name{scatterplot_movie}
 \alias{scatterplot_movie}
-\title{US election movie: straightening scatter plots}
+\title{US 2000 Presidential Election Movie: straightening scatter plots}
 \usage{
 scatterplot_movie(x, y, delta_power = 0.1, pos = 1,
   envir = as.environment(pos), ...)

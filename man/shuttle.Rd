@@ -3,7 +3,7 @@
 \docType{data}
 \name{shuttle}
 \alias{shuttle}
-\title{Challenger space shuttle disaster dataset}
+\title{Challenger Space Shuttle Disaster Dataset}
 \format{A dataframe with 24 rows and 5 columns:
 \itemize{
 \item{\code{flight}:}{ the flight number.}

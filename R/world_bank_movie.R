@@ -1,11 +1,11 @@
 # =========================== world_bank_movie ===========================
 
-#' World Bank Development Indicator Movie
+#' World Bank Development Indicators Movie
 #'
-#' Explores relationships between four annual World Development Indicators
-#' provided in the World Bank's database for the countries of the world,
-#' 1960-2014.  Animation is used to visualise how these variables and their
-#' inter-relationships vary over time.
+#' Explores graphically relationships between four annual World Development
+#' Indicators provided in the World Bank's database for the countries of the
+#' world, 1960-2014.  Animation is used to visualise how these variables and
+#' their inter-relationships vary over time.
 #'
 #' @details
 #' The example code in \strong{Examples} below creates a scatter

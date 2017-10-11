@@ -2,15 +2,15 @@
 % Please edit documentation in R/world_bank_movie.R
 \name{world_bank_movie}
 \alias{world_bank_movie}
-\title{World Bank Development Indicator Movie}
+\title{World Bank Development Indicators Movie}
 \value{
 Nothing is returned, only the animation is produced.
 }
 \description{
-Explores relationships between four annual World Development Indicators
-provided in the World Bank's database for the countries of the world,
-1960-2014.  Animation is used to visualise how these variables and their
-inter-relationships vary over time.
+Explores graphically relationships between four annual World Development
+Indicators provided in the World Bank's database for the countries of the
+world, 1960-2014.  Animation is used to visualise how these variables and
+their inter-relationships vary over time.
 }
 \details{
 The example code in \strong{Examples} below creates a scatter

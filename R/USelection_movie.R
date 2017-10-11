@@ -1,6 +1,6 @@
 # =========================== USelection_movie ===========================
 
-#' US election movie: straightening scatter plots
+#' US 2000 Presidential Election Movie: straightening scatter plots
 #'
 #' A movie to illustrate the effects of the transformation of variable(s)
 #' on the appearance of a scatter plot, using the 2000 U.S. Presidential
