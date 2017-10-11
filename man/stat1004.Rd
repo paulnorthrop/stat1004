@@ -69,6 +69,7 @@ If you have any questions about this package please ask them via the
 
 \itemize{
   \item {\link[=shuttle_movie]{Challenger Space Shuttle Disaster}}
+  \item {\link[=scatterplot_movie]{US election: straightening scatter plots}}
   \item {\link[=world_bank_movie]{World Bank Development Indicators}}
 }
 }
