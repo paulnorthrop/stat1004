@@ -42,7 +42,7 @@ library(stat1004)
 ?stat1004
 ```
 
-to open the main help page, which contains links to vignettes, datasets and other sources of information.
+to open the main help page, which contains links to vignettes, datasets and other sources of information. \[If `?stat1004` doesn't work then close RStudio, reopen it and try again.\]
 
 You will find that some vignettes contain ideas that we have not yet covered in lectures. If you want to try to understand these ideas before we cover them then please use the links to further information that have been provided.
 
