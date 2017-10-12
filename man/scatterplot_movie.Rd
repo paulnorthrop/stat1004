@@ -54,16 +54,19 @@ library(rpanel)
 pbuch <- 100 * USelection$buch / USelection$tvot
 
 # Produce plot
+\dontrun{
 scatterplot_movie(x = USelection$npop, y = pbuch)
 # Change the plotting character
 scatterplot_movie(x = USelection$npop, y = pbuch, pch = 16)
-
+}
 # Identify Palm Beach using a different plotting character
 county_name <- USelection[, "co_names"]
 pb <- which(county_name == "PalmBeach")
 my_pch <- rep(16, length(county_name))
 my_pch[pb] <- 4
+\dontrun{
 scatterplot_movie(x = USelection$npop, y = pbuch, pch = my_pch)
+}
 }
 \seealso{
 \code{\link{movies}}: general information about STAT1004 movies.

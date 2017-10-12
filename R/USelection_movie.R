@@ -41,16 +41,19 @@
 #' pbuch <- 100 * USelection$buch / USelection$tvot
 #'
 #' # Produce plot
+#' \dontrun{
 #' scatterplot_movie(x = USelection$npop, y = pbuch)
 #' # Change the plotting character
 #' scatterplot_movie(x = USelection$npop, y = pbuch, pch = 16)
-#'
+#' }
 #' # Identify Palm Beach using a different plotting character
 #' county_name <- USelection[, "co_names"]
 #' pb <- which(county_name == "PalmBeach")
 #' my_pch <- rep(16, length(county_name))
 #' my_pch[pb] <- 4
+#' \dontrun{
 #' scatterplot_movie(x = USelection$npop, y = pbuch, pch = my_pch)
+#' }
 #' @export
 scatterplot_movie <- function(x, y, delta_power = 0.1, pos = 1,
                               envir = as.environment(pos), ...) {
