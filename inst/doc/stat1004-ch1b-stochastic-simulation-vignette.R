@@ -1,6 +1,6 @@
 ## ---- include = FALSE----------------------------------------------------
 knitr::opts_chunk$set(comment = "", prompt = TRUE, collapse = TRUE)
-devtools::load_all()
+#devtools::load_all()
 
 ## ---- include = FALSE----------------------------------------------------
 # Set a random number `seed'.  

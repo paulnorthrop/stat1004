@@ -12,7 +12,7 @@
 
 <meta name="author" content="Paul Northrop" />
 
-<meta name="date" content="2017-09-28" />
+<meta name="date" content="2017-10-12" />
 
 <title>Chapter 2: Graphs (One Variable)</title>
 
@@ -70,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Chapter 2: Graphs (One Variable)</h1>
 <h4 class="author"><em>Paul Northrop</em></h4>
-<h4 class="date"><em>2017-09-28</em></h4>
+<h4 class="date"><em>2017-10-12</em></h4>
 
 
 <div id="TOC">
@@ -100,7 +100,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 
 <p>The main purpose of this vignette is to provide R code to produce graphs that feature in Sections 2.4 and 2.5 of the <a href="https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf">STAT1004 notes</a>. All these graphs involve one variable only. See also the <a href="stat1004-ch2b-graphs-2-vignette.html">Chapter 2: Graphs (more than one variable)</a>.</p>
-<p>The R code used in this vignette are available <a href="stat1004-ch2b-graphs-vignette.R">here</a>. The code underlying the <code>box_plot</code> function is available at <a href="https://github.com/paulnorthrop/stat1004/tree/master/R/graphs.R">GitHub</a>.</p>
+<p>The R code used in this vignette are available <a href="stat1004-ch2b-graphs-vignette.R">here</a>.</p>
 <div id="the-oxford-birth-times-data" class="section level2">
 <h2>The Oxford Birth Times data</h2>
 <p>These data are available in the data frame <code>ox_births</code>.</p>
@@ -291,7 +291,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2>The Challenger O-ring data</h2>
 <p>We return to the data that feature in the <a href="stat1004-ch1a-shuttle-vignette.html">Challenger Space Shuttle disaster</a> vignette. The column  in the data frame  contains the observed numbers of O-rings that suffer thermal distress. This is a <em>numerical discrete</em> variable. In fact we can be more precise than this, it is an <em>integer</em> variable. One way to summarize these data graphically is using a bar plot. In order to produce the bar plot we first need to tabulate the data, using the function<code>table</code> to calculate the frequencies of the numbers of distressed O-rings.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span>shuttle$damaged
- [<span class="dv">1</span>]  <span class="dv">0</span>  <span class="dv">1</span>  <span class="dv">0</span>  <span class="dv">0</span>  <span class="dv">0</span>  <span class="dv">0</span>  <span class="dv">0</span>  <span class="dv">0</span>  <span class="dv">1</span>  <span class="dv">1</span>  <span class="dv">1</span>  <span class="dv">0</span>  <span class="dv">0</span>  <span class="dv">3</span>  <span class="dv">0</span>  <span class="dv">0</span>  <span class="dv">0</span>  <span class="dv">0</span>  <span class="dv">0</span>  <span class="dv">0</span>  <span class="dv">2</span>  <span class="dv">0</span>  <span class="dv">1</span> <span class="ot">NA</span>
+ [<span class="dv">1</span>]  <span class="dv">0</span>  <span class="dv">1</span>  <span class="dv">0</span>  <span class="dv">0</span>  <span class="dv">0</span>  <span class="dv">0</span>  <span class="dv">0</span>  <span class="dv">0</span>  <span class="dv">1</span>  <span class="dv">1</span>  <span class="dv">1</span>  <span class="dv">0</span>  <span class="dv">0</span>  <span class="dv">3</span>  <span class="dv">0</span>  <span class="dv">0</span>  <span class="dv">0</span>  <span class="dv">0</span>  <span class="dv">0</span>  <span class="dv">0</span>  <span class="dv">2</span>  <span class="dv">0</span>  <span class="dv">1</span>
+[<span class="dv">24</span>] <span class="ot">NA</span>
 &gt;<span class="st"> </span>O_tab &lt;-<span class="st"> </span><span class="kw">table</span>(shuttle$damaged)
 &gt;<span class="st"> </span>O_tab
 

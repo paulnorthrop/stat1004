@@ -21,7 +21,6 @@ The main purpose of this vignette is to provide R code to produce graphs that fe
 See also the [Chapter 2: Graphs (more than one variable)](stat1004-ch2b-graphs-2-vignette.html).
 
 The R code used in this vignette are available [here](stat1004-ch2b-graphs-vignette.R).
-The code underlying the `box_plot` function is available at  [GitHub](https://github.com/paulnorthrop/stat1004/tree/master/R/graphs.R).
 
 ## The Oxford Birth Times data 
 
