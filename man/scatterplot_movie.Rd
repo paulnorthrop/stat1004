@@ -51,7 +51,7 @@ Election data from Florida.
 library(rpanel)
 
 # Proportion of votes gained by Buchanan
-pbuch <- USelection$buch / USelection$tvot
+pbuch <- 100 * USelection$buch / USelection$tvot
 
 # Produce plot
 scatterplot_movie(x = USelection$npop, y = pbuch)
