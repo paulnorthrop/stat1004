@@ -21,17 +21,17 @@ par(mar = c(4, 4, 0.5, 1))
 xlab <- "time (hours)"
 x_labs <- c(min(birth_times), pretty(birth_times), max(birth_times))
 # top left
-boxplot(birth_times ~ day, col = 8, ylab = xlab, pch = 16, xlab = "day")
+box_plot(birth_times ~ day, col = 8, ylab = xlab, pch = 16, xlab = "day")
 # top right
-boxplot(birth_times ~ day, col = 8, horizontal = TRUE,  axes = FALSE, xlab = xlab, ylab = "day", pch = 16)
+box_plot(birth_times ~ day, col = 8, horizontal = TRUE,  axes = FALSE, xlab = xlab, ylab = "day", pch = 16)
 axis(1, at = x_labs, labels = x_labs)
 axis(2, at = 1:7, labels = 1:7, lwd = 0, lty = 0)
 # bottom left
-boxplot(birth_times ~ day, axes = FALSE, ylab = xlab, pch = 16, lty = 1, range = 0, boxcol = "white", staplewex = 0, medlty = "blank", medpch = 16, xlab = "day")
+box_plot(birth_times ~ day, axes = FALSE, ylab = xlab, pch = 16, lty = 1, range = 0, boxcol = "white", staplewex = 0, medlty = "blank", medpch = 16, xlab = "day")
 axis(1, at = 1:7, labels = 1:7, lwd = 0, lty = 0)
 axis(2, at = x_labs, labels = x_labs)
 # bottom right
-boxplot(birth_times ~ day, horizontal = TRUE, axes = FALSE, xlab = xlab, pch = 16, lty = 1, range = 0, boxcol = "white", staplewex = 0, medlty = "blank", medpch = 16)
+box_plot(birth_times ~ day, horizontal = TRUE, axes = FALSE, xlab = xlab, pch = 16, lty = 1, range = 0, boxcol = "white", staplewex = 0, medlty = "blank", medpch = 16)
 axis(1, at = x_labs, labels = x_labs)
 axis(2, at = 1:7, labels = 1:7, lwd = 0, lty = 0, las = 1)
 
