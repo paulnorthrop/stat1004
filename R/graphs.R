@@ -95,6 +95,7 @@ box_plot.default <- function (x, ..., range = 1.5, width = NULL,
   else z
 }
 
+#' @export
 box_plot.matrix <- function (x, use.cols = TRUE, ...) {
   groups <- if (use.cols) {
     split(c(x), rep.int(1L:ncol(x), rep.int(nrow(x), ncol(x))))
@@ -105,6 +106,7 @@ box_plot.matrix <- function (x, use.cols = TRUE, ...) {
   invisible(box_plot(groups, ...))
 }
 
+#' @export
 box_plot.formula <- function (formula, data = NULL, ..., subset,
                               na.action = NULL) {
   if (missing(formula) || (length(formula) != 3L))
@@ -120,6 +122,22 @@ box_plot.formula <- function (formula, data = NULL, ..., subset,
   box_plot(split(mf[[response]], mf[-response]), ...)
 }
 
+#' Box Plot Statistics
+#'
+#' A copy of \code{\link[grDevices]{boxplot.stats}} that adds the argument
+#' \code{type} to be passed to \code{\link[stats]{quantile}} when calculating
+#' sample quantiles.
+#' @param x a numeric vector for which the boxplot will be constructed
+#'   (\code{\link{NA}}s and \code{\link{NaN}}s are allowed and omitted).
+#' @param coef this determines how far the plot ‘whiskers’ extend out from the
+#'   box. If coef is positive, the whiskers extend to the most extreme data
+#'   point which is no more than coef times the length of the box away from
+#'   the box. A value of zero causes the whiskers to extend to the data
+#'   extremes (and no outliers be returned).
+#' @param do.conf,do.out logicals; if FALSE, the conf or out component
+#'   respectively will be empty in the result.
+#' @param type Argument \code{type} to \code{\link[stats]{quantile}}.
+#' @export
 boxplot_stats <- function (x, coef = 1.5, do.conf = TRUE, do.out = TRUE,
                            type = 6){
   if (coef < 0)

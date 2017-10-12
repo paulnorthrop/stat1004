@@ -61,14 +61,16 @@ scatterplot_movie <- function(x, y, delta_power = 0.1, pos = 1,
   # Pass arguments for plot() supplied by the user
   user_args <- list(...)
   assign("user_args", user_args, envir = envir)
-  scatterplot_panel <- rp.control("parameters")
-  rp.doublebutton(scatterplot_panel, c_y, delta_power, range=c(-50, 50),
-                  initval = 1, title = "power of y:",
-                  action = scatterplot_movie_plot)
-  rp.doublebutton(scatterplot_panel, c_x, delta_power, range=c(-50, 50),
-                  initval = 1, title = "power of x:",
-                  action = scatterplot_movie_plot)
-  rp.do(scatterplot_panel, scatterplot_movie_plot)
+  scatterplot_panel <- rpanel::rp.control("parameters")
+  c_x <- 1
+  c_y <- 1
+  rpanel::rp.doublebutton(scatterplot_panel, c_y, delta_power,
+                          range=c(-50, 50), initval = 1, title = "power of y:",
+                          action = scatterplot_movie_plot)
+  rpanel::rp.doublebutton(scatterplot_panel, c_x, delta_power,
+                          range=c(-50, 50), initval = 1, title = "power of x:",
+                          action = scatterplot_movie_plot)
+  rpanel::rp.do(scatterplot_panel, scatterplot_movie_plot)
   invisible()
 }
 
