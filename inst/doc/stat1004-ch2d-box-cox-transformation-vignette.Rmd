@@ -191,7 +191,7 @@ In @Smith2002 the author uses $\sqrt{Y}$ instead of $Y$ and $\log(x)$ instead of
 boxcox(y ~ log(x))
 ```
 
-Here the plot suggests that we might also transform $Y$ using $log(Y)$.  The plot on the left below is of $\log(Y)$ against $\log(x)$ (we plot both variables on log scales). The plot on the right is of $\sqrt{Y}$ against $x$.
+Here the plot suggests that we might also transform $Y$ using $\log(Y)$.  The plot on the left below is of $\log(Y)$ against $\log(x)$ (we plot both variables on log scales). The plot on the right is of $\sqrt{Y}$ against $x$.
 
 ```{r, fig.show = 'hold', fig.width = 3.4, fig.height = 2.75}
 xlab <- "population (1000s)"
