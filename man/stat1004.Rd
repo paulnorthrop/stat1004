@@ -45,6 +45,7 @@ If you have any questions about this package please ask them via the
   \item {\href{../doc/stat1004-ch2a-descriptive-statistics-vignette.html}{Chapter 2: Descriptive Statistics}}
   \item {\href{../doc/stat1004-ch2b-graphs-vignette.html}{Chapter 2: Graphs (One Variable)}}
   \item {\href{../doc/stat1004-ch2c-graphs-vignette.html}{Chapter 2: Graphs (More Than One Variable)}}
+  \item {\href{../doc/stat1004-ch2d-box-cox-transformation-vignette.html}{Chapter 2: Transformation Of Variable}}
 }
 }
 
