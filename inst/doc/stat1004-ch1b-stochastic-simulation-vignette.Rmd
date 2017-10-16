@@ -35,6 +35,7 @@ set.seed(1004)
 ```
 
 ```{r}
+library(stat1004)
 runif(10)
 ```
 
@@ -131,8 +132,8 @@ lines(x, dexp(x, rate = lambda))
 
 The code immediately above is an example of the *inversion method* of simulation.
 See the 
-[Stochastic simulation video](https://moodle.ucl.ac.uk/mod/url/view.php?id=2180273) for some detail.  The following code implements this for the normal distribution
-(see Section 5.7 of the [STAT1004 notes](https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf)).
+[Stochastic simulation video](https://moodle.ucl.ac.uk/mod/lti/view.php?id=3081645) for some detail.  The following code implements this for the normal distribution
+(see Section 5.7 of the [STAT1004 notes](https://moodle.ucl.ac.uk/mod/resource/view.php?id=2079737)).
 
 ```{r, fig.width = 6, fig.height = 4}
 u <- runif(1000)
