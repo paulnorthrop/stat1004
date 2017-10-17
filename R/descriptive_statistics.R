@@ -110,14 +110,14 @@ q_skew <- function(x, type = 6, na.rm = FALSE) {
 
 #' @rdname skewness
 #' @export
-skew <- function(x, type = 6, na.rm = FALSE) {
-  skew_vec <- function(x, type, na.rm) {
+skew <- function(x, na.rm = FALSE) {
+  skew_vec <- function(x, na.rm) {
     s <- stats::sd(x, na.rm = na.rm)
     m <- mean(x, na.rm = na.rm)
     m3 <- mean((x - m) ^ 3, na.rm = na.rm)
     return(m3 / s ^ 3)
   }
-  x <- apply(cbind(x), 2, skew_vec, type = type, na.rm = na.rm)
+  x <- apply(cbind(x), 2, skew_vec, na.rm = na.rm)
   names(x) <- NULL
   return(x)
 }

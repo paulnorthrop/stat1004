@@ -8,7 +8,7 @@
 \usage{
 q_skew(x, type = 6, na.rm = FALSE)
 
-skew(x, type = 6, na.rm = FALSE)
+skew(x, na.rm = FALSE)
 }
 \arguments{
 \item{x}{A numeric vector or matrix.}
