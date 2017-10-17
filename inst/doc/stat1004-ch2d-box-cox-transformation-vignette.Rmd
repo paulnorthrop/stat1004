@@ -34,7 +34,7 @@ We don't need to believe that these assumptions are exactly correct, but we shou
 
 Please note that transformation of data is by no means the only way to solve the problem that data do not behave in a way that is consistent with a convenient simple model.  In particular, note that although the normal distribution is used in many areas of Statistics there are many instances where methods based on other distributions are more appropriate.
 
-If we *do* wish to transform data then we need to consider which transformation to apply.  The following family of *power* transformations can be helpful, provided that the data are positive.  If they are not we could first add a constant to the data to achieve this property, or use a simialr transformation (@YJ2000) that does not require the data to be positive.
+If we *do* wish to transform data then we need to consider which transformation to apply.  The following family of *power* transformations can be helpful, provided that the data are positive.  If they are not we could first add a constant to the data to achieve this property, or use a similar transformation (@YJ2000) that does not require the data to be positive.
 
 ## Box-Cox transformation
 
@@ -63,7 +63,7 @@ Firstly, we consider how we could use a Box-Cox transformation to transform data
 
 ## Transformation to Approximate Symmetry
 
-The normal (or Gaussian) distribution (Section 5.7 of the [STAT1004 notes](https://moodle.ucl.ac.uk/mod/resource/view.php?id=2079737)) is a symmteric probability distribution.  If $Y = \ln X$ has a normal distribution then $X$ has a *log-normal* distribution.  This is a convenient example to study because if we know that we have a sample from a log-normal distribution then taking logs of the data produces a sample from a normal distribution.
+The normal (or Gaussian) distribution (Section 5.7 of the [STAT1004 notes](https://moodle.ucl.ac.uk/mod/resource/view.php?id=2079737)) is a symmetric probability distribution.  If $Y = \ln X$ has a normal distribution then $X$ has a *log-normal* distribution.  This is a convenient example to study because if we know that we have a sample from a log-normal distribution then taking logs of the data produces a sample from a normal distribution.
 
 ### Log-normal distribution
 
@@ -136,11 +136,11 @@ rtri <- function(n = 1) {
 }  
 ```
 
-In this example it can be shown that using $\lambda = 2$ will produce a random variable whose p.d.f. is constant (and equal to 2) over the range (-1/2, 0), that is, we produce a uniform U(-1/2, 0) random variable (see Section 5.5 of the [STAT1004 notes](https://moodle.ucl.ac.uk/mod/resource/view.php?id=2079737)).  You will be able to prove this after you have done Question 1 of [Exercises 6](https://moodle.ucl.ac.uk/mod/resource/view.php?id=2662627).  Guestion 5 of the [Quiz for Exercises 6](https://moodle.ucl.ac.uk/mod/quiz/view.php?id=2671329) also uses this method.
+In this example it can be shown that using $\lambda = 2$ will produce a random variable whose p.d.f. is constant (and equal to 2) over the range (-1/2, 0), that is, we produce a uniform U(-1/2, 0) random variable (see Section 5.5 of the [STAT1004 notes](https://moodle.ucl.ac.uk/mod/resource/view.php?id=2079737)).  You will be able to prove this after you have done Question 1 of [Exercises 6](https://moodle.ucl.ac.uk/mod/resource/view.php?id=2662627).  Question 5 of the [Quiz for Exercises 6](https://moodle.ucl.ac.uk/mod/quiz/view.php?id=2671329) also uses this method.
 
 3. **(After we reach Exercises 6 in the course) can you prove that if a random variable $X$ has the triangular p.d.f. above then $X^2$ has a standard U(0,1) distribution and hence that $(X^2-1)/2$ has a U(-1/2,0) distribution?**
 
-We simulate same data from this triangular distribution and show that using $\lambda = 2$ does indeedm produce a density that is flat, and therefore symmetric.
+We simulate same data from this triangular distribution and show that using $\lambda = 2$ does indeed produce a density that is flat, and therefore symmetric.
 
 ```{r, fig.show = 'hold', fig.width = 3.4, fig.height = 2.75}
 x3 <- rtri(200)
@@ -201,7 +201,7 @@ ylab <- expression(sqrt(Buchanan~vote))
 plot(x, sqrt(y), pch = 16, log = "x", xlab = xlab, ylab = ylab)
 ```
 
-In both plots the relationships between the variables is closer to being approximately linear than in the original plot.  We might argue that the plot on the left looks lightly better than the other plot and therefore we may question why Smith chose $\sqrt{Y}$ rather than $\log Y$.  However, the relationship between $Y$ and $x$ is far from the whole story.  Smith's model was mch more complicated than this, and he has to worry about other assumptions, in addition to linearity.
+In both plots the relationships between the variables is closer to being approximately linear than in the original plot.  We might argue that the plot on the left looks lightly better than the other plot and therefore we may question why Smith chose $\sqrt{Y}$ rather than $\log Y$.  However, the relationship between $Y$ and $x$ is far from the whole story.  Smith's model was much more complicated than this, and he has to worry about other assumptions, in addition to linearity.
 
 ## References
 
