@@ -49,6 +49,7 @@
 #'   \item {\link[=world_bank]{World Bank Development Indicators}}
 #'   \item {\link[=flu]{Influenza data}}
 #'   \item {\link[=USelection]{The 2000 U.S. Presidential Election}}
+#'   \item {\link[=aussie_births]{Australian Birth Times Data}}
 #' }
 #'
 #' @section Movies:
@@ -253,3 +254,22 @@ NULL
 
 #' @rdname world_bank
 "life_expectancy"
+
+#' Australian Birth Times Data
+#'
+#' The baby arrivals data introduced in Section 5 of the STAT1004 notes.
+#' Information concerning the 44 babies (18 girls and 26 boys) born in a
+#' 24-hour period at the Mater Mothers’ Hospital, Brisbane, Australia, on
+#' December 18, 1997.
+#'
+#' @format A data frame with 44 observations on the following 3 variables.
+#' \itemize{
+#' \item{\code{time:}}{ the number of minutes past midnight at which the
+#'   baby was born.}
+#' \item{\code{sex:}}{ a character variable, the sex of the baby ("girl"
+#'   or "boy").}
+#' \item{\code{weight:}}{ the weight of the baby in grams.}
+#' }
+#' @source Steele, S. (December 21, 1997), Babies by the Dozen for Christmas:
+#' 24-Hour Baby Boom, The Sunday Mail (Brisbane), page 7.
+"aussie_births"

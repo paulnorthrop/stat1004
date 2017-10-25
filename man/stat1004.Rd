@@ -62,6 +62,7 @@ If you have any questions about this package please ask them via the
   \item {\link[=world_bank]{World Bank Development Indicators}}
   \item {\link[=flu]{Influenza data}}
   \item {\link[=USelection]{The 2000 U.S. Presidential Election}}
+  \item {\link[=aussie_births]{Australian Birth Times Data}}
 }
 }
 
