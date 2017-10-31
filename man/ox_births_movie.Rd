@@ -41,7 +41,7 @@ function (p.d.f.).
   is superimposed on the histogram.
 
   We will not study the gamma distribution in STAT1004, but you will encounter
-  it in STTAT1005 if you take that next term.
+  it in STAT1005 if you take that next term.
 }
 \examples{
 # Load package rpanel

@@ -26,7 +26,7 @@
 #'   is superimposed on the histogram.
 #'
 #'   We will not study the gamma distribution in STAT1004, but you will encounter
-#'   it in STTAT1005 if you take that next term.
+#'   it in STAT1005 if you take that next term.
 #' @return Nothing is returned, only the animation is produced.
 #' @seealso \code{\link{movies}}: general information about STAT1004 movies.
 #' @examples
@@ -62,12 +62,11 @@ plot_gamma_sim <- function(panel) {
     gamsim <- stats::rgamma(n, shape = alpha, rate = beta)
     xx <- seq(from = min(gamsim), to = max(gamsim), len = 101)
     gam_dens <- dgamma(xx, shape = alpha, rate = beta)
-    binwidth <- min(1000 / n ^ (-1 / 3), 2)
-    n_bins <- max(gamsim) / binwidth
     # Pick the number of bins (I got here largely by trial-and-error)
     # to make the movie look `nice'
-    breaks <- sqrt(n)
-    temp <- graphics::hist(gamsim, plot = FALSE, breaks = breaks)
+    binwidth <- min(1000 / n ^ (2 / 3), 2)
+    n_bins <- max(gamsim) / binwidth
+    temp <- graphics::hist(gamsim, plot = FALSE, breaks = n_bins)
     ylim <- range(c(gam_dens, temp$density))
     graphics::hist(gamsim, prob = TRUE, main = "", ylim = c(0, ylim[2]),
                    breaks = n_bins, col = 8)
