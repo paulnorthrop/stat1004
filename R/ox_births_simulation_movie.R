@@ -74,22 +74,5 @@ plot_gamma_sim <- function(panel) {
                     to = max(gamsim), add = TRUE)
     graphics::title(paste("simulated data, n =", n))
   })
-  panel
-}
-
-
-old_plot_gamma_sim <- function(panel) {
-  with(panel, {
-    set.seed(37)
-    gamsim <- stats::rgamma(n, shape = alpha, rate = beta)
-    binwidth <- min(10000 / n, 2)
-    breaks <- seq(from = 0, to = 34, by = binwidth)
-    graphics::hist(gamsim, col = 8, main = "", probability = TRUE, breaks = breaks,
-                   axes = FALSE, xlab = "time (hours)", ylab="density", xlim = c(0,35))
-    graphics::curve(dgamma(x,shape=alpha,rate=beta),from=0,to=35,n=500,bty="l",las=1,xpd=T,lwd=2,add=T,col="red")
-    graphics::axis(1, pos = 0)
-    graphics::axis(2, pos = 0)
-    graphics::title(paste("simulated data, n =", n))
-  })
-  panel
+  return(panel)
 }
