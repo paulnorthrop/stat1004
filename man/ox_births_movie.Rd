@@ -5,7 +5,7 @@
 \title{Oxford Birth Times Simulation Movie}
 \usage{
 ox_births_movie(starting_n = 100, delta_n = 1000, pos = 1,
-  envir = as.environment(pos), ...)
+  envir = as.environment(pos))
 }
 \arguments{
 \item{starting_n}{A numeric scalar.  The size of the first sample to be

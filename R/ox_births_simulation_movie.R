@@ -39,7 +39,7 @@
 #' }
 #' @export
 ox_births_movie <- function(starting_n = 100, delta_n = 1000, pos = 1,
-                              envir = as.environment(pos), ...) {
+                              envir = as.environment(pos)) {
   # Fit a gamma distribution to the birth times
   x <- ox_births[, "time"]
   fit_gamma <- glm(x ~ 1, family = Gamma(link = "identity"))
