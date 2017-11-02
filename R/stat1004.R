@@ -59,6 +59,7 @@
 #'   \item {\link[=scatterplot_movie]{US election: straightening scatter plots}}
 #'   \item {\link[=world_bank_movie]{World Bank Development Indicators}}
 #'   \item {\link[=ox_births_movie]{Oxford Birth Times Simulation Movie}}
+#'   \item {\link[=binomial_pmf_movie]{Binomial p.m.f. movie}}
 #' }
 #'
 #' @seealso The \href{https://moodle.ucl.ac.uk/course/view.php?id=3419&section=0}{STAT1004 Moodle page}

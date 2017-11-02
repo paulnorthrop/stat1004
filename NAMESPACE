@@ -3,6 +3,7 @@
 S3method(box_plot,default)
 S3method(box_plot,formula)
 S3method(box_plot,matrix)
+export(binomial_pmf_movie)
 export(box_plot)
 export(boxcox_plot)
 export(boxplot_stats)
