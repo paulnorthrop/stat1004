@@ -42,7 +42,7 @@
 #' @export
 binomial_pmf_movie <- function(starting_n = 1, starting_p = 1 /2, delta_n = 1,
                                delta_p = 0.05, observed_value = NA) {
-  if (observed_value < 0) {
+  if (!is.na(observed_value) && observed_value < 0) {
     stop("observed_value cannot be negative")
   }
   observed_value <- round(observed_value)
