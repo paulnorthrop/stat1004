@@ -83,8 +83,8 @@ scatterplot_movie_plot <- function(panel){
   with(panel, {
     x_trans <- bc(x, c_x)
     y_trans <- bc(y, c_y)
-    old_par <- par(no.readonly = TRUE)
-    par(las = 1)
+    old_par <- graphics::par(no.readonly = TRUE)
+    graphics::par(las = 1)
     for_plot <- c(list(x = x_trans, y = y_trans, ylab = "", xlab = "",
                        axes = FALSE), user_args)
     do.call(graphics::plot, for_plot)
@@ -99,7 +99,7 @@ scatterplot_movie_plot <- function(panel){
     } else {
       mtext(bquote(frac(y^.(c_y) - 1, .(c_y))), side = 2, line = 0.8)
     }
-    par(old_par)
+    graphics::par(old_par)
   })
   invisible(panel)
 }
