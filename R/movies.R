@@ -42,6 +42,14 @@
 #' @seealso \code{\link{world_bank_movie}}: explores graphically relationships
 #'   between four annual World Bank Development Indicators and how this changes
 #'   over time.
+#' @seealso  \code{\link{ox_births_movie}}: shows how the shape of a histogram
+#'   of simulated data tends to become smoother as the sample size increases.
+#' @seealso  \code{\link{binomial_pmf_movie}}: shows how the probability mass
+#'   function (p.m.f.) of a binomial random variable depends on its two
+#'   parameters.
+#' @seealso  \code{\link{clt_normal_movie}}: illustrates the ideas of a
+#'   sampling distribution of a random variable and the central limit
+#'   theorem (CLT).
 #' @examples
 #'
 #' # Load package rpanel
