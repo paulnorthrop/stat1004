@@ -63,22 +63,23 @@
 #' }
 #' @export
 clt_exponential_movie <- function(n = 30, lambda = 1, xlab = "x", pos = 1,
-                                  envir = as.environment(pos), ...) {
+                                  envir = as.environment(pos)) {
   # Assign variables to an environment so that they can be accessed inside
   # clt_exponential_movie_plot()
   old_n <- 0
-  assign("old_n", old_n, envir = .GlobalEnv)
-  assign("lambda", lambda, envir = .GlobalEnv)
-  assign("xlab", xlab, envir = .GlobalEnv)
+  assign("old_n", old_n, envir = envir)
+  assign("lambda", lambda, envir = envir)
+  assign("xlab", xlab, envir = envir)
   # Create buttons for movie
-  clt_panel <- rp.control("sample size", n = n, lambda = lambda)
-  rp.doublebutton(clt_panel, n, 1, range=c(1, 1000), repeatinterval = 20,
-                  initval = n, title = "sample size, n",
-                  action = clt_exponential_movie_plot)
-  rp.button(clt_panel, repeatinterval = 20,
+  clt_panel <- rpanel::rp.control("sample size", n = n, lambda = lambda)
+  rpanel::rp.doublebutton(clt_panel, n, 1, range=c(1, 1000),
+                          repeatinterval = 20, initval = n,
+                          title = "sample size, n",
+                          action = clt_exponential_movie_plot)
+  rpanel::rp.button(clt_panel, repeatinterval = 20,
             title = "simulate another sample of size n",
             action = clt_exponential_movie_plot)
-  rp.do(clt_panel, clt_exponential_movie_plot)
+  rpanel::rp.do(clt_panel, clt_exponential_movie_plot)
   return(invisible())
 }
 
@@ -88,8 +89,8 @@ clt_exponential_movie_plot <- function(panel) {
   with(panel, {
     old_par <- graphics::par(no.readonly = TRUE)
     par(mfrow = c(2, 1), oma = c(0, 0, 0, 0), mar = c(4, 4, 2, 2) + 0.1)
-    assign("lambda", lambda, envir = .GlobalEnv)
-    assign("xlab", xlab, envir = .GlobalEnv)
+    assign("lambda", lambda, envir = envir)
+    assign("xlab", xlab, envir = envir)
     y <- stats::rexp(n, rate = lambda)
     mean_y <- mean(y)
     if (n != old_n) {
@@ -97,7 +98,7 @@ clt_exponential_movie_plot <- function(panel) {
     } else {
       sample_means <- c(sample_means, mean_y)
     }
-    assign("sample_means", sample_means, envir = .GlobalEnv)
+    assign("sample_means", sample_means, envir = envir)
     h_low <- 0
     h_up <- qexp(0.9959942, rate = lambda)
     ytop <- lambda
@@ -138,7 +139,7 @@ clt_exponential_movie_plot <- function(panel) {
     graphics::legend("topright", legend = my_leg_2)
     graphics::arrows(mean_y, 2* ytop, mean_y, 0, col = "red", lwd = 2, xpd = TRUE)
     old_n <- n
-    assign("old_n", old_n, envir = .GlobalEnv)
+    assign("old_n", old_n, envir = envir)
     graphics::par(old_par)
   })
   return(invisible(panel))

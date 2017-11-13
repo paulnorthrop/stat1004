@@ -5,7 +5,7 @@
 \title{Central Limit Theorem movie: normal data}
 \usage{
 clt_normal_movie(n = 30, mu = 0, sigma = 1, xlab = "x", pos = 1,
-  envir = as.environment(pos), ...)
+  envir = as.environment(pos))
 }
 \arguments{
 \item{n}{An integer scalar.  The size of the samples drawn from a

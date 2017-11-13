@@ -17,9 +17,6 @@
 #'   Provided to give control of the appearance of histograms.
 #' @param main The argument \code{main} of \code{\link{hist}}.
 #'   Provided to enable a title to the added to the plot.
-#' @param xlim The argument \code{xlim} of \code{\link{hist}}.
-#'   Provided to enable the limits of the horizontal axis to the changed from
-#'   the default.
 #' @param ... Further arguments to \code{density_fn} (if any).
 #' @details The equation
 #' \deqn{y = (x ^ \lambda - 1) / \lambda.}
@@ -120,7 +117,7 @@ boxcox_plot <- function(x, lambda = 1, density_fn = NULL, breaks = "Sturges",
       graphics::lines(y_plot, z)
     }
   }
-  rug(y)
+  return(invisible())
 }
 
 # =========================== box_cox ===========================

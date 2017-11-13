@@ -5,7 +5,7 @@
 \title{Poisson process movie}
 \usage{
 poisson_process_movie(lambda = 1, hours = 24, pos = 1,
-  envir = as.environment(pos), ...)
+  envir = as.environment(pos))
 }
 \arguments{
 \item{lambda}{A numeric scalar.  The rate parameter of the exponential

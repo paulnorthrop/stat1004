@@ -57,7 +57,7 @@
 #' }
 #' @export
 poisson_process_movie <- function(lambda = 1, hours = 24, pos = 1,
-                                  envir = as.environment(pos), ...) {
+                                  envir = as.environment(pos)) {
   if (lambda <= 0L) {
     stop("lambda must be positive")
   }
@@ -69,18 +69,18 @@ poisson_process_movie <- function(lambda = 1, hours = 24, pos = 1,
   # clt_normal_movie_plot()
   lambda_vec <- c(floor(lambda), ceiling(lambda))
   ytop <- max(stats::dpois(lambda_vec, lambda)) * 1.25
-  assign("lambda", lambda, envir = .GlobalEnv)
-  assign("hours", hours, envir = .GlobalEnv)
-  assign("ytop", ytop, envir = .GlobalEnv)
+  assign("lambda", lambda, envir = envir)
+  assign("hours", hours, envir = envir)
+  assign("ytop", ytop, envir = envir)
   all_counts <- NULL
-  assign("all_counts", all_counts, envir = .GlobalEnv)
+  assign("all_counts", all_counts, envir = envir)
   # Create buttons for movie
-  clt_panel <- rp.control("Poisson proces information", lambda = lambda,
-                          hours = hours)
-  rp.button(clt_panel, repeatinterval = 20,
-            title = "simulate another sequence of events",
-            action = poisson_process_movie_plot)
-  rp.do(clt_panel, poisson_process_movie_plot)
+  clt_panel <- rpanel::rp.control("Poisson proces information",
+                                  lambda = lambda, hours = hours)
+  rpanel::rp.button(clt_panel, repeatinterval = 20,
+                    title = "simulate another sequence of events",
+                    action = poisson_process_movie_plot)
+  rpanel::rp.do(clt_panel, poisson_process_movie_plot)
   return(invisible())
 }
 
@@ -91,9 +91,9 @@ poisson_process_movie_plot <- function(panel) {
     old_par <- graphics::par(no.readonly = TRUE)
     graphics::par(mfrow = c(2, 1), oma = c(0, 0, 0, 0),
                   mar = c(4, 1, 2, 2) + 0.1)
-    assign("lambda", lambda, envir = .GlobalEnv)
-    assign("hours", hours, envir = .GlobalEnv)
-    assign("ytop", ytop, envir = .GlobalEnv)
+    assign("lambda", lambda, envir = envir)
+    assign("hours", hours, envir = envir)
+    assign("ytop", ytop, envir = envir)
     # Simulate the total number of events in hours hours
     # [We could also have done this by simulating the times between events
     # from an exponential(lambda) distribution]
@@ -120,7 +120,7 @@ poisson_process_movie_plot <- function(panel) {
     # Produce the bottom plot
     graphics::par(mar = c(4, 4, 2, 2) + 0.1)
     all_counts <- c(all_counts, n_events)
-    assign("all_counts", all_counts, envir = .GlobalEnv)
+    assign("all_counts", all_counts, envir = envir)
     count_range <- min(all_counts):max(all_counts)
     temp_counts <- c(all_counts, count_range)
     pmf <- (table(temp_counts) - 1) / length(all_counts)

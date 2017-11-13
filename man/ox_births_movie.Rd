@@ -34,9 +34,9 @@ function (p.d.f.).
 \details{
 \code{ox_births_movie} first fits a
   \href{https://en.wikipedia.org/wiki/Gamma_distribution}{gamma distribution}
-  (see \code{\link{GammaDist}}) to the \code{time} data in the
+  (see \code{\link[stats]{GammaDist}}) to the \code{time} data in the
   \code{\link{ox_births}} data.  Then we simulate samples (using
-  \code{\link{rgamma}}) from the fitted gamma distribution and produce a
+  \code{\link[stats]{rgamma}}) from the fitted gamma distribution and produce a
   histogram of the simulated data.  The p.d.f. of the fitted gamma distribution
   is superimposed on the histogram.
 

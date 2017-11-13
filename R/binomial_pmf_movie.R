@@ -46,16 +46,21 @@ binomial_pmf_movie <- function(starting_n = 1, starting_p = 1 /2, delta_n = 1,
     stop("observed_value cannot be negative")
   }
   observed_value <- round(observed_value)
-  binomial_panel <- rp.control("binomial(n,p) probabilities", n = starting_n,
-                               prob = starting_p, observed_value = observed_value)
+  binomial_panel <- rpanel::rp.control("binomial(n,p) probabilities",
+                                       n = starting_n, prob = starting_p,
+                                       observed_value = observed_value)
+  prob <- starting_p
+  n <- starting_n
   plot_binomial_pmf(list(n = starting_n, prob = starting_p,
                          observed_value = observed_value))
-  rp.doublebutton(panel = binomial_panel, variable = prob, step = delta_p, range = c(0, 1),
-                  repeatinterval = 20, initval = starting_p,
-                  title = "P(success), p:", action = plot_binomial_pmf)
-  rp.doublebutton(panel = binomial_panel, variable = n, step = delta_n, range=c(1, 1000000),
-                  repeatinterval = 20, initval = starting_n,
-                  title = "number of trials, n:", action = plot_binomial_pmf)
+  rpanel::rp.doublebutton(panel = binomial_panel, variable = prob,
+                          step = delta_p, range = c(0, 1), repeatinterval = 20,
+                          initval = starting_p, title = "P(success), p:",
+                          action = plot_binomial_pmf)
+  rpanel::rp.doublebutton(panel = binomial_panel, variable = n, step = delta_n,
+                          range=c(1, 1000000), repeatinterval = 20,
+                          initval = starting_n, title = "number of trials, n:",
+                          action = plot_binomial_pmf)
   invisible()
 }
 

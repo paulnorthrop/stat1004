@@ -22,10 +22,6 @@ Provided to give control of the appearance of histograms.}
 Provided to enable a title to the added to the plot.}
 
 \item{...}{Further arguments to \code{density_fn} (if any).}
-
-\item{xlim}{The argument \code{xlim} of \code{\link{hist}}.
-Provided to enable the limits of the horizontal axis to the changed from
-the default.}
 }
 \value{
 Nothing, just the plot.

@@ -19,9 +19,9 @@
 #'   environment. See \code{\link{environment}}.
 #' @details \code{ox_births_movie} first fits a
 #'   \href{https://en.wikipedia.org/wiki/Gamma_distribution}{gamma distribution}
-#'   (see \code{\link{GammaDist}}) to the \code{time} data in the
+#'   (see \code{\link[stats]{GammaDist}}) to the \code{time} data in the
 #'   \code{\link{ox_births}} data.  Then we simulate samples (using
-#'   \code{\link{rgamma}}) from the fitted gamma distribution and produce a
+#'   \code{\link[stats]{rgamma}}) from the fitted gamma distribution and produce a
 #'   histogram of the simulated data.  The p.d.f. of the fitted gamma distribution
 #'   is superimposed on the histogram.
 #'
@@ -39,20 +39,22 @@
 #' }
 #' @export
 ox_births_movie <- function(starting_n = 100, delta_n = 1000, pos = 1,
-                              envir = as.environment(pos)) {
+                            envir = as.environment(pos)) {
   # Fit a gamma distribution to the birth times
-  x <- ox_births[, "time"]
-  fit_gamma <- glm(x ~ 1, family = Gamma(link = "identity"))
+  x <- stat1004::ox_births[, "time"]
+  fit_gamma <- stats::glm(x ~ 1, family = stats::Gamma(link = "identity"))
   disp <- MASS::gamma.dispersion(fit_gamma)
   alpha <- 1 / disp
   mean_val <- fit_gamma$coeff
   beta <- alpha / mean_val
-  gamma_sim_panel <- rp.control("simulation of birth times", n = starting_n,
-                                alpha = alpha, beta = beta)
+  n <- starting_n
+  gamma_sim_panel <- rpanel::rp.control("simulation of birth times",
+                                        n = starting_n, alpha = alpha,
+                                        beta = beta)
   plot_gamma_sim(list(n = starting_n, alpha = alpha, beta = beta))
-  rp.doublebutton(gamma_sim_panel, n, delta_n, range=c(1, 1e6),
-                  repeatinterval = 20, initval = starting_n,
-                  title = "sample size, n:", action = plot_gamma_sim)
+  rpanel::rp.doublebutton(gamma_sim_panel, n, delta_n, range=c(1, 1e6),
+                          repeatinterval = 20, initval = starting_n,
+                          title = "sample size, n:", action = plot_gamma_sim)
   invisible()
 }
 

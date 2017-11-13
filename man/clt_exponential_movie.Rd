@@ -5,7 +5,7 @@
 \title{Central Limit Theorem movie: exponential data}
 \usage{
 clt_exponential_movie(n = 30, lambda = 1, xlab = "x", pos = 1,
-  envir = as.environment(pos), ...)
+  envir = as.environment(pos))
 }
 \arguments{
 \item{n}{An integer scalar.  The size of the samples drawn from a
