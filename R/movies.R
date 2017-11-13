@@ -49,7 +49,10 @@
 #'   parameters.
 #' @seealso  \code{\link{clt_normal_movie}}: illustrates the ideas of a
 #'   sampling distribution of a random variable and the central limit
-#'   theorem (CLT).
+#'   theorem (CLT), using normally distributed data.
+#' @seealso  \code{\link{clt_exponential_movie}}: illustrates the ideas of a
+#'   sampling distribution of a random variable and the central limit
+#'   theorem (CLT), using exponentially distributed data..
 #' @examples
 #'
 #' # Load package rpanel

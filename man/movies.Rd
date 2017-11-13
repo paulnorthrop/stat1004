@@ -85,5 +85,9 @@ Bowman, A., Crawford, E., Alexander, G. and Bowman, R. W.
 
 \code{\link{clt_normal_movie}}: illustrates the ideas of a
   sampling distribution of a random variable and the central limit
-  theorem (CLT).
+  theorem (CLT), using normally distributed data.
+
+\code{\link{clt_exponential_movie}}: illustrates the ideas of a
+  sampling distribution of a random variable and the central limit
+  theorem (CLT), using exponentially distributed data..
 }
