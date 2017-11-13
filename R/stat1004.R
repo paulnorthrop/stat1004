@@ -64,6 +64,7 @@
 #'   \item {\link[=clt_normal_movie]{Central Limit Theorem movie: normal data}}
 #'   \item {\link[=clt_exponential_movie]{Central Limit Theorem movie:
 #'     exponential data}}
+#'   \item {\link[=poisson_process_movie]{Poisson process movie}}
 #' }
 #'
 #' @seealso The \href{https://moodle.ucl.ac.uk/course/view.php?id=3419&section=0}{STAT1004 Moodle page}
