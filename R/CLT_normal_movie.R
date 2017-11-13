@@ -2,9 +2,10 @@
 
 #' Central Limit Theorem movie: normal data
 #'
-#' A movie to illustrate the idea of a sampling distribution and the central
-#' limit theorem (CLT).  In this case (based on random samples from a normal
-#' distribution) the CLT provides an exact result.
+#' A movie to illustrate the ideas of a sampling distribution of a random
+#' variable and the central limit theorem (CLT).  In this case (based on
+#' random samples from a normal distribution) the CLT provides an exact
+#' result.
 #'
 #' @param n An integer scalar.  The size of the samples drawn from a
 #'   normal distribution.
@@ -29,9 +30,9 @@
 #'   summarized using a histogram that appears at the top of the movie screen.
 #'   For each sample the mean of these \code{n} values is calculated, stored
 #'   and added to another histogram plotted below the first histogram.
-#'   The (known to be exactly normal in this case) probability density
-#'   functions (p.d.f.s) of the original variables and the means are
-#'   superimposed on the histograms.
+#'   The respective probability density functions (p.d.f.s) of the original
+#'   variables and the means are superimposed on these histograms.
+#'   The latter is know to be exactly a normal p.d.f. in this special case.
 #'
 #'   The user may choose the sample size \code{n}, that is, the number of
 #'   values over which a mean is calculated, the mean \code{mu} and/or
@@ -45,8 +46,8 @@
 #'   Each time this button is clicked a new sample is simulated and its sample
 #'   mean added to the bottom histogram.
 #'
-#'   Another movie illustrates the CLT in the case where the original variables
-#'   are exponentially distributed.
+#'   Another movie (\code{link{clt_exponential_movie}}) illustrates the CLT
+#'   in the case where the original variables are exponentially distributed.
 #' @return Nothing is returned, only the animation is produced.
 #' @seealso \code{\link{movies}}: general information about STAT1004 movies.
 #' @examples
@@ -72,7 +73,7 @@ clt_normal_movie <- function(n = 30, mu = 0, sigma = 1, xlab = "x", pos = 1,
   clt_panel <- rp.control("sample size", n = n, mu = mu, sigma = sigma,
                           ntop = 1000)
   rp.doublebutton(clt_panel, n, 1, range=c(1, 1000), repeatinterval = 20,
-                  initval = 44, title = "sample size, n",
+                  initval = n, title = "sample size, n",
                   action = clt_normal_movie_plot)
   rp.button(clt_panel, repeatinterval = 20,
             title = "simulate another sample of size n",
@@ -90,7 +91,7 @@ clt_normal_movie_plot <- function(panel) {
     assign("mu", mu, envir = .GlobalEnv)
     assign("sigma", sigma, envir = .GlobalEnv)
     assign("xlab", xlab, envir = .GlobalEnv)
-    y <- rnorm(n, mean = mu, sd = sigma)
+    y <- stats::rnorm(n, mean = mu, sd = sigma)
     mean_y <- mean(y)
     if (n != old_n) {
       sample_means <- mean_y
@@ -100,13 +101,12 @@ clt_normal_movie_plot <- function(panel) {
     assign("sample_means", sample_means, envir = .GlobalEnv)
     h_low <- mu - 3 * sigma
     h_up <- mu + 3 * sigma
-    br <- seq(from = h_low, to = h_up, by = 0.5)
     ytop <- dnorm(0, sd = sigma) * 1.5
     y <- y[y > h_low & y < h_up]
-    br2 <- sort(c(seq(from = floor(h_low), to = ceiling(h_up), by = 1), mu))
+    # Histogram with rug
     hist(y, col = 8, probability = TRUE, axes = FALSE,
          xlab = xlab, ylab = "density", main = "",
-         ylim = c(0, ytop), xlim = c(h_low, h_up))### histogram with rug
+         ylim = c(0, ytop), xlim = c(h_low, h_up))
     axis(2)
     axis(1, line = 0.5)
     rug(y, line = 0.5, ticksize = 0.05)
@@ -124,12 +124,11 @@ clt_normal_movie_plot <- function(panel) {
     ytop <- dnorm(0, sd = sigma / sqrt(n)) * 1.5
     y <- sample_means
     y <- y[y > h_low & y < h_up]
-    br <- seq(from = h_low, to = h_up, by = 0.1)
-    br2 <- sort(c(seq(from = floor(h_low), to = ceiling(h_up), by = 1), mu))
     my_xlab <- paste("sample mean of", xlab)
+    # Histogram with rug
     hist(y, col = 8, probability = TRUE, las = 1, axes = FALSE,
          xlab = my_xlab, ylab = "density", main = "",
-         ylim = c(0, ytop), xpd = TRUE, xlim = c(h_low, h_up))### histogram with rug
+         ylim = c(0, ytop), xpd = TRUE, xlim = c(h_low, h_up))
     axis(2)
     axis(1, line = 0.5)
     rug(y, line = 0.5, ticksize = 0.05, col = "red")

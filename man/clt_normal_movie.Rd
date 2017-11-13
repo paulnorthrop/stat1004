@@ -28,9 +28,10 @@ environment. See \code{\link{environment}}.}
 Nothing is returned, only the animation is produced.
 }
 \description{
-A movie to illustrate the idea of a sampling distribution and the central
-limit theorem (CLT).  In this case (based on random samples from a normal
-distribution) the CLT provides an exact result.
+A movie to illustrate the ideas of a sampling distribution of a random
+variable and the central limit theorem (CLT).  In this case (based on
+random samples from a normal distribution) the CLT provides an exact
+result.
 }
 \details{
 Loosely speaking, a consequence of the
@@ -45,9 +46,9 @@ Loosely speaking, a consequence of the
   summarized using a histogram that appears at the top of the movie screen.
   For each sample the mean of these \code{n} values is calculated, stored
   and added to another histogram plotted below the first histogram.
-  The (known to be exactly normal in this case) probability density
-  functions (p.d.f.s) of the original variables and the means are
-  superimposed on the histograms.
+  The respective probability density functions (p.d.f.s) of the original
+  variables and the means are superimposed on these histograms.
+  The latter is know to be exactly a normal p.d.f. in this special case.
 
   The user may choose the sample size \code{n}, that is, the number of
   values over which a mean is calculated, the mean \code{mu} and/or
@@ -61,8 +62,8 @@ Loosely speaking, a consequence of the
   Each time this button is clicked a new sample is simulated and its sample
   mean added to the bottom histogram.
 
-  Another movie illustrates the CLT in the case where the original variables
-  are exponentially distributed.
+  Another movie (\code{link{clt_exponential_movie}}) illustrates the CLT
+  in the case where the original variables are exponentially distributed.
 }
 \examples{
 # Load package rpanel
