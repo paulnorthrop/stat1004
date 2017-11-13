@@ -75,6 +75,7 @@ If you have any questions about this package please ask them via the
   \item {\link[=world_bank_movie]{World Bank Development Indicators}}
   \item {\link[=ox_births_movie]{Oxford Birth Times Simulation Movie}}
   \item {\link[=binomial_pmf_movie]{Binomial p.m.f. movie}}
+  \item {\link[=clt_normal_movie]{Central Limit Theorem movie: normal data}}
 }
 }
 
