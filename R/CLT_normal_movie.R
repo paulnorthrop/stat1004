@@ -10,7 +10,8 @@
 #' @param n An integer scalar.  The size of the samples drawn from a
 #'   normal distribution.
 #' @param mu,sigma Numeric scalars.  The respective mean and standard
-#'   deviation of the normal distribution from which to draw samples.
+#'   deviation of the normal distribution from which data are to be
+#'   simulated using \code{\link{rnorm}}.
 #' @param xlab A character scalar.  A name to use to label the horizontal
 #'   axis of the plots.
 #' @param pos A numeric integer.  Used in calls to \code{\link{assign}}
@@ -50,6 +51,8 @@
 #'   in the case where the original variables are exponentially distributed.
 #' @return Nothing is returned, only the animation is produced.
 #' @seealso \code{\link{movies}}: general information about STAT1004 movies.
+#' @seealso \code{\link{clt_exponential_movie}}: a similar movie using data
+#'   simulated from an exponential distribution.
 #' @examples
 #' # Load package rpanel
 #' # [Use install.packages("rpanel") if necessary]
@@ -62,7 +65,7 @@
 #' @export
 clt_normal_movie <- function(n = 30, mu = 0, sigma = 1, xlab = "x", pos = 1,
                              envir = as.environment(pos), ...) {
-  # Assign variable to an environment so that they can be accessed inside
+  # Assign variables to an environment so that they can be accessed inside
   # clt_normal_movie_plot()
   old_n <- 0
   assign("old_n", old_n, envir = .GlobalEnv)
@@ -70,8 +73,7 @@ clt_normal_movie <- function(n = 30, mu = 0, sigma = 1, xlab = "x", pos = 1,
   assign("sigma", sigma, envir = .GlobalEnv)
   assign("xlab", xlab, envir = .GlobalEnv)
   # Create buttons for movie
-  clt_panel <- rp.control("sample size", n = n, mu = mu, sigma = sigma,
-                          ntop = 1000)
+  clt_panel <- rp.control("sample size", n = n, mu = mu, sigma = sigma)
   rp.doublebutton(clt_panel, n, 1, range=c(1, 1000), repeatinterval = 20,
                   initval = n, title = "sample size, n",
                   action = clt_normal_movie_plot)
@@ -87,7 +89,7 @@ clt_normal_movie <- function(n = 30, mu = 0, sigma = 1, xlab = "x", pos = 1,
 clt_normal_movie_plot <- function(panel) {
   with(panel, {
     old_par <- graphics::par(no.readonly = TRUE)
-    par(mfrow = c(2, 1), oma = c(0, 0, 0, 0), mar =c(4, 4, 2, 2) + 0.1)
+    par(mfrow = c(2, 1), oma = c(0, 0, 0, 0), mar = c(4, 4, 2, 2) + 0.1)
     assign("mu", mu, envir = .GlobalEnv)
     assign("sigma", sigma, envir = .GlobalEnv)
     assign("xlab", xlab, envir = .GlobalEnv)
@@ -104,40 +106,39 @@ clt_normal_movie_plot <- function(panel) {
     ytop <- dnorm(0, sd = sigma) * 1.5
     y <- y[y > h_low & y < h_up]
     # Histogram with rug
-    hist(y, col = 8, probability = TRUE, axes = FALSE,
-         xlab = xlab, ylab = "density", main = "",
-         ylim = c(0, ytop), xlim = c(h_low, h_up))
+    graphics::hist(y, col = 8, probability = TRUE, axes = FALSE,
+                   xlab = xlab, ylab = "density", main = "",
+                   ylim = c(0, ytop), xlim = c(h_low, h_up))
     axis(2)
     axis(1, line = 0.5)
-    rug(y, line = 0.5, ticksize = 0.05)
-    title(paste("sample size, n = ",n))
-    curve(dnorm(x, mean = mu, sd = sigma), from = h_low, to = h_up, n = 500,
-          bty = "l", ylab = "density", las = 1, xpd = TRUE, lwd = 2, add =TRUE,
-          lty = 2)
-    u <- par("usr")
+    graphics::rug(y, line = 0.5, ticksize = 0.05)
+    graphics::rugtitle(paste("sample size, n = ",n))
+    graphics::rugcurve(dnorm(x, mean = mu, sd = sigma), from = h_low,
+                       to = h_up, n = 500, bty = "l", ylab = "density",
+                       las = 1, xpd = TRUE, lwd = 2, add =TRUE, lty = 2)
     my_mean <- round(mu, 2)
     my_var <- round(sigma ^ 2, 2)
     my_leg <- paste("N(", my_mean, ",", my_var,")" )
-    legend("topright", legend = my_leg)
-    segments(mean_y, 0, mean_y, -10, col = "red", xpd = TRUE, lwd = 2)
-    points(mean_y, 0, pch = 16, col = "red", cex = 1.5)
+    graphics::legend("topright", legend = my_leg)
+    graphics::segments(mean_y, 0, mean_y, -10, col = "red", xpd = TRUE, lwd = 2)
+    graphics::points(mean_y, 0, pch = 16, col = "red", cex = 1.5)
     ytop <- dnorm(0, sd = sigma / sqrt(n)) * 1.5
     y <- sample_means
     y <- y[y > h_low & y < h_up]
     my_xlab <- paste("sample mean of", xlab)
     # Histogram with rug
-    hist(y, col = 8, probability = TRUE, las = 1, axes = FALSE,
+    graphics::hist(y, col = 8, probability = TRUE, las = 1, axes = FALSE,
          xlab = my_xlab, ylab = "density", main = "",
          ylim = c(0, ytop), xpd = TRUE, xlim = c(h_low, h_up))
-    axis(2)
-    axis(1, line = 0.5)
-    rug(y, line = 0.5, ticksize = 0.05, col = "red")
-    curve(dnorm(x, mean = mu, sd = sigma / sqrt(n)), from = h_low, to = h_up,
-          n = 500, bty = "l", ylab="density", las = 1, xpd = TRUE, lwd = 2,
-          add = TRUE, lty = 2)
+    graphics::axis(2)
+    graphics::axis(1, line = 0.5)
+    graphics::rug(y, line = 0.5, ticksize = 0.05, col = "red")
+    graphics::curve(dnorm(x, mean = mu, sd = sigma / sqrt(n)), from = h_low,
+                    to = h_up, n = 500, bty = "l", ylab="density", las = 1,
+                    xpd = TRUE, lwd = 2, add = TRUE, lty = 2)
     my_leg_2 <- paste("N(", my_mean, ",", my_var, "/ n)" )
-    legend("topright", legend = my_leg_2)
-    arrows(mean_y, 2* ytop, mean_y, 0, col = "red", lwd = 2, xpd = TRUE)
+    graphics::legend("topright", legend = my_leg_2)
+    graphics::arrows(mean_y, 2* ytop, mean_y, 0, col = "red", lwd = 2, xpd = TRUE)
     old_n <- n
     assign("old_n", old_n, envir = .GlobalEnv)
     graphics::par(old_par)

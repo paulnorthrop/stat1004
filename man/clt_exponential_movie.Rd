@@ -12,7 +12,7 @@ clt_exponential_movie(n = 30, lambda = 1, xlab = "x", pos = 1,
 normal distribution.}
 
 \item{lambda}{A numeric scalar.  The rate parameter of the exponential
-distribution from which data re to be simulated using \code{\link{rexp}}.}
+distribution from which data are to be simulated using \code{\link{rexp}}.}
 
 \item{xlab}{A character scalar.  A name to use to label the horizontal
 axis of the plots.}
@@ -77,4 +77,7 @@ clt_exponential_movie(44, 1.84, "time since last birth (hours)")
 }
 \seealso{
 \code{\link{movies}}: general information about STAT1004 movies.
+
+\code{\link{clt_normal_movie}}: a similar movie using data
+  simulated from a normal distribution.
 }

@@ -90,4 +90,8 @@ Bowman, A., Crawford, E., Alexander, G. and Bowman, R. W.
 \code{\link{clt_exponential_movie}}: illustrates the ideas of a
   sampling distribution of a random variable and the central limit
   theorem (CLT), using exponentially distributed data..
+
+\code{\link{poisson_process_movie}}: illustrates the link between
+  the Poisson process and the Poisson distrbution for the number of events
+  that occur during a time interval of fixed length.
 }

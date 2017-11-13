@@ -12,7 +12,8 @@ clt_normal_movie(n = 30, mu = 0, sigma = 1, xlab = "x", pos = 1,
 normal distribution.}
 
 \item{mu, sigma}{Numeric scalars.  The respective mean and standard
-deviation of the normal distribution from which to draw samples.}
+deviation of the normal distribution from which data are to be
+simulated using \code{\link{rnorm}}.}
 
 \item{xlab}{A character scalar.  A name to use to label the horizontal
 axis of the plots.}
@@ -77,4 +78,7 @@ clt_normal_movie(44, 7.22, sqrt(1.36), "weight (pounds)")
 }
 \seealso{
 \code{\link{movies}}: general information about STAT1004 movies.
+
+\code{\link{clt_exponential_movie}}: a similar movie using data
+  simulated from an exponential distribution.
 }

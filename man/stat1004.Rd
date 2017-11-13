@@ -79,6 +79,7 @@ If you have any questions about this package please ask them via the
   \item {\link[=clt_normal_movie]{Central Limit Theorem movie: normal data}}
   \item {\link[=clt_exponential_movie]{Central Limit Theorem movie:
     exponential data}}
+  \item {\link[=poisson_process_movie]{Poisson process movie}}
 }
 }
 
