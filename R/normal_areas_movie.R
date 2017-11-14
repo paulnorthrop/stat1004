@@ -35,12 +35,12 @@ normal_areas_movie <- function(starting_multiple = 1, delta_multiple = 1,
   }
   plot_areas_normal(list(multiple = starting_multiple, ndec = ndec))
   multiple <- starting_multiple
-  normal.panel <- rp.control("normal(0,1) probabilities",
+  normal.panel <- rpanel::rp.control("normal(0,1) probabilities",
                              multiple = starting_multiple, ndec = ndec)
-  rp.doublebutton(normal.panel, multiple, delta_multiple,
+  rpanel::rp.doublebutton(normal.panel, multiple, delta_multiple,
                   range = c(0, 5), repeatinterval = 20,
                   title = "+/- multiple of SD.", action = plot_areas_normal)
-  rp.do(normal.panel, plot_areas_normal)
+  rpanel::rp.do(normal.panel, plot_areas_normal)
   return(invisible())
 }
 

@@ -40,7 +40,7 @@ normal_pdf_movie <- function(starting_mean = 0, starting_var = 1,
   }
   normal.panel <- rpanel::rp.control("normal parameters", mu = starting_mean,
                                      sigma2 = starting_var)
-  plot.normal(list(mu = starting_mean, sigma2 = starting_var))
+  plot_pdf_normal(list(mu = starting_mean, sigma2 = starting_var))
   mu <- starting_mean
   sigma2 <- starting_var
   # Create buttons for movie
