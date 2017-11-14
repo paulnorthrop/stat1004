@@ -7,10 +7,9 @@
 #' during a fixed interval of length \eqn{t} hours has a Poisson
 #' distribution with mean \eqn{\lambda t}.
 #'
-#' @param lambda A numeric scalar.  The rate parameter of the exponential
-#'   distribution from which data are to be simulated using \code{\link{rexp}}.
+#' @param lambda A positive numeric scalar.  The rate of the Poisson process.
 #' @param hours A positive integer scalar.  The number of hours for which to
-#'   simulate a Poisson process of rate \eqn{lambda} events per hour.
+#'   simulate a Poisson process of rate \code{lambda} events per hour.
 #' @param pos A numeric integer.  Used in calls to \code{\link{assign}}
 #'   to make information available across successive frames of a movie.
 #'   By default, uses the current environment.
@@ -44,6 +43,10 @@
 #'   Note also that the independence assumption underlying the Poisson
 #'   process means that the numbers of events occurring in different
 #'   hours are independent.
+#'
+#'   \strong{Note:} During the early stages of the simulations the
+#'     heights of the black bars may be incorrected because they extend
+#'     beyond the plot region.
 #' @return Nothing is returned, only the animation is produced.
 #' @seealso \code{\link{movies}}: general information about STAT1004 movies.
 #' @examples
@@ -53,12 +56,14 @@
 #'
 #' # Produce movie using values from the Aussie births data
 #' \dontrun{
-#' poisson_process_movie(lambda = 2, hours = 24)
+#' poisson_process_movie(lambda = 2)
+#' poisson_process_movie(lambda = 10)
+#' poisson_process_movie(lambda = 0.5)
 #' }
 #' @export
 poisson_process_movie <- function(lambda = 1, hours = 24, pos = 1,
                                   envir = as.environment(pos)) {
-  if (lambda <= 0L) {
+  if (lambda <= 0) {
     stop("lambda must be positive")
   }
   hours <- round(hours)
@@ -68,7 +73,7 @@ poisson_process_movie <- function(lambda = 1, hours = 24, pos = 1,
   # Assign variables to an environment so that they can be accessed inside
   # clt_normal_movie_plot()
   lambda_vec <- c(floor(lambda), ceiling(lambda))
-  ytop <- max(stats::dpois(lambda_vec, lambda)) * 1.25
+  ytop <- max(stats::dpois(lambda_vec, lambda)) * 1.5
   assign("lambda", lambda, envir = envir)
   assign("hours", hours, envir = envir)
   assign("ytop", ytop, envir = envir)
@@ -76,7 +81,8 @@ poisson_process_movie <- function(lambda = 1, hours = 24, pos = 1,
   assign("all_counts", all_counts, envir = envir)
   # Create buttons for movie
   clt_panel <- rpanel::rp.control("Poisson proces information",
-                                  lambda = lambda, hours = hours)
+                                  lambda = lambda, hours = hours,
+                                  envir = envir)
   rpanel::rp.button(clt_panel, repeatinterval = 20,
                     title = "simulate another sequence of events",
                     action = poisson_process_movie_plot)
@@ -89,17 +95,15 @@ poisson_process_movie <- function(lambda = 1, hours = 24, pos = 1,
 poisson_process_movie_plot <- function(panel) {
   with(panel, {
     old_par <- graphics::par(no.readonly = TRUE)
-    graphics::par(mfrow = c(2, 1), oma = c(0, 0, 0, 0),
-                  mar = c(4, 1, 2, 2) + 0.1)
+    graphics::layout(matrix(c(1,2), 2, 1), heights = c(1, 2))
+    graphics::par(oma = c(0, 0, 0, 0), mar = c(4, 1, 2, 2) + 0.1)
     assign("lambda", lambda, envir = envir)
     assign("hours", hours, envir = envir)
     assign("ytop", ytop, envir = envir)
-    # Simulate the total number of events in hours hours
-    # [We could also have done this by simulating the times between events
-    # from an exponential(lambda) distribution]
-    total_count <- stats::rpois(1, lambda = lambda * hours)
-    # Simulate the times at which the events occur given the total number
-    event_times <- stats::runif(total_count, 0, hours)
+    # Simulate events from a Poisson process of rate lambda per hour
+    # over the time interval (0, hours) hours
+    event_times <- simulate_poisson_process(lambda = lambda, hours = hours)
+    total_count <- length(event_times)
     # Allocate the events to the correct hour
     alloc_fun <- function(x) {
       return(sum(event_times > x & event_times <= x + 1L))
@@ -110,10 +114,10 @@ poisson_process_movie_plot <- function(panel) {
                    axes = FALSE, ann = FALSE, pch = "", cex = 2,
                    xlim = c(0, hours))
     graphics::rug(event_times, pos = 0.2, ticksize = 0.15, lwd = 1.75,
-                  col = "blue")
+                  col = "blue", quiet = TRUE)
     graphics::axis(1, at = 0:hours)
     graphics::abline(v = 0:hours, lty = 2, col = "grey")
-    graphics::title(xlab = "time (hours)")
+    graphics::title(xlab = "time (hours)", line = 2)
     graphics::points((1:hours) - 0.5, rep(-0.7, hours), col = "blue",
                      pch = as.character(n_events))
     graphics::title(main=bquote(paste(lambda == .(lambda))))
@@ -121,13 +125,51 @@ poisson_process_movie_plot <- function(panel) {
     graphics::par(mar = c(4, 4, 2, 2) + 0.1)
     all_counts <- c(all_counts, n_events)
     assign("all_counts", all_counts, envir = envir)
-    count_range <- min(all_counts):max(all_counts)
+    small_pois_quantile <- qpois(0.01, lambda = lambda)
+    large_pois_quantile <- qpois(0.99, lambda = lambda)
+    smallest_count <- min(min(all_counts), small_pois_quantile)
+    largest_count <- max(max(all_counts), large_pois_quantile)
+    count_range <- smallest_count:largest_count
     temp_counts <- c(all_counts, count_range)
     pmf <- (table(temp_counts) - 1) / length(all_counts)
     poisson_pmf <- stats::dpois(count_range, lambda)
+    # If the largest count in the plot has occurred in the data then add
+    # another category that will include an observed proportion of zero
+    if (largest_count ==  max(all_counts)) {
+      pmf <- c(pmf, 0)
+      poisson_pmf <- c(poisson_pmf, stats::ppois(largest_count,
+                                                 lambda = lambda,
+                                                 lower.tail = FALSE))
+      largest_count <- largest_count + 1L
+    } else {
+      n_p <- length(poisson_pmf)
+      poisson_pmf[n_p] <- stats::ppois(largest_count - 1L, lambda = lambda,
+                                       lower.tail = FALSE)
+    }
+    names(pmf)[length(pmf)] <- paste(">", largest_count - 1L)
+    # If the smallest count in the plot has occurred in the data, and this
+    # count is not zero, then add another category that will include an
+    # observed proportion of zero
+    if (smallest_count > 0L) {
+      if (smallest_count ==  min(all_counts)) {
+        pmf <- c(0, pmf)
+        smallest_count <- smallest_count - 1L
+        poisson_pmf <- c(poisson_pmf, stats::ppois(smallest_count, lambda = lambda))
+      } else {
+        poisson_pmf[1] <- stats::ppois(smallest_count, lambda = lambda)
+      }
+      names(pmf)[1] <- paste("<", smallest_count)
+    }
     pmf_mat <- rbind(pmf, poisson_pmf)
+    if (ncol(pmf_mat) > 20) {
+      cex.names <- 0.7
+    } else if (ncol(pmf_mat) > 10) {
+      cex.names <- 0.85
+    } else {
+      cex.names <- 1
+    }
     graphics::barplot(pmf_mat, las = 1, width = 0.5, beside = TRUE,
-                      ylim = c(0, ytop), col = 1:2)
+                      ylim = c(0, ytop), col = 1:2, cex.names = cex.names)
     title(ylab = "p.m.f.", xlab = "number of events in one hour")
     pjn <- paste("Poisson", expression(lambda))
     pjn <- expression(Poisson*(lambda)*~pmf)
