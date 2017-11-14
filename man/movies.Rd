@@ -94,4 +94,11 @@ Bowman, A., Crawford, E., Alexander, G. and Bowman, R. W.
 \code{\link{poisson_process_movie}}: illustrates the link between
   the Poisson process and the Poisson distrbution for the number of events
   that occur during a time interval of fixed length.
+
+\code{\link{normal_pdf_movie}}: shows the effect of the
+  mean and variance parameters of a normal distribution on its p.d.f..
+
+\code{\link{normal_areas_movie}}: shows how the probability that
+a standard normal random variable lies within plus or minus a multiple of
+its standard deviation varies with the value of the multiple.
 }

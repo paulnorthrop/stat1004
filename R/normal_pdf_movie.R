@@ -22,6 +22,8 @@
 #'   value of 0.1.
 #' @return Nothing is returned, only the animation is produced.
 #' @seealso \code{\link{movies}}: general information about STAT1004 movies.
+#' @seealso \code{\link{normal_areas_movie}}: normal central probability areas
+#'   movie.
 #' @examples
 #' # Load package rpanel
 #' # [Use install.packages("rpanel") if necessary]

@@ -18,6 +18,8 @@
 #'   a value of 5.
 #' @return Nothing is returned, only the animation is produced.
 #' @seealso \code{\link{movies}}: general information about STAT1004 movies.
+#' @seealso \code{\link{normal_pdf_movie}}: normal probability density function
+#'   movie.
 #' @examples
 #' # Load package rpanel
 #' # [Use install.packages("rpanel") if necessary]

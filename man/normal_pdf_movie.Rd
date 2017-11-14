@@ -49,4 +49,7 @@ normal_pdf_movie(delta_var = 1)
 }
 \seealso{
 \code{\link{movies}}: general information about STAT1004 movies.
+
+\code{\link{normal_areas_movie}}: normal central probability areas
+  movie.
 }

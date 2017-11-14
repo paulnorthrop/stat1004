@@ -42,4 +42,7 @@ normal_areas_movie()
 }
 \seealso{
 \code{\link{movies}}: general information about STAT1004 movies.
+
+\code{\link{normal_pdf_movie}}: normal probability density function
+  movie.
 }
