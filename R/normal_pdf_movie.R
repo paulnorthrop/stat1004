@@ -45,16 +45,17 @@ normal_pdf_movie <- function(starting_mean = 0, starting_var = 1,
   sigma2 <- starting_var
   # Create buttons for movie
   rpanel::rp.doublebutton(normal.panel, mu, delta_mean, range=c(-1e6, 1e6),
-                  repeatinterval = 20, title = "mean:", action = plot.normal)
+                  repeatinterval = 20, title = "mean:",
+                  action = plot_pdf_normal)
   rpanel::rp.doublebutton(normal.panel, sigma2, delta_var, range=c(0.1, 1e6),
                   repeatinterval = 20, title = "variance:",
-                  action = plot.normal)
+                  action = plot_pdf_normal)
   return(invisible())
 }
 
 # Function to be called by normal_pdf_movie().
 
-plot.normal <- function(panel) {
+plot_pdf_normal <- function(panel) {
   with(panel, {
     sigma <- sqrt(sigma2)
     ytop <- stats::dnorm(0, mean = 0, sd =sqrt(0.1))
