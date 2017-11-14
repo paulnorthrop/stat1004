@@ -6,7 +6,7 @@
 #' lies within plus or minus a multiple of its standard deviation (that is, 1)
 #' varies with the value of the multiple.
 #'
-#' @param starting_multiple A positive numeric scalar.  The value of the
+#' @param starting_multiple A non-negative numeric scalar.  The value of the
 #'   multiple used in the first plot.
 #' @param delta_multiple A numeric scalar.  The amount by which the value of
 #'   the multiple is increased/decreased after one click of the +/- button.
@@ -30,7 +30,7 @@
 #' @export
 normal_areas_movie <- function(starting_multiple = 1, delta_multiple = 1,
                                ndec = 3) {
-  if (starting_multiple <= 0) {
+  if (starting_multiple < 0) {
     stop("starting_multiple must be positive")
   }
   plot_areas_normal(list(multiple = starting_multiple, ndec = ndec))
@@ -62,10 +62,12 @@ plot_areas_normal <- function(panel) {
     polygon(xx, yy, col = gray(0.8))
     div <- 16
     div2 <- 7
-    arrows(0, -ytop/div2, multiple, -ytop / div2, code = 2, xpd = TRUE,
-           angle=15, length = 0.2)
-    arrows(0, -ytop/div2, -multiple, -ytop / div2, code = 2, xpd = TRUE,
-           angle=15, length = 0.2)
+    if (multiple > 0) {
+      arrows(0, -ytop/div2, multiple, -ytop / div2, code = 2, xpd = TRUE,
+             angle=15, length = 0.2)
+      arrows(0, -ytop/div2, -multiple, -ytop / div2, code = 2, xpd = TRUE,
+             angle=15, length = 0.2)
+    }
     text(0,-ytop / 5, paste("mean +/- ",multiple," SD"), xpd = TRUE)
     text(0, ytop / 3, round(2 * stats::pnorm(multiple) - 1, ndec))
   })

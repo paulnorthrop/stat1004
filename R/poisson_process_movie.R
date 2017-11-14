@@ -102,7 +102,7 @@ poisson_process_movie_plot <- function(panel) {
     assign("ytop", ytop, envir = envir)
     # Simulate events from a Poisson process of rate lambda per hour
     # over the time interval (0, hours) hours
-    event_times <- simulate_poisson_process(lambda = lambda, hours = hours)
+    event_times <- poisson_process_sim(lambda = lambda, hours = hours)
     total_count <- length(event_times)
     # Allocate the events to the correct hour
     alloc_fun <- function(x) {
@@ -110,14 +110,13 @@ poisson_process_movie_plot <- function(panel) {
     }
     # Produce the top plot
     n_events <- vapply(0:(hours - 1L), alloc_fun, 0)
-    graphics::plot(event_times, rep(0.3, total_count), ylim = c(-1, 1),
-                   axes = FALSE, ann = FALSE, pch = "", cex = 2,
-                   xlim = c(0, hours))
-    graphics::rug(event_times, pos = 0.2, ticksize = 0.15, lwd = 1.75,
+    plot(event_times, rep(0.3, total_count), ylim = c(-1, 1),
+                   ann = FALSE, pch = "", cex = 2, xlim = c(0, hours))
+    graphics::rug(event_times, pos = 0.2, ticksize = 0.15, lwd = 2,
                   col = "blue", quiet = TRUE)
     graphics::axis(1, at = 0:hours)
     graphics::abline(v = 0:hours, lty = 2, col = "grey")
-    graphics::title(xlab = "time (hours)", line = 2)
+    graphics::title(xlab = "time (hours)", line = 2.5)
     graphics::points((1:hours) - 0.5, rep(-0.7, hours), col = "blue",
                      pch = as.character(n_events))
     graphics::title(main=bquote(paste(lambda == .(lambda))))

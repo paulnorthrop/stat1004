@@ -18,13 +18,13 @@
 #' @return A numeric vector containing the (ordered, smallest to largest)
 #'   times at which the events occur.  The returned object has class
 #' @examples
-#' sim1 <- simulate_poisson_process(lambda = 2, hours = 24)
+#' sim1 <- poisson_process_sim(lambda = 2, hours = 24)
 #' plot(sim1)
 #'
-#' sim2 <- simulate_poisson_process(lambda = 2, n_events = 50)
+#' sim2 <- poisson_process_sim(lambda = 2, n_events = 50)
 #' plot(sim2)
 #' @export
-simulate_poisson_process <- function(lambda = 1, hours = 24, n_events = NULL) {
+poisson_process_sim <- function(lambda = 1, hours = 24, n_events = NULL) {
   if (is.null(n_events)) {
     # Simulate the total number of events in hours hours
     total_count <- stats::rpois(1, lambda = lambda * hours)

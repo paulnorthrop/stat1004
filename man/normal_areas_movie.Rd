@@ -7,7 +7,7 @@
 normal_areas_movie(starting_multiple = 1, delta_multiple = 1, ndec = 3)
 }
 \arguments{
-\item{starting_multiple}{A positive numeric scalar.  The value of the
+\item{starting_multiple}{A non-negative numeric scalar.  The value of the
 multiple used in the first plot.}
 
 \item{delta_multiple}{A numeric scalar.  The amount by which the value of
