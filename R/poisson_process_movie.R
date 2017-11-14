@@ -158,7 +158,7 @@ poisson_process_movie_plot <- function(panel) {
       } else {
         poisson_pmf[1] <- stats::ppois(smallest_count, lambda = lambda)
       }
-      names(pmf)[1] <- paste("<", smallest_count)
+      names(pmf)[1] <- paste("<", smallest_count + 1)
     }
     pmf_mat <- rbind(pmf, poisson_pmf)
     if (ncol(pmf_mat) > 20) {
