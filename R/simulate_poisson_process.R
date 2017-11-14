@@ -23,6 +23,7 @@
 #'
 #' sim2 <- simulate_poisson_process(lambda = 2, n_events = 50)
 #' plot(sim2)
+#' @export
 simulate_poisson_process <- function(lambda = 1, hours = 24, n_events = NULL) {
   if (is.null(n_events)) {
     # Simulate the total number of events in hours hours

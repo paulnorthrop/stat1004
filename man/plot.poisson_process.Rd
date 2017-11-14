@@ -24,7 +24,7 @@ Nothing is returned.
 sim1 <- simulate_poisson_process(lambda = 2, hours = 24)
 plot(sim1)
 sim2 <- simulate_poisson_process(lambda = 2, n_events = 50)
-plot(sim2)
+plot(sim2, pch = 4, xlab = "event times")
 }
 \seealso{
 \code{\link{simulate_poisson_process}}.
