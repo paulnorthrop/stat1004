@@ -16,7 +16,8 @@ simulate a Poisson process of rate \eqn{lambda} events per hour.}
 simulate.}
 }
 \value{
-A numeric vector containin the times at which the events occur.
+A numeric vector containing the (ordered, smallest to largest)
+  times at which the events occur.  The returned object has class
 }
 \description{
 Simulates event times from a (one-dimensional, homogeneous) Poisson process
@@ -30,4 +31,11 @@ If \code{n_events} is supplied then exactly \code{n_events} are
   supplied then events are simulated over the time interval
   (0, \code{hours}).  If no events occur in (0, \code{hours}) then
   the value -1 is returned.
+}
+\examples{
+sim1 <- simulate_poisson_process(lambda = 2, hours = 24)
+plot(sim1)
+
+sim2 <- simulate_poisson_process(lambda = 2, n_events = 50)
+plot(sim2)
 }

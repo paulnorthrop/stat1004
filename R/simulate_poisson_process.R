@@ -15,7 +15,14 @@
 #'   supplied then events are simulated over the time interval
 #'   (0, \code{hours}).  If no events occur in (0, \code{hours}) then
 #'   the value -1 is returned.
-#' @return A numeric vector containin the times at which the events occur.
+#' @return A numeric vector containing the (ordered, smallest to largest)
+#'   times at which the events occur.  The returned object has class
+#' @examples
+#' sim1 <- simulate_poisson_process(lambda = 2, hours = 24)
+#' plot(sim1)
+#'
+#' sim2 <- simulate_poisson_process(lambda = 2, n_events = 50)
+#' plot(sim2)
 simulate_poisson_process <- function(lambda = 1, hours = 24, n_events = NULL) {
   if (is.null(n_events)) {
     # Simulate the total number of events in hours hours
@@ -24,11 +31,12 @@ simulate_poisson_process <- function(lambda = 1, hours = 24, n_events = NULL) {
       return(-1L)
     }
     # Simulate the times at which the events occur given the total number
-    event_times <- stats::runif(total_count, 0, hours)
+    event_times <- sort(stats::runif(total_count, 0, hours))
   } else {
     # Simulate the times between events from an exponential(lambda) distribution
-    inter_event_times <- stats::rexp(n = n_event, rate = lambda)
+    inter_event_times <- stats::rexp(n = n_events, rate = lambda)
     event_times <- cumsum(inter_event_times)
   }
+  class(event_times) <- "poisson_process"
   return(event_times)
 }
