@@ -18,6 +18,7 @@ simulate.}
 \value{
 A numeric vector containing the (ordered, smallest to largest)
   times at which the events occur.  The returned object has class
+  "poisson_process".
 }
 \description{
 Simulates event times from a (one-dimensional, homogeneous) Poisson process

@@ -4,7 +4,7 @@
 \alias{poisson_process_movie}
 \title{Poisson process movie}
 \usage{
-poisson_process_movie(lambda = 1, h = 24, pos = 1,
+poisson_process_movie(lambda = 1, hours = 24, pos = 1,
   envir = as.environment(pos))
 }
 \arguments{
@@ -12,9 +12,9 @@ poisson_process_movie(lambda = 1, h = 24, pos = 1,
 [\code{lambda} must not exceed 200 because the plots in the movie
 are not designed to work for larger values of \code{lambda}.]}
 
-\item{h}{A positive integer scalar.  The number of hours for which to
+\item{hours}{A positive integer scalar.  The number of hours for which to
 simulate a Poisson process of rate \code{lambda} events per hour.
-For the purposes of this movide \code{h} must not be smaller than 1.}
+For the purposes of this movie \code{hours} must not be smaller than 1.}
 
 \item{pos}{A numeric integer.  Used in calls to \code{\link{assign}}
 to make information available across successive frames of a movie.
@@ -29,45 +29,49 @@ Nothing is returned, only the animation is produced.
 \description{
 A movie to illustrate that if events arrive in a Poisson process of
 rate \eqn{\lambda} per hour then (a) the number of events that arrive
-during a fixed interval of length \eqn{h} hours has a Poisson
-distribution with mean \eqn{\lambda h}; (b) the time between successive
+during a fixed interval of length \eqn{t} hours has a Poisson
+distribution with mean \eqn{\lambda t}; (b) the time between successive
 events has an exponential distribution with mean \eqn{1/\lambda}; (c)
 the arrival times are an (ordered) random sample from a uniform
-distribution on the interval \eqn{(0,h)}.
+distribution on the interval \eqn{(0,t)}.  Data are simulated from
+a Poisson process to illustrate this.  Alternatively, the use may supply
+their own arrival time data in order to assess, informally using graphs,
+whether or not these data seem consistent with arising from a Poisson
+process.
 }
 \details{
-This movie consists of two plots: one on the top of the display
+This movie contains of two plots: one on the top of the display
   the other on the bottom.
 
-  The top plot displays the times at which events simulated from a
-  Poisson process of rate \eqn{\lambda} events per hour occur during
-  the time intervals (0, \code{h} hours.  The total numbers of events
-  that occur in each hour are also displayed on the plot.  Each time the
-  button "simulate another sequence of events" is clicked a new set of
-  simulated events is produced.
+  Data are (repeatedly) simulated from a Poisson process of rate
+  \eqn{\lambda} events per hour occur during the time interval
+  (0, \code{hours}) hours.  The total numbers of events that occur in each
+  hour are also displayed on the plot.  Each time the button "simulate
+  another sequence of events" is clicked a new set of simulated events
+  is produced.
 
-  The bottom plot contains a barplot (the red bars) summarising how
-  often the an hour contains 0, 1, 2, ... events.  Specifically, the
-  proportions of the hours for which there are 0, 1 ,2, ... events is
-  plotted on the vertical axis.  This is an estimate of the probability
-  mass function of the random variable defined as the number of events
-  that occur in a one hour period, when those event occur in a Poisson
-  process of rate \eqn{\lambda} per hour.  Each time a set of events
-  is simulated the totals in each hour are \strong{added} to the
-  current collection of totals.
-
-  Also included in the bottom plot is a barplot (the black bars) showing
-  the p.m.f. of a Poisson(\eqn{\lambda}) random variable.  As the number
-  of totals added to plot increasing the black bars become closer and
-  closer to the red bars.
-
-  Note also that the independence assumption underlying the Poisson
-  process means that the numbers of events occurring in different
-  hours are independent.
+  The type of plot that appears in the bottom of the display depends
+  on the radio click by the user. The choices are
+  \itemize{
+  \item{"none" }{Nothing is plotted}
+  \item{"numbers of events in each hour" }{A barplot (the red bars) giving
+    the proportions of the hours for which there are 0, 1 , 2, ... events.
+    Also included are black bars showing the p.m.f. of a
+    Poisson(\eqn{\lambda}) random variable.}
+  \item{"times between events" }{A histogram (with red rectangles) of
+    the simulated times between events, with the p.d.f. of an
+    exponential(\eqn{\lambda}) random variable superimposed.}
+  \item{"times at which events occur" }{A histogram (with red rectangles)
+    of the simulated event times, with the p.d.f. of a
+    uniform(0, \code{hours}) random variable superimposed.}
+  }
+  Each time the currently-selected radio button is clicked then a new
+  set of events is simulated and these event are \strong{added} to
+  the current collection of simulated events.
 
   \strong{Note:} During the early stages of the simulations the
-    heights of the black bars may be incorrected because they extend
-    beyond the plot region.
+    heights of the black bars in the "numbers of events in each hour"
+    plot may be incorrected because they extend beyond the plot region.
 }
 \examples{
 # Load package rpanel

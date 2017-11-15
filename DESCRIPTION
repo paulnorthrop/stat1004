@@ -17,6 +17,7 @@ LazyData: TRUE
 RoxygenNote: 6.0.1
 Imports: stats,
     graphics,
+    grDevices,
     MASS,
     methods,
     utils,

@@ -17,6 +17,7 @@
 #'   the value -1 is returned.
 #' @return A numeric vector containing the (ordered, smallest to largest)
 #'   times at which the events occur.  The returned object has class
+#'   "poisson_process".
 #' @examples
 #' sim1 <- poisson_process_sim(lambda = 2, hours = 24)
 #' plot(sim1)

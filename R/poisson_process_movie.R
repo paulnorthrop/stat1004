@@ -4,55 +4,59 @@
 #'
 #' A movie to illustrate that if events arrive in a Poisson process of
 #' rate \eqn{\lambda} per hour then (a) the number of events that arrive
-#' during a fixed interval of length \eqn{h} hours has a Poisson
-#' distribution with mean \eqn{\lambda h}; (b) the time between successive
+#' during a fixed interval of length \eqn{t} hours has a Poisson
+#' distribution with mean \eqn{\lambda t}; (b) the time between successive
 #' events has an exponential distribution with mean \eqn{1/\lambda}; (c)
 #' the arrival times are an (ordered) random sample from a uniform
-#' distribution on the interval \eqn{(0,h)}.
+#' distribution on the interval \eqn{(0,t)}.  Data are simulated from
+#' a Poisson process to illustrate this.  Alternatively, the use may supply
+#' their own arrival time data in order to assess, informally using graphs,
+#' whether or not these data seem consistent with arising from a Poisson
+#' process.
 #'
 #' @param lambda A positive numeric scalar.  The rate of the Poisson process.
 #'   [\code{lambda} must not exceed 200 because the plots in the movie
 #'   are not designed to work for larger values of \code{lambda}.]
-#' @param h A positive integer scalar.  The number of hours for which to
+#' @param hours A positive integer scalar.  The number of hours for which to
 #'   simulate a Poisson process of rate \code{lambda} events per hour.
-#'   For the purposes of this movide \code{h} must not be smaller than 1.
+#'   For the purposes of this movie \code{hours} must not be smaller than 1.
 #' @param pos A numeric integer.  Used in calls to \code{\link{assign}}
 #'   to make information available across successive frames of a movie.
 #'   By default, uses the current environment.
 #' @param envir An alternative way (to \code{pos}) of specifying the
 #'   environment. See \code{\link{environment}}.
-#' @details This movie consists of two plots: one on the top of the display
+#' @details This movie contains of two plots: one on the top of the display
 #'   the other on the bottom.
 #'
-#'   The top plot displays the times at which events simulated from a
-#'   Poisson process of rate \eqn{\lambda} events per hour occur during
-#'   the time intervals (0, \code{h} hours.  The total numbers of events
-#'   that occur in each hour are also displayed on the plot.  Each time the
-#'   button "simulate another sequence of events" is clicked a new set of
-#'   simulated events is produced.
+#'   Data are (repeatedly) simulated from a Poisson process of rate
+#'   \eqn{\lambda} events per hour occur during the time interval
+#'   (0, \code{hours}) hours.  The total numbers of events that occur in each
+#'   hour are also displayed on the plot.  Each time the button "simulate
+#'   another sequence of events" is clicked a new set of simulated events
+#'   is produced.
 #'
-#'   The bottom plot contains a barplot (the red bars) summarising how
-#'   often the an hour contains 0, 1, 2, ... events.  Specifically, the
-#'   proportions of the hours for which there are 0, 1 ,2, ... events is
-#'   plotted on the vertical axis.  This is an estimate of the probability
-#'   mass function of the random variable defined as the number of events
-#'   that occur in a one hour period, when those event occur in a Poisson
-#'   process of rate \eqn{\lambda} per hour.  Each time a set of events
-#'   is simulated the totals in each hour are \strong{added} to the
-#'   current collection of totals.
-#'
-#'   Also included in the bottom plot is a barplot (the black bars) showing
-#'   the p.m.f. of a Poisson(\eqn{\lambda}) random variable.  As the number
-#'   of totals added to plot increasing the black bars become closer and
-#'   closer to the red bars.
-#'
-#'   Note also that the independence assumption underlying the Poisson
-#'   process means that the numbers of events occurring in different
-#'   hours are independent.
+#'   The type of plot that appears in the bottom of the display depends
+#'   on the radio click by the user. The choices are
+#'   \itemize{
+#'   \item{"none" }{Nothing is plotted}
+#'   \item{"numbers of events in each hour" }{A barplot (the red bars) giving
+#'     the proportions of the hours for which there are 0, 1 , 2, ... events.
+#'     Also included are black bars showing the p.m.f. of a
+#'     Poisson(\eqn{\lambda}) random variable.}
+#'   \item{"times between events" }{A histogram (with red rectangles) of
+#'     the simulated times between events, with the p.d.f. of an
+#'     exponential(\eqn{\lambda}) random variable superimposed.}
+#'   \item{"times at which events occur" }{A histogram (with red rectangles)
+#'     of the simulated event times, with the p.d.f. of a
+#'     uniform(0, \code{hours}) random variable superimposed.}
+#'   }
+#'   Each time the currently-selected radio button is clicked then a new
+#'   set of events is simulated and these event are \strong{added} to
+#'   the current collection of simulated events.
 #'
 #'   \strong{Note:} During the early stages of the simulations the
-#'     heights of the black bars may be incorrected because they extend
-#'     beyond the plot region.
+#'     heights of the black bars in the "numbers of events in each hour"
+#'     plot may be incorrected because they extend beyond the plot region.
 #' @return Nothing is returned, only the animation is produced.
 #' @seealso \code{\link{movies}}: general information about STAT1004 movies.
 #' @examples
@@ -67,7 +71,7 @@
 #' poisson_process_movie(lambda = 0.5)
 #' }
 #' @export
-poisson_process_movie <- function(lambda = 1, h = 24, pos = 1,
+poisson_process_movie <- function(lambda = 1, hours = 24, pos = 1,
                                   envir = as.environment(pos)) {
   if (lambda <= 0) {
     stop("lambda must be positive")
@@ -75,29 +79,29 @@ poisson_process_movie <- function(lambda = 1, h = 24, pos = 1,
   if (lambda > 200) {
     stop("The value of lambda is too large.  See the help file for details.")
   }
-  h <- round(h)
-  if (h < 1) {
-    stop("h must not be smaller than 1")
+  hours <- round(hours)
+  if (hours < 1) {
+    stop("hours must not be smaller than 1")
   }
   # Assign variables to an environment so that they can be accessed inside
   # clt_normal_movie_plot()
   lambda_vec <- c(floor(lambda), ceiling(lambda))
   ytop <- max(stats::dpois(lambda_vec, lambda)) * 1.5
   assign("lambda", lambda, envir = envir)
-  assign("h", h, envir = envir)
+  assign("hours", hours, envir = envir)
   assign("ytop", ytop, envir = envir)
   assign("old_type", "none", envir = envir)
+  event_times <- NULL
+  assign("event_times", event_times, envir = envir)
   all_counts <- NULL
   assign("all_counts", all_counts, envir = envir)
   all_inter_event_times <- NULL
   assign("all_inter_event_times", all_inter_event_times, envir = envir)
   all_event_times <- NULL
   assign("all_event_times", all_event_times, envir = envir)
-  event_times <- NULL
-  assign("event_times", event_times, envir = envir)
   # Create buttons for movie
   ppm_panel <- rpanel::rp.control("Poisson proces information",
-                                  lambda = lambda, h = h,
+                                  lambda = lambda, hours = hours,
                                   envir = envir)
   rpanel::rp.button(ppm_panel, repeatinterval = 20,
                     title = "simulate another sequence of events",
@@ -118,12 +122,12 @@ poisson_process_movie_plot <- function(panel) {
     graphics::layout(matrix(c(1,2), 2, 1), heights = c(1, 2))
     graphics::par(oma = c(0, 0, 0, 0), mar = c(4, 1, 2, 2) + 0.1)
     assign("lambda", lambda, envir = envir)
-    assign("h", h, envir = envir)
+    assign("hours", hours, envir = envir)
     assign("ytop", ytop, envir = envir)
     if (data_type == old_type) {
       # Simulate events from a Poisson process of rate lambda per hour
       # over the time interval (0, h) hours
-      event_times <- poisson_process_sim(lambda = lambda, h = h)
+      event_times <- poisson_process_sim(lambda = lambda, hours = hours)
       assign("event_times", event_times, envir = envir)
     }
     total_count <- length(event_times)
@@ -132,9 +136,9 @@ poisson_process_movie_plot <- function(panel) {
       return(sum(event_times > x & event_times <= x + 1L))
     }
     # Extract features of the data for storage
-    # Numbers of events in each hour
-    n_events <- vapply(0:(h - 1L), alloc_fun, 0)
+    n_events <- vapply(0:(hours - 1L), alloc_fun, 0)
     if (data_type == old_type) {
+      # Numbers of events in each hour
       all_counts <- c(all_counts, n_events)
       assign("all_counts", all_counts, envir = envir)
       # Times between events
@@ -148,14 +152,14 @@ poisson_process_movie_plot <- function(panel) {
     assign("old_type", data_type, envir = envir)
     # Produce the top plot
     plot(event_times, ylim = c(-1, 1), ann = FALSE, pch = "", cex = 2,
-         xlim = c(0, h))
+         xlim = c(0, hours))
     graphics::rug(event_times, pos = 0.2, ticksize = 0.15, lwd = 2,
                   col = "blue", quiet = TRUE)
-    graphics::axis(1, at = 0:h)
-    graphics::abline(v = 0:h, lty = 2, col = "grey")
+    graphics::axis(1, at = 0:hours)
+    graphics::abline(v = 0:hours, lty = 2, col = "grey")
     graphics::title(xlab = "time (hours)", line = 2.5)
     if (panel$data_type == "numbers of events in each hour") {
-      graphics::text((1:h) - 0.5, rep(-0.7, h), labels = n_events)
+      graphics::text((1:hours) - 0.5, rep(-0.7, hours), labels = n_events)
     }
     graphics::title(main=bquote(paste(lambda == .(lambda))))
     # Produce the bottom plot
@@ -190,7 +194,8 @@ poisson_process_movie_plot <- function(panel) {
         if (smallest_count ==  min(all_counts)) {
           pmf <- c(0, pmf)
           smallest_count <- smallest_count - 1L
-          poisson_pmf <- c(poisson_pmf, stats::ppois(smallest_count, lambda = lambda))
+          poisson_pmf <- c(poisson_pmf, stats::ppois(smallest_count,
+                                                     lambda = lambda))
         } else {
           poisson_pmf[1] <- stats::ppois(smallest_count, lambda = lambda)
         }
@@ -209,32 +214,47 @@ poisson_process_movie_plot <- function(panel) {
       title(ylab = "p.m.f.", xlab = "number of events in one hour")
       poisson_text <- expression(Poisson*(lambda)*~pmf)
       legend("topright", col = 2:1, fill = 2:1, yjust = 0,
-             legend = c("observed proportion", poisson_text))
+             legend = c("simulated proportions", poisson_text))
     } else if (panel$data_type == "times between events") {
-      graphics::hist(all_inter_event_times, probability = TRUE, col = 2,
-                     main = "", ylim = c(0, lambda), xlab = "")
-      title(xlab = "times between events")
       to <- max(max(all_inter_event_times), stats::qexp(0.99, rate = lambda))
+      graphics::hist(all_inter_event_times, probability = TRUE, col = 2,
+                     main = "", ylim = c(0, lambda), xlim = c(0, to),
+                     xlab = "", axes = FALSE)
+      graphics::axis(1, pos = 0)
+      graphics::axis(2)
+      title(xlab = "times between events")
       graphics::curve(dexp(x, rate = lambda), from = 0, to = to,
                       n = 500, lwd = 2, add = TRUE)
-      exp_text <- expression(exponential*(lambda)*~pdf)
+      exp_text <- expression(exponential*(lambda)*~pdf~" ")
       legend("topright", col = 2:1, fill = c(2, NA), lty = c(-1, 1),
              lwd = c(0, 2), yjust = 0, border = c(1, 0),
-             legend = c("observed proportion", exp_text))
+             legend = c("simulated data", exp_text))
     } else if (panel$data_type == "times at which events occur") {
+      number_of_classes <- grDevices::nclass.Sturges(all_event_times)
+      breaks <- seq(0, hours, len = number_of_classes)
       graphics::hist(all_event_times, probability = TRUE, col = 2, main = "",
-                     xlim = c(0, h), xlab = "")
+                     xlim = c(0, hours), xlab = "", breaks = breaks,
+                     axes = FALSE)
+      graphics::axis(1, pos = 0)
+      graphics::axis(2)
       title(xlab = "times at which events occur")
-      graphics::curve(dunif(x, min = 0, max = h), from = 0, to = h,
+      graphics::curve(dunif(x, min = 0, max = hours), from = 0, to = hours,
                       n = 500, lwd = 2, add = TRUE)
-      unif_text <- expression(uniform*(0*","*h)*~pdf)
-      legend("bottomright", col = 2:1, fill = c(2, NA), lty = c(-1, 1),
-             lwd = c(0, 2), yjust = 0, border = c(1, 0),
-             legend = c("observed proportion", unif_text))
+      unif_text <- expression(uniform*(0*","*hours)*~pdf)
+      u <- par("usr")
+      legend(0, 0, col = 2:1, fill = c(2, NA),
+             lty = c(-1, 1), lwd = c(0, 2), yjust = 0, xjust = 0,
+             border = c(1, 0), legend = c("simulated data", unif_text),
+             xpd = TRUE)
     } else {
       plot(1:10, 1:10, type = "n", axes = FALSE, ann = FALSE)
     }
     graphics::par(old_par)
   })
   return(invisible(panel))
+}
+
+fixed_width_hist <- function(x, lower = 0, upper = 1, ...) {
+
+
 }
