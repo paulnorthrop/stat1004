@@ -35,6 +35,7 @@ surrounding these data see
 }
 \examples{
 # Load packages rpanel and tkrplot
+\dontrun{
 library(rpanel)
 library(tkrplot)
 # [Use install.packages("tkrplot") if necessary]
@@ -44,6 +45,7 @@ library(tkrplot)
 rp.bubbleplot(log(gdp_per_capita), log(co2_per_capita), 1960:2014,
               size = population_size, col = life_expectancy,
               interpolate = TRUE, hscale = 1.5, vscale = 1.5)
+}
 }
 \seealso{
 \code{\link{movies}}: general information about STAT1004 movies.
