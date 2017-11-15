@@ -2,7 +2,8 @@
 
 #' Poisson process movie
 #'
-#' A movie to illustrate that if events arrive in a Poisson process of
+#' A movie to illustrate that if events arrive in a
+#' (one-dimensional, homogeneous) Poisson process of
 #' rate \eqn{\lambda} per hour then (a) the number of events that arrive
 #' during a fixed interval of length \eqn{t} hours has a Poisson
 #' distribution with mean \eqn{\lambda t}; (b) the time between successive
@@ -25,8 +26,8 @@
 #'   By default, uses the current environment.
 #' @param envir An alternative way (to \code{pos}) of specifying the
 #'   environment. See \code{\link{environment}}.
-#' @details This movie contains of two plots: one on the top of the display
-#'   the other on the bottom.
+#' @details This movie contains two displays of plots: one plot on the top and
+#'   one of three other plots on the bottom.
 #'
 #'   Data are (repeatedly) simulated from a Poisson process of rate
 #'   \eqn{\lambda} events per hour occur during the time interval
@@ -50,7 +51,8 @@
 #'     of the simulated event times, with the p.d.f. of a
 #'     uniform(0, \code{hours}) random variable superimposed.}
 #'   }
-#'   Each time the currently-selected radio button is clicked then a new
+#'   Each time the "simulate another sequence of events" button is clicked
+#'   [or the currently-selected radio button is clicked again] then a new
 #'   set of events is simulated and these event are \strong{added} to
 #'   the current collection of simulated events.
 #'
@@ -59,6 +61,8 @@
 #'     plot may be incorrected because they extend beyond the plot region.
 #' @return Nothing is returned, only the animation is produced.
 #' @seealso \code{\link{movies}}: general information about STAT1004 movies.
+#' @seealso \code{\link{poisson_process_check}}: for similar plots based on
+#'   data supplied by a user.
 #' @examples
 #' # Load package rpanel
 #' # [Use install.packages("rpanel") if necessary]
@@ -254,7 +258,3 @@ poisson_process_movie_plot <- function(panel) {
   return(invisible(panel))
 }
 
-fixed_width_hist <- function(x, lower = 0, upper = 1, ...) {
-
-
-}
