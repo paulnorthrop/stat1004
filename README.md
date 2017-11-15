@@ -12,7 +12,7 @@ The `stat1004` package provides R code, datasets and vignettes (tutorials demons
 
 The package is:
 
--   in the early stages of development;
+-   in the middling stages of development;
 -   probably of little use to people not taking STAT1004 at UCL.
 
 ### Installation
