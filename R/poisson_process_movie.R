@@ -88,7 +88,7 @@ poisson_process_movie <- function(lambda = 1, hours = 24, pos = 1,
     stop("hours must not be smaller than 1")
   }
   # Assign variables to an environment so that they can be accessed inside
-  # clt_normal_movie_plot()
+  # poisson_process_movie_plot()
   lambda_vec <- c(floor(lambda), ceiling(lambda))
   ytop <- max(stats::dpois(lambda_vec, lambda)) * 1.5
   assign("lambda", lambda, envir = envir)
@@ -103,6 +103,7 @@ poisson_process_movie <- function(lambda = 1, hours = 24, pos = 1,
   assign("all_inter_event_times", all_inter_event_times, envir = envir)
   all_event_times <- NULL
   assign("all_event_times", all_event_times, envir = envir)
+  data_type <- "none"
   # Create buttons for movie
   ppm_panel <- rpanel::rp.control("Poisson proces information",
                                   lambda = lambda, hours = hours,
@@ -134,7 +135,6 @@ poisson_process_movie_plot <- function(panel) {
       event_times <- poisson_process_sim(lambda = lambda, hours = hours)
       assign("event_times", event_times, envir = envir)
     }
-    total_count <- length(event_times)
     # Allocate the events to the correct hour
     alloc_fun <- function(x) {
       return(sum(event_times > x & event_times <= x + 1L))
