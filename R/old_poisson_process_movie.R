@@ -60,7 +60,6 @@
 #' poisson_process_movie(lambda = 10)
 #' poisson_process_movie(lambda = 0.5)
 #' }
-#' @export
 old_poisson_process_movie <- function(lambda = 1, hours = 24, pos = 1,
                                   envir = as.environment(pos)) {
   if (lambda <= 0) {
@@ -92,7 +91,7 @@ old_poisson_process_movie <- function(lambda = 1, hours = 24, pos = 1,
 
 # Function to be called by poisson_process_movie().
 
-poisson_process_movie_plot <- function(panel) {
+old_poisson_process_movie_plot <- function(panel) {
   with(panel, {
     old_par <- graphics::par(no.readonly = TRUE)
     graphics::layout(matrix(c(1,2), 2, 1), heights = c(1, 2))
