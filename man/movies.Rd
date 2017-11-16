@@ -39,6 +39,10 @@ object \code{name}.
 # [Use install.packages("rpanel") if necessary]
 library(rpanel)
 
+\dontrun{
+# Load package rpanel
+library(rpanel)
+
 # Challenger space shuttle data -------------
 
 # Movie based on datasets of size 23
@@ -48,14 +52,14 @@ shuttle_movie(n_reps = 10)
 
 # Rosling-style animated scatterplot -------------
 
-# Load packages rpanel and tkrplot
-library(rpanel)
+# Load package tkrplot
 library(tkrplot)
 # [Use install.packages("tkrplot") if necessary]
 
 rp.bubbleplot(log(gdp_per_capita), log(co2_per_capita), 1960:2014,
               size = population_size, col = life_expectancy,
               interpolate = TRUE, hscale = 1.5, vscale = 1.5)
+}
 }
 \references{
 Bowman, A., Crawford, E., Alexander, G. and Bowman, R. W.
