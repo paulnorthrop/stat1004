@@ -99,7 +99,7 @@ poisson_process_check <- function(user_data = NULL, total_time = NULL,
   # Numbers of events in each hour
   n_events <- vapply(0:(total_time - 1L), alloc_fun, 0)
   # Create buttons for movie
-  ppc_panel <- rpanel::rp.control("Poisson proces information",
+  ppc_panel <- rpanel::rp.control("Data information",
                                   event_times = event_times,
                                   total_time = total_time,
                                   intervals = intervals,

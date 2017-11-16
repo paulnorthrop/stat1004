@@ -105,7 +105,7 @@ poisson_process_movie <- function(lambda = 1, hours = 24, pos = 1,
   assign("all_event_times", all_event_times, envir = envir)
   data_type <- "none"
   # Create buttons for movie
-  ppm_panel <- rpanel::rp.control("Poisson proces information",
+  ppm_panel <- rpanel::rp.control("Poisson process information",
                                   lambda = lambda, hours = hours,
                                   envir = envir)
   rpanel::rp.button(ppm_panel, repeatinterval = 20,
