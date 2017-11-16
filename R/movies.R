@@ -56,6 +56,10 @@
 #' @seealso  \code{\link{poisson_process_movie}}: illustrates the link between
 #'   the Poisson process and the Poisson distrbution for the number of events
 #'   that occur during a time interval of fixed length.
+#' @seealso  \code{\link{poisson_process_check}}: uses the plots in
+#'   \code{\link{poisson_process_movie}} to perform informal graphical checks
+#'   of whether the arrival times of a sequence of events is consistent
+#'   with arising from a Poisson process.
 #' @seealso  \code{\link{normal_pdf_movie}}: shows the effect of the
 #'   mean and variance parameters of a normal distribution on its p.d.f..
 #' @seealso  \code{\link{normal_areas_movie}}: shows how the probability that

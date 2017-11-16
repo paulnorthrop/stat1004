@@ -80,6 +80,9 @@ If you have any questions about this package please ask them via the
   \item {\link[=clt_exponential_movie]{Central Limit Theorem movie:
     exponential data}}
   \item {\link[=poisson_process_movie]{Poisson process movie}}
+  \item {\link[=poisson_process_check]{Informal graphical checks of
+    whether events seem to be consistent with arriving in a Poisson
+    process}}
   \item {\link[=normal_pdf_movie]{Normal probability density function movie}}
   \item {\link[=normal_areas_movie]{Normal central probability areas movie}}
   \item {\link[=qq_plot_movie]{Construction of a (normal) QQ plot}}
