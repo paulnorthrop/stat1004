@@ -22,7 +22,13 @@ A movie to illustrate the constructions of a normal Quantile-Quantile
 (QQ) plot.
 }
 \details{
-Add details.
+This movie enables the user to scroll forwards and backwards
+  through plots that describe the way in which a (normal) QQ plot is
+  produced.  This movie is designed for simple illustrative examples
+  with small numbers of observations, that is, for small
+  \code{\length(data)}.  The example below has only 9 observations.
+  In cases where there are many more observations than this the plots
+  will be a bit of a mess!
 }
 \examples{
 # Load package rpanel
