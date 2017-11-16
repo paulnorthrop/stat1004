@@ -119,7 +119,8 @@ qq_movie_plot <- function(panel) {
                                       sd = sigma), lty = 2)
       graphics::axis(1, at = normal_quantiles, labels = nq_labels,
                      line = -7, lty = 0, cex.axis = 1)
-      graphics::axis(1, at = normal_quantiles, labels = nq_labels, pos = 0)
+      graphics::axis(1, at = normal_quantiles,
+                     labels = round(normal_quantiles, 2), pos = 0)
       graphics::axis(1, at = x_locs, labels = c("", xlabs, ""), line = -2.5,
                      col = 0)
       graphics::axis(1, at = c(range_x[1], range_x[2]), labels = c("", ""),
