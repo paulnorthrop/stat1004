@@ -61,8 +61,9 @@
 #' @seealso  \code{\link{normal_areas_movie}}: shows how the probability that
 #' a standard normal random variable lies within plus or minus a multiple of
 #' its standard deviation varies with the value of the multiple.
+#' @seealso  \code{\link{qq_plot_movie}}: shows how a (normal) QQ plot is
+#'   constructed, using a small example dataset.
 #' @examples
-#'
 #' # Load package rpanel
 #' # [Use install.packages("rpanel") if necessary]
 #' library(rpanel)

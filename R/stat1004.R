@@ -67,6 +67,7 @@
 #'   \item {\link[=poisson_process_movie]{Poisson process movie}}
 #'   \item {\link[=normal_pdf_movie]{Normal probability density function movie}}
 #'   \item {\link[=normal_areas_movie]{Normal central probability areas movie}}
+#'   \item {\link[=qq_plot_movie]{Construction of a (normal) QQ plot}}
 #' }
 #' @seealso The \href{https://moodle.ucl.ac.uk/course/view.php?id=3419&section=0}{STAT1004 Moodle page}
 #'   for: various forms of feedback, a discussion forum, lecturecast recordings,
