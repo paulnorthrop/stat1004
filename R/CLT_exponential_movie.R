@@ -71,7 +71,8 @@ clt_exponential_movie <- function(n = 30, lambda = 1, xlab = "x", pos = 1,
   assign("lambda", lambda, envir = envir)
   assign("xlab", xlab, envir = envir)
   # Create buttons for movie
-  clt_panel <- rpanel::rp.control("sample size", n = n, lambda = lambda)
+  clt_panel <- rpanel::rp.control("sample size", n = n, lambda = lambda,
+                                  envir = envir)
   rpanel::rp.doublebutton(clt_panel, n, 1, range=c(1, 1000),
                           repeatinterval = 20, initval = n,
                           title = "sample size, n",

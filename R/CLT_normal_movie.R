@@ -73,7 +73,8 @@ clt_normal_movie <- function(n = 30, mu = 0, sigma = 1, xlab = "x", pos = 1,
   assign("sigma", sigma, envir = envir)
   assign("xlab", xlab, envir = envir)
   # Create buttons for movie
-  clt_norm_panel <- rpanel::rp.control("sample size", n = n, mu = mu, sigma = sigma)
+  clt_norm_panel <- rpanel::rp.control("sample size", n = n, mu = mu,
+                                       sigma = sigma, envir = envir)
   rpanel::rp.doublebutton(clt_norm_panel, n, 1, range=c(1, 1000),
                           repeatinterval = 20, initval = n,
                           title = "sample size, n",
