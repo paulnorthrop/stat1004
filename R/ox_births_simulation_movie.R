@@ -38,8 +38,7 @@
 #' ox_births_movie()
 #' }
 #' @export
-ox_births_movie <- function(starting_n = 100, delta_n = 1000, pos = 1,
-                            envir = as.environment(pos)) {
+ox_births_movie <- function(starting_n = 100, delta_n = 1000) {
   # Fit a gamma distribution to the birth times
   x <- stat1004::ox_births[, "time"]
   fit_gamma <- stats::glm(x ~ 1, family = stats::Gamma(link = "identity"))
