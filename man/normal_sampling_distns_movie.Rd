@@ -25,13 +25,23 @@ Nothing is returned, only the animation is produced.
 }
 \description{
 A movie to show how the sampling distributions of the sample mean
-and sample variance based on a randon sample from a normal distribution
+and sample variance based on a random sample from a normal distribution
 depend on the size \eqn{n} of the sample.
 }
 \details{
-The value of the sample size can be changed using the +/-
-  buttons in the panel.
-  For the purposes of this movie the value of \eqn{n} cannot exceed 100.
+The movie is based on two plots.  The top plot shows the
+  probability density function (p.d.f.) of the sampling distribution of the
+  sample mean, that is, a N(\eqn{\mu}, \eqn{\sigma}^2 / n) distribution.
+  The bottom plot contains the p.d.f. of the sampling distribution of the
+  sample variance, that is, a gamma distribution
+  (\code{\link[stats]{GammaDist}}) with shape parameter
+  \eqn{(n - 1) / 2} and rate parameter \eqn{(n - 1) / 2\sigma^2}.
+
+  The number of samples simulated is increased
+
+  The value of the sample size can be changed using the +/-
+  buttons in the panel.  For the purposes of this movie the value of
+  \eqn{n} cannot exceed 100.
 }
 \examples{
 # Load package rpanel

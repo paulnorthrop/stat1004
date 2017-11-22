@@ -3,7 +3,7 @@
 #' Normal sampling distributions movie
 #'
 #' A movie to show how the sampling distributions of the sample mean
-#' and sample variance based on a randon sample from a normal distribution
+#' and sample variance based on a random sample from a normal distribution
 #' depend on the size \eqn{n} of the sample.
 #'
 #' @param starting_n A numeric scalar.  The value of the sample size used
@@ -14,9 +14,19 @@
 #'   which the random sample are drawn.
 #' @param sigma A numeric scalar.  The standard deviation of the normal
 #'   distribution from which the random sample are drawn.
-#' @details The value of the sample size can be changed using the +/-
-#'   buttons in the panel.
-#'   For the purposes of this movie the value of \eqn{n} cannot exceed 100.
+#' @details The movie is based on two plots.  The top plot shows the
+#'   probability density function (p.d.f.) of the sampling distribution of the
+#'   sample mean, that is, a N(\eqn{\mu}, \eqn{\sigma}^2 / n) distribution.
+#'   The bottom plot contains the p.d.f. of the sampling distribution of the
+#'   sample variance, that is, a gamma distribution
+#'   (\code{\link[stats]{GammaDist}}) with shape parameter
+#'   \eqn{(n - 1) / 2} and rate parameter \eqn{(n - 1) / 2\sigma^2}.
+#'
+#'   The number of samples simulated is increased
+#'
+#'   The value of the sample size can be changed using the +/-
+#'   buttons in the panel.  For the purposes of this movie the value of
+#'   \eqn{n} cannot exceed 100.
 #' @return Nothing is returned, only the animation is produced.
 #' @seealso \code{\link{movies}}: general information about STAT1004 movies.
 #' @examples
@@ -29,18 +39,20 @@
 #' normal_sampling_distns_movie()
 #' }
 #' @export
-normal_sampling_distns_movie <- function(starting_n = 30, delta_n = 1,
-                                                mu = 0, sigma = 1) {
+normal_sampling_distns_movie <- function(starting_n = 30, delta_n = 1, mu = 0,
+                                         sigma = 1) {
   if (starting_n <= 0) {
     stop("starting_n must be positive")
   }
   # Create buttons for movie
-  normal_sd_panel <- rp.control("sample size", n = starting_n, mu = mu,
-                                sigma = sigma, ntop = 100)
-  rp.doublebutton(normal_sd_panel, n, delta_n, range=c(1, 100), repeatinterval = 20,
-                  initval = starting_n, title = "sample size",
-                  action = plot_normal_sampling_distributions)
-  rp.do(normal_sd_panel, plot_normal_sampling_distributions)
+  normal_sd_panel <- rpanel::rp.control("sample size", n = starting_n, mu = mu,
+                                        sigma = sigma, ntop = 100)
+  n <- starting_n
+  rpanel::rp.doublebutton(normal_sd_panel, n, delta_n, range = c(1, 100),
+                          repeatinterval = 20, initval = starting_n,
+                          title = "sample size",
+                          action = plot_normal_sampling_distributions)
+  rpanel::rp.do(normal_sd_panel, plot_normal_sampling_distributions)
   return(invisible())
 }
 
@@ -85,5 +97,5 @@ plot_normal_sampling_distributions <- function(panel) {
     graphics::abline(v = sigma ^ 2, lty = 2)
     graphics::par(old_par)
   })
-  return(panel)
+  return(invisible(panel))
 }
