@@ -66,6 +66,7 @@
 #'   \item {\link[=normal_pdf_movie]{Normal probability density function movie}}
 #'   \item {\link[=normal_areas_movie]{Normal central probability areas movie}}
 #'   \item {\link[=qq_plot_movie]{Construction of a (normal) QQ plot}}
+#'   \item {\link[=normal_sampling_distns_movie]{Normal sampling distributions movie}}
 #'   \item {\link[=clt_normal_movie]{Central Limit Theorem movie: normal data}}
 #'   \item {\link[=clt_exponential_movie]{Central Limit Theorem movie:
 #'     exponential data}}

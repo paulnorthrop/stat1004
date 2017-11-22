@@ -105,6 +105,11 @@ its standard deviation varies with the value of the multiple.
 \code{\link{qq_plot_movie}}: shows how a (normal) QQ plot is
   constructed, using a small example dataset.
 
+\code{\link{normal_sampling_distns_movie}}: shows how the
+  sampling distributions of the sample mean and sample variance based
+  on a randon sample from a normal distribution depend on the size
+  \eqn{n} of the sample.
+
 \code{\link{clt_normal_movie}}: illustrates the ideas of a
   sampling distribution of a random variable and the central limit
   theorem (CLT), using normally distributed data.
