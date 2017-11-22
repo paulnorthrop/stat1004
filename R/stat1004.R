@@ -68,6 +68,7 @@
 #'   \item {\link[=qq_plot_movie]{Construction of a (normal) QQ plot}}
 #'   \item {\link[=normal_sampling_distns_movie]{Normal sampling distributions movie}}
 #'   \item {\link[=mean_vs_median_normal_movie]{Mean vs median for a normal random sample}}
+#'   \item {\link[=mean_vs_median_t_movie]{Mean vs median for a Student's t random sample}}
 #'   \item {\link[=clt_normal_movie]{Central Limit Theorem movie: normal data}}
 #'   \item {\link[=clt_exponential_movie]{Central Limit Theorem movie:
 #'     exponential data}}

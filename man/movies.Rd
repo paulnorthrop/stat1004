@@ -114,6 +114,10 @@ its standard deviation varies with the value of the multiple.
   sampling distributions of the sample mean and sample median based
   on a random sample of size \eqn{n} from a standard normal distribution.
 
+\code{\link{mean_vs_median_t_movie}}: compares the
+  sampling distributions of the sample mean and sample median based
+  on a random sample of size \eqn{n} from a Student't t distribution.
+
 \code{\link{clt_normal_movie}}: illustrates the ideas of a
   sampling distribution of a random variable and the central limit
   theorem (CLT), using normally distributed data.
