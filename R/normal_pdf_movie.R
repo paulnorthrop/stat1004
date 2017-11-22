@@ -17,7 +17,7 @@
 #'   variance is increased/decreased after one click of the +/- button for the
 #'   variance.
 #' @details The values of the mean and/or variance can be changed using the
-#'   +/i buttons in the panel.
+#'   +/- buttons in the panel.
 #'   For the purposes of this movie, the variance cannot be reduced below a
 #'   value of 0.1.
 #' @return Nothing is returned, only the animation is produced.
