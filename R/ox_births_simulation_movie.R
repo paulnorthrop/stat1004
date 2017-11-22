@@ -12,11 +12,6 @@
 #' @param delta_n A numeric scalar.  The amount by which the sample size
 #'   is increased (or decreased) after one click of the + (or -) button
 #'   in the parameter window.
-#' @param pos A numeric integer.  Used in calls to \code{\link{assign}}
-#'   to make information available across successive frames of a movie.
-#'   By default, uses the current environment.
-#' @param envir An alternative way (to \code{pos}) of specifying the
-#'   environment. See \code{\link{environment}}.
 #' @details \code{ox_births_movie} first fits a
 #'   \href{https://en.wikipedia.org/wiki/Gamma_distribution}{gamma distribution}
 #'   (see \code{\link[stats]{GammaDist}}) to the \code{time} data in the
