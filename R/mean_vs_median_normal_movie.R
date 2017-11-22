@@ -1,6 +1,6 @@
 # ========================= mean_vs_median_normal_movie =======================
 
-#' Sample mean vs sample median: normal data
+#' Sample mean vs sample median: normally distributed data
 #'
 #' A movie to compare the sampling distributions of the sample mean
 #' and sample median based on a random sample of size \eqn{n} from a
@@ -8,6 +8,8 @@
 #'
 #' @param n An integer scalar.  The size of the samples drawn from a
 #'   standard normal distribution.
+#' @param delta_n A numeric scalar.  The amount by which the value of the
+#'   sample size is increased/decreased after one click of the +/- button.
 #' @param pos A numeric integer.  Used in calls to \code{\link{assign}}
 #'   to make information available across successive frames of a movie.
 #'   By default, uses the current environment.
@@ -41,6 +43,9 @@
 #'   buttons in the panel.
 #' @return Nothing is returned, only the animation is produced.
 #' @seealso \code{\link{movies}}: general information about STAT1004 movies.
+#' @seealso  \code{\link{mean_vs_median_t_movie}}: compares the
+#'   sampling distributions of the sample mean and sample median based
+#'   on a random sample of size \eqn{n} from a Student't t distribution.
 #' @examples
 #' # Load package rpanel
 #' # [Use install.packages("rpanel") if necessary]
@@ -51,22 +56,21 @@
 #' mean_vs_median_normal_movie()
 #' }
 #' @export
-mean_vs_median_normal_movie <- function(n = 10, pos = 1,
+mean_vs_median_normal_movie <- function(n = 10, delta_n = 1, pos = 1,
                                         envir = as.environment(pos)) {
-
   # Assign variables to an environment so that they can be accessed inside
-  # clt_normal_movie_plot()
+  # mean_vs_median_normal_plot()
   old_n <- 0
   assign("old_n", old_n, envir = envir)
   # Create buttons for movie
   nsim <- 1
-  mean_vs_median_panel <- rpanel::rp.control("sample size", n = 10, nsim = 1,
+  mean_vs_median_panel <- rpanel::rp.control("sample size", n = n, nsim = 1,
                                              ntop = 1000, envir = envir)
-  rpanel::rp.doublebutton(mean_vs_median_panel, n, 1, range=c(1,100),
-                          repeatinterval = 20, initval = 44,
+  rpanel::rp.doublebutton(mean_vs_median_panel, n, delta_n, range = c(1, 1000),
+                          repeatinterval = 20, initval = n,
                           title = "sample size, n",
                           action = mean_vs_median_normal_plot)
-  rpanel::rp.doublebutton(mean_vs_median_panel, nsim, 1, range=c(1,10000),
+  rpanel::rp.doublebutton(mean_vs_median_panel, nsim, 1, range = c(1, 10000),
                           repeatinterval = 20, initval = 1,
                           title = "number of samples of size n",
                           action = mean_vs_median_normal_plot)
@@ -86,7 +90,8 @@ mean_vs_median_normal_plot <- function(panel) {
     y <- stats::rnorm(n,mean=mu,sd=sigma)
     mean.y <- mean(y)
     if (nsim==1 | n!=old_n) {
-      sample.means <- mean(y); nsim <- 1
+      sample.means <- mean(y)
+      nsim <- 1
     } else {
       sample.means <- c(sample.means, mean(y))
     }
@@ -110,18 +115,19 @@ mean_vs_median_normal_plot <- function(panel) {
                    axes = FALSE, xlab = "raw data", ylab = "density",
                    main = "", ylim = c(0, ytop))
     graphics::axis(2)
-    graphics::axis(1,at=br2,labels=br2,line=0.5);rug(y,line=0.5,ticksize=0.05)
+    graphics::axis(1, at = br2, labels = br2, line = 0.5)
+    graphics::rug(y,line = 0.5, ticksize = 0.05)
     graphics::title(paste("sample size, n = ",n))
     graphics::curve(dnorm(x, mean = mu, sd = sigma), from = h.low, to = h.up,
                     n = 500, bty ="l", ylab = "density", las = 1, xpd = TRUE,
                     lwd = 3, add = TRUE, lty = 2)
     u <- graphics::par("usr")
-    legend(u[2], u[4], legend = expression(paste("N(0,",1,")")),
+    graphics::legend(u[2], u[4], legend = expression(paste("N(0,",1,")")),
            lty = 2, lwd = 3, xjust = 1, cex = 1.5)
-    segments(mean.y, 0, mean.y, -10, col = "red", xpd = TRUE, lwd = 2)
-    points(mean.y, 0,pch = 16, col = "red", cex = 2)
-    segments(median.y, 0, median.y, -10, col = "blue", xpd = TRUE, lwd = 2)
-    points(median.y, 0, pch = 16, col = "blue", cex = 2)
+    graphics::segments(mean.y, 0, mean.y, -10, col = "red", xpd = TRUE, lwd = 2)
+    graphics::points(mean.y, 0,pch = 16, col = "red", cex = 2)
+    graphics::segments(median.y, 0, median.y, -10, col = "blue", xpd = TRUE, lwd = 2)
+    graphics::points(median.y, 0, pch = 16, col = "blue", cex = 2)
     ytop <- dnorm(0, sd = sigma / sqrt(n)) * 1.1
     if (n <= 25) {
       my.by <- 0.1

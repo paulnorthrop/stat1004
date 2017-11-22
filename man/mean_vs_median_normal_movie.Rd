@@ -2,13 +2,17 @@
 % Please edit documentation in R/mean_vs_median_normal_movie.R
 \name{mean_vs_median_normal_movie}
 \alias{mean_vs_median_normal_movie}
-\title{Sample mean vs sample median: normal data}
+\title{Sample mean vs sample median: normally distributed data}
 \usage{
-mean_vs_median_normal_movie(n = 10, pos = 1, envir = as.environment(pos))
+mean_vs_median_normal_movie(n = 10, delta_n = 1, pos = 1,
+  envir = as.environment(pos))
 }
 \arguments{
 \item{n}{An integer scalar.  The size of the samples drawn from a
 standard normal distribution.}
+
+\item{delta_n}{A numeric scalar.  The amount by which the value of the
+sample size is increased/decreased after one click of the +/- button.}
 
 \item{pos}{A numeric integer.  Used in calls to \code{\link{assign}}
 to make information available across successive frames of a movie.
@@ -65,4 +69,8 @@ mean_vs_median_normal_movie()
 }
 \seealso{
 \code{\link{movies}}: general information about STAT1004 movies.
+
+\code{\link{mean_vs_median_t_movie}}: compares the
+  sampling distributions of the sample mean and sample median based
+  on a random sample of size \eqn{n} from a Student't t distribution.
 }
