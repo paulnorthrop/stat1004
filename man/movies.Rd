@@ -86,14 +86,6 @@ Bowman, A., Crawford, E., Alexander, G. and Bowman, R. W.
   function (p.m.f.) of a binomial random variable depends on its two
   parameters.
 
-\code{\link{clt_normal_movie}}: illustrates the ideas of a
-  sampling distribution of a random variable and the central limit
-  theorem (CLT), using normally distributed data.
-
-\code{\link{clt_exponential_movie}}: illustrates the ideas of a
-  sampling distribution of a random variable and the central limit
-  theorem (CLT), using exponentially distributed data..
-
 \code{\link{poisson_process_movie}}: illustrates the link between
   the Poisson process and the Poisson distrbution for the number of events
   that occur during a time interval of fixed length.
@@ -112,4 +104,12 @@ its standard deviation varies with the value of the multiple.
 
 \code{\link{qq_plot_movie}}: shows how a (normal) QQ plot is
   constructed, using a small example dataset.
+
+\code{\link{clt_normal_movie}}: illustrates the ideas of a
+  sampling distribution of a random variable and the central limit
+  theorem (CLT), using normally distributed data.
+
+\code{\link{clt_exponential_movie}}: illustrates the ideas of a
+  sampling distribution of a random variable and the central limit
+  theorem (CLT), using exponentially distributed data..
 }

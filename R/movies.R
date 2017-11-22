@@ -47,12 +47,6 @@
 #' @seealso  \code{\link{binomial_pmf_movie}}: shows how the probability mass
 #'   function (p.m.f.) of a binomial random variable depends on its two
 #'   parameters.
-#' @seealso  \code{\link{clt_normal_movie}}: illustrates the ideas of a
-#'   sampling distribution of a random variable and the central limit
-#'   theorem (CLT), using normally distributed data.
-#' @seealso  \code{\link{clt_exponential_movie}}: illustrates the ideas of a
-#'   sampling distribution of a random variable and the central limit
-#'   theorem (CLT), using exponentially distributed data..
 #' @seealso  \code{\link{poisson_process_movie}}: illustrates the link between
 #'   the Poisson process and the Poisson distrbution for the number of events
 #'   that occur during a time interval of fixed length.
@@ -67,6 +61,12 @@
 #' its standard deviation varies with the value of the multiple.
 #' @seealso  \code{\link{qq_plot_movie}}: shows how a (normal) QQ plot is
 #'   constructed, using a small example dataset.
+#' @seealso  \code{\link{clt_normal_movie}}: illustrates the ideas of a
+#'   sampling distribution of a random variable and the central limit
+#'   theorem (CLT), using normally distributed data.
+#' @seealso  \code{\link{clt_exponential_movie}}: illustrates the ideas of a
+#'   sampling distribution of a random variable and the central limit
+#'   theorem (CLT), using exponentially distributed data..
 #' @examples
 #' # Load package rpanel
 #' # [Use install.packages("rpanel") if necessary]

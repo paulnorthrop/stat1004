@@ -61,14 +61,14 @@
 #'   \item {\link[=world_bank_movie]{World Bank Development Indicators}}
 #'   \item {\link[=ox_births_movie]{Oxford Birth Times Simulation Movie}}
 #'   \item {\link[=binomial_pmf_movie]{Binomial p.m.f. movie}}
-#'   \item {\link[=clt_normal_movie]{Central Limit Theorem movie: normal data}}
-#'   \item {\link[=clt_exponential_movie]{Central Limit Theorem movie:
-#'     exponential data}}
 #'   \item {\link[=poisson_process_movie]{Poisson process movie}}
 #'   \item {\link[=poisson_process_check]{Graphical checking of Poisson process properties}}
 #'   \item {\link[=normal_pdf_movie]{Normal probability density function movie}}
 #'   \item {\link[=normal_areas_movie]{Normal central probability areas movie}}
 #'   \item {\link[=qq_plot_movie]{Construction of a (normal) QQ plot}}
+#'   \item {\link[=clt_normal_movie]{Central Limit Theorem movie: normal data}}
+#'   \item {\link[=clt_exponential_movie]{Central Limit Theorem movie:
+#'     exponential data}}
 #' }
 #' @seealso The \href{https://moodle.ucl.ac.uk/course/view.php?id=3419&section=0}{STAT1004 Moodle page}
 #'   for: various forms of feedback, a discussion forum, lecturecast recordings,
