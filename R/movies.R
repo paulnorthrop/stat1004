@@ -65,6 +65,9 @@
 #'   sampling distributions of the sample mean and sample variance based
 #'   on a randon sample from a normal distribution depend on the size
 #'   \eqn{n} of the sample.
+#' @seealso  \code{\link{mean_vs_median_normal_movie}}: compares the
+#'   sampling distributions of the sample mean and sample median based
+#'   on a random sample of size \eqn{n} from a standard normal distribution.
 #' @seealso  \code{\link{clt_normal_movie}}: illustrates the ideas of a
 #'   sampling distribution of a random variable and the central limit
 #'   theorem (CLT), using normally distributed data.
