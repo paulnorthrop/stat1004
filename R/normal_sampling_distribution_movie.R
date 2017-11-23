@@ -34,7 +34,6 @@
 #' # [Use install.packages("rpanel") if necessary]
 #' library(rpanel)
 #'
-#' # Produce movie using values from the Aussie births data
 #' \dontrun{
 #' normal_sampling_distns_movie()
 #' }
