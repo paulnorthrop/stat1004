@@ -54,7 +54,7 @@
 #'
 #' # Produce movie using values from the Aussie births data
 #' \dontrun{
-#' mean_vs_median_t_movie()
+#' mean_vs_median_t_movie(t_df = 2)
 #' }
 #' @export
 mean_vs_median_t_movie <- function(n = 10, t_df = 2, delta_n = 1, pos = 1,

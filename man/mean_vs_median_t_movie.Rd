@@ -66,7 +66,7 @@ library(rpanel)
 
 # Produce movie using values from the Aussie births data
 \dontrun{
-mean_vs_median_t_movie()
+mean_vs_median_t_movie(t_df = 2)
 }
 }
 \seealso{

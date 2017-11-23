@@ -58,7 +58,7 @@
 #' # [Use install.packages("rpanel") if necessary]
 #' library(rpanel)
 #'
-#' # Produce movie using values from the Aussie births data
+#' # Produce movie using values based on the Aussie births data
 #' \dontrun{
 #' clt_normal_movie(44, 7.22, sqrt(1.36), "weight (pounds)")
 #' }

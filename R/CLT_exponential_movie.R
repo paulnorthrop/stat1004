@@ -57,12 +57,17 @@
 #' # [Use install.packages("rpanel") if necessary]
 #' library(rpanel)
 #'
-#' # Produce movie using values from the Aussie births data
+#' # Produce movie using values based on the Aussie births data
 #' \dontrun{
 #' clt_exponential_movie(44, 1.84, "time since last birth (hours)")
+#'
+#' # ... and with some smaller sample sizes
+#' clt_exponential_movie(10, 1.84, "time since last birth (hours)")
+#'
+#' clt_exponential_movie(3, 1.84, "time since last birth (hours)")
 #' }
 #' @export
-clt_exponential_movie <- function(n = 30, lambda = 1, xlab = "x", pos = 1,
+clt_exponential_movie <- function(n = 10, lambda = 1, xlab = "x", pos = 1,
                                   envir = as.environment(pos)) {
   # Assign variables to an environment so that they can be accessed inside
   # clt_exponential_movie_plot()

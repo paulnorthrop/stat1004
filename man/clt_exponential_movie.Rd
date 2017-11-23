@@ -4,7 +4,7 @@
 \alias{clt_exponential_movie}
 \title{Central Limit Theorem movie: exponential data}
 \usage{
-clt_exponential_movie(n = 30, lambda = 1, xlab = "x", pos = 1,
+clt_exponential_movie(n = 10, lambda = 1, xlab = "x", pos = 1,
   envir = as.environment(pos))
 }
 \arguments{
@@ -70,9 +70,14 @@ Loosely speaking, a consequence of the
 # [Use install.packages("rpanel") if necessary]
 library(rpanel)
 
-# Produce movie using values from the Aussie births data
+# Produce movie using values based on the Aussie births data
 \dontrun{
 clt_exponential_movie(44, 1.84, "time since last birth (hours)")
+
+# ... and with some smaller sample sizes
+clt_exponential_movie(10, 1.84, "time since last birth (hours)")
+
+clt_exponential_movie(3, 1.84, "time since last birth (hours)")
 }
 }
 \seealso{
