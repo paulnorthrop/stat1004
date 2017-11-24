@@ -1,5 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+[![Travis-CI Build Status](https://travis-ci.org/paulnorthrop/stat1004.svg?branch=master)](https://travis-ci.org/paulnorthrop/stat1004) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/paulnorthrop/stat1004?branch=master&svg=true)](https://ci.appveyor.com/project/paulnorthrop/stat1004)
+
 stat1004 <img src="standalone.png" align="right" />
 ===================================================
 
