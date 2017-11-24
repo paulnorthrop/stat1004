@@ -74,19 +74,19 @@ If you have any questions about this package please ask them via the
   \item {\link[=scatterplot_movie]{US election: straightening scatter
     plots}}
   \item {\link[=world_bank_movie]{World Bank Development Indicators}}
-  \item {\link[=ox_births_movie]{Oxford Birth Times Simulation Movie}}
-  \item {\link[=binomial_pmf_movie]{Binomial p.m.f. movie}}
-  \item {\link[=poisson_process_movie]{Poisson process movie}}
+  \item {\link[=ox_births_movie]{Oxford Birth Times Simulation}}
+  \item {\link[=binomial_pmf_movie]{Binomial p.m.f.}}
+  \item {\link[=poisson_process_movie]{Poisson process}}
   \item {\link[=poisson_process_check]{Graphical checking of Poisson process properties}}
-  \item {\link[=normal_pdf_movie]{Normal probability density function movie}}
-  \item {\link[=normal_areas_movie]{Normal central probability areas movie}}
+  \item {\link[=normal_pdf_movie]{Normal probability density function}}
+  \item {\link[=normal_areas_movie]{Normal central probability areas}}
   \item {\link[=qq_plot_movie]{Construction of a (normal) QQ plot}}
-  \item {\link[=normal_sampling_distns_movie]{Normal sampling distributions movie}}
-  \item {\link[=clt_normal_movie]{Central Limit Theorem movie: normal data}}
-  \item {\link[=clt_exponential_movie]{Central Limit Theorem movie:
-    exponential data}}
+  \item {\link[=normal_sampling_distns_movie]{Normal sampling distributions}}
+  \item {\link[=clt_normal_movie]{Central Limit Theorem: normal data}}
+  \item {\link[=clt_exponential_movie]{Central Limit Theorem: exponential data}}
   \item {\link[=mean_vs_median_normal_movie]{Mean vs median for a normal random sample}}
   \item {\link[=mean_vs_median_t_movie]{Mean vs median for a Student's t random sample}}
+  \item {\link[=corr_sim_movie]{Sampling distribution of the correlation coefficient}}
 }
 }
 
