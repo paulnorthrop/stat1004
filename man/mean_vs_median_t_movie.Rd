@@ -54,7 +54,7 @@ The movie is based on simulating repeatedly samples of size
   The plot on the bottom contains a histogram of
   the sample medians of \emph{all} the simulated samples.
 
-  An extra sample is prodcued by clicking the + button next to
+  An extra sample is produced by clicking the + button next to
   "number of samples of size n". [Ignore the - button.]
   The value of the sample size can be changed using the +/-
   buttons in the panel.
