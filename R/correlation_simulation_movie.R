@@ -67,9 +67,9 @@ corr_sim_movie <- function(n = 30, rho = 0, delta_n = 1, delta_rho = 0.1,
     stop("rho must be in [-1, 1]")
   }
   delta_n <- round(delta_n)
-  nseed_init <- 47
+  nseed <- nseed_init <- 47
   rho_init <- rho
-  nsim_init <- n
+  nsim <- nsim_init <- n
   rvals <- NULL
   #
   assign("nseed_old", nseed_init, envir = envir)
@@ -77,8 +77,9 @@ corr_sim_movie <- function(n = 30, rho = 0, delta_n = 1, delta_rho = 0.1,
   assign("nsim_old", nsim_init, envir = envir)
   assign("rvals", rvals, envir = envir)
   #
-  corr_sim_panel <- rp.control("correlation", nsim = nsim_init, rho = rho_init,
-                               nseed = nseed_init, envir = envir)
+  corr_sim_panel <- rpanel::rp.control("correlation", nsim = nsim_init,
+                                       rho = rho_init, nseed = nseed_init,
+                                       envir = envir)
   # Create buttons for movie
   rpanel::rp.doublebutton(corr_sim_panel, nseed, 1, range=c(1, 100000000),
                           repeatinterval = 20, initval = nseed_init,
