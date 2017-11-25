@@ -77,6 +77,8 @@
 #' @seealso  \code{\link{mean_vs_median_t_movie}}: compares the
 #'   sampling distributions of the sample mean and sample median based
 #'   on a random sample of size \eqn{n} from a Student't t distribution.
+#' @seealso  \code{\link{lin_reg_movie}}: visualizes the fitting of a
+#'   regression line using least squares.
 #' @seealso  \code{\link{corr_sim_movie}}: illustrates the sampling
 #'   distribution of the (Pearson product moment) sample correlation
 #'   coefficient.

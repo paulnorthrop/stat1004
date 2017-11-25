@@ -87,6 +87,7 @@ If you have any questions about this package please ask them via the
   \item {\link[=clt_exponential_movie]{Central Limit Theorem: exponential data}}
   \item {\link[=mean_vs_median_normal_movie]{Mean vs median for a normal random sample}}
   \item {\link[=mean_vs_median_t_movie]{Mean vs median for a Student's t random sample}}
+  \item {\link[=lin_reg_movie]{Simple linear regression using least squares estimation}}
   \item {\link[=corr_sim_movie]{Sampling distribution of the correlation coefficient}}
 }
 }

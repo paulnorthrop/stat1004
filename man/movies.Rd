@@ -104,6 +104,9 @@ its standard deviation varies with the value of the multiple.
   sampling distributions of the sample mean and sample median based
   on a random sample of size \eqn{n} from a Student't t distribution.
 
+\code{\link{lin_reg_movie}}: visualizes the fitting of a
+  regression line using least squares.
+
 \code{\link{corr_sim_movie}}: illustrates the sampling
   distribution of the (Pearson product moment) sample correlation
   coefficient.
