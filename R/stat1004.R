@@ -50,6 +50,7 @@
 #'   \item {\link[=flu]{Influenza data}}
 #'   \item {\link[=USelection]{The 2000 U.S. Presidential Election}}
 #'   \item {\link[=aussie_births]{Australian Birth Times Data}}
+#'   \item {\link[=hubble]{Nebulae data from Hubble (1929)}}
 #' }
 #'
 #' @section \link[=movies]{Movies}:
@@ -285,3 +286,20 @@ NULL
 #' @source Steele, S. (December 21, 1997), Babies by the Dozen for Christmas:
 #' 24-Hour Baby Boom, The Sunday Mail (Brisbane), page 7.
 "aussie_births"
+
+#' Nebulae data from Hubble (1929)
+#'
+#' The data used in Section 8.1 of the STAT1004 notes to introduce simple
+#' linear regression.  This dataset contains estimates of the distance
+#' from Earth and the velocity relative to Earth of 24 nebulae.
+#' @format A data frame with 42 observations on the following 2 variables.
+#' \itemize{
+#' \item{\code{distance:}}{ the distance, in megparsecs, of the nebula
+#'   from Earth.}
+#' \item{\code{velocity:}}{ the velocity, in kilometres per second, of the
+#'   nebula relative to Earth.}
+#' }
+#' @source Hubble, E. (1929) A relation between distance and radial velocity
+#' among extra-galactic nebulae. \emph{Proceedings of the National Academy of
+#' Science}, \strong{15}, 168-173.
+"hubble"
