@@ -34,33 +34,11 @@ that will be listed when \code{ls()} is used.  \code{rm} can be used to remove
 these objects if desired.  For example \code{rm(name)} can be used to remove
 object \code{name}.
 }
-\examples{
-# Load package rpanel
-# [Use install.packages("rpanel") if necessary]
-library(rpanel)
+\section{Examples}{
 
-\dontrun{
-# Load package rpanel
-library(rpanel)
-
-# Challenger space shuttle data -------------
-
-# Movie based on datasets of size 23
-shuttle_movie()
-# Movie based on datasets of size 230
-shuttle_movie(n_reps = 10)
-
-# Rosling-style animated scatterplot -------------
-
-# Load package tkrplot
-library(tkrplot)
-# [Use install.packages("tkrplot") if necessary]
-
-rp.bubbleplot(log(gdp_per_capita), log(co2_per_capita), 1960:2014,
-              size = population_size, col = life_expectancy,
-              interpolate = TRUE, hscale = 1.5, vscale = 1.5)
+See the examples given for the individual movies listed below.
 }
-}
+
 \references{
 Bowman, A., Crawford, E., Alexander, G. and Bowman, R. W.
  (2007). rpanel: Simple Interactive Controls for R Functions Using the
