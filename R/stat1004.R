@@ -52,7 +52,7 @@
 #'   \item {\link[=aussie_births]{Australian Birth Times Data}}
 #' }
 #'
-#' @section Movies:
+#' @section \link[=movies]{Movies}:
 #'
 #' \itemize{
 #'   \item {\link[=shuttle_movie]{Challenger Space Shuttle Disaster}}

@@ -66,7 +66,7 @@ If you have any questions about this package please ask them via the
 }
 }
 
-\section{Movies}{
+\section{\link[=movies]{Movies}}{
 
 
 \itemize{
