@@ -108,8 +108,8 @@ corr_sim_movie_plot <- function(panel){
     x2 <- vals[, 2]
     y1 <- rho * x1 + sqrt(1 - rho ^ 2) * x2
     sim_vals <- cbind(x1, y1)
-    nf <- layout(matrix(c(2, 1), 2, 1, byrow = TRUE), heights=c(3, 1),
-                 widths = c(3, 3), TRUE)
+    nf <- graphics::layout(matrix(c(2, 1), 2, 1, byrow = TRUE),
+                           heights=c(3, 1), widths = c(3, 3), TRUE)
     if (nseed != nseed_old & rho == rho_old & nsim==nsim_old){
       histplot <- TRUE
     } else {
