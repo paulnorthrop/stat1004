@@ -107,6 +107,9 @@ its standard deviation varies with the value of the multiple.
 \code{\link{lin_reg_movie}}: visualizes the fitting of a
   regression line using least squares.
 
+\code{\link{lev_inf_movie}}: examine the influence of a
+  single outlying observation on a least squares regression line.
+
 \code{\link{corr_sim_movie}}: illustrates the sampling
   distribution of the (Pearson product moment) sample correlation
   coefficient.

@@ -79,6 +79,8 @@
 #'   on a random sample of size \eqn{n} from a Student't t distribution.
 #' @seealso  \code{\link{lin_reg_movie}}: visualizes the fitting of a
 #'   regression line using least squares.
+#' @seealso  \code{\link{lev_inf_movie}}: examine the influence of a
+#'   single outlying observation on a least squares regression line.
 #' @seealso  \code{\link{corr_sim_movie}}: illustrates the sampling
 #'   distribution of the (Pearson product moment) sample correlation
 #'   coefficient.
