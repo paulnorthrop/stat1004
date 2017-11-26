@@ -103,6 +103,7 @@ lin_reg_movie <- function(data, delta_alpha = 0.1, delta_beta = 0.0001, ...) {
 
 lin_reg_plot <- function(panel){
   with(panel, {
+    old_par <- graphics::par(no.readonly = TRUE)
     z <- stats::lm(y_data ~ x_data)
     alpha_hat <- z$coefficients[1]
     beta_hat <- z$coefficients[2]
@@ -166,6 +167,7 @@ lin_reg_plot <- function(panel){
                                    " + ", round(beta, 6), " ", x_name,
                                    sep = ""))
     }
+    graphics::par(old_par)
   })
   return(invisible(panel))
 }
