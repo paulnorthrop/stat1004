@@ -62,15 +62,17 @@ lev_inf_movie <- function(association = c("positive", "negative", "none"),
   } else {
     set.seed(4)
     x <- sort(runif(n) / 2 + 0.5)
-    set1 <- rnorm(n, mean = 0.75, sd = 0.175)
+    set1 <- stats::rnorm(n, mean = 0.75, sd = 0.175)
   }
   x <- (x - min(x)) / range(x - min(x))[2]
   set1 <- (set1 - min(set1)) / range(set1 - min(set1))[2]
   init.x <- mean(x)
   init.y <- mean(set1)
+  outx <- init.x
+  outy <- init.y
   # Create buttons for movie
   lev_inf_1_panel <- rpanel::rp.control("parameters", x = x, set1 = set1,
-                                     outx = init.x, outy = init.y)
+                                        outx = init.x, outy = init.y)
   rpanel::rp.doublebutton(lev_inf_1_panel, outx, 0.2, range = c(-0.8, 1.8),
                           repeatinterval = 20, initval = 1,
                           title = "x coefficient:", action = lev_inf_1_plot)
@@ -98,10 +100,10 @@ expl_plot <- function(x, y, c1, c2, ntitle, p = 0.0185, q = 0.05, nleg = NULL,
   graphics::text(u[1] - p * h, u[4], "y", xpd = TRUE)
   u <- graphics::par("usr")
   if (!is.null(nleg)) {
-    legend(u[2], u[3],
-           legend = c("with outlier","without outlier","outlier"),
-           lty = c(1, 2, -1), xjust = 1, yjust = 0, lwd = c(2, 2),
-           pch = c(-1, -1, 16), col = c(1, 1, 2))
+    graphics::legend(u[2], u[3],
+              legend = c("with outlier","without outlier","outlier"),
+              lty = c(1, 2, -1), xjust = 1, yjust = 0, lwd = c(2, 2),
+              pch = c(-1, -1, 16), col = c(1, 1, 2))
   }
   graphics::points(x, y, ...)
   return(invisible(x))
