@@ -121,9 +121,9 @@ mean_vs_median_t_plot <- function(panel) {
     graphics::axis(1, at = br2, labels = br2, line = 0.5)
     graphics::rug(y, line =0.5, ticksize = 0.05)
     graphics::title(paste("sample size, n = ",n))
-    graphics::curve(dt(x, t_df), from = h.low, to = h.up, n = 500, bty = "l",
-                   ylab = "density", las = 1, xpd = TRUE, lwd = 3, add = TRUE,
-                   lty = 2)
+    graphics::curve(stats::dt(x, t_df), from = h.low, to = h.up, n = 500,
+                    bty = "l", ylab = "density", las = 1, xpd = TRUE,
+                    lwd = 3, add = TRUE, lty = 2)
     u <- graphics::par("usr")
     graphics::legend(u[2], u[4], legend = paste("t with", t_df, "df",
                                                 sep = " "),

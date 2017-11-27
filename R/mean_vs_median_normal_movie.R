@@ -118,9 +118,9 @@ mean_vs_median_normal_plot <- function(panel) {
     graphics::axis(1, at = br2, labels = br2, line = 0.5)
     graphics::rug(y,line = 0.5, ticksize = 0.05)
     graphics::title(paste("sample size, n = ",n))
-    graphics::curve(dnorm(x, mean = mu, sd = sigma), from = h.low, to = h.up,
-                    n = 500, bty ="l", ylab = "density", las = 1, xpd = TRUE,
-                    lwd = 3, add = TRUE, lty = 2)
+    graphics::curve(stats::dnorm(x, mean = mu, sd = sigma), from = h.low,
+                    to = h.up, n = 500, bty ="l", ylab = "density", las = 1,
+                    xpd = TRUE, lwd = 3, add = TRUE, lty = 2)
     u <- graphics::par("usr")
     graphics::legend(u[2], u[4], legend = expression(paste("N(0,",1,")")),
            lty = 2, lwd = 3, xjust = 1, cex = 1.5)
@@ -149,10 +149,12 @@ mean_vs_median_normal_plot <- function(panel) {
     graphics::axis(2)
     graphics::axis(1, at = br2, labels = br2, line = 0.5)
     graphics::rug(y, line = 0.5, ticksize = 0.05, col = "red")
-    graphics::curve(dnorm(x, mean = mu, sd = sigma / sqrt(n)), from = h.low,
-                    to = h.up, n = 500, bty="l", ylab = "density", las = 1,
-                    xpd = TRUE, lwd = 3, add = TRUE, lty = 2, col = 2)
-    graphics::curve(dnorm(x, mean = mu, sd = sqrt(1.57) * sigma / sqrt(n)),
+    graphics::curve(stats::dnorm(x, mean = mu, sd = sigma / sqrt(n)),
+                    from = h.low, to = h.up, n = 500, bty="l",
+                    ylab = "density", las = 1, xpd = TRUE, lwd = 3,
+                    add = TRUE, lty = 2, col = 2)
+    graphics::curve(stats::dnorm(x, mean = mu,
+                                 sd = sqrt(1.57) * sigma / sqrt(n)),
                     from = h.low, to = h.up, n = 500, bty = "l",
                     ylab = "density",las = 1, xpd = TRUE, lwd = 1.5,
                     add = TRUE, lty = 2, col = 4)
@@ -177,13 +179,15 @@ mean_vs_median_normal_plot <- function(panel) {
     graphics::axis(2)
     graphics::axis(1, at = br2, labels = br2, line = 0.5)
     graphics::rug(y, line = 0.5, ticksize = 0.05, col = "blue")
-    graphics::curve(dnorm(x, mean = mu, sd = sqrt(1.57) * sigma / sqrt(n)),
+    graphics::curve(stats::dnorm(x, mean = mu,
+                                 sd = sqrt(1.57) * sigma / sqrt(n)),
                     from = h.low, to = h.up, n = 500, bty = "l",
                     ylab = "density", las = 1, xpd = TRUE, lwd = 3,
                     add = TRUE, lty = 2, col = 4)
-    graphics::curve(dnorm(x, mean = mu, sd = sigma/sqrt(n)), from = h.low,
-                    to = h.up, n = 500, bty = "l", ylab = "density", las = 1,
-                    xpd = TRUE, lwd = 1.5, add = TRUE, lty = 2, col = 2)
+    graphics::curve(stats::dnorm(x, mean = mu, sd = sigma/sqrt(n)),
+                    from = h.low, to = h.up, n = 500, bty = "l",
+                    ylab = "density", las = 1, xpd = TRUE, lwd = 1.5,
+                    add = TRUE, lty = 2, col = 2)
     u <- graphics::par("usr")
     graphics::legend(u[2], u[4], legend = c("N(0,1.57/n)", "N(0,1/n)"),
                      lty = 2, lwd = c(3, 1.5), xjust = 1, cex = 1.5,

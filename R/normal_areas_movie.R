@@ -52,26 +52,26 @@ plot_areas_normal <- function(panel) {
   with(panel, {
     n <- 100
     ytop <- dnorm(0, mean = 0, sd = 1)
-    curve(dnorm(x, mean = 0, sd = 1), from = -5, to = 5, n = 100, bty = "l",
-          axes = FALSE, ylab = "", ylim = c(-0.025, ytop), xlab = "", las = 1,
-          xpd = TRUE, lwd = 2)
-    axis(1, pos = 0)
-    axis(2, pos = -10, las = 1)
-    abline(h = 0)
+    stats::curve(dnorm(x, mean = 0, sd = 1), from = -5, to = 5, n = 100,
+                 bty = "l", axes = FALSE, ylab = "", ylim = c(-0.025, ytop),
+                 xlab = "", las = 1, xpd = TRUE, lwd = 2)
+    graphics::axis(1, pos = 0)
+    graphics::axis(2, pos = -10, las = 1)
+    graphics::abline(h = 0)
     xx <- seq(from = -multiple, to = multiple, length = n)
-    yy <- c(0,dnorm(xx, mean = 0, sd = 1), 0)
+    yy <- c(0,stats::dnorm(xx, mean = 0, sd = 1), 0)
     xx <- c(xx[1], xx, xx[length(xx)])
-    polygon(xx, yy, col = gray(0.8))
+    graphics::polygon(xx, yy, col = gray(0.8))
     div <- 16
     div2 <- 7
     if (multiple > 0) {
-      arrows(0, -ytop/div2, multiple, -ytop / div2, code = 2, xpd = TRUE,
-             angle=15, length = 0.2)
-      arrows(0, -ytop/div2, -multiple, -ytop / div2, code = 2, xpd = TRUE,
-             angle=15, length = 0.2)
+      graphics::arrows(0, -ytop/div2, multiple, -ytop / div2, code = 2,
+                       xpd = TRUE, angle=15, length = 0.2)
+      graphics::arrows(0, -ytop/div2, -multiple, -ytop / div2, code = 2,
+                       xpd = TRUE, angle=15, length = 0.2)
     }
-    text(0,-ytop / 5, paste("mean +/- ",multiple," SD"), xpd = TRUE)
-    text(0, ytop / 3, round(2 * stats::pnorm(multiple) - 1, ndec))
+    graphics::text(0,-ytop / 5, paste("mean +/- ",multiple," SD"), xpd = TRUE)
+    graphics::text(0, ytop / 3, round(2 * stats::pnorm(multiple) - 1, ndec))
   })
-  panel
+  return(panel)
 }

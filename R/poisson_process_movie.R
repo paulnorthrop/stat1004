@@ -37,7 +37,7 @@
 #'   is produced.
 #'
 #'   The type of plot that appears in the bottom of the display depends
-#'   on the radio click by the user. The choices are
+#'   on the radio button clicked by the user. The choices are
 #'   \itemize{
 #'   \item{"none" }{Nothing is plotted}
 #'   \item{"numbers of events in each hour" }{A barplot (the red bars) giving
@@ -227,7 +227,7 @@ poisson_process_movie_plot <- function(panel) {
       graphics::axis(1, pos = 0)
       graphics::axis(2)
       title(xlab = "times between events")
-      graphics::curve(dexp(x, rate = lambda), from = 0, to = to,
+      graphics::curve(stats::dexp(x, rate = lambda), from = 0, to = to,
                       n = 500, lwd = 2, add = TRUE)
       exp_text <- expression(exponential*(lambda)*~pdf~" ")
       legend("topright", col = 2:1, fill = c(2, NA), lty = c(-1, 1),
@@ -242,8 +242,8 @@ poisson_process_movie_plot <- function(panel) {
       graphics::axis(1, pos = 0)
       graphics::axis(2)
       title(xlab = "times at which events occur")
-      graphics::curve(dunif(x, min = 0, max = hours), from = 0, to = hours,
-                      n = 500, lwd = 2, add = TRUE)
+      graphics::curve(stats::dunif(x, min = 0, max = hours), from = 0,
+                      to = hours, n = 500, lwd = 2, add = TRUE)
       unif_text <- expression(uniform*(0*","*hours)*~pdf)
       u <- par("usr")
       legend(0, 0, col = 2:1, fill = c(2, NA),

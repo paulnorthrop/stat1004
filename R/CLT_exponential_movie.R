@@ -117,9 +117,9 @@ clt_exponential_movie_plot <- function(panel) {
     graphics::axis(1, line = 0.5)
     graphics::rug(y, line = 0.5, ticksize = 0.05)
     graphics::title(paste("sample size, n = ",n))
-    graphics::curve(dexp(x, rate = lambda), from = h_low, to = h_up, n = 500,
-                    bty = "l", ylab = "density", las = 1, xpd = TRUE, lwd = 2,
-                    add = TRUE, lty = 2)
+    graphics::curve(stats::dexp(x, rate = lambda), from = h_low, to = h_up,
+                    n = 500, bty = "l", ylab = "density", las = 1, xpd = TRUE,
+                    lwd = 2, add = TRUE, lty = 2)
     my_mean <- round(1 / lambda, 2)
     my_sd <- my_mean
     my_var <- round(my_sd ^ 2, 2)
@@ -138,9 +138,10 @@ clt_exponential_movie_plot <- function(panel) {
     graphics::axis(2)
     graphics::axis(1, line = 0.5)
     graphics::rug(y, line = 0.5, ticksize = 0.05, col = "red")
-    graphics::curve(dnorm(x, mean = my_mean, sd = my_sd / sqrt(n)), from = h_low,
-          to = h_up, n = 500, bty = "l", ylab="density", las = 1, xpd = TRUE,
-          lwd = 2, add = TRUE, lty = 2)
+    graphics::curve(stats::dnorm(x, mean = my_mean, sd = my_sd / sqrt(n)),
+                    from = h_low, to = h_up, n = 500, bty = "l",
+                    ylab="density", las = 1, xpd = TRUE, lwd = 2, add = TRUE,
+                    lty = 2)
     my_leg_2 <- paste("N(", my_mean, ",", my_var, "/ n)" )
     graphics::legend("topright", legend = my_leg_2)
     graphics::arrows(mean_y, 2* ytop, mean_y, 0, col = "red", lwd = 2, xpd = TRUE)
