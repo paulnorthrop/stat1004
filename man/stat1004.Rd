@@ -56,6 +56,7 @@ If you have any questions about this package please ask them via the
   \item {\link[=shuttle]{Challenger Space Shuttle Disaster}}
   \item {\link[=days]{Mystery data in Exercises 1}}
   \item {\link[=lymphoma]{T-cell count data in Exercises 2}}
+  \item {\link[=UCBAdmissions]{Student Admissions at UC Berkeley}}
   \item {\link[=ox_births]{Oxford Birth Times}}
   \item {\link[=blood_types]{Blood Types}}
   \item {\link[=ftse]{FTSE 100 Share Index}}
