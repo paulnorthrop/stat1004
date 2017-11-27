@@ -52,7 +52,7 @@ This movie contains two displays of plots: one plot on the top and
   is produced.
 
   The type of plot that appears in the bottom of the display depends
-  on the radio click by the user. The choices are
+  on the radio button clicked by the user. The choices are
   \itemize{
   \item{"none" }{Nothing is plotted}
   \item{"numbers of events in each hour" }{A barplot (the red bars) giving
