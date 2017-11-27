@@ -66,7 +66,7 @@ plot_gamma_sim <- function(panel) {
     ylim <- range(c(gam_dens, temp$density))
     graphics::hist(gamsim, prob = TRUE, main = "", ylim = c(0, ylim[2]),
                    breaks = n_bins, col = 8)
-    graphics::curve(dgamma(x, shape = alpha, rate = beta), from = 0,
+    graphics::curve(stats::dgamma(x, shape = alpha, rate = beta), from = 0,
                     to = max(gamsim), add = TRUE)
     graphics::title(paste("simulated data, n =", n))
   })

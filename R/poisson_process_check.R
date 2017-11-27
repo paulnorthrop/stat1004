@@ -208,7 +208,7 @@ poisson_process_check_plot <- function(panel) {
       graphics::axis(1, pos = 0)
       graphics::axis(2)
       title(xlab = "times between events")
-      graphics::curve(dexp(x, rate = lambda), from = 0, to = to,
+      graphics::curve(stats::dexp(x, rate = lambda), from = 0, to = to,
                       n = 500, lwd = 2, add = TRUE)
       exp_text <- expression(exponential*(m)*~pdf~" ")
       legend("topright", col = 2:1, fill = c(2, NA), lty = c(-1, 1),
@@ -227,7 +227,7 @@ poisson_process_check_plot <- function(panel) {
       graphics::axis(1, pos = 0)
       graphics::axis(2)
       title(xlab = "times at which events occur")
-      graphics::curve(dunif(x, min = 0, max = total_time), from = 0,
+      graphics::curve(stats::dunif(x, min = 0, max = total_time), from = 0,
                       to = total_time, n = 500, lwd = 4, add = TRUE)
       unif_text <- expression(uniform*(0*","*total_time)*~pdf)
       u <- par("usr")

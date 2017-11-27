@@ -63,7 +63,7 @@ plot_pdf_normal <- function(panel) {
     ytop <- stats::dnorm(0, mean = 0, sd =sqrt(0.1))
     from <- min(stats::qnorm(0.001, mean = mu, sd = sigma), -10)
     to <- max(stats::qnorm(0.999, mean = mu, sd = sigma), 10)
-    graphics::curve(dnorm(x,mean = mu, sd = sigma), from = from, to = to,
+    graphics::curve(stats::dnorm(x,mean = mu, sd = sigma), from = from, to = to,
                     n = 500, bty = "l", axes = FALSE, ylab = "f(z)",
                     ylim = c(0, ytop), xlab = "z", las = 1, xpd = TRUE,
                     lwd = 2)

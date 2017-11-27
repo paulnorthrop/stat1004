@@ -65,7 +65,7 @@ plot_normal_sampling_distributions <- function(panel) {
     mu_low <- mu - 2 * sigma
     mu_up <- mu + 2 * sigma
     ytop <- dnorm(0, mean = 0, sd = sigma / sqrt(ntop))
-    graphics::curve(dnorm(x, mean = mu, sd = sigma / sqrt(n)),
+    graphics::curve(stats::dnorm(x, mean = mu, sd = sigma / sqrt(n)),
           from = mu_low, to = mu_up, n = 500, bty = "l", axes = FALSE,
           ylab = "density", ylim = c(0, ytop), xlab=expression(hat(mu)),
           las = 1, xpd = TRUE, lwd = 2)
@@ -85,7 +85,7 @@ plot_normal_sampling_distributions <- function(panel) {
                           rate = betatop)
     alpha <- (n - 1) / 2
     beta <- (n - 1) / (2 * sigma ^ 2)
-    graphics::curve(dgamma(x, shape = alpha, rate = beta),
+    graphics::curve(stats::dgamma(x, shape = alpha, rate = beta),
                     from = sigma_low, to = sigma_up, n = 500, bty = "l", axes = FALSE,
                     ylab = "density", ylim = c(0, ytop),
                     xlab = expression(hat(sigma)^2), las = 1, xpd = TRUE,
