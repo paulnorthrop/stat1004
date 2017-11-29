@@ -1,0 +1,75 @@
+---
+title: "Chapter 5: binomial, geometric and Poisson distributions"
+author: "Paul Northrop"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Chapter 5: binomial, geometric and Poisson distributions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+bibliography: stat1004.bib
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(comment = "", prompt = TRUE, collapse = TRUE)
+#devtools::load_all()
+```
+
+```{r, include = FALSE}
+# Set a random number `seed'.  
+set.seed(2601)
+```
+
+The purposes of this vignette are to direct you to R functions and relating to the **discrete** probability distributions condsidered in Chapter 5 of the STAT1004 notes and to provide code to do some of the things that appear in the notes.  We illustrate these functions using the Australian birth times data, which are available in the data frame `aussie_births`.
+
+```{r}
+library(stat1004)
+head(aussie_births)
+```
+
+The **stats** package contains functions to evaluate the probability mass function (p.m.f.), cumulative distribution function (c.d.f.) and quantile function (which could also be called the inverse c.d.f.) of many discrete probability distributions, including the binomial, geometric and Poisson.  It also contains functions to simulate random variates from these distributions.  For a general description of these functions use `?Distributions`.  These functions are named in the following way, where `xxx` is the name (perhaps abbreviated) of the distribution in question: `dxxx` (p.m.f), `pxxx` (c.d.f), `qxxx` (quantile function) and `rxxx` (random variate generation).
+
+## The binomial distribution
+
+Following the STAT1004 notes let us suppose that (before we observe the data) the number $Y$ of boy babies is a random variable with a binomial distribution(44, $p$) distribution, where $p$ is the probability that a randomly chosen birth produces a boy.  We use the data to estimate $p$.
+
+```{r}
+boys <- sum(aussie_births[, "sex"] == "boy")
+girls <- sum(aussie_births[, "sex"] == "girl")
+p_hat <- boys / (boys + girls)
+p_hat
+```
+
+The function `dbinom` evaluates the p.m.f. of a binomial distribution.  See `?Binomial` for information about this function and `pbinom`, `qbinom` and `rbinom`.
+
+4 barplot from notes ...
+
+```{r, fig.align='center', fig.width=7}
+#barplot(dbinom(0:44, 44, p_hat), names.arg = 0:44, width = 0.5, xlim = c(0, 44))
+#plot(0:44, dbinom(0:44, 44, p_hat), type = "h")
+```
+
+For the purposes of illustrating how the functions `pbinom`, `qbinom` and `rbinom` let us suppose that $p = 1/2$.  If we wanted to calculate the probabilities $P(Y < 10)$  
+
+```{r}
+pbinom
+```
+
+1. **?**
+
+```{r, fig.align='center', fig.width=7}
+pjn <- rbinom(100000, 44, 1 / 2)
+barplot(table(pjn))
+```
+
+## The geometric distribution
+
+## The Poisson distribution
+
+## References
+
+<script type="text/x-mathjax-config">
+   MathJax.Hub.Config({  "HTML-CSS": { minScaleAdjust: 125, availableFonts: [] }  });
+</script>

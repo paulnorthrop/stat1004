@@ -1,6 +1,6 @@
-# ============================ poisson_process_check ==========================
+# ============================== two_by_two_movie =============================
 
-#' Test for lack of association in a 2 X 2 contingency table
+#' Test for lack of association in a 2 by 2 contingency table
 #'
 #' A movie to study the distribution of the Pearson chi-squared test statistic
 #' used to test for lack of association in a 2 by 2 contingency table.
@@ -53,18 +53,18 @@
 #' \dontrun{
 #' # Ignore department
 #' sex_outcome <- apply(UCBAdmissions, 2:1, FUN = sum)
-#' two_by_two_sim_movie(data = sex_outcome)
+#' two_by_two_movie(data = sex_outcome)
 #'
 #' # Conditon on department 1
 #' sex_outcome_1 <- UCBAdmissions[, , 1]
-#' two_by_two_sim_movie(data = sex_outcome_1)
+#' two_by_two_movie(data = sex_outcome_1)
 #'
 #' # Conditon on department 2
 #' sex_outcome_2 <- UCBAdmissions[, , 2]
-#' two_by_two_sim_movie(data = sex_outcome_2)
+#' two_by_two_movie(data = sex_outcome_2)
 #' }
 #' @export
-two_by_two_sim_movie <- function(data, bin_width = 0.25,
+two_by_two_movie <- function(data, bin_width = 0.25,
                                  pos = 1, envir = as.environment(pos)) {
   if (is.null(data)) {
     stop("data must be supplied")
@@ -134,7 +134,7 @@ add_chi_squared_calc <- function(x_loc, y_loc, x) {
                         list(a3 = o_val[3], b3 = e_val[3],
                              a4 = o_val[4], b4 = e_val[4],
                              test_stat = round(x$statistic, 2)))
-  graphics::text(x_loc + 0.15, y_loc - 0.25, my_text, cex = 1.3)
+  graphics::text(x_loc + 0.15, y_loc - 0.25, my_text, cex = 1.3, xpd = TRUE)
   return(invisible())
 }
 
@@ -149,7 +149,7 @@ two_by_two_plot <- function(panel) {
     # 3. histogram and chi-squared density on the bottom
     graphics::layout(matrix(c(1, 2, 3, 3), 2, 2, byrow = TRUE),
                      widths = c(1, 1), heights = c(1, 1))
-    graphics::par(oma = c(0, 0, 0, 0), mar = c(3, 2, 1, 2) + 0.1)
+    graphics::par(oma = c(0, 0, 0, 0), mar = c(2.5, 2, 1, 2) + 0.1)
     # 1. Produce the table on the top left
     dum_x <- c(0, 0, 1, 1)
     dum_y <- c(0, 1, 0, 1) # summary data for plot
@@ -160,7 +160,7 @@ two_by_two_plot <- function(panel) {
                            hlines = TRUE, vlines = TRUE, title = "",
                            xpad = 0.5, ypad = 1.2, xjust = 0.5, yjust = 0.5,
                            text.col = 1:5)
-    add_chi_squared_calc(0.4, 0.35, real_test_res)
+    add_chi_squared_calc(0.4, 0.3, real_test_res)
     # 2. Produce the table on the top right
     # Simulate nsim 2 x 2 tables under the null hypothesis that the margins
     # are independent
@@ -183,7 +183,7 @@ two_by_two_plot <- function(panel) {
     sim_test_res <- suppressWarnings(stats::chisq.test(sim_data))
     assign("sim_test_stats", sim_test_stats, envir = envir)
     graphics::plot(dum_x, dum_y, type = "n", ann = FALSE, axes = FALSE)
-    graphics::title(main = "simulated 2 x 2 table", line = -0.75)
+    graphics::title(main = "simulated 2 x 2 table", line = -0.25)
     # Add row and column sums and the total frequency
     my_table <- add_sums(sim_data)
     plotrix::addtable2plot(0.5, 0.725, my_table, cex = 1.5, bty = "n",
@@ -192,7 +192,7 @@ two_by_two_plot <- function(panel) {
                            xpad = 0.5, ypad = 1.2, xjust = 0.5, yjust = 0.5,
                            text.col = 1:5)
     # Performs chi-squared test on the real data
-    add_chi_squared_calc(0.4, 0.35, sim_test_res)
+    add_chi_squared_calc(0.4, 0.3, sim_test_res)
     # 3. Produce the bottom plot
     big_val <- max(10, ceiling(max(sim_test_stats)))
     my_breaks <- seq(0, big_val, by = bin_width)

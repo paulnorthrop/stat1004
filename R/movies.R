@@ -77,6 +77,9 @@
 #' @seealso  \code{\link{mean_vs_median_t_movie}}: compares the
 #'   sampling distributions of the sample mean and sample median based
 #'   on a random sample of size \eqn{n} from a Student't t distribution.
+#' @seealso  \code{\link{two_by_two_movie}}: studies the distribution
+#'   of the Pearson chi-squared test statistic used to test for lack of
+#'   association in a 2 by 2 contingency table.
 #' @seealso  \code{\link{lin_reg_movie}}: visualizes the fitting of a
 #'   regression line using least squares.
 #' @seealso  \code{\link{lev_inf_movie}}: examine the influence of a
