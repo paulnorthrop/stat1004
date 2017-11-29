@@ -17,8 +17,8 @@
 #' @details The movie is split into three sections.
 #'   In the top left is a table displaying the contingency table based on
 #'   the frequencies in \code{data}, with row totals, column totals and the
-#'   grand total added.  If \code{data} has row and column names then these
-#'   are added to the table.
+#'   grand total added.  If \code{data} has row and column names then
+#'   only the first letters of these are added to the table.
 #'   In the top right is a similar table containing frequencies based on
 #'   simulated data.  The simulated data has the same grand total as
 #'   \code{data}.  The data are simulated under the assumption that the
@@ -90,6 +90,12 @@ two_by_two_movie <- function(data, bin_width = 0.25,
   # Performs chi-squared test on the real data
   correct <- FALSE
   real_test_res <- suppressWarnings(stats::chisq.test(data, correct = correct))
+  if (!is.null(colnames(data))) {
+    colnames(data) <- substr(colnames(data), 1, 1)
+  }
+  if (!is.null(rownames(data))) {
+    rownames(data) <- substr(rownames(data), 1, 1)
+  }
   # Add row and column sums and the total frequency
   real_data <- add_sums(data)
   # Sample size
@@ -126,6 +132,7 @@ add_sums <- function(x) {
 # Function to add chi-squared test statistic calculation
 
 add_chi_squared_calc <- function(x_loc, y_loc, x) {
+  my_cex <- 1.35
   real_obs <- c(t(x$observed))
   real_exp <- c(round(t(x$expected), 1))
   o_val <- real_obs
@@ -134,13 +141,13 @@ add_chi_squared_calc <- function(x_loc, y_loc, x) {
                           frac((a2 - b2) ^ 2, b2),
                         list(a1 = o_val[1], b1 = e_val[1],
                              a2 = o_val[2], b2 = e_val[2]))
-  graphics::text(x_loc, y_loc, my_text, cex = 1.3)
+  graphics::text(x_loc, y_loc, my_text, cex = my_cex, pos = 4)
   my_text <- substitute(+ frac((a3 - b3) ^ 2, b3) +
                           frac((a4 - b4) ^ 2, b4) == test_stat,
                         list(a3 = o_val[3], b3 = e_val[3],
                              a4 = o_val[4], b4 = e_val[4],
                              test_stat = round(x$statistic, 2)))
-  graphics::text(x_loc + 0.15, y_loc - 0.25, my_text, cex = 1.3, xpd = TRUE)
+  graphics::text(x_loc, y_loc - 0.25, my_text, cex = my_cex, xpd = TRUE, pos = 4)
   return(invisible())
 }
 
@@ -166,7 +173,7 @@ two_by_two_plot <- function(panel) {
                            hlines = TRUE, vlines = TRUE, title = "",
                            xpad = 0.5, ypad = 1.2, xjust = 0.5, yjust = 0.5,
                            text.col = 1:5)
-    add_chi_squared_calc(0.4, 0.3, real_test_res)
+    add_chi_squared_calc(0.05, 0.275, real_test_res)
     # 2. Produce the table on the top right
     # Simulate nsim 2 x 2 tables under the null hypothesis that the margins
     # are independent
@@ -198,7 +205,7 @@ two_by_two_plot <- function(panel) {
                            xpad = 0.5, ypad = 1.2, xjust = 0.5, yjust = 0.5,
                            text.col = 1:5)
     # Performs chi-squared test on the real data
-    add_chi_squared_calc(0.4, 0.3, sim_test_res)
+    add_chi_squared_calc(0.05, 0.275, sim_test_res)
     # 3. Produce the bottom plot
     big_val <- max(10, ceiling(max(sim_test_stats)))
     my_breaks <- seq(0, big_val, by = bin_width)
@@ -209,11 +216,11 @@ two_by_two_plot <- function(panel) {
                    xlim = c(0, big_val), ylim = c(0, max_y), main = "",
                    breaks = my_breaks,
                    axes = FALSE, ann = FALSE)
-    graphics::axis(1, pos = 0)
+    graphics::axis(1, pos = 0, mgp = c(3, 0.5, 0))
     graphics::axis(2, pos = 0)
     graphics::title(xlab = "sum of squared Pearson residuals (test statistic)",
-                    line = 1.45, cex.lab = 1.5)
-    graphics::title(ylab = "density", line = 0.75, cex.lab = 1.5)
+                    line = 1.2, cex.lab = 1.5)
+    graphics::title(ylab = "density", line = 0.6, cex.lab = 1.5)
     graphics::curve(stats::dchisq(x, df = 1), from = 0, to = big_val,
                     n = 500, lty = 1, lwd = 2, add = TRUE)
     if (real_test_res$statistic > big_val) {

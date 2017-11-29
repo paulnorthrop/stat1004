@@ -32,8 +32,8 @@ used to test for lack of association in a 2 by 2 contingency table.
 The movie is split into three sections.
   In the top left is a table displaying the contingency table based on
   the frequencies in \code{data}, with row totals, column totals and the
-  grand total added.  If \code{data} has row and column names then these
-  are added to the table.
+  grand total added.  If \code{data} has row and column names then
+  only the first letters of these are added to the table.
   In the top right is a similar table containing frequencies based on
   simulated data.  The simulated data has the same grand total as
   \code{data}.  The data are simulated under the assumption that the
