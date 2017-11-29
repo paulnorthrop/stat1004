@@ -53,14 +53,20 @@
 #' \dontrun{
 #' # Ignore department
 #' sex_outcome <- apply(UCBAdmissions, 2:1, FUN = sum)
+#' colnames(sex_outcome) <- c("A", "R")
+#' rownames(sex_outcome) <- c("M", "F")
 #' two_by_two_movie(data = sex_outcome)
 #'
 #' # Conditon on department 1
 #' sex_outcome_1 <- UCBAdmissions[, , 1]
+#' colnames(sex_outcome_1) <- c("A", "R")
+#' rownames(sex_outcome_1) <- c("M", "F")
 #' two_by_two_movie(data = sex_outcome_1)
 #'
 #' # Conditon on department 2
 #' sex_outcome_2 <- UCBAdmissions[, , 2]
+#' colnames(sex_outcome_2) <- c("A", "R")
+#' rownames(sex_outcome_2) <- c("M", "F")
 #' two_by_two_movie(data = sex_outcome_2)
 #' }
 #' @export
