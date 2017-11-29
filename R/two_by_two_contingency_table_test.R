@@ -173,7 +173,7 @@ two_by_two_plot <- function(panel) {
                            hlines = TRUE, vlines = TRUE, title = "",
                            xpad = 0.5, ypad = 1.2, xjust = 0.5, yjust = 0.5,
                            text.col = 1:5)
-    add_chi_squared_calc(0.05, 0.275, real_test_res)
+    add_chi_squared_calc(0., 0.275, real_test_res)
     # 2. Produce the table on the top right
     # Simulate nsim 2 x 2 tables under the null hypothesis that the margins
     # are independent
@@ -205,7 +205,7 @@ two_by_two_plot <- function(panel) {
                            xpad = 0.5, ypad = 1.2, xjust = 0.5, yjust = 0.5,
                            text.col = 1:5)
     # Performs chi-squared test on the real data
-    add_chi_squared_calc(0.05, 0.275, sim_test_res)
+    add_chi_squared_calc(0, 0.275, sim_test_res)
     # 3. Produce the bottom plot
     big_val <- max(10, ceiling(max(sim_test_stats)))
     my_breaks <- seq(0, big_val, by = bin_width)
