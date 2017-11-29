@@ -96,6 +96,8 @@ If you have any questions about this package please ask them via the
 }
 
 \seealso{
+\code{\link{movies}}: general information about STAT1004 movies.
+
 The \href{https://moodle.ucl.ac.uk/course/view.php?id=3419&section=0}{STAT1004 Moodle page}
   for: various forms of feedback, a discussion forum, lecturecast recordings,
   course notes, exercises, quizzes, short videos, past exam papers and revision

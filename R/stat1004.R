@@ -78,6 +78,7 @@
 #'   \item {\link[=lev_inf_movie]{Leverage and influence in simple linear regression}}
 #'   \item {\link[=corr_sim_movie]{Sampling distribution of the correlation coefficient}}
 #' }
+#' @seealso \code{\link{movies}}: general information about STAT1004 movies.
 #' @seealso The \href{https://moodle.ucl.ac.uk/course/view.php?id=3419&section=0}{STAT1004 Moodle page}
 #'   for: various forms of feedback, a discussion forum, lecturecast recordings,
 #'   course notes, exercises, quizzes, short videos, past exam papers and revision
