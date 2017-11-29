@@ -149,7 +149,7 @@ add_chi_squared_calc <- function(x_loc, y_loc, x) {
                              test_stat = round(x$statistic, 2)))
 #  graphics::text(x_loc, y_loc - 0.25, my_text, cex = my_cex, xpd = TRUE, pos = 4)
   graphics::legend("bottom", legend = my_text, bty = "n", cex = my_cex,
-                   xpd = TRUE)
+                   xpd = TRUE, xjust = 0.5)
   return(invisible())
 }
 
