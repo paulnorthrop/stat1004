@@ -136,9 +136,10 @@ corr_sim_movie_plot <- function(panel){
     graphics::par(mar=c(3, 3, 1, 1))
     graphics::plot(sim_vals, pch = 16, xlab = "x", ylab = "y",
                    xlim = c(-3.5, 3.5), ylim = c(-3.5, 3.5))
-    graphics::title(paste("rho =",round(rho,2),",
-                          r =",round(cor(sim_vals)[1, 2], 2),",  n =", nsim),
-                    font.main = 1)
+    rhoval <- round(rho, 2)
+    rval <- round(cor(sim_vals)[1, 2], 2)
+    ttxt <- paste("rho =", rhoval,", r =", rval,",  n =", nsim)
+    graphics::title(ttxt, font.main = 1)
   })
   return(invisible(panel))
 }
