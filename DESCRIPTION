@@ -23,7 +23,7 @@ Imports: stats,
     plotrix,
     rpanel,
     utils,
-    bang
+    rust
 Suggests: knitr,
     rmarkdown,
     tkrplot
