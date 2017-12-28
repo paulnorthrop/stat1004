@@ -22,7 +22,8 @@ Imports: stats,
     methods,
     plotrix,
     rpanel,
-    utils
+    utils,
+    bang
 Suggests: knitr,
     rmarkdown,
     tkrplot
