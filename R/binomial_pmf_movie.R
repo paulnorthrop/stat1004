@@ -17,7 +17,11 @@
 #'   supplied then the corresponding line in the plot of the p.m.f. is coloured
 #'   in red.  If \code{observed_value} is not an integer then
 #'   \code{round(observed_value)} is used.
-#' @details Add details.
+#' @details The probability mass function of a binomial random variable with
+#'   parameters \eqn{n} (the number of Bernoulli trials performed) and
+#'   \eqn{p} (the probabilities of success on a each trial) is plotted.
+#'   The values of \eqn{n} and \eqn{p} can be changed by clicking on the
+#'   relevant buttons.
 #' @return Nothing is returned, only the animation is produced.
 #' @seealso \code{\link{movies}}: general information about STAT1004 movies.
 #' @examples

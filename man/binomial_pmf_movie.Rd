@@ -33,7 +33,11 @@ A movie to illustrate how the probability mass function (p.m.f.) of a
 binomial (n, p) random variable depends on n and p.
 }
 \details{
-Add details.
+The probability mass function of a binomial random variable with
+  parameters \eqn{n} (the number of Bernoulli trials performed) and
+  \eqn{p} (the probabilities of success on a each trial) is plotted.
+  The values of \eqn{n} and \eqn{p} can be changed by clicking on the
+  relevant buttons.
 }
 \examples{
 # Load package rpanel
