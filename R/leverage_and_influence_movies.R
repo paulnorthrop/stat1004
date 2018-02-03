@@ -53,15 +53,15 @@ lev_inf_movie <- function(association = c("positive", "negative", "none"),
   association <- match.arg(association)
   if (association == "positive") {
     set.seed(40)
-    x <- sort(runif(n) * 2)
+    x <- sort(stats::runif(n) * 2)
     set1 <- stats::rnorm(n, mean = x, sd = 0.5)
   } else if (association == "negative") {
     set.seed(40)
-    x <- sort(runif(n) * 2)
+    x <- sort(stats::runif(n) * 2)
     set1 <- stats::rnorm(n, mean = 2 - x, sd = 0.5)
   } else {
     set.seed(4)
-    x <- sort(runif(n) / 2 + 0.5)
+    x <- sort(stats::runif(n) / 2 + 0.5)
     set1 <- stats::rnorm(n, mean = 0.75, sd = 0.175)
   }
   x <- (x - min(x)) / range(x - min(x))[2]
