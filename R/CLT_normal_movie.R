@@ -121,7 +121,7 @@ clt_normal_movie_plot <- function(panel) {
     my_mean <- round(mu, 2)
     my_var <- round(sigma ^ 2, 2)
     my_leg <- paste("N(", my_mean, ",", my_var,")" )
-    graphics::legend("topright", legend = my_leg)
+    graphics::legend("topright", legend = my_leg, lty = 2, lwd = 2)
     graphics::segments(mean_y, 0, mean_y, -10, col = "red", xpd = TRUE, lwd = 2)
     graphics::points(mean_y, 0, pch = 16, col = "red", cex = 1.5)
     ytop <- dnorm(0, sd = sigma / sqrt(n)) * 1.5
@@ -140,7 +140,7 @@ clt_normal_movie_plot <- function(panel) {
                     ylab="density", las = 1, xpd = TRUE, lwd = 2,
                     add = TRUE, lty = 2)
     my_leg_2 <- paste("N(", my_mean, ",", my_var, "/ n)" )
-    graphics::legend("topright", legend = my_leg_2)
+    graphics::legend("topright", legend = my_leg_2, lty = 2, lwd = 2)
     graphics::arrows(mean_y, 2* ytop, mean_y, 0, col = "red", lwd = 2, xpd = TRUE)
     old_n <- n
     assign("old_n", old_n, envir = envir)

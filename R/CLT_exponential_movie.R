@@ -123,8 +123,9 @@ clt_exponential_movie_plot <- function(panel) {
     my_mean <- round(1 / lambda, 2)
     my_sd <- my_mean
     my_var <- round(my_sd ^ 2, 2)
-    my_leg <- paste("N(", my_mean, ",", my_var,")" )
-    graphics::legend("topright", legend = my_leg)
+    my_lambda <- round(lambda, 2)
+    my_leg <- paste("exp(", my_lambda, ")")
+    graphics::legend("topright", legend = my_leg, lty = 2, lwd = 2)
     graphics::segments(mean_y, 0, mean_y, -10, col = "red", xpd = TRUE, lwd = 2)
     graphics::points(mean_y, 0, pch = 16, col = "red", cex = 1.5)
     ytop <- dnorm(0, sd = my_sd / sqrt(n)) * 1.5
@@ -143,7 +144,7 @@ clt_exponential_movie_plot <- function(panel) {
                     ylab="density", las = 1, xpd = TRUE, lwd = 2, add = TRUE,
                     lty = 2)
     my_leg_2 <- paste("N(", my_mean, ",", my_var, "/ n)" )
-    graphics::legend("topright", legend = my_leg_2)
+    graphics::legend("topright", legend = my_leg_2, lty = 2, lwd = 2)
     graphics::arrows(mean_y, 2* ytop, mean_y, 0, col = "red", lwd = 2, xpd = TRUE)
     old_n <- n
     assign("old_n", old_n, envir = envir)
