@@ -116,7 +116,7 @@ poisson_process_check <- function(user_data = NULL, total_time = NULL,
   return(invisible())
 }
 
-# Function to be called by poisson_process_movie().
+# Function to be called by poisson_process_check_plot().
 
 poisson_process_check_plot <- function(panel) {
   with(panel, {
