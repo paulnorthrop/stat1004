@@ -70,6 +70,7 @@ binomial_pmf_movie <- function(starting_n = 1, starting_p = 1 /2, delta_n = 1,
 
 plot_binomial_pmf <- function(panel) {
   with(panel, {
+    old_par <- graphics::par(no.readonly = TRUE)
     probs <- dbinom(0:n, n, prob)
     graphics::plot(c(0,n), c(0,1), type = "n", xlab = "y", ylab = "P(Y=y)",
                    axes = FALSE, ylim = c(0, max(probs)), xlim= c(0, n),
@@ -91,6 +92,7 @@ plot_binomial_pmf <- function(panel) {
     graphics::segments(0:n, rep(0, n + 1), 0:n, probs, lwd = 3, col = col)
     ptext <- as.character(round(prob, 3))
     graphics::title(paste("binomial p.m.f.:  n =", n, "  p =", ptext))
+    graphics::par(old_par)
   })
   return(panel)
 }
