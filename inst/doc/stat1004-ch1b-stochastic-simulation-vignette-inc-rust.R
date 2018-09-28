@@ -36,7 +36,7 @@ lambda <- 2
 exp_sim <- rexp(n = 1000, rate = lambda)
 
 ## ---- fig.width = 6, fig.height = 4--------------------------------------
-# A histogram (see Section 2.5 of the STAT1004 notes)
+# A histogram (see Section 2.5 of the STAT0002 notes)
 hist(exp_sim, probability = TRUE, ylim = c(0, lambda), main = "")
 x <- seq(0, max(exp_sim), len = 500)
 lines(x, dexp(x, rate = lambda))

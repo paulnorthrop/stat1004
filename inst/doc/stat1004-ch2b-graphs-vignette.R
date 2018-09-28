@@ -84,7 +84,7 @@ b2 <- boxplot(birth_times, horizontal = TRUE, main = "type = 7")
 as.vector(b1$stats)
 as.vector(b2$stats)
 
-## ---- fig.show = 'hold', fig.width = 3.4, fig.height = 2.5---------------
+## ---- fig.show = 'hold', fig.width = 3.4, fig.height = 2.5----------------------
 par(mar = c(4, 1, 0.5, 1))
 x_labs <- c(min(birth_times), pretty(birth_times), max(birth_times))
 # top left
@@ -99,36 +99,36 @@ axis(1, at = x_labs, labels = x_labs)
 boxplot(birth_times, horizontal = TRUE, axes = FALSE, xlab = xlab, pch = 16, lty = 1, range = 0, boxcol = "white", staplewex = 0, medlty = "blank", medpch = 16)
 axis(1, at = x_labs, labels = x_labs)
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------
 shuttle$damaged
 O_tab <- table(shuttle$damaged)
 O_tab
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------
 set.seed(47)
 x <- rpois(10, 5)
 table(x)
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------
 table(c(x, 0:11)) - 1
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------
 tab <- table(c(x, 0:11)) - 1
 names(tab)[12] <- ">10"
 tab
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------
 class(shuttle$damaged)
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------
 fac_dam <- factor(shuttle$damaged, levels = 0:6)
 class(fac_dam)
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------
 O_tab_fac <- table(fac_dam)
 O_tab_fac
 
-## ---- fig.show = 'hold', fig.width = 6.5, fig.height = 4-----------------
+## ---- fig.show = 'hold', fig.width = 6.5, fig.height = 4------------------------
 par(mfrow=c(2,2))
 par(oma=c(0,0,0,0),mar=c(4,4,1,2)+0.1)
 xlab <- "number of damaged O-rings"
@@ -143,33 +143,33 @@ plot(xx, yy, pch = c("0","1","2","3"), axes = FALSE, xlab ="", ylab = ylab, ylim
 title(xlab="number of damaged o-rings",line=0.25)
 axis(2, lty = 1, at = yy, labels = yy, pos = -0.3, las = 1)
 
-## ---- fig.width = 6.5, fig.height = 4------------------------------------
+## ---- fig.width = 6.5, fig.height = 4-------------------------------------------
 barplot(O_tab_fac, xlab = xlab, ylab = ylab, las = 1)
 
-## ---- fig.width = 6.5, fig.height = 4------------------------------------
+## ---- fig.width = 6.5, fig.height = 4-------------------------------------------
 blood_types
 lab <- paste(blood_types$ABO, substr(blood_types$Rh, 3, 3), sep = "")
 barplot(blood_types$percentage, space = 1, xlab = "blood group", ylab = "percentage", las = 1, names.arg = lab)
 abline(h=0)
 
-## ---- fig.width = 3, fig.height = 3--------------------------------------
+## ---- fig.width = 3, fig.height = 3---------------------------------------------
 par(mar = c(1, 1, 0, 1))
 slices <- rep(c("white","grey66","grey33","black"), 2)
 pie(blood_types$percentage, labels = lab, col = slices)
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------
 head(ftse)
 tail(ftse)
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------
 ftse_ts <- ts(ftse$price, frequency = 52, start = c(1984, 14))
 head(ftse_ts)
 attributes(ftse_ts)
 
-## ---- fig.width = 6.5, fig.height = 4------------------------------------
+## ---- fig.width = 6.5, fig.height = 4-------------------------------------------
 plot(as.Date(ftse$date), ftse$price, type = "l", ylab = "weekly FTSE 100 share index", xlab = "year")
 
-## ---- fig.width = 6.5, fig.height = 4------------------------------------
+## ---- fig.width = 6.5, fig.height = 4-------------------------------------------
 plot(ftse_ts, ylab = "FTSE 100 (in 1000s)", xlab = "year", las = 1, axes = FALSE)
 q2 <- c(min(ftse_ts), (2:6) * 1000, max(ftse_ts))
 axis(2, at = q2, labels = round(q2 / 1000, 1), las = 1)
@@ -177,11 +177,11 @@ axis(4, at= q2, labels = round(q2 / 1000, 1), las=1)
 axis(1)
 abline(h = par("usr")[3])
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------------------------------
 head(flu)
 tail(flu)
 
-## ---- fig.width = 6.5, fig.height = 4------------------------------------
+## ---- fig.width = 6.5, fig.height = 4-------------------------------------------
 par(mar = c(5, 5, 4, 3) + 0.1, cex.axis = 0.8, cex.lab = 0.75)
 flu_ts <- ts(flu[,2], frequency = 13, start = c(1967, 4))
 plot(flu_ts, ylab="number of 'flu consultations (in 1000s)", xlab = "year", las = 1, axes=FALSE)

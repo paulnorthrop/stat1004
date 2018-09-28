@@ -36,7 +36,7 @@
 #'   the legend, for comparison.
 #'
 #' @return Nothing is returned, only the animation is produced.
-#' @seealso \code{\link{movies}}: general information about STAT1004 movies.
+#' @seealso \code{\link{movies}}: general information about the movies.
 #' @examples
 #' # Load package rpanel
 #' # [Use install.packages("rpanel") if necessary]

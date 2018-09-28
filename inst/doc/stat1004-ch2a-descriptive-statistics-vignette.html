@@ -152,7 +152,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="five-number-summary" class="section level2">
 <h2>Five number summary</h2>
-<p>The function <code>five_number</code> calculates the five number summary of data, using the particular method for estimating the lower quartile, median and upper quartile described in the STAT1004 notes.</p>
+<p>The function <code>five_number</code> calculates the five number summary of data, using the particular method for estimating the lower quartile, median and upper quartile described in the STAT0002 notes.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">five_number</span>(birth_times)
   min   <span class="dv">25</span><span class="op">%   50%</span><span class="st">   </span><span class="dv">75</span>%   max 
  <span class="fl">1.50</span>  <span class="fl">4.90</span>  <span class="fl">7.50</span>  <span class="fl">9.75</span> <span class="fl">19.00</span> </code></pre></div>
@@ -191,7 +191,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="co"># Sample quartile skewness</span>
 <span class="er">&gt;</span><span class="st"> </span><span class="kw">q_skew</span>(birth_times)
 [<span class="dv">1</span>] <span class="op">-</span><span class="fl">0.07216495</span></code></pre></div>
-<p>Until 2017/18 the STAT1004 notes gave -0.063 as the sample quartile skewness. This was because I used the default setting, <code>type = 7</code>, in the <code>quantile</code> function when calculating it …</p>
+<p>Until 2017/18 the STAT0002 notes gave -0.063 as the sample quartile skewness. This was because I used the default setting, <code>type = 7</code>, in the <code>quantile</code> function when calculating it …</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">q_skew</span>(birth_times, <span class="dt">type =</span> <span class="dv">7</span>)
 [<span class="dv">1</span>] <span class="op">-</span><span class="fl">0.0625</span></code></pre></div>
 </div>
