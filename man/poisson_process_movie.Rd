@@ -88,7 +88,7 @@ poisson_process_movie(lambda = 0.5)
 }
 }
 \seealso{
-\code{\link{movies}}: general information about STAT1004 movies.
+\code{\link{movies}}: general information about the movies.
 
 \code{\link{poisson_process_check}}: for similar plots based on
   data supplied by a user.

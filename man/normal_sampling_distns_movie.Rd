@@ -53,5 +53,5 @@ normal_sampling_distns_movie()
 }
 }
 \seealso{
-\code{\link{movies}}: general information about STAT1004 movies.
+\code{\link{movies}}: general information about the movies.
 }

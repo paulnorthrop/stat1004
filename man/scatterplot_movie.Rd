@@ -69,7 +69,7 @@ scatterplot_movie(x = USelection$npop, y = pbuch, pch = my_pch)
 }
 }
 \seealso{
-\code{\link{movies}}: general information about STAT1004 movies.
+\code{\link{movies}}: general information about the movies.
 
 \code{\link{USelection}}: description of the 2000 U.S.
   Presidential Election data from Florida.

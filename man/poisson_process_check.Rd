@@ -78,7 +78,7 @@ poisson_process_check(user_data = (1:24), 24, 24, exp_bins = 100)
 }
 }
 \seealso{
-\code{\link{movies}}: general information about STAT1004 movies.
+\code{\link{movies}}: general information about the movies.
 
 \code{\link{poisson_process_movie}}: for similar plots based on
   data simulated from a Poisson process.

@@ -49,7 +49,7 @@ shuttle_movie()
 shuttle_movie(n_reps = 10)
 }
 \seealso{
-\code{\link{movies}}: general information about STAT1004 movies.
+\code{\link{movies}}: general information about the movies.
 
 \code{\link{shuttle_sim}} and \code{\link{shuttle_sim}} simulation
   of fake space shuttle data (from a linear logistic regression model)

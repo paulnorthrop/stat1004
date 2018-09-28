@@ -44,5 +44,5 @@ qq_plot_movie(data = x, mu = 7.72, sigma = 3.57)
 }
 }
 \seealso{
-\code{\link{movies}}: general information about STAT1004 movies.
+\code{\link{movies}}: general information about the movies.
 }

@@ -71,6 +71,12 @@ If you have any questions about this package please ask them via the
 \section{\link[=movies]{Movies}}{
 
 
+Some of the following movies, and other movies are also available in a more
+user-friendly form, via the \code{\link[smovie]{smovie}} package.
+If you have \code{smovie} installed (\code{install.packages("smovie")})
+then you can access these using \code{movies()}.
+See \code{\link[smovie]{movies}} for more details.
+
 \itemize{
   \item {\link[=shuttle_movie]{Challenger Space Shuttle Disaster}}
   \item {\link[=scatterplot_movie]{US election: straightening scatter
