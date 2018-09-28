@@ -13,7 +13,8 @@ Depends:
     R (>= 3.3.0)
 License: GPL (>= 2)
 LazyData: TRUE
-RoxygenNote: 6.0.1
+Encoding: UTF-8
+RoxygenNote: 6.1.0
 Imports: stats,
     graphics,
     grDevices,

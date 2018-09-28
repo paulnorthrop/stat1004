@@ -1,18 +1,18 @@
 #' stat1004: Introduction to Probability and Statistics at UCL
 #'
 #' Provides example datasets, R code and tutorials to help students taking
-#' STAT1004 Introduction to Probability and Statistics at University College
-#' London to understand the course material and to see how R can be used to
-#' perform some of the analyses in the course.  This package can also be used
-#' to complement STAT1006 Introduction to Practical Statistics, enabling
-#' students to become more familiar with R code by seeing it in action and
-#' playing with it themselves.
+#' STAT0002 (formerly STAT1004) Introduction to Probability and Statistics at
+#' University College London to understand the course material and to see how
+#' R can be used to perform some of the analyses in the course.
+#' This package can also be used to complement STAT0004 Introduction to
+#' Practical Statistics, enabling students to become more familiar with R
+#' code by seeing it in action and playing with it themselves.
 #'
 #' @section Please note:
-#' \strong{The main sources of information about the material in STAT1004
+#' \strong{The main sources of information about the material in STAT0002
 #' are the lectures and tutorials, with notes, lecture slides, exercises
 #' etc available from the
-#' \href{https://moodle.ucl.ac.uk/course/view.php?id=3419&section=0}{STAT1004 Moodle page}.
+#' \href{https://moodle-1819.ucl.ac.uk/course/view.php?id=8579&section=0}{STAT0002 Moodle page}.
 #' The focus of this R package is mainly on R code.}
 #'
 #' @section How to learn about R:
@@ -24,7 +24,7 @@
 #' use either \code{?name} or \code{help(name)}.
 #'
 #' If you have any questions about this package please ask them via the
-#' \href{https://moodle.ucl.ac.uk/mod/hsuforum/view.php?id=1410864}{STAT1004 Moodle Discussion Forum}.
+#' \href{https://moodle-1819.ucl.ac.uk/mod/hsuforum/view.php?id=755813}{STAT0002 Moodle Discussion Forum}.
 #'
 #' @section Vignettes (tutorials demonstrating how to use R code):
 #'
@@ -78,8 +78,8 @@
 #'   \item {\link[=lev_inf_movie]{Leverage and influence in simple linear regression}}
 #'   \item {\link[=corr_sim_movie]{Sampling distribution of the correlation coefficient}}
 #' }
-#' @seealso \code{\link{movies}}: general information about STAT1004 movies.
-#' @seealso The \href{https://moodle.ucl.ac.uk/course/view.php?id=3419&section=0}{STAT1004 Moodle page}
+#' @seealso \code{\link{movies}}: general information about the movies.
+#' @seealso The \href{https://moodle-1819.ucl.ac.uk/course/view.php?id=8579&section=0}{STAT0002 Moodle page}
 #'   for: various forms of feedback, a discussion forum, lecturecast recordings,
 #'   course notes, exercises, quizzes, short videos, past exam papers and revision
 #'   lecture material, real investigations.
@@ -95,14 +95,14 @@ NULL
 
 #' Challenger Space Shuttle Disaster Dataset
 #'
-#' These data are discussed in the first STAT1004 lecture.
+#' These data are discussed in the first STAT0002 lecture.
 #' A paper (Dalal \emph{et al.}, 1989), in which these data are analysed
 #' with a view to estimating (retrospectively) the probability of a
 #' catastrophic failure of the Challenger space shuttle under the
 #' launch conditions on 28th January 1986 is used as a
-#' \href{https://moodle.ucl.ac.uk/mod/resource/view.php?id=2125123}{worked example}
+#' \href{https://moodle-1819.ucl.ac.uk/mod/resource/view.php?id=316153}{worked example}
 #' for the
-#' \href{https://moodle.ucl.ac.uk/course/view.php?id=3419&section=4}{STAT1004 Meet your Professor ICA}.
+#' \href{https://moodle-1819.ucl.ac.uk/course/view.php?id=8579&section=4}{STAT0002 Meet your Professor ICA}.
 #'
 #' @format A dataframe with 24 rows and 5 columns:
 #' \itemize{
@@ -275,7 +275,7 @@ NULL
 
 #' Australian Birth Times Data
 #'
-#' The baby arrivals data introduced in Section 5 of the STAT1004 notes.
+#' The baby arrivals data introduced in Section 5 of the STAT0002 notes.
 #' Information concerning the 44 babies (18 girls and 26 boys) born in a
 #' 24-hour period at the Mater Mothers’ Hospital, Brisbane, Australia, on
 #' December 18, 1997.
@@ -294,7 +294,7 @@ NULL
 
 #' Nebulae data from Hubble (1929)
 #'
-#' The data used in Section 8.1 of the STAT1004 notes to introduce simple
+#' The data used in Section 8.1 of the STAT0002 notes to introduce simple
 #' linear regression.  This dataset contains estimates of the distance
 #' from Earth and the velocity relative to Earth of 24 nebulae.
 #' @format A data frame with 42 observations on the following 2 variables.
