@@ -24,7 +24,7 @@
 #'   \code{data}.  The data are simulated under the assumption that the
 #'   value of the variable in the row of the table is not associated with
 #'   the value of the variable in the colum of the table.
-#'   See Section 7.1.2 of the STAT1004 notes for details.
+#'   See Section 7.1.2 of the STAT0002 notes for details.
 #'
 #'   Under each of these tables the calculation of the Pearson
 #'   chi-squared test statistic is given.  Every time a new simulated dataset
