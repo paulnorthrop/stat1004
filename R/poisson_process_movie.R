@@ -60,7 +60,7 @@
 #'     heights of the black bars in the "numbers of events in each hour"
 #'     plot may be incorrected because they extend beyond the plot region.
 #' @return Nothing is returned, only the animation is produced.
-#' @seealso \code{\link{movies}}: general information about STAT1004 movies.
+#' @seealso \code{\link{movies}}: general information about the movies.
 #' @seealso \code{\link{poisson_process_check}}: for similar plots based on
 #'   data supplied by a user.
 #' @examples

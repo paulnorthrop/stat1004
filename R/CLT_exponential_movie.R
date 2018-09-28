@@ -49,7 +49,7 @@
 #'   Another movie (\code{\link{clt_normal_movie}}) considers the special case
 #'   where the original variables are normally distributed.
 #' @return Nothing is returned, only the animation is produced.
-#' @seealso \code{\link{movies}}: general information about STAT1004 movies.
+#' @seealso \code{\link{movies}}: general information about the movies.
 #' @seealso \code{\link{clt_normal_movie}}: a similar movie using data
 #'   simulated from a normal distribution.
 #' @examples

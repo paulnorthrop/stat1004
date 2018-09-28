@@ -21,7 +21,7 @@
 #'   For the purposes of this movie, the variance cannot be reduced below a
 #'   value of 0.1.
 #' @return Nothing is returned, only the animation is produced.
-#' @seealso \code{\link{movies}}: general information about STAT1004 movies.
+#' @seealso \code{\link{movies}}: general information about the movies.
 #' @seealso \code{\link{normal_areas_movie}}: normal central probability areas
 #'   movie.
 #' @examples

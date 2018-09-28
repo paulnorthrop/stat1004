@@ -25,7 +25,7 @@
 #' fitted to this dataset.
 #' Clicking - removes the mostly recently added dataset.
 #' @return Nothing is returned, only the animation is produced.
-#' @seealso \code{\link{movies}}: general information about STAT1004 movies.
+#' @seealso \code{\link{movies}}: general information about the movies.
 #' @seealso \code{\link{shuttle_sim}} and \code{\link{shuttle_sim}} simulation
 #'   of fake space shuttle data (from a linear logistic regression model)
 #'   and plotting these data, respectively.

@@ -1,8 +1,8 @@
 # ========================== movies =========================
 
-#' General information about STAT1004 movies
+#' General information about the movies
 #'
-#' These movies are animations used to illustrate key ideas in STAT1004.
+#' These movies are animations used to illustrate key ideas in STAT0002.
 #' They are produced using the package \code{\link[rpanel]{rpanel}}.
 #' You need to install \code{rpanel} once, using RStudio's Install button
 #' in the Packages menu or \code{install.packages("rpanel")} on the command
@@ -16,6 +16,12 @@
 #' See \strong{Examples} below.
 #'
 #' @details
+#' (Some of these movies, and other movies are also available in a more
+#' user-friendly form, via the \code{\link[smovie]{smovie}} package.
+#' If you have \code{smovie} installed (\code{install.packages("smovie")})
+#' then you can access these using \code{movies()}.
+#' See \code{\link[smovie]{movies}} for more details.)
+#'
 #' When one of these functions is called R opens up a small
 #' \emph{parameter window} containing clickable buttons that can be
 #' used to change parameters underlying the plot. For the effects of

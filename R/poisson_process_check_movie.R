@@ -50,7 +50,7 @@
 #'   The type of plot can be changed by clicking on the appropriate radio
 #'   button.
 #' @return Nothing is returned, only the animation is produced.
-#' @seealso \code{\link{movies}}: general information about STAT1004 movies.
+#' @seealso \code{\link{movies}}: general information about the movies.
 #' @seealso \code{\link{poisson_process_movie}}: for similar plots based on
 #'   data simulated from a Poisson process.
 #' @examples

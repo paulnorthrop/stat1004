@@ -28,7 +28,7 @@
 #' surrounding these data see
 #' \href{https://www.theguardian.com/global-development/video/2013/may/17/population-climate-change-hans-rosling-video}{this video}
 #' @return Nothing is returned, only the animation is produced.
-#' @seealso \code{\link{movies}}: general information about STAT1004 movies.
+#' @seealso \code{\link{movies}}: general information about the movies.
 #' @seealso \code{\link{world_bank}}: description of the World Bank Data.
 #' @seealso \code{\link[rpanel]{rp.bubbleplot}}: function in the
 #'   \code{\link[rpanel]{rpanel}} package used to produce this movie.

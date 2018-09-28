@@ -42,7 +42,7 @@
 #'   The value of the sample size can be changed using the +/-
 #'   buttons in the panel.
 #' @return Nothing is returned, only the animation is produced.
-#' @seealso \code{\link{movies}}: general information about STAT1004 movies.
+#' @seealso \code{\link{movies}}: general information about the movies.
 #' @seealso  \code{\link{mean_vs_median_t_movie}}: compares the
 #'   sampling distributions of the sample mean and sample median based
 #'   on a random sample of size \eqn{n} from a Student't t distribution.

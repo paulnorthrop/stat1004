@@ -16,14 +16,14 @@
 #'   \href{https://en.wikipedia.org/wiki/Gamma_distribution}{gamma distribution}
 #'   (see \code{\link[stats]{GammaDist}}) to the \code{time} data in the
 #'   \code{\link{ox_births}} data.  Then we simulate samples (using
-#'   \code{\link[stats]{rgamma}}) from the fitted gamma distribution and produce a
+#'   \code{\link[stats:GammaDist]{rgamma}}) from the fitted gamma distribution and produce a
 #'   histogram of the simulated data.  The p.d.f. of the fitted gamma distribution
 #'   is superimposed on the histogram.
 #'
-#'   We will not study the gamma distribution in STAT1004, but you will encounter
-#'   it in STAT1005 if you take that next term.
+#'   We will not study the gamma distribution in STAT0002, but you will encounter
+#'   it in STAT0003 if you take that next term.
 #' @return Nothing is returned, only the animation is produced.
-#' @seealso \code{\link{movies}}: general information about STAT1004 movies.
+#' @seealso \code{\link{movies}}: general information about the movies.
 #' @examples
 #' # Load package rpanel
 #' # [Use install.packages("rpanel") if necessary]

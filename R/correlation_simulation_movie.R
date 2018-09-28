@@ -44,7 +44,7 @@
 #'   reset using the sample correlation coefficient of the first sample
 #'   simulated using the new combination of \eqn{n} and \eqn{\rho}.
 #' @return Nothing is returned, only the animation is produced.
-#' @seealso \code{\link{movies}}: general information about STAT1004 movies.
+#' @seealso \code{\link{movies}}: general information about the movies.
 #' @examples
 #' # Load package rpanel
 #' # [Use install.packages("rpanel") if necessary]

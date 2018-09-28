@@ -19,7 +19,7 @@ knitr::opts_chunk$set(comment = "", prompt = TRUE, collapse = TRUE)
 
 ## Preliminaries
 
-This vignette contains ideas and techniques that are not covered until later in STAT1004 and others (stochastic simulation and logistic regression) that are not part of the STAT1004 syllabus. Therefore, you should not worry too much about these details: just try to get a sense of how the R code works.  The questions and comments below are there to prompt you to think about things.
+This vignette contains ideas and techniques that are not covered until later in STAT0002 and others (stochastic simulation and logistic regression) that are not part of the STAT0002 syllabus. Therefore, you should not worry too much about these details: just try to get a sense of how the R code works.  The questions and comments below are there to prompt you to think about things.
 
 For information about R see [STAT0004 Moodle page](https://moodle-1819.ucl.ac.uk/course/view.php?id=8581) (if you are taking STAT1006) or [Introduction to R Moodle page](https://moodle-1819.ucl.ac.uk/course/view.php?id=10773) (if you are not taking STAT1006, e.g. Natural Sciences students).
 
@@ -31,7 +31,7 @@ If you have any questions please ask them using the [STAT0002 discussion forum](
 
 In the first lecture we discussed the Challenger Space Shuttle Disaster.   In this vignette we are concerned mainly with the R code, so there is very little discussion of the problem, the data or statistical ideas.  For discussion of these see the notes and/or lecture slides in the [Notes](https://moodle-1819.ucl.ac.uk/course/view.php?id=8579&section=3) section of the STAT0002 Moodle page.
 
-In this vignette we consider how R can be used to analyse data related to this disaster.  See @shuttle for more information about these data and analyses to estimate the probability of a catastrophic failure of the Challenger space shuttle under the launch conditions on 28th January 1986.  This paper is used as a [worked example](https://moodle-1819.ucl.ac.uk/mod/resource/view.php?id=316154) for the [STAT1004 Meet your Professor ICA](https://moodle-1819.ucl.ac.uk/course/view.php?id=8579&section=4).
+In this vignette we consider how R can be used to analyse data related to this disaster.  See @shuttle for more information about these data and analyses to estimate the probability of a catastrophic failure of the Challenger space shuttle under the launch conditions on 28th January 1986.  This paper is used as a [worked example](https://moodle-1819.ucl.ac.uk/mod/resource/view.php?id=316154) for the [STAT0002 Meet your Professor ICA](https://moodle-1819.ucl.ac.uk/course/view.php?id=8579&section=4).
 
 In the following R commands follow the command prompt `>` and `#` is used to create a comment, that is, to prevent R from trying to execute text that contains comments rather than a command.
 
@@ -119,7 +119,7 @@ title(xlab = "temperature / deg F", ylab = "number of distressed O-rings")
 
 ### Relating the probability of O-ring damage to temperature
 
-This section involves a statistical model, a *logistic regression model*, that is not part of the STAT1004 syllabus, so don't worry too much about the details that follow.  However, this section involves things that we *will* study later in STAT1004, namely *independence*, the *binomial distribution* and (the general concept of) *regression*.  We fit the model using a general fitting method called *maximum likelihood estimation*.  This method is not formally part of the STAT1004 syllabus, but we will look at it very briefly later in the course.
+This section involves a statistical model, a *logistic regression model*, that is not part of the STAT0002 syllabus, so don't worry too much about the details that follow.  However, this section involves things that we *will* study later in STAT0002, namely *independence*, the *binomial distribution* and (the general concept of) *regression*.  We fit the model using a general fitting method called *maximum likelihood estimation*.  This method is not formally part of the STAT0002 syllabus, but we will look at it very briefly later in the course.
 
 Consider the six O-rings on the space shuttle.  We suppose that on a launch at temperature $t$ degrees F:
 

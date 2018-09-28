@@ -29,7 +29,7 @@
 #'   Clicking + increases the power by \code{delta_power} and
 #'   clicking - decreases the power by \code{delta_power}.
 #' @return Nothing is returned, only the animation is produced.
-#' @seealso \code{\link{movies}}: general information about STAT1004 movies.
+#' @seealso \code{\link{movies}}: general information about the movies.
 #' @seealso \code{\link{USelection}}: description of the 2000 U.S.
 #'   Presidential Election data from Florida.
 #' @examples

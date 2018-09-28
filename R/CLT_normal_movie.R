@@ -50,7 +50,7 @@
 #'   Another movie (\code{\link{clt_exponential_movie}}) illustrates the CLT
 #'   in the case where the original variables are exponentially distributed.
 #' @return Nothing is returned, only the animation is produced.
-#' @seealso \code{\link{movies}}: general information about STAT1004 movies.
+#' @seealso \code{\link{movies}}: general information about the movies.
 #' @seealso \code{\link{clt_exponential_movie}}: a similar movie using data
 #'   simulated from an exponential distribution.
 #' @examples

@@ -75,7 +75,7 @@ plot(shuttle$temperature, shuttle$damaged / 6, ann = FALSE, ylim = c(0, 1))
 title(xlab = "temperature / deg F", ylab = "proportion of distressed O-rings")
 lines(temp, fitted_curve)
 
-## ---- fig.width = 6, fig.height = 5---------------------------------------------
+## ---- fig.width = 6, fig.height = 5--------------------------------------
 repeated_data <- which(duplicated(shuttle[, 3:4]))
 shuttle[repeated_data, ]
 new_damaged <- shuttle$damaged
@@ -87,31 +87,31 @@ lines(temp, fitted_curve)
 legend("topright", legend = c("sample proportions", "fitted curve"), pch=c(16, -1), lty = c(-1, 1))
 abline(v = 31, lty = 2)
 
-## ---- include = FALSE-----------------------------------------------------------
+## ---- include = FALSE----------------------------------------------------
 # Set a random number `seed'.  
 set.seed(1004)
 
-## -------------------------------------------------------------------------------
+## ------------------------------------------------------------------------
 # Simulate 10 fake datasets of size 23, using the real temperatures.
 res <- shuttle_sim(n_sim = 10)
 res
 
-## -------------------------------------------------------------------------------
+## ------------------------------------------------------------------------
 # Simulate the number of distressed O-rings for 1000 launches at 31 deg F.
 res <- shuttle_sim(n_sim = 1000, temperature = 31)
 res[1:100]
 table(res)
 
-## ---- fig.width = 7, fig.height = 5---------------------------------------------
+## ---- fig.width = 7, fig.height = 5--------------------------------------
 shuttle_sim_plot(n_sim = 50, col = "grey")
 
-## ---- fig.width = 7, fig.height = 5---------------------------------------------
+## ---- fig.width = 7, fig.height = 5--------------------------------------
 shuttle_sim_plot(n_sim = 50, n_reps = 10, plot_real_data = FALSE, lty = 1)
 
-## ---- fig.width = 7, fig.height = 5---------------------------------------------
+## ---- fig.width = 7, fig.height = 5--------------------------------------
 shuttle_sim_plot(n_sim = 50, n_reps = 100, plot_real_data = FALSE, lty = 1)
 
-## ---- fig.width = 7, fig.height = 12--------------------------------------------
+## ---- fig.width = 7, fig.height = 12-------------------------------------
 x <- shuttle_sim_plot(n_sim = 1000, plot = FALSE)
 shuttle_sim_hists(x, temps = c(31, 50, 65, 80), col = 8)
 

@@ -18,7 +18,7 @@
 #'   In cases where there are many more observations than this the plots
 #'   will be a bit of a mess!
 #' @return Nothing is returned, only the animation is produced.
-#' @seealso \code{\link{movies}}: general information about STAT1004 movies.
+#' @seealso \code{\link{movies}}: general information about the movies.
 #' @examples
 #' # Load package rpanel
 #' # [Use install.packages("rpanel") if necessary]
