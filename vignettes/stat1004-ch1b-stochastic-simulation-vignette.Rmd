@@ -111,7 +111,7 @@ We produce a histogram of these simulated values
 (see Section 2.5 of the [STAT0002 notes](https://moodle-1819.ucl.ac.uk/course/view.php?id=8579&section=3)) and superimpose the probability density function (p.d.f.) of the exponential distribution from which these values have been simulated.
 
 ```{r, fig.width = 6, fig.height = 4}
-# A histogram (see Section 2.5 of the STAT1004 notes)
+# A histogram (see Section 2.5 of the STAT0002 notes)
 hist(exp_sim, probability = TRUE, ylim = c(0, lambda), main = "")
 x <- seq(0, max(exp_sim), len = 500)
 lines(x, dexp(x, rate = lambda))

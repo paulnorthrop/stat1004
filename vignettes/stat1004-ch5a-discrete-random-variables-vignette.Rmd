@@ -22,7 +22,7 @@ knitr::opts_chunk$set(comment = "", prompt = TRUE, collapse = TRUE)
 set.seed(2601)
 ```
 
-The purposes of this vignette are to direct you to R functions and relating to the **discrete** probability distributions condsidered in Chapter 5 of the STAT1004 notes and to provide code to do some of the things that appear in the notes.  We illustrate these functions using the Australian birth times data, which are available in the data frame `aussie_births`.
+The purposes of this vignette are to direct you to R functions and relating to the **discrete** probability distributions condsidered in Chapter 5 of the STAT0002 notes and to provide code to do some of the things that appear in the notes.  We illustrate these functions using the Australian birth times data, which are available in the data frame `aussie_births`.
 
 ```{r}
 library(stat1004)
@@ -33,7 +33,7 @@ The **stats** package contains functions to evaluate the probability mass functi
 
 ## The binomial distribution
 
-Following the STAT1004 notes let us suppose that (before we observe the data) the number $Y$ of boy babies is a random variable with a binomial distribution(44, $p$) distribution, where $p$ is the probability that a randomly chosen birth produces a boy.  We use the data to estimate $p$.
+Following the STAT0002 notes let us suppose that (before we observe the data) the number $Y$ of boy babies is a random variable with a binomial distribution(44, $p$) distribution, where $p$ is the probability that a randomly chosen birth produces a boy.  We use the data to estimate $p$.
 
 ```{r}
 boys <- sum(aussie_births[, "sex"] == "boy")

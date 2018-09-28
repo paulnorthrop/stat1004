@@ -48,7 +48,7 @@ rp.bubbleplot(log(gdp_per_capita), log(co2_per_capita), 1960:2014,
 }
 }
 \seealso{
-\code{\link{movies}}: general information about STAT1004 movies.
+\code{\link{movies}}: general information about the movies.
 
 \code{\link{world_bank}}: description of the World Bank Data.
 

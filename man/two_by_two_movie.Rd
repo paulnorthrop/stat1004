@@ -85,5 +85,5 @@ two_by_two_movie(data = sex_outcome_2)
 }
 }
 \seealso{
-\code{\link{movies}}: general information about STAT1004 movies.
+\code{\link{movies}}: general information about the movies.
 }

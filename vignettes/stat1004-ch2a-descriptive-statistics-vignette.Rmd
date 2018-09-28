@@ -61,7 +61,7 @@ sort(birth_times)
 
 ## Five number summary
 
-The function `five_number` calculates the five number summary of data, using the particular method for estimating the lower quartile, median and upper quartile described in the STAT1004 notes.
+The function `five_number` calculates the five number summary of data, using the particular method for estimating the lower quartile, median and upper quartile described in the STAT0002 notes.
 
 ```{r}
 five_number(birth_times)
@@ -108,7 +108,7 @@ skew(birth_times)
 q_skew(birth_times)
 ```
 
-Until 2017/18 the STAT1004 notes gave -0.063 as the sample quartile skewness.  This was because I used the default setting, `type = 7`, in the `quantile` function when calculating it ...
+Until 2017/18 the STAT0002 notes gave -0.063 as the sample quartile skewness.  This was because I used the default setting, `type = 7`, in the `quantile` function when calculating it ...
 
 ```{r}
 q_skew(birth_times, type = 7)
