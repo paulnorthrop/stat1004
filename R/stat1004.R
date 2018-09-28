@@ -83,9 +83,9 @@
 #'   for: various forms of feedback, a discussion forum, lecturecast recordings,
 #'   course notes, exercises, quizzes, short videos, past exam papers and revision
 #'   lecture material, real investigations.
-#' @seealso The \href{https://moodle.ucl.ac.uk/course/view.php?id=7596}{STAT1006 Moodle page}
+#' @seealso The \href{https://moodle-1819.ucl.ac.uk/course/view.php?id=8581}{STAT1006 Moodle page}
 #'   (for students taking STAT1006).
-#' @seealso The \href{https://moodle.ucl.ac.uk/course/view.php?id=37877}{Introduction to R Moodle page}
+#' @seealso The \href{https://moodle-1819.ucl.ac.uk/course/view.php?id=10773}{Introduction to R Moodle page}
 #'   (for students not taking STAT1006, e.g. Natural Sciences students).
 #' @docType package
 #' @name stat1004

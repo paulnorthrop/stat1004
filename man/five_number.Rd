@@ -22,7 +22,7 @@ A numeric vector (if the input was a vector) or matrix (if the input
 \description{
 Calculates the five number summary of a vector of data or of each column
 of a matrix of data, using the estimators of the lower quartile,
-median and upper quartile in the STAT1004 notes.
+median and upper quartile in the STAT002 notes.
 }
 \details{
 The five number summary contains the sample minimum and maximum and
@@ -30,7 +30,7 @@ The five number summary contains the sample minimum and maximum and
   25\%, 50\% and 75\% quantiles.  These quantiles are estimated using the
   \code{\link[stats]{quantile}} function.  By default, \code{type = 6} is
   used in the call to \code{quantile} in order to use the estimator defined
-  in the STAT1004 notes.
+  in the STAT002 notes.
 }
 \examples{
 birth_times <- ox_births[, "time"]

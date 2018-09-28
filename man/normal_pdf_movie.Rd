@@ -4,8 +4,8 @@
 \alias{normal_pdf_movie}
 \title{Normal p.d.f. movie}
 \usage{
-normal_pdf_movie(starting_mean = 0, starting_var = 1, delta_mean = 0.1,
-  delta_var = 0.1)
+normal_pdf_movie(starting_mean = 0, starting_var = 1,
+  delta_mean = 0.1, delta_var = 0.1)
 }
 \arguments{
 \item{starting_mean}{A numeric scalar.  The value of the mean used

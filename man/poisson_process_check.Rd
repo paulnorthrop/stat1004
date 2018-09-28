@@ -4,8 +4,8 @@
 \alias{poisson_process_check}
 \title{Graphical checking of Poisson process properties}
 \usage{
-poisson_process_check(user_data = NULL, total_time = NULL, intervals = 1,
-  unif_bins = NULL, exp_bins = NULL)
+poisson_process_check(user_data = NULL, total_time = NULL,
+  intervals = 1, unif_bins = NULL, exp_bins = NULL)
 }
 \arguments{
 \item{user_data}{A numeric vector of arrival times of events.}

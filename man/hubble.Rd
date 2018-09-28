@@ -20,7 +20,7 @@ Science}, \strong{15}, 168-173.
 hubble
 }
 \description{
-The data used in Section 8.1 of the STAT1004 notes to introduce simple
+The data used in Section 8.1 of the STAT0002 notes to introduce simple
 linear regression.  This dataset contains estimates of the distance
 from Earth and the velocity relative to Earth of 24 nebulae.
 }

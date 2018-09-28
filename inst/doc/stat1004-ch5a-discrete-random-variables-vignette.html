@@ -12,7 +12,7 @@
 
 <meta name="author" content="Paul Northrop" />
 
-<meta name="date" content="2017-12-28" />
+<meta name="date" content="2018-09-28" />
 
 <title>Chapter 5: binomial, geometric and Poisson distributions</title>
 
@@ -70,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Chapter 5: binomial, geometric and Poisson distributions</h1>
 <h4 class="author"><em>Paul Northrop</em></h4>
-<h4 class="date"><em>2017-12-28</em></h4>
+<h4 class="date"><em>2018-09-28</em></h4>
 
 
 <div id="TOC">
@@ -83,8 +83,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 
 <p>The purposes of this vignette are to direct you to R functions and relating to the <strong>discrete</strong> probability distributions condsidered in Chapter 5 of the STAT1004 notes and to provide code to do some of the things that appear in the notes. We illustrate these functions using the Australian birth times data, which are available in the data frame <code>aussie_births</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="kw">library</span>(stat1004)
-&gt;<span class="st"> </span><span class="kw">head</span>(aussie_births)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">library</span>(stat1004)
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">head</span>(aussie_births)
   time  sex weight
 <span class="dv">1</span>    <span class="dv">5</span> girl   <span class="dv">3837</span>
 <span class="dv">2</span>   <span class="dv">64</span> girl   <span class="dv">3334</span>
@@ -96,26 +96,26 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="the-binomial-distribution" class="section level2">
 <h2>The binomial distribution</h2>
 <p>Following the STAT1004 notes let us suppose that (before we observe the data) the number <span class="math inline">\(Y\)</span> of boy babies is a random variable with a binomial distribution(44, <span class="math inline">\(p\)</span>) distribution, where <span class="math inline">\(p\)</span> is the probability that a randomly chosen birth produces a boy. We use the data to estimate <span class="math inline">\(p\)</span>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span>boys &lt;-<span class="st"> </span><span class="kw">sum</span>(aussie_births[, <span class="st">&quot;sex&quot;</span>] ==<span class="st"> &quot;boy&quot;</span>)
-&gt;<span class="st"> </span>girls &lt;-<span class="st"> </span><span class="kw">sum</span>(aussie_births[, <span class="st">&quot;sex&quot;</span>] ==<span class="st"> &quot;girl&quot;</span>)
-&gt;<span class="st"> </span>p_hat &lt;-<span class="st"> </span>boys /<span class="st"> </span>(boys +<span class="st"> </span>girls)
-&gt;<span class="st"> </span>p_hat
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>boys &lt;-<span class="st"> </span><span class="kw">sum</span>(aussie_births[, <span class="st">&quot;sex&quot;</span>] <span class="op">==</span><span class="st"> &quot;boy&quot;</span>)
+<span class="op">&gt;</span><span class="st"> </span>girls &lt;-<span class="st"> </span><span class="kw">sum</span>(aussie_births[, <span class="st">&quot;sex&quot;</span>] <span class="op">==</span><span class="st"> &quot;girl&quot;</span>)
+<span class="op">&gt;</span><span class="st"> </span>p_hat &lt;-<span class="st"> </span>boys <span class="op">/</span><span class="st"> </span>(boys <span class="op">+</span><span class="st"> </span>girls)
+<span class="op">&gt;</span><span class="st"> </span>p_hat
 [<span class="dv">1</span>] <span class="fl">0.5909091</span></code></pre></div>
 <p>The function <code>dbinom</code> evaluates the p.m.f. of a binomial distribution. See <code>?Binomial</code> for information about this function and <code>pbinom</code>, <code>qbinom</code> and <code>rbinom</code>.</p>
 <p>4 barplot from notes …</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="co">#barplot(dbinom(0:44, 44, p_hat), names.arg = 0:44, width = 0.5, xlim = c(0, 44))</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="co">#barplot(dbinom(0:44, 44, p_hat), names.arg = 0:44, width = 0.5, xlim = c(0, 44))</span>
 <span class="er">&gt;</span><span class="st"> </span><span class="co">#plot(0:44, dbinom(0:44, 44, p_hat), type = &quot;h&quot;)</span></code></pre></div>
 <p>For the purposes of illustrating how the functions <code>pbinom</code>, <code>qbinom</code> and <code>rbinom</code> let us suppose that <span class="math inline">\(p = 1/2\)</span>. If we wanted to calculate the probabilities <span class="math inline">\(P(Y &lt; 10)\)</span></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span>pbinom
-function (q, size, prob, <span class="dt">lower.tail =</span> <span class="ot">TRUE</span>, <span class="dt">log.p =</span> <span class="ot">FALSE</span>) 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>pbinom
+<span class="cf">function</span> (q, size, prob, <span class="dt">lower.tail =</span> <span class="ot">TRUE</span>, <span class="dt">log.p =</span> <span class="ot">FALSE</span>) 
 <span class="kw">.Call</span>(C_pbinom, q, size, prob, lower.tail, log.p)
-&lt;bytecode:<span class="st"> </span><span class="dv">0x000000001ca5c590</span>&gt;
-<span class="er">&lt;</span>environment:<span class="st"> </span>namespace:stats&gt;</code></pre></div>
+<span class="op">&lt;</span>bytecode<span class="op">:</span><span class="st"> </span><span class="dv">0x0000000023c733c8</span><span class="op">&gt;</span>
+<span class="er">&lt;</span>environment<span class="op">:</span><span class="st"> </span>namespace<span class="op">:</span>stats<span class="op">&gt;</span></code></pre></div>
 <ol style="list-style-type: decimal">
 <li><strong>?</strong></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span>pjn &lt;-<span class="st"> </span><span class="kw">rbinom</span>(<span class="dv">100000</span>, <span class="dv">44</span>, <span class="dv">1</span> /<span class="st"> </span><span class="dv">2</span>)
-&gt;<span class="st"> </span><span class="kw">barplot</span>(<span class="kw">table</span>(pjn))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>pjn &lt;-<span class="st"> </span><span class="kw">rbinom</span>(<span class="dv">100000</span>, <span class="dv">44</span>, <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span>)
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">barplot</span>(<span class="kw">table</span>(pjn))</code></pre></div>
 <p><img src="data:image/png;base64,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" style="display: block; margin: auto;" /></p>
 </div>
 <div id="the-geometric-distribution" class="section level2">

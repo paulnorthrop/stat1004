@@ -28,11 +28,11 @@ A numeric scalar (if the input was a vector) or vector (if the input
 Calculates sample measures of skewness (the sample quartile skewness or
 standardized sample skewness) of a vector of data, or of each
 column of a matrix of data, based on the estimators described in the
-the STAT1004 notes.
+the STAT002 notes.
 }
 \details{
 See Section 2.3 of the
-\href{https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf}{STAT1004 notes.}
+\href{https://moodle-1819.ucl.ac.uk/course/view.php?id=8579&section=3}{STAT002 notes.}
 
 \emph{Sample quartile skewness}.
 Let \eqn{q_L}, \eqn{m} and \eqn{q_U} be the sample lower quartile,

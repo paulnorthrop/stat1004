@@ -4,8 +4,8 @@
 \alias{corr_sim_movie}
 \title{Sampling distribution of the correlation coefficient movie}
 \usage{
-corr_sim_movie(n = 30, rho = 0, delta_n = 1, delta_rho = 0.1, pos = 1,
-  envir = as.environment(pos))
+corr_sim_movie(n = 30, rho = 0, delta_n = 1, delta_rho = 0.1,
+  pos = 1, envir = as.environment(pos))
 }
 \arguments{
 \item{n}{An integer scalar.  The initial value of the sample size.

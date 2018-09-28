@@ -26,14 +26,14 @@ Dalal, S. R, Fowlkes, E. B. and Hoadley, B. (1989)
 shuttle
 }
 \description{
-These data are discussed in the first STAT1004 lecture.
+These data are discussed in the first STAT0002 lecture.
 A paper (Dalal \emph{et al.}, 1989), in which these data are analysed
 with a view to estimating (retrospectively) the probability of a
 catastrophic failure of the Challenger space shuttle under the
 launch conditions on 28th January 1986 is used as a
-\href{https://moodle.ucl.ac.uk/mod/resource/view.php?id=2125123}{worked example}
+\href{https://moodle-1819.ucl.ac.uk/mod/resource/view.php?id=316153}{worked example}
 for the
-\href{https://moodle.ucl.ac.uk/course/view.php?id=3419&section=4}{STAT1004 Meet your Professor ICA}.
+\href{https://moodle-1819.ucl.ac.uk/course/view.php?id=8579&section=4}{STAT0002 Meet your Professor ICA}.
 }
 \seealso{
 \code{\link{shuttle_sim}}, \code{\link{shuttle_sim_plot}},

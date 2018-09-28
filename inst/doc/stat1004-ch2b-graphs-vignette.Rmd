@@ -17,7 +17,7 @@ knitr::opts_chunk$set(comment = "", prompt = TRUE, collapse = TRUE)
 #devtools::load_all()
 ```
 
-The main purpose of this vignette is to provide R code to produce graphs that feature in Sections 2.4 and 2.5 of the [STAT1004 notes](https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf).  All these graphs involve one variable only.
+The main purpose of this vignette is to provide R code to produce graphs that feature in Sections 2.4 and 2.5 of the [STAT0002 notes](https://moodle-1819.ucl.ac.uk/course/view.php?id=8579&section=3).  All these graphs involve one variable only.
 See also the [Chapter 2: Graphs (more than one variable)](stat1004-ch2b-graphs-2-vignette.html).
 
 The R code used in this vignette are available [here](stat1004-ch2b-graphs-vignette.R).
@@ -62,7 +62,7 @@ plot(ox_ecdf, main = "", xlab = xlab, ylab = "cumulative relative frequency", pc
 
 ### Histogram
 
-For an explanation of how to construct a histogram, and why it is constructed in this way, see the short [How to draw a histogram video](https://moodle.ucl.ac.uk/mod/url/view.php?id=2085771).  The following code produces the plots on the right side of Figure 2.4 in the notes.  Note that in the first plot the `probability = TRUE` (or `prob = TRUE` for short) argument is important: it ensures that the total area of the rectangles of the histogram is equal to 1.   In the second plot it isn't necessary to include `prob = TRUE` because if the bin widths are unequal then (sensibly) `hist` uses `prob = TRUE`.
+For an explanation of how to construct a histogram, and why it is constructed in this way, see the short [How to draw a histogram video](https://moodle-1819.ucl.ac.uk/course/view.php?id=8579&section=9).  The following code produces the plots on the right side of Figure 2.4 in the notes.  Note that in the first plot the `probability = TRUE` (or `prob = TRUE` for short) argument is important: it ensures that the total area of the rectangles of the histogram is equal to 1.   In the second plot it isn't necessary to include `prob = TRUE` because if the bin widths are unequal then (sensibly) `hist` uses `prob = TRUE`.
 
 ```{r, fig.show='hold', fig.width = 6.5}
 hist(birth_times, prob = TRUE, col = 8, main = "", xlab = xlab)
@@ -89,7 +89,7 @@ abline(h = 1, lty = 2)
 
 4. **What do you think the function `cumsum` does?**
 
-The following code produces the histogram-like alternative plots in the lecture slides [STAT1004 lecture slides](https://moodle.ucl.ac.uk/mod/resource/view.php?id=92031).  As you can see we can do many things to change the appearance of plots. Use `?par` to see a list of the graphical parameters that we can use.
+The following code produces the histogram-like alternative plots in the lecture slides [STAT1004 lecture slides](https://moodle-1819.ucl.ac.uk/course/view.php?id=8579&section=3).  As you can see we can do many things to change the appearance of plots. Use `?par` to see a list of the graphical parameters that we can use.
 
 ```{r, fig.width = 6.5, fig.height = 4}
 # adjust plot margins, produce a 2 by 2 array of plots (fill row 1 then row 2)
@@ -115,7 +115,7 @@ polygon(ox_tab$mids, ox_tab$density, col = 8)
 
 ### Stem-and-leaf plot
 
-The short [How to draw a histogram video](https://moodle.ucl.ac.uk/mod/url/view.php?id=2085771) also describes how to draw a stem-and-leaf plot.
+The short [How to draw a histogram video](https://moodle-1819.ucl.ac.uk/course/view.php?id=8579&section=9) also describes how to draw a stem-and-leaf plot.
 
 ```{r}
 # The default plot

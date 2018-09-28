@@ -17,7 +17,7 @@ knitr::opts_chunk$set(comment = "", prompt = TRUE, collapse = TRUE)
 #devtools::load_all()
 ```
 
-The main purpose of this vignette is to provide R code to produce graphs that involve more than one variable.  We consider two general situations: (i) plotting the values of a continuous variable for different values of a categorical variable (see [The Oxford Birth Times data](#the-oxford-birth-times-data)) and (ii) scatter plots of oner variable against another (see [The 2000 US Presidential Election data](#the-2000-us-presidential-election-data)).  The latter feature in Section 2.6 of the [STAT1004 notes](https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf).  See also the [Chapter 2: Graphs (one variable)](stat1004-ch2b-graphs-vignette.html).
+The main purpose of this vignette is to provide R code to produce graphs that involve more than one variable.  We consider two general situations: (i) plotting the values of a continuous variable for different values of a categorical variable (see [The Oxford Birth Times data](#the-oxford-birth-times-data)) and (ii) scatter plots of oner variable against another (see [The 2000 US Presidential Election data](#the-2000-us-presidential-election-data)).  The latter feature in Section 2.6 of the [STAT0002 notes](https://moodle-1819.ucl.ac.uk/course/view.php?id=8579&section=3).  See also the [Chapter 2: Graphs (one variable)](stat1004-ch2b-graphs-vignette.html).
 
 The R code used in this vignette are available [here](stat1004-ch2b-graphs-2-vignette.R).  
 
@@ -42,7 +42,7 @@ for (i in 1:7) {
 ox_mat
 ```
 
-We have a numeric continuous variable, `birth_times`, and a categorical variable, `day`.  The following code produces the graphs in the [STAT1004 lecture slides](https://moodle.ucl.ac.uk/mod/resource/view.php?id=92031) that contain a plot of birth_times for each day of the week. 
+We have a numeric continuous variable, `birth_times`, and a categorical variable, `day`.  The following code produces the graphs in the [STAT0002 lecture slides](https://moodle-1819.ucl.ac.uk/course/view.php?id=8579&section=3) that contain a plot of birth_times for each day of the week. 
 
 ```{r, fig.show = 'hold', fig.width = 3.4, fig.height = 2.75}
 par(mar = c(4, 4, 0.5, 1))

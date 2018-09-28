@@ -4,7 +4,8 @@
 \alias{boxplot_stats}
 \title{Box Plot Statistics}
 \usage{
-boxplot_stats(x, coef = 1.5, do.conf = TRUE, do.out = TRUE, type = 6)
+boxplot_stats(x, coef = 1.5, do.conf = TRUE, do.out = TRUE,
+  type = 6)
 }
 \arguments{
 \item{x}{a numeric vector for which the boxplot will be constructed

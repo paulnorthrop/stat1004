@@ -103,9 +103,9 @@ The \href{https://moodle-1819.ucl.ac.uk/course/view.php?id=8579&section=0}{STAT0
   course notes, exercises, quizzes, short videos, past exam papers and revision
   lecture material, real investigations.
 
-The \href{https://moodle.ucl.ac.uk/course/view.php?id=7596}{STAT1006 Moodle page}
+The \href{https://moodle-1819.ucl.ac.uk/course/view.php?id=8581}{STAT1006 Moodle page}
   (for students taking STAT1006).
 
-The \href{https://moodle.ucl.ac.uk/course/view.php?id=37877}{Introduction to R Moodle page}
+The \href{https://moodle-1819.ucl.ac.uk/course/view.php?id=10773}{Introduction to R Moodle page}
   (for students not taking STAT1006, e.g. Natural Sciences students).
 }

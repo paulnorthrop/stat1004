@@ -4,7 +4,8 @@
 \alias{normal_areas_movie}
 \title{Normal areas movie}
 \usage{
-normal_areas_movie(starting_multiple = 1, delta_multiple = 1, ndec = 3)
+normal_areas_movie(starting_multiple = 1, delta_multiple = 1,
+  ndec = 3)
 }
 \arguments{
 \item{starting_multiple}{A non-negative numeric scalar.  The value of the
