@@ -82,7 +82,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 </div>
 
-<p>The purposes of this vignette are to direct you to R functions and relating to the <strong>discrete</strong> probability distributions condsidered in Chapter 5 of the STAT1004 notes and to provide code to do some of the things that appear in the notes. We illustrate these functions using the Australian birth times data, which are available in the data frame <code>aussie_births</code>.</p>
+<p>The purposes of this vignette are to direct you to R functions and relating to the <strong>discrete</strong> probability distributions condsidered in Chapter 5 of the STAT0002 notes and to provide code to do some of the things that appear in the notes. We illustrate these functions using the Australian birth times data, which are available in the data frame <code>aussie_births</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">library</span>(stat1004)
 <span class="op">&gt;</span><span class="st"> </span><span class="kw">head</span>(aussie_births)
   time  sex weight
@@ -95,7 +95,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>The <strong>stats</strong> package contains functions to evaluate the probability mass function (p.m.f.), cumulative distribution function (c.d.f.) and quantile function (which could also be called the inverse c.d.f.) of many discrete probability distributions, including the binomial, geometric and Poisson. It also contains functions to simulate random variates from these distributions. For a general description of these functions use <code>?Distributions</code>. These functions are named in the following way, where <code>xxx</code> is the name (perhaps abbreviated) of the distribution in question: <code>dxxx</code> (p.m.f), <code>pxxx</code> (c.d.f), <code>qxxx</code> (quantile function) and <code>rxxx</code> (random variate generation).</p>
 <div id="the-binomial-distribution" class="section level2">
 <h2>The binomial distribution</h2>
-<p>Following the STAT1004 notes let us suppose that (before we observe the data) the number <span class="math inline">\(Y\)</span> of boy babies is a random variable with a binomial distribution(44, <span class="math inline">\(p\)</span>) distribution, where <span class="math inline">\(p\)</span> is the probability that a randomly chosen birth produces a boy. We use the data to estimate <span class="math inline">\(p\)</span>.</p>
+<p>Following the STAT0002 notes let us suppose that (before we observe the data) the number <span class="math inline">\(Y\)</span> of boy babies is a random variable with a binomial distribution(44, <span class="math inline">\(p\)</span>) distribution, where <span class="math inline">\(p\)</span> is the probability that a randomly chosen birth produces a boy. We use the data to estimate <span class="math inline">\(p\)</span>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>boys &lt;-<span class="st"> </span><span class="kw">sum</span>(aussie_births[, <span class="st">&quot;sex&quot;</span>] <span class="op">==</span><span class="st"> &quot;boy&quot;</span>)
 <span class="op">&gt;</span><span class="st"> </span>girls &lt;-<span class="st"> </span><span class="kw">sum</span>(aussie_births[, <span class="st">&quot;sex&quot;</span>] <span class="op">==</span><span class="st"> &quot;girl&quot;</span>)
 <span class="op">&gt;</span><span class="st"> </span>p_hat &lt;-<span class="st"> </span>boys <span class="op">/</span><span class="st"> </span>(boys <span class="op">+</span><span class="st"> </span>girls)
@@ -109,7 +109,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>pbinom
 <span class="cf">function</span> (q, size, prob, <span class="dt">lower.tail =</span> <span class="ot">TRUE</span>, <span class="dt">log.p =</span> <span class="ot">FALSE</span>) 
 <span class="kw">.Call</span>(C_pbinom, q, size, prob, lower.tail, log.p)
-<span class="op">&lt;</span>bytecode<span class="op">:</span><span class="st"> </span><span class="dv">0x0000000023c733c8</span><span class="op">&gt;</span>
+<span class="op">&lt;</span>bytecode<span class="op">:</span><span class="st"> </span><span class="dv">0x0000000006e49978</span><span class="op">&gt;</span>
 <span class="er">&lt;</span>environment<span class="op">:</span><span class="st"> </span>namespace<span class="op">:</span>stats<span class="op">&gt;</span></code></pre></div>
 <ol style="list-style-type: decimal">
 <li><strong>?</strong></li>

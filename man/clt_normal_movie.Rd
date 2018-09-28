@@ -77,7 +77,7 @@ clt_normal_movie(44, 7.22, sqrt(1.36), "weight (pounds)")
 }
 }
 \seealso{
-\code{\link{movies}}: general information about STAT1004 movies.
+\code{\link{movies}}: general information about the movies.
 
 \code{\link{clt_exponential_movie}}: a similar movie using data
   simulated from an exponential distribution.

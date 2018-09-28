@@ -60,5 +60,5 @@ binomial_pmf_movie(starting_n = 44, starting_p = 0.591, delta_p = 0.01,
 }
 }
 \seealso{
-\code{\link{movies}}: general information about STAT1004 movies.
+\code{\link{movies}}: general information about the movies.
 }

@@ -81,7 +81,7 @@ clt_exponential_movie(3, 1.84, "time since last birth (hours)")
 }
 }
 \seealso{
-\code{\link{movies}}: general information about STAT1004 movies.
+\code{\link{movies}}: general information about the movies.
 
 \code{\link{clt_normal_movie}}: a similar movie using data
   simulated from a normal distribution.
