@@ -4,7 +4,7 @@
 #'
 #' Calculates the five number summary of a vector of data or of each column
 #' of a matrix of data, using the estimators of the lower quartile,
-#' median and upper quartile in the STAT1004 notes.
+#' median and upper quartile in the STAT002 notes.
 #'
 #' @param x A numeric vector or matrix.
 #' @param type Argument \code{type} used in the call to
@@ -18,7 +18,7 @@
 #'   25\%, 50\% and 75\% quantiles.  These quantiles are estimated using the
 #'   \code{\link[stats]{quantile}} function.  By default, \code{type = 6} is
 #'   used in the call to \code{quantile} in order to use the estimator defined
-#'   in the STAT1004 notes.
+#'   in the STAT002 notes.
 #' @examples
 #' birth_times <- ox_births[, "time"]
 #' five_number(birth_times)
@@ -54,7 +54,7 @@ five_number <- function(x, type = 6, na.rm = FALSE) {
 #' Calculates sample measures of skewness (the sample quartile skewness or
 #' standardized sample skewness) of a vector of data, or of each
 #' column of a matrix of data, based on the estimators described in the
-#' the STAT1004 notes.
+#' the STAT002 notes.
 #'
 #' @param x A numeric vector or matrix.
 #' @param type Relevant to \code{q_skew} only.  Argument \code{type} used in
@@ -63,7 +63,7 @@ five_number <- function(x, type = 6, na.rm = FALSE) {
 #'   are removed from \code{x} before the constituent parts of the sample
 #'   skewness are computed.
 #' @details See Section 2.3 of the
-#' \href{https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf}{STAT1004 notes.}
+#' \href{https://moodle.ucl.ac.uk/pluginfile.php/3054127/mod_resource/content/22/STAT1004notes-2x1.pdf}{STAT002 notes.}
 #'
 #' \emph{Sample quartile skewness}.
 #' Let \eqn{q_L}, \eqn{m} and \eqn{q_U} be the sample lower quartile,
