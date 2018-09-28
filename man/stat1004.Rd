@@ -3,8 +3,9 @@
 \docType{package}
 \name{stat1004}
 \alias{stat1004}
+\alias{stat0002}
 \alias{stat1004-package}
-\title{stat1004: Introduction to Probability and Statistics at UCL}
+\title{stat0002 (stat1004): Introduction to Probability and Statistics at UCL}
 \description{
 Provides example datasets, R code and tutorials to help students taking
 STAT0002 (formerly STAT1004) Introduction to Probability and Statistics at
@@ -109,9 +110,9 @@ The \href{https://moodle-1819.ucl.ac.uk/course/view.php?id=8579&section=0}{STAT0
   course notes, exercises, quizzes, short videos, past exam papers and revision
   lecture material, real investigations.
 
-The \href{https://moodle-1819.ucl.ac.uk/course/view.php?id=8581}{STAT1006 Moodle page}
-  (for students taking STAT1006).
+The \href{https://moodle-1819.ucl.ac.uk/course/view.php?id=8581}{STAT0004 Moodle page}
+  (for students taking STAT0004).
 
 The \href{https://moodle-1819.ucl.ac.uk/course/view.php?id=10773}{Introduction to R Moodle page}
-  (for students not taking STAT1006, e.g. Natural Sciences students).
+  (for students not taking STAT0004, e.g. Natural Sciences students).
 }
