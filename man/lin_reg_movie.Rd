@@ -60,5 +60,5 @@ lin_reg_movie(hubble, pch = 16, xlab = "recession velocity (km/sec)",
 }
 }
 \seealso{
-\code{\link{movies}}: general information about STAT1004 movies.
+\code{\link{movies}}: general information about the movies.
 }

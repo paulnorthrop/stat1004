@@ -72,5 +72,5 @@ corr_sim_movie(n = 10, delta_n = 10)
 }
 }
 \seealso{
-\code{\link{movies}}: general information about STAT1004 movies.
+\code{\link{movies}}: general information about the movies.
 }

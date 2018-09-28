@@ -70,7 +70,7 @@ mean_vs_median_t_movie(t_df = 2)
 }
 }
 \seealso{
-\code{\link{movies}}: general information about STAT1004 movies.
+\code{\link{movies}}: general information about the movies.
 
 \code{\link{mean_vs_median_normal_movie}}: compares the
   sampling distributions of the sample mean and sample median based
