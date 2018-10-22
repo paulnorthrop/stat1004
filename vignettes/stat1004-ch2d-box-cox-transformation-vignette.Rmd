@@ -76,7 +76,7 @@ boxcox_plot(x, density_fn = dlnorm, main = "data and true density function")
 boxcox_plot(x, density_fn = dlnorm, lambda = 0, main = "after transformation")
 ```
 
-1. **I suggest that try different values of `lambda` and look at the result in the plot.**
+1. **I suggest that you try different values of `lambda` and look at the result in the plot.**
 
 In this example we *know* which value of $\lambda$ should produce approximate symmetry.  When confronted with real data we won't be in this position.  However, we could look at a plot of the original data and judge whether we need to make the data less positively skewed (use $\lambda < 1$) or less negatively skewed (use $\lambda > 1$), and then use trial-and-error.
 
