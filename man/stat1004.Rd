@@ -75,7 +75,8 @@ If you have any questions about this package please ask them via the
 Some of the following movies, and other movies are also available in a more
 user-friendly form, via the \code{\link[smovie]{smovie}} package.
 If you have \code{smovie} installed (\code{install.packages("smovie")})
-then you can access these using \code{movies()}.
+then you can access these using \code{library(smovie)} and then
+\code{movies()}.
 See \code{\link[smovie]{movies}} for more details.
 
 \itemize{
