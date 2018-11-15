@@ -129,7 +129,7 @@ poisson_process_check_plot <- function(panel) {
     graphics::rug(event_times, pos = 0.2, ticksize = 0.15, lwd = 2,
                   col = "blue", quiet = TRUE)
     graphics::axis(1, at = 0:total_time)
-    graphics::abline(v = 0:hours, lty = 2, col = "grey")
+    graphics::abline(v = 0:total_time, lty = 2, col = "grey")
     graphics::title(xlab = "time (hours)", line = 2.5)
     if (panel$data_type == "numbers of events in each hour") {
       graphics::text((1:total_time) - 0.5, rep(-0.7, total_time),
