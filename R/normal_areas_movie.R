@@ -52,9 +52,9 @@ plot_areas_normal <- function(panel) {
   with(panel, {
     n <- 100
     ytop <- dnorm(0, mean = 0, sd = 1)
-    stats::curve(dnorm(x, mean = 0, sd = 1), from = -5, to = 5, n = 100,
-                 bty = "l", axes = FALSE, ylab = "", ylim = c(-0.025, ytop),
-                 xlab = "", las = 1, xpd = TRUE, lwd = 2)
+    graphics::curve(dnorm(x, mean = 0, sd = 1), from = -5, to = 5, n = 100,
+                    bty = "l", axes = FALSE, ylab = "", ylim = c(-0.025, ytop),
+                    xlab = "", las = 1, xpd = TRUE, lwd = 2)
     graphics::axis(1, pos = 0)
     graphics::axis(2, pos = -10, las = 1)
     graphics::abline(h = 0)
