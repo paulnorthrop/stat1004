@@ -28,7 +28,7 @@ The focus of this R package is mainly on R code.}
 
 The best way to learn how to use a computer program is to play with code and
 see what it does.  R is based on \emph{functions} that look like \code{name()}, where
-\code{name} is the name of the function and where various \emph{arguments} inserted
+\code{name} is the name of the function and where various \emph{arguments} are inserted
 inside the brackets \code{()}.  In the R code provided with this package you will
 see many functions like this.  To find out what a function called \code{name} does
 use either \code{?name} or \code{help(name)}.
