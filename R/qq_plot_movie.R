@@ -152,9 +152,9 @@ qq_movie_plot <- function(panel) {
       graphics::axis(1, at = normal_quantiles,
                      labels = round(normal_quantiles, 2))
       graphics::axis(1, at = c(range_x[1], range_x[2]), labels = c("", ""))
-      myqqline(data, mu = mu, sigma = sigma, lty = 2, lwd = 2)
+      myqqline(data, mu = mu, sigma = sigma, type = 6, lty = 2, lwd = 2)
       graphics::title(main = "line drawn through the quartiles")
-      yy <- stats::quantile(data, c(0.25, 0.75))
+      yy <- stats::quantile(data, c(0.25, 0.75), type = 6)
       ql <- yy[1]
       qu <- yy[2]
       xx <- stats::qnorm(c(0.25, 0.75), mean = mu, sd = sigma)
@@ -178,7 +178,7 @@ qq_movie_plot <- function(panel) {
                      labels = round(normal_quantiles, 2))
       graphics::axis(1, at = c(range_x[1], range_x[2]), labels = c("", ""))
       graphics::abline(a = 0, b = 1, lty = 3, lwd = 2)
-      myqqline(data, mu = mu, sigma = sigma, lty = 2, lwd = 2)
+      myqqline(data, mu = mu, sigma = sigma, type = 6, lty = 2, lwd = 2)
       graphics::title(main = "both types of line")
       graphics::legend("topleft", legend = c("line of equality",
                                              "line through quantiles"),
@@ -190,8 +190,8 @@ qq_movie_plot <- function(panel) {
 }
 
 
-myqqline <- function (y, datax = FALSE, mu = 0, sigma = 1, ...) {
-  y <- stats::quantile(y[!is.na(y)], c(0.25, 0.75))
+myqqline <- function (y, datax = FALSE, mu = 0, sigma = 1, type = 6, ...) {
+  y <- stats::quantile(y[!is.na(y)], c(0.25, 0.75), type = type)
   x <- stats::qnorm(c(0.25, 0.75), mean = mu, sd = sigma)
   if (datax) {
     slope <- diff(x) / diff(y)
