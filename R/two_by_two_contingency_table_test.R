@@ -49,7 +49,6 @@
 #' # [Use install.packages("rpanel") if necessary]
 #' library(rpanel)
 #'
-#' # Data in which an event occurs exactly on the hour
 #' \dontrun{
 #' # Ignore department
 #' sex_outcome <- apply(UCBAdmissions, 2:1, FUN = sum)
