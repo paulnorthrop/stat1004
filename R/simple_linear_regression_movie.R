@@ -95,6 +95,9 @@ lin_reg_movie <- function(data, delta_alpha = 0.1, delta_beta = 0.0001, ...) {
                           repeatinterval = 20, initval = 0,
                           title = "Add least squares (LS) regression line?",
                           action = lin_reg_plot)
+  rpanel::rp.radiogroup(lin_reg_panel, reg_line_only, c("no", "yes"),
+                        action = lin_reg_plot,
+                        title = "LS line only?")
   rpanel::rp.do(lin_reg_panel, lin_reg_plot)
   return(invisible())
 }
@@ -115,9 +118,17 @@ lin_reg_plot <- function(panel){
     }
     do.call(graphics::plot, c(list(x_data, y_data), user_args))
     x <- seq(min(x_data), max(x_data), len = 100)
-    y <- alpha + beta * x
-    current_line <- alpha + beta * x_data
-    graphics::lines(x, y, lwd = 2, lty = 2)
+    #
+    if (reg_line_only == "yes") {
+      y <- alpha_hat + beta_hat * x
+      current_line <- alpha_hat + beta_hat * x_data
+      graphics::lines(x, y, lwd = 2, lty = 1)
+    } else {
+      y <- alpha + beta * x
+      current_line <- alpha + beta * x_data
+      graphics::lines(x, y, lwd = 2, lty = 2)
+    }
+    #
     current_rss <- round(sum((y_data - current_line) ^ 2), 3)
     rss <- round(sum(z$residuals ^ 2), 3)
     if (ls_line == 1){
@@ -135,7 +146,7 @@ lin_reg_plot <- function(panel){
       legend_position <- "bottomleft"
       legend_position_2 <- "topright"
     }
-    if (ls_line == 1){
+    if (ls_line == 1 || reg_line_only == "yes"){
       graphics::legend(legend_position,
                        legend = c("observations","current line","residuals",
                                   "LS line"),
@@ -158,13 +169,20 @@ lin_reg_plot <- function(panel){
                                   paste("RSS = ", "  ")),
                        pch = c(-1, -1), xjust = 0)
     }
+    if (reg_line_only == "yes") {
+      alpha_val <- alpha_hat
+      beta_val <- beta_hat
+    } else {
+      alpha_val <- alpha
+      beta_val <- beta
+    }
     if (beta < 0) {
-      graphics::title(main = paste("E(", y_name, ") = ", round(alpha, 3),
-                                   " - ", abs(round(beta, 6)), " ", x_name,
+      graphics::title(main = paste("E(", y_name, ") = ", round(alpha_val, 3),
+                                   " - ", abs(round(beta_val, 6)), " ", x_name,
                                    sep = ""))
     } else {
-      graphics::title(main = paste("E(", y_name, ") = ", round(alpha, 3),
-                                   " + ", round(beta, 6), " ", x_name,
+      graphics::title(main = paste("E(", y_name, ") = ", round(alpha_val, 3),
+                                   " + ", round(beta_val, 6), " ", x_name,
                                    sep = ""))
     }
     graphics::par(old_par)
