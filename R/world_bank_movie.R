@@ -31,7 +31,7 @@
 #' @seealso \code{\link{movies}}: general information about the movies.
 #' @seealso \code{\link{world_bank}}: description of the World Bank Data.
 #' @seealso \code{\link[rpanel]{rp.bubbleplot}}: function in the
-#'   \code{\link[rpanel]{rpanel}} package used to produce this movie.
+#'   \code{\link[rpanel]{rpanel.package}} package used to produce this movie.
 #' @examples
 #' # Load packages rpanel and tkrplot
 #' \dontrun{

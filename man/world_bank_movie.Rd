@@ -53,5 +53,5 @@ rp.bubbleplot(log(gdp_per_capita), log(co2_per_capita), 1960:2014,
 \code{\link{world_bank}}: description of the World Bank Data.
 
 \code{\link[rpanel]{rp.bubbleplot}}: function in the
-  \code{\link[rpanel]{rpanel}} package used to produce this movie.
+  \code{\link[rpanel]{rpanel.package}} package used to produce this movie.
 }

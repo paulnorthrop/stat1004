@@ -3,7 +3,7 @@
 #' General information about the movies
 #'
 #' These movies are animations used to illustrate key ideas in STAT0002.
-#' They are produced using the package \code{\link[rpanel]{rpanel}}.
+#' They are produced using the package \code{\link[rpanel]{rpanel.package}}.
 #' You need to install \code{rpanel} once, using RStudio's Install button
 #' in the Packages menu or \code{install.packages("rpanel")} on the command
 #' line).
