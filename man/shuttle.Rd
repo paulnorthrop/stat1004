@@ -20,7 +20,7 @@ Dalal, S. R, Fowlkes, E. B. and Hoadley, B. (1989)
   Risk Analysis of the Space Shuttle: Pre-Challenger Prediction
   of Failure. \emph{Journal of the American Statistical Association},
   \strong{84}(408), 945-957.
-  \url{http://dx.doi.org/10.1080/01621459.1989.10478858}
+  \url{https://doi.org/10.1080/01621459.1989.10478858}
 }
 \usage{
 shuttle
