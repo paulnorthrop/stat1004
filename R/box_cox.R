@@ -122,16 +122,19 @@ boxcox_plot <- function(x, lambda = 1, density_fn = NULL, breaks = "Sturges",
 
 # =========================== box_cox ===========================
 
-box_cox <- function (x, lambda = 1, lambda_tol = 1e-6) {
+box_cox <- function (x, lambda = 1, lambda_tol = 1 / 50, poly_order = 4) {
   #
   # Computes the Box-Cox transformation of a vector.
   #
   # Args:
   #   x          : A numeric vector. (Positive) values to be Box-Cox
   #                transformed.
-  #   lambda     : A numeric vector.  Transformation parameter.
+  #   lambda     : A numeric scalar.  Transformation parameter.
+  #   gm         : A numeric scalar.  Optional scaling parameter.
   #   lambda_tol : A numeric scalar.  For abs(lambda) < lambda_tol use
-  #                a first order Taylor series expansion about lambda = 0.
+  #                a Taylor series expansion.
+  #   poly_order : order of Taylor series polynomial in lambda used as
+  #                an approximation if abs(lambda) < lambda_tol
   #
   # Returns:
   #   A numeric vector.  The transformed value
@@ -139,9 +142,16 @@ box_cox <- function (x, lambda = 1, lambda_tol = 1e-6) {
   #
   if (abs(lambda) > lambda_tol) {
     retval <- (x ^ lambda - 1) / lambda
+  } else if (lambda == 0) {
+    retval <- log(x)
+  } else if (is.infinite(x)) {
+    retval <- ifelse(lambda < 0, -1 / lambda, Inf)
+  } else if (x == 0) {
+    retval <- ifelse(lambda > 0, -1 / lambda, -Inf)
   } else {
-    retval <- log(x) * (1 + lambda / 2)
+    i <- 0:poly_order
+    retval <- sum(log(x) ^ (i+1) * lambda ^ i / factorial(i + 1))
+    retval <- retval
   }
   return(retval)
 }
-
