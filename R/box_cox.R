@@ -130,7 +130,7 @@ box_cox <- function (x, lambda = 1, lambda_tol = 1e-6) {
   #   x          : A numeric vector. (Positive) values to be Box-Cox
   #                transformed.
   #   lambda     : A numeric vector.  Transformation parameter.
-  #   lambda_tol : A numeric scalar.  For abs(lambda) < lambda.tol use
+  #   lambda_tol : A numeric scalar.  For abs(lambda) < lambda_tol use
   #                a first order Taylor series expansion about lambda = 0.
   #
   # Returns:
