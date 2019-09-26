@@ -2,7 +2,7 @@ Package: stat1004
 Type: Package
 Title: stat1004: Introduction to Probability and Statistics at UCL
 Version: 0.0.0.9000
-Date: 2018-10-03
+Date: 2019-09-26
 Authors@R: person(c("Paul", "J."), "Northrop", email = "p.northrop@ucl.ac.uk",
   role = c("aut", "cre", "cph"))
 Description: Provides R code, datasets and vignettes to help students taking 
@@ -14,7 +14,7 @@ Depends:
 License: GPL (>= 2)
 LazyData: TRUE
 Encoding: UTF-8
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Imports: stats,
     graphics,
     grDevices,
