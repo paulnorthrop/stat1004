@@ -37,13 +37,15 @@ If you would like to use RStudio (a user-friendly front-end to R) then you can g
 To install the `stat1004` package from GitHub type the following at the R Console command prompt `>`
 
 ```{r installation1, eval = FALSE}
-install.packages("devtools")
+install.packages("remotes")
+install.packages(c("plotrix", "rpanel", "rust", "smovie", "tkrplot", "MASS"), dependencies = "Depends")
+remotes::install_github("paulnorthrop/stat1004", dependencies = "Depends")
 ```
 
-You only need to do this (install the `devtools` package) once.  Then install `stat1004` (or reinstall it to get the latest version) using 
+You only need to do this (install the `remotes` package etc) once.  Then install `stat1004` (or reinstall it to get the latest version) using 
 
 ```{r installation2, eval = FALSE}
-devtools::install_github("paulnorthrop/stat1004")
+remotes::install_github("paulnorthrop/stat1004")
 ```
 
 ### Getting started
@@ -60,4 +62,4 @@ to open the main help page, which contains links to vignettes, datasets and othe
 You will find that some vignettes contain ideas that we have not yet covered in lectures.  If you want to try to understand these ideas before we cover them then please use the links to further information that have been provided.
 
 If you have any questions about this package please ask them via the
-[STAT0002 Moodle Discussion Forum](https://moodle-1819.ucl.ac.uk/mod/hsuforum/view.php?id=755813).
+[STAT0002 Moodle Discussion Forum](https://moodle.ucl.ac.uk/mod/hsuforum/view.php?id=866683).
