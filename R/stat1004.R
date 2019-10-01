@@ -12,7 +12,7 @@
 #' \strong{The main sources of information about the material in STAT0002
 #' are the lectures and tutorials, with notes, lecture slides, exercises
 #' etc available from the
-#' \href{https://moodle-1819.ucl.ac.uk/course/view.php?id=8579&section=0}{STAT0002 Moodle page}.
+#' \href{https://moodle.ucl.ac.uk/course/view.php?id=8579&section=0}{STAT0002 Moodle page}.
 #' The focus of this R package is mainly on R code.}
 #'
 #' @section How to learn about R:
@@ -24,7 +24,7 @@
 #' use either \code{?name} or \code{help(name)}.
 #'
 #' If you have any questions about this package please ask them via the
-#' \href{https://moodle-1819.ucl.ac.uk/mod/hsuforum/view.php?id=755813}{STAT0002 Moodle Discussion Forum}.
+#' \href{https://moodle.ucl.ac.uk/mod/hsuforum/view.php?id=755813}{STAT0002 Moodle Discussion Forum}.
 #'
 #' @section Vignettes (tutorials demonstrating how to use R code):
 #'
@@ -86,13 +86,13 @@
 #'   \item {\link[=corr_sim_movie]{Sampling distribution of the correlation coefficient}}
 #' }
 #' @seealso \code{\link{movies}}: general information about the movies.
-#' @seealso The \href{https://moodle-1819.ucl.ac.uk/course/view.php?id=8579&section=0}{STAT0002 Moodle page}
+#' @seealso The \href{https://moodle.ucl.ac.uk/course/view.php?id=8579&section=0}{STAT0002 Moodle page}
 #'   for: various forms of feedback, a discussion forum, lecturecast recordings,
 #'   course notes, exercises, quizzes, short videos, past exam papers and revision
 #'   lecture material, real investigations.
-#' @seealso The \href{https://moodle-1819.ucl.ac.uk/course/view.php?id=8581}{STAT0004 Moodle page}
+#' @seealso The \href{https://moodle.ucl.ac.uk/course/view.php?id=8581}{STAT0004 Moodle page}
 #'   (for students taking STAT0004).
-#' @seealso The \href{https://moodle-1819.ucl.ac.uk/course/view.php?id=10773}{Introduction to R Moodle page}
+#' @seealso The \href{https://moodle.ucl.ac.uk/course/view.php?id=10773}{Introduction to R Moodle page}
 #'   (for students not taking STAT0004, e.g. Natural Sciences students).
 #' @docType package
 #' @name stat1004
@@ -108,9 +108,9 @@ NULL
 #' with a view to estimating (retrospectively) the probability of a
 #' catastrophic failure of the Challenger space shuttle under the
 #' launch conditions on 28th January 1986 is used as a
-#' \href{https://moodle-1819.ucl.ac.uk/mod/resource/view.php?id=316153}{worked example}
+#' \href{https://moodle.ucl.ac.uk/mod/resource/view.php?id=316153}{worked example}
 #' for the
-#' \href{https://moodle-1819.ucl.ac.uk/course/view.php?id=8579&section=4}{STAT0002 Meet your Professor ICA}.
+#' \href{https://moodle.ucl.ac.uk/course/view.php?id=8579&section=4}{STAT0002 Meet your Professor ICA}.
 #'
 #' @format A dataframe with 24 rows and 5 columns:
 #' \itemize{

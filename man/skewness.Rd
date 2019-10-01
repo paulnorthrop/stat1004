@@ -32,7 +32,7 @@ the STAT002 notes.
 }
 \details{
 See Section 2.3 of the
-\href{https://moodle-1819.ucl.ac.uk/course/view.php?id=8579&section=3}{STAT002 notes.}
+\href{https://moodle.ucl.ac.uk/course/view.php?id=8579&section=3}{STAT002 notes.}
 
 \emph{Sample quartile skewness}.
 Let \eqn{q_L}, \eqn{m} and \eqn{q_U} be the sample lower quartile,

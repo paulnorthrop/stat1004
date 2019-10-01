@@ -31,9 +31,9 @@ A paper (Dalal \emph{et al.}, 1989), in which these data are analysed
 with a view to estimating (retrospectively) the probability of a
 catastrophic failure of the Challenger space shuttle under the
 launch conditions on 28th January 1986 is used as a
-\href{https://moodle-1819.ucl.ac.uk/mod/resource/view.php?id=316153}{worked example}
+\href{https://moodle.ucl.ac.uk/mod/resource/view.php?id=316153}{worked example}
 for the
-\href{https://moodle-1819.ucl.ac.uk/course/view.php?id=8579&section=4}{STAT0002 Meet your Professor ICA}.
+\href{https://moodle.ucl.ac.uk/course/view.php?id=8579&section=4}{STAT0002 Meet your Professor ICA}.
 }
 \seealso{
 \code{\link{shuttle_sim}}, \code{\link{shuttle_sim_plot}},

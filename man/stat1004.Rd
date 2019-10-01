@@ -20,7 +20,7 @@ code by seeing it in action and playing with it themselves.
 \strong{The main sources of information about the material in STAT0002
 are the lectures and tutorials, with notes, lecture slides, exercises
 etc available from the
-\href{https://moodle-1819.ucl.ac.uk/course/view.php?id=8579&section=0}{STAT0002 Moodle page}.
+\href{https://moodle.ucl.ac.uk/course/view.php?id=8579&section=0}{STAT0002 Moodle page}.
 The focus of this R package is mainly on R code.}
 }
 
@@ -34,7 +34,7 @@ see many functions like this.  To find out what a function called \code{name} do
 use either \code{?name} or \code{help(name)}.
 
 If you have any questions about this package please ask them via the
-\href{https://moodle-1819.ucl.ac.uk/mod/hsuforum/view.php?id=755813}{STAT0002 Moodle Discussion Forum}.
+\href{https://moodle.ucl.ac.uk/mod/hsuforum/view.php?id=755813}{STAT0002 Moodle Discussion Forum}.
 }
 
 \section{Vignettes (tutorials demonstrating how to use R code)}{
@@ -106,14 +106,14 @@ See \code{\link[smovie]{movies}} for more details.
 \seealso{
 \code{\link{movies}}: general information about the movies.
 
-The \href{https://moodle-1819.ucl.ac.uk/course/view.php?id=8579&section=0}{STAT0002 Moodle page}
+The \href{https://moodle.ucl.ac.uk/course/view.php?id=8579&section=0}{STAT0002 Moodle page}
   for: various forms of feedback, a discussion forum, lecturecast recordings,
   course notes, exercises, quizzes, short videos, past exam papers and revision
   lecture material, real investigations.
 
-The \href{https://moodle-1819.ucl.ac.uk/course/view.php?id=8581}{STAT0004 Moodle page}
+The \href{https://moodle.ucl.ac.uk/course/view.php?id=8581}{STAT0004 Moodle page}
   (for students taking STAT0004).
 
-The \href{https://moodle-1819.ucl.ac.uk/course/view.php?id=10773}{Introduction to R Moodle page}
+The \href{https://moodle.ucl.ac.uk/course/view.php?id=10773}{Introduction to R Moodle page}
   (for students not taking STAT0004, e.g. Natural Sciences students).
 }
