@@ -19,14 +19,14 @@ knitr::opts_chunk$set(comment = "", prompt = TRUE, collapse = TRUE)
 
 Stochastic simulation uses computer-generated *pseudo-random numbers* to mimic a stochastic real event or dataset.  Pseudo-random numbers are not random (they are produced by an algorithm) but the algorithm is constructed in order to imitate randomness closely enough.  A typical use of stochastic simulation is to generate numbers that behave approximately like a random sample from an particular probability distribution.  
 
-In this vignette we concentrate on using R to perform stochastic simulation.  For a more general introduction to stochastic simulation, and a more detailed explanation of the ideas underlying the R code, see the short [Stochastic simulation video](https://moodle-1819.ucl.ac.uk/course/view.php?id=8579&section=9).  If you want to know more then good sources of information are @Morgan and @Jasra.
+In this vignette we concentrate on using R to perform stochastic simulation.  For a more general introduction to stochastic simulation, and a more detailed explanation of the ideas underlying the R code, see the short [Stochastic simulation video](https://moodle.ucl.ac.uk/course/view.php?id=8579&section=8).  If you want to know more then good sources of information are @Morgan and @Jasra.
 
 The R code used in this vignette are available [here](stat1004-ch1b-stochastic-simulation-vignette.R).
  The function `rbinomial` can be viewed either by typing `rbinomial` at R command prompt `>` or at  [GitHub](https://github.com/paulnorthrop/stat1004/tree/master/R/stochastic_simulation.R)
 
 ## Pseudo-random numbers in (0,1)
 
-The basic building block of stochastic simulation methods is the ability to simulate numbers (pseudo-) randomly from the interval (0,1).  As we will see in Section 5.7 of the [STAT0002 notes](https://moodle-1819.ucl.ac.uk/course/view.php?id=8579&section=3) this is equivalent to generating numbers that behave approximately like a random sample from a standard uniform U(0,1) distribution.
+The basic building block of stochastic simulation methods is the ability to simulate numbers (pseudo-) randomly from the interval (0,1).  As we will see in Section 5.7 of the [STAT0002 notes](https://moodle.ucl.ac.uk/course/view.php?id=8579&section=3) this is equivalent to generating numbers that behave approximately like a random sample from a standard uniform U(0,1) distribution.
 The function in R that does this is `runif`.
 
 ```{r, include = FALSE}
@@ -41,7 +41,7 @@ runif(10)
 
 ## Simulation from a binomial distribution
 
-In the [Challenger Space Shuttle disaster](stat1004-ch1a-shuttle-vignette.html) vignette we needed to simulate numbers from a binomial distribution with parameters $6$ and $p$, for a given value of $p$.  As we will see in Section 5.3 of the [STAT0002 notes](https://moodle-1819.ucl.ac.uk/course/view.php?id=8579&section=3) this distribution arises as the number of 'successes' (perversely, in the space shuttle example thermal distress of an O-ring is a 'success') in a fixed number (here, this is 6) of independent trials, where each trial results either in a 'success' or a 'failure'.
+In the [Challenger Space Shuttle disaster](stat1004-ch1a-shuttle-vignette.html) vignette we needed to simulate numbers from a binomial distribution with parameters $6$ and $p$, for a given value of $p$.  As we will see in Section 5.3 of the [STAT0002 notes](https://moodle.ucl.ac.uk/course/view.php?id=8579&section=3) this distribution arises as the number of 'successes' (perversely, in the space shuttle example thermal distress of an O-ring is a 'success') in a fixed number (here, this is 6) of independent trials, where each trial results either in a 'success' or a 'failure'.
 
 Suppose that $p=0.2$, which is the approximate estimated probability (under a linear logistic model) that an O-ring suffers thermal distress when the space shuttle is launched at 58 degrees Fahrenheit.
 
@@ -97,7 +97,7 @@ as.numeric(distress)
 
 ## Simulation from a exponential distribution
 
-The exponential distribution (see Section 5.6 of the [STAT0002 notes](https://moodle-1819.ucl.ac.uk/course/view.php?id=8579&section=3)) is an example of a probability distribution of a continuous random variable (see Section 4.2 of the [STAT0002 notes](https://moodle-1819.ucl.ac.uk/course/view.php?id=8579&section=3)).
+The exponential distribution (see Section 5.6 of the [STAT0002 notes](https://moodle.ucl.ac.uk/course/view.php?id=8579&section=3)) is an example of a probability distribution of a continuous random variable (see Section 4.2 of the [STAT0002 notes](https://moodle.ucl.ac.uk/course/view.php?id=8579&section=3)).
 
 4. **Can you guess the name of the R function for simulating from an exponential distribution?**
 
@@ -108,7 +108,7 @@ exp_sim <- rexp(n = 1000, rate = lambda)
 ```
 
 We produce a histogram of these simulated values 
-(see Section 2.5 of the [STAT0002 notes](https://moodle-1819.ucl.ac.uk/course/view.php?id=8579&section=3)) and superimpose the probability density function (p.d.f.) of the exponential distribution from which these values have been simulated.
+(see Section 2.5 of the [STAT0002 notes](https://moodle.ucl.ac.uk/course/view.php?id=8579&section=3)) and superimpose the probability density function (p.d.f.) of the exponential distribution from which these values have been simulated.
 
 ```{r, fig.width = 6, fig.height = 4}
 # A histogram (see Section 2.5 of the STAT0002 notes)
@@ -119,7 +119,7 @@ lines(x, dexp(x, rate = lambda))
 
 5. **Can you guess what the function `dexp` does?  Use `?dexp` to find out.**
 
-After you have answered Question 5 of the [Quiz for Exercises 6](https://moodle-1819.ucl.ac.uk/mod/quiz/view.php?id=316126) you will see why the following R code could be used to simulate from an exponential distribution.
+After you have answered Question 5 of the [Quiz for Exercises 6](https://moodle.ucl.ac.uk/mod/quiz/view.php?id=316126) you will see why the following R code could be used to simulate from an exponential distribution.
 
 ```{r, fig.width = 6, fig.height = 4}
 u <- runif(1000)
@@ -132,8 +132,8 @@ lines(x, dexp(x, rate = lambda))
 
 The code immediately above is an example of the *inversion method* of simulation.
 See the 
-[Stochastic simulation video](https://moodle-1819.ucl.ac.uk/course/view.php?id=8579&section=9) for some detail.  The following code implements this for the normal distribution
-(see Section 5.7 of the [STAT0002 notes](https://moodle-1819.ucl.ac.uk/course/view.php?id=8579&section=3)).
+[Stochastic simulation video](https://moodle.ucl.ac.uk/course/view.php?id=8579&section=8) for some detail.  The following code implements this for the normal distribution
+(see Section 5.7 of the [STAT0002 notes](https://moodle.ucl.ac.uk/course/view.php?id=8579&section=3)).
 
 ```{r, fig.width = 6, fig.height = 4}
 u <- runif(1000)
@@ -147,7 +147,7 @@ lines(x, dnorm(x, mean = mu, sd = sigma))
 
 6. **Use `?qnorm` to find out what `qnorm` does.**
 
-Note that the help page calls this the *quantile function*.  An alternative name is the *inverse cumulative distribution function* or *inverse c.d.f* (see Section 5.7 of the [STAT0002 notes](https://moodle-1819.ucl.ac.uk/course/view.php?id=8579&section=3)).
+Note that the help page calls this the *quantile function*.  An alternative name is the *inverse cumulative distribution function* or *inverse c.d.f* (see Section 5.7 of the [STAT0002 notes](https://moodle.ucl.ac.uk/course/view.php?id=8579&section=3)).
 
 ## More general methods of simulation
 
