@@ -34,11 +34,13 @@ If you need to install R then you can get it from [CRAN](https://cran.r-project.
 If you would like to use RStudio (a user-friendly front-end to R) then you can get it from 
 [here](https://www.rstudio.com/products/rstudio/download/) [See "Installers for Supported Platforms" near the bottom of the page.  Choose the FREE RStudio Desktop Open Source License.]
 
-To install the `stat1004` package from GitHub type the following at the R Console command prompt `>`
+To install the `stat1004` package from GitHub type the following at the R Console command prompt `>`.  If 
 
 ```{r installation1, eval = FALSE}
 install.packages("remotes")
+
 install.packages(c("plotrix", "rpanel", "rust", "smovie", "tkrplot", "MASS"), dependencies = "Depends")
+
 remotes::install_github("paulnorthrop/stat1004", dependencies = "Depends")
 ```
 
