@@ -2,6 +2,6 @@
 .Rhistory
 .RData
 create_datasets
-vignettes/stat1004-ch1b-stochastic-simulation-vignette\.Rmd
-doc
+vignettes/stat1004-ch1b-stochastic-simulation-vignette.Rmd
+vignettes/stat1004-ch5a-discrete-random-variables-vignette.Rmd
 Meta
