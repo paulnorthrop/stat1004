@@ -45,7 +45,8 @@ install.packages(c("plotrix", "rpanel", "rust", "smovie", "tkrplot", "MASS"), de
 You only need to do this (install the `remotes` package etc) once.  Then install `stat1004` (or reinstall it to get the latest version) using 
 
 ```{r installation2, eval = FALSE}
-remotes::install_github("paulnorthrop/stat1004", dependencies = "Depends")
+remotes::install_github("paulnorthrop/stat1004", dependencies = "Depends",
+                        build_vignettes = TRUE)
 ```
 
 ### Getting started
