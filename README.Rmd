@@ -39,14 +39,14 @@ To install the `stat1004` package from GitHub type the following at the R Consol
 ```{r installation1, eval = FALSE}
 install.packages("remotes")
 
-install.packages(c("plotrix", "rpanel", "rust", "smovie", "tkrplot", "MASS"), dependencies = "Depends")
+install.packages(c("plotrix", "rpanel", "rust", "smovie", "tkrplot", "MASS", "knitr"), 
+                 dependencies = "Depends")
 ```
 
 You only need to do this (install the `remotes` package etc) once.  Then install `stat1004` (or reinstall it to get the latest version) using 
 
 ```{r installation2, eval = FALSE}
-remotes::install_github("paulnorthrop/stat1004", dependencies = "Depends",
-                        build_vignettes = TRUE)
+remotes::install_github("paulnorthrop/stat1004", dependencies = "Depends", build_vignettes = TRUE)
 ```
 
 ### Getting started
