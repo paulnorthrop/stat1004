@@ -1,0 +1,12 @@
+pandoc: 1.19.2.1
+pkgdown: 1.4.1
+pkgdown_sha: ~
+articles:
+  stat1004-ch1a-shuttle-vignette: stat1004-ch1a-shuttle-vignette.html
+  stat1004-ch1b-stochastic-simulation-vignette-inc-rust: stat1004-ch1b-stochastic-simulation-vignette-inc-rust.html
+  stat1004-ch1b-stochastic-simulation-vignette: stat1004-ch1b-stochastic-simulation-vignette.html
+  stat1004-ch2a-descriptive-statistics-vignette: stat1004-ch2a-descriptive-statistics-vignette.html
+  stat1004-ch2b-graphs-vignette: stat1004-ch2b-graphs-vignette.html
+  stat1004-ch2c-graphs-vignette: stat1004-ch2c-graphs-vignette.html
+  stat1004-ch2d-box-cox-transformation-vignette: stat1004-ch2d-box-cox-transformation-vignette.html
+

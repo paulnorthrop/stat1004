@@ -1,0 +1,40 @@
+destination: docs
+
+development:
+  mode: unreleased
+
+template:
+  params:
+    bootswatch: paper
+
+reference:
+  - title: Package
+    desc: ~
+    contents:
+      - "stat1004"
+  - title: Example data
+    desc: ~
+    contents:
+      - "aussie_births"
+      - "blood_types"
+      - "co2_per_capita"
+      - "days"
+      - "flu"
+      - "ftse"
+      - "gdp_per_capita"
+      - "hubble"
+      - "life_expectancy"
+      - "lymphoma"
+      - "ox_births"
+      - "shuttle"
+      - "USelection"
+      - "world_bank"
+  - title: Movies
+    desc: ~
+    contents:
+      - "movies"
+      - "shuttle_movie"
+      - "scatterplot_movie"
+      - "world_bank_movie"
+      - "ox_births_movie"
+      - "binomial_pmf_movie"
