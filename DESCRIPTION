@@ -15,16 +15,17 @@ License: GPL (>= 2)
 LazyData: TRUE
 Encoding: UTF-8
 RoxygenNote: 6.1.1
-Imports: stats,
+Imports: distributions3
     graphics,
     grDevices,
     MASS,
     methods,
     plotrix,
     rpanel,
-    utils,
     rust,
     smovie,
+    stats,
+    utils
 Suggests: knitr,
     rmarkdown,
     tkrplot
