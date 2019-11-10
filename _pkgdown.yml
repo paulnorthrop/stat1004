@@ -11,24 +11,21 @@ reference:
   - title: Package
     desc: ~
     contents:
-      - "stat1004"
+      - "stat0002"
   - title: Example data
     desc: ~
     contents:
-      - "aussie_births"
-      - "blood_types"
-      - "co2_per_capita"
+      - "shuttle"
       - "days"
-      - "flu"
-      - "ftse"
-      - "gdp_per_capita"
-      - "hubble"
-      - "life_expectancy"
       - "lymphoma"
       - "ox_births"
-      - "shuttle"
-      - "USelection"
+      - "blood_types"
+      - "ftse"
       - "world_bank"
+      - "flu"
+      - "USelection"
+      - "aussie_births"
+      - "hubble"
   - title: Movies
     desc: ~
     contents:
@@ -38,3 +35,39 @@ reference:
       - "world_bank_movie"
       - "ox_births_movie"
       - "binomial_pmf_movie"
+      - "poisson_process_movie"
+      - "poisson_process_check"
+      - "normal_pdf_movie"
+      - "normal_areas_movie"
+      - "qq_plot_movie"
+      - "normal_sampling_distns_movie"
+      - "clt_normal_movie"
+      - "clt_exponential_movie"
+      - "mean_vs_median_normal_movie"
+      - "mean_vs_median_t_movie"
+      - "two_by_two_movie"
+      - "lin_reg_movie"
+      - "lev_inf_movie"
+      - "corr_sim_movie"
+  - title: Plots
+    desc: ~
+    contents:
+      - "box_plot"
+      - "scatter"
+      - "scatter_hist"
+      - "boxcox_plot"
+  - title: Summary statistics
+    desc: ~
+    contents:
+      - "five_number"
+      - "skewness"
+      - "boxplot_stats"
+  - title: Simulation functions
+    desc: ~
+    contents:
+      - "shuttle_sim"
+      - "shuttle_sim_hists"
+      - "shuttle_sim_plot"
+      - "rbinomial"
+      - "poisson_process_sim"
+      - "plot.poisson_process"
