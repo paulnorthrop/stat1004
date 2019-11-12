@@ -14,15 +14,17 @@ bibliography: stat1004.bib
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(comment = "", prompt = TRUE, collapse = TRUE)
-#devtools::load_all()
+knitr::opts_knit$set(global.par = TRUE)
 ```
 
 ```{r, include = FALSE}
 # Set a random number `seed'.  
 set.seed(2601)
+# Set margins globally
+par(mar = c(4, 4, 1, 1))
 ```
 
-The purposes of this vignette are to direct you to R functions and relating to the **discrete** probability distributions condsidered in Chapter 5 of the STAT0002 notes and to provide code to do some of the things that appear in the lecture slides.  
+The purposes of this vignette are to direct you to R functions relating to the **discrete** probability distributions condsidered in Chapter 5 of the STAT0002 notes and to provide code to do some of the things that appear in the lecture slides.  
 
 First, we do this using the standard R functions (in the **stats** package).  Then we repeat some of the calculations using the the **distributions3** package, which provides a neat way to work with random variables in R.
 
@@ -38,47 +40,47 @@ The **stats** package contains functions to evaluate the probability mass functi
 
 ## The binomial distribution
 
-Following the STAT0002 notes let us suppose that (before we observe the data) the number $Y$ of boy babies is a random variable with a binomial distribution(44, $p$) distribution, where $p$ is the probability that a randomly chosen birth produces a boy.  We use the data to estimate $p$.
+Following the STAT0002 notes, let us suppose that (before we observe the data) the number $Y$ of boy babies is a random variable with a binomial(44, $p$) distribution, where $p$ is the probability that a randomly chosen birth produces a boy.  We use the data to estimate $p$.
 
 ```{r}
-boys <- sum(aussie_births[, "sex"] == "boy")
-girls <- sum(aussie_births[, "sex"] == "girl")
-p_hat <- boys / (boys + girls)
-p_hat
+nboys <- sum(aussie_births[, "sex"] == "boy")
+ngirls <- sum(aussie_births[, "sex"] == "girl")
+phat <- nboys / (nboys + ngirls)
+phat
 ```
 
-The function `dbinom` evaluates the p.m.f. of a binomial distribution.  See `?Binomial` for information about this function and `pbinom`, `qbinom` and `rbinom`.
-
-The following code produces a plot like the ones we looked at  lectures.
+The function `dbinom` evaluates the p.m.f. of a binomial distribution.  See `?Binomial` for information about this function and `pbinom`, `qbinom` and `rbinom`.  The following code produces a plot that is similar to the ones we looked at in a lecture.  You could vary `p`, perhaps setting it to be equal to `phat`, and see the effect on the p.m.f. of the binomial distribution.
 
 ```{r, fig.align='center', fig.width=7}
 # Plot the binomial(44, 1/2) p.m.f. 
-n <- 44
-plot(0:n, dbinom(0:n, size = n, prob = 1 / 2), type = "h", 
-     ylab = "P(X = x)", xlab = "x")
+n <- nboys + ngirls
+p <- 1 / 2
+y <- 0:n
+# Note that dbinom calculates the probabilities all values in the vector y
+plot(y, dbinom(y, n, p), type = "h", lwd = 3, ylab = "P(Y = y)", xlab = "y")
 ```
 
-```{r, fig.align='center', fig.width=7}
-#barplot(dbinom(0:44, 44, p_hat), names.arg = 0:44, width = 0.5, xlim = c(0, 44))
-#plot(0:44, dbinom(0:44, 44, p_hat), type = "h")
-```
-
-For the purposes of illustrating how the functions `pbinom`, `qbinom` and `rbinom` let us suppose that $p = 1/2$.  If we wanted to calculate the probabilities $P(Y < 10)$  
+For the purposes of illustrating how the functions `pbinom`, `qbinom` and `rbinom` work, let us suppose that $p = 1/2$.  We used the values of the following probabilities during a lecture, when we considered how surprised we might to observe a number of boys 4 or more from the expected value of 22 under the hypothesis that $p = 1/2$.
 
 ```{r}
-pbinom
+# Calculate P(Y >= 26) = P(Y > 25) and P(Y <= 18)
+pbinom(25, size = n, prob = 1 / 2, lower.tail = FALSE)
+pbinom(18, n, 1 / 2)
 ```
 
-1. **?**
+Suppose that we want to find the median of $Y$. We can use `qbinom`:
+
+```{r}
+qbinom(1 / 2, n, 1 / 2)
+# A check (look at the definition of the median in the notes)
+pbinom(21:23, n, 1 / 2)
+```
 
 ```{r, fig.align='center', fig.width=7}
-pjn <- rbinom(100000, 44, 1 / 2)
-barplot(table(pjn))
+ysim <- rbinom(100, 44, 1 / 2)
+ysim
+summary(ysim)
 ```
-
-## The geometric distribution
-
-## The Poisson distribution
 
 ## The distributions3 package
 
@@ -87,7 +89,11 @@ A neat feature of this package is that it enables us to create an R object that 
 
 ```{r}
 library(distributions3)
-# Create on R object that is, effectively, a binomial(n, 1/2) random variable
+# (The warnings tell us that the distributions3 package has functions with the
+# same names as functions from other packages and has `masked' them, that is,
+# R will use these functions from distributions3, not the other functions.)
+#
+# Create an R object that is, effectively, a binomial(n, 1/2) random variable
 Y <- Binomial(n, 1 / 2)
 Y
 ```
@@ -95,6 +101,34 @@ Y
 ```{r, fig.align='center', fig.width=7}
 # Reproduce the plot.  
 plot(0:n, pmf(Y, 0:n), type = "h", ylab = "P(X = x)", xlab = "x")
+1 - cdf(Y, 25)
+cdf(Y, 18)
+```
+
+## The geometric distribution
+
+```{r}
+phat <- 26 / 44
+W <- Geometric(phat)
+W
+# P(W = w), for w = 1, ..., 5 (note the -1)
+pmf(W, 1:5 - 1)
+# P(W >= 6) = 1 - P(W < 6) = 1 - P(W <= 5)
+1 - cdf(W, 5 - 1)
+```
+
+## The Poisson distribution
+
+```{r}
+lambdahat <- 44 / 24
+N <- Poisson(lambdahat)
+N
+
+plot(0:10, pmf(N, 0:10), type = "h", ylab = "P(N = n)", xlab = "n")
+
+pmf(N, 0:4)
+# P(N >= 5)
+1 - cdf(N, 4)
 ```
 
 ## References
