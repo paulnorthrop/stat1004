@@ -24,9 +24,7 @@ set.seed(2601)
 par(mar = c(4, 4, 1, 1))
 ```
 
-The purposes of this vignette are to direct you to R functions relating to the **discrete** probability distributions condsidered in Chapter 5 of the STAT0002 notes and to provide code to do some of the things that appear in the lecture slides.  
-
-First, we do this using the standard R functions (in the **stats** package).  Then we repeat some of the calculations using the the **distributions3** package, which provides a neat way to work with random variables in R.
+The purposes of this vignette are to direct you to R functions relating to the **discrete** probability distributions condsidered in Chapter 5 of the STAT0002 notes and to provide code to do some of the things that appear in the lecture slides.  First, we do this using the standard R functions (in the **stats** package).  Then we repeat some of the calculations using the **distributions3** package, which provides a neat way to work with random variables in R.
 
 We illustrate these functions using the Australian birth times data, which are available in the data frame `aussie_births`.
 
@@ -76,13 +74,15 @@ qbinom(1 / 2, n, 1 / 2)
 pbinom(21:23, n, 1 / 2)
 ```
 
+The following code simulates 100 values from a Binomial(44, 1/2) distribution.
+
 ```{r, fig.align='center', fig.width=7}
 ysim <- rbinom(100, 44, 1 / 2)
 ysim
 summary(ysim)
 ```
 
-## The distributions3 package
+### The distributions3 package
 
 In September 2019 the **distributions3** package [@distributions3] was released.
 A neat feature of this package is that it enables us to create an R object that corresponds to a particular random variable.  Then we are able easily to use some simple R functions to perform calculations with this random variable.  The way that this works is perhaps more intuitive than the way in which we use functions like `dbinom()` above.
@@ -98,12 +98,16 @@ Y <- Binomial(n, 1 / 2)
 Y
 ```
 
+We reproduce the plot and repeat the calculation of the probabilities.
+
 ```{r, fig.align='center', fig.width=7}
 # Reproduce the plot.  
-plot(0:n, pmf(Y, 0:n), type = "h", ylab = "P(X = x)", xlab = "x")
+plot(0:n, pmf(Y, 0:n), type = "h", lwd = 3, ylab = "P(X = x)", xlab = "x")
 1 - cdf(Y, 25)
 cdf(Y, 18)
 ```
+
+Now we use the **distributions** package to performs some of the calculations that were involved in producing the lecture slides associated with the geometric and Poisson distributions.  
 
 ## The geometric distribution
 
@@ -123,8 +127,10 @@ pmf(W, 1:5 - 1)
 lambdahat <- 44 / 24
 N <- Poisson(lambdahat)
 N
+```
 
-plot(0:10, pmf(N, 0:10), type = "h", ylab = "P(N = n)", xlab = "n")
+```{r, fig.align='center', fig.width=7}
+plot(0:10, pmf(N, 0:10), type = "h", lwd = 3, ylab = "P(N = n)", xlab = "n")
 
 pmf(N, 0:4)
 # P(N >= 5)
