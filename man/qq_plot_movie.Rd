@@ -35,7 +35,6 @@ This movie enables the user to scroll forwards and backwards
 # [Use install.packages("rpanel") if necessary]
 library(rpanel)
 
-# Data in which an event occurs exactly on the hour
 \dontrun{
 # Create the same dataset used in the lecture notes/slides
 set.seed(382)

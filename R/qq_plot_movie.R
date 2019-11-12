@@ -24,7 +24,6 @@
 #' # [Use install.packages("rpanel") if necessary]
 #' library(rpanel)
 #'
-#' # Data in which an event occurs exactly on the hour
 #' \dontrun{
 #' # Create the same dataset used in the lecture notes/slides
 #' set.seed(382)
@@ -181,7 +180,7 @@ qq_movie_plot <- function(panel) {
       myqqline(data, mu = mu, sigma = sigma, type = 6, lty = 2, lwd = 2)
       graphics::title(main = "both types of line")
       graphics::legend("topleft", legend = c("line of equality",
-                                             "line through quantiles"),
+                                             "line through the quartiles"),
                        lty = c(3, 2), lwd = 2)
     }
     graphics::par(old_par)
