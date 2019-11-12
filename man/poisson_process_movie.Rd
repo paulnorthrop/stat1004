@@ -80,7 +80,6 @@ This movie contains two displays of plots: one plot on the top and
 # [Use install.packages("rpanel") if necessary]
 library(rpanel)
 
-# Produce movie using values from the Aussie births data
 \dontrun{
 poisson_process_movie(lambda = 2)
 poisson_process_movie(lambda = 10)
