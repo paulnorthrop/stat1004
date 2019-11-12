@@ -41,7 +41,7 @@
 #'     Also included are black bars showing the p.m.f. of a
 #'     Poisson(\eqn{m}) random variable.}
 #'   \item{"times between events" }{A histogram (with red rectangles) of
-#'     the simulated times between events, with the p.d.f. of an
+#'     the sample times between events, with the p.d.f. of an
 #'     exponential(\eqn{m}) random variable superimposed.}
 #'   \item{"times at which events occur" }{A histogram (with red rectangles)
 #'     of the simulated event times, with the p.d.f. of a
@@ -193,7 +193,7 @@ poisson_process_check_plot <- function(panel) {
       title(ylab = "p.m.f.", xlab = "number of events in one hour")
       poisson_text <- expression(Poisson*(m)*~pmf)
       legend("topright", col = 2:1, fill = 2:1, yjust = 0,
-             legend = c("simulated proportions", poisson_text))
+             legend = c("sample proportions", poisson_text))
     } else if (panel$data_type == "times between events") {
       if (is.null(exp_bins)) {
         number_of_classes <- grDevices::nclass.Sturges(all_event_times)
@@ -213,7 +213,7 @@ poisson_process_check_plot <- function(panel) {
       exp_text <- expression(exponential*(m)*~pdf~" ")
       legend("topright", col = 2:1, fill = c(2, NA), lty = c(-1, 1),
              lwd = c(0, 2), yjust = 0, border = c(1, 0),
-             legend = c("simulated data", exp_text))
+             legend = c("sample data", exp_text))
     } else if (panel$data_type == "times at which events occur") {
       if (is.null(unif_bins)) {
         number_of_classes <- grDevices::nclass.Sturges(all_event_times)
@@ -233,7 +233,7 @@ poisson_process_check_plot <- function(panel) {
       u <- par("usr")
       legend(0, 0, col = 2:1, fill = c(2, NA),
              lty = c(-1, 1), lwd = c(0, 4), yjust = 0, xjust = 0,
-             border = c(1, 0), legend = c("simulated data", unif_text),
+             border = c(1, 0), legend = c("sample data", unif_text),
              xpd = TRUE)
     } else {
       plot(1:10, 1:10, type = "n", axes = FALSE, ann = FALSE)

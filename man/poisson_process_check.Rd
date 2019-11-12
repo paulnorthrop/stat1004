@@ -57,7 +57,7 @@ This movie contains two displays of plots: one plot on the top and
     Also included are black bars showing the p.m.f. of a
     Poisson(\eqn{m}) random variable.}
   \item{"times between events" }{A histogram (with red rectangles) of
-    the simulated times between events, with the p.d.f. of an
+    the sample times between events, with the p.d.f. of an
     exponential(\eqn{m}) random variable superimposed.}
   \item{"times at which events occur" }{A histogram (with red rectangles)
     of the simulated event times, with the p.d.f. of a
