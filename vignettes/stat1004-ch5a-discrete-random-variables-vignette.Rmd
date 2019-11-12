@@ -108,11 +108,34 @@ cdf(Y, 18)
 ```
 
 Now we use the **distributions** package to performs some of the calculations that were involved in producing the lecture slides associated with the geometric and Poisson distributions.  
-
+ 
 ## The geometric distribution
 
+We recreate the table in the lecture slides, of the observed frequencies and proportions and the corresponding estimated expected values under a geometric distribution fitted to the data.
+
+R's `dgeom` function, and the function `Geometric` in the **distributions** package, are is based on the number of failures before the first success, not the number of trials.  Therefore, we subtract 1 below when we call the function `dgeom`.
+
 ```{r}
-phat <- 26 / 44
+# Observed, adding a zero for greater than or equal to 6
+geom <- diff(c(0, which(aussie_births$sex == "boy")))
+max_w <- max(geom)
+geom <- c(1:(max_w + 1), geom)
+obs_freq <- table(geom) - 1
+obs_prop <- obs_freq / sum(obs_freq)
+round(obs_prop, 3)
+
+# Estimated expected, using dgeom
+est_prob <- dgeom((1:max_w) - 1, prob = phat)
+est_prob <- c(est_prob, 1 - sum(est_prob))
+exp_freq <- nboys * est_prob
+
+# The table
+round(cbind(w = 1:(max_w + 1), obs_freq, exp_freq, obs_prop, est_prob), 3)
+```
+
+Alternatively, We could also use the **distribtions3** package to calculate the probabilities that we require.
+
+```{r}
 W <- Geometric(phat)
 W
 # P(W = w), for w = 1, ..., 5 (note the -1)
@@ -122,6 +145,8 @@ pmf(W, 1:5 - 1)
 ```
 
 ## The Poisson distribution
+
+Here we use the **distributions** package to produce a plot of the p.m.f. of the Poisson($\hat{\lambda}$) distribution, where $\hat{\lambda}$ is equal to the sample mean of the numbers of babies born in each of the 24 hourly periods.  We also calculate the probabilities involved in the table of observed and estimated expected frequencies given in the lecture.
 
 ```{r}
 lambdahat <- 44 / 24

@@ -5,12 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chapter 5: binomial, geometric and Poisson distributions • stat1004</title>
+<title>Chapter 5: uniform, exponential and normal distributions • stat1004</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/paper/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Chapter 5: binomial, geometric and Poisson distributions">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Chapter 5: uniform, exponential and normal distributions">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -74,6 +74,9 @@
     <li>
       <a href="../articles/stat1004-ch5a-discrete-random-variables-vignette.html">Chapter 5: binomial, geometric and Poisson distributions</a>
     </li>
+    <li>
+      <a href="../articles/stat1004-ch5b-continous-random-variables-vignette.html">Chapter 5: uniform, exponential and normal distributions</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -97,19 +100,19 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Chapter 5: binomial, geometric and Poisson distributions</h1>
+      <h1>Chapter 5: uniform, exponential and normal distributions</h1>
                         <h4 class="author">Paul Northrop</h4>
             
             <h4 class="date">2019-11-12</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/paulnorthrop/stat1004/blob/master/vignettes/stat1004-ch5a-discrete-random-variables-vignette.Rmd"><code>vignettes/stat1004-ch5a-discrete-random-variables-vignette.Rmd</code></a></small>
-      <div class="hidden name"><code>stat1004-ch5a-discrete-random-variables-vignette.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/paulnorthrop/stat1004/blob/master/vignettes/stat1004-ch5b-continous-random-variables-vignette.Rmd"><code>vignettes/stat1004-ch5b-continous-random-variables-vignette.Rmd</code></a></small>
+      <div class="hidden name"><code>stat1004-ch5b-continous-random-variables-vignette.Rmd</code></div>
 
     </div>
 
     
     
-<p>The purposes of this vignette are to direct you to R functions relating to the <strong>discrete</strong> probability distributions condsidered in Chapter 5 of the STAT0002 notes and to provide code to do some of the things that appear in the lecture slides. First, we do this using the standard R functions (in the <strong>stats</strong> package). Then we repeat some of the calculations using the <strong>distributions3</strong> package, which provides a neat way to work with random variables in R.</p>
+<p>The purposes of this vignette are to direct you to R functions relating to the <strong>continuous</strong> probability distributions condsidered in Chapter 5 of the STAT0002 notes and to provide code to do some of the things that appear in the lecture slides. First, we do this using the standard R functions (in the <strong>stats</strong> package). Then we repeat some of the calculations using the <strong>distributions3</strong> package, which provides a neat way to work with random variables in R.</p>
 <p>We illustrate these functions using the Australian birth times data, which are available in the data frame <code>aussie_births</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(stat1004)
 <span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(aussie_births)
@@ -137,7 +140,7 @@
 <span class="op">&gt;</span><span class="st"> </span>y &lt;-<span class="st"> </span><span class="dv">0</span><span class="op">:</span>n
 <span class="op">&gt;</span><span class="st"> </span><span class="co"># Note that dbinom calculates the probabilities all values in the vector y</span>
 <span class="er">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(y, <span class="kw"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span>(y, n, p), <span class="dt">type =</span> <span class="st">"h"</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">ylab =</span> <span class="st">"P(Y = y)"</span>, <span class="dt">xlab =</span> <span class="st">"y"</span>)</code></pre></div>
-<p><img src="stat1004-ch5a-discrete-random-variables-vignette_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;"></p>
+<p><img src="stat1004-ch5b-continous-random-variables-vignette_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;"></p>
 <p>For the purposes of illustrating how the functions <code>pbinom</code>, <code>qbinom</code> and <code>rbinom</code> work, let us suppose that <span class="math inline">\(p = 1/2\)</span>. We used the values of the following probabilities during a lecture, when we considered how surprised we might to observe a number of boys 4 or more from the expected value of 22 under the hypothesis that <span class="math inline">\(p = 1/2\)</span>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="co"># Calculate P(Y &gt;= 26) = P(Y &gt; 25) and P(Y &lt;= 18)</span>
 <span class="er">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span>(<span class="dv">25</span>, <span class="dt">size =</span> n, <span class="dt">prob =</span> <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>)
@@ -185,7 +188,7 @@ Binomial <span class="kw"><a href="https://rdrr.io/r/stats/Distributions.html">d
 <p>We reproduce the plot and repeat the calculation of the probabilities.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="co"># Reproduce the plot.  </span>
 <span class="er">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="dv">0</span><span class="op">:</span>n, <span class="kw">pmf</span>(Y, <span class="dv">0</span><span class="op">:</span>n), <span class="dt">type =</span> <span class="st">"h"</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">ylab =</span> <span class="st">"P(X = x)"</span>, <span class="dt">xlab =</span> <span class="st">"x"</span>)</code></pre></div>
-<p><img src="stat1004-ch5a-discrete-random-variables-vignette_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;"></p>
+<p><img src="stat1004-ch5b-continous-random-variables-vignette_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">cdf</span>(Y, <span class="dv">25</span>)
 [<span class="dv">1</span>] <span class="fl">0.1456076</span>
 <span class="op">&gt;</span><span class="st"> </span><span class="kw">cdf</span>(Y, <span class="dv">18</span>)
@@ -196,35 +199,8 @@ Binomial <span class="kw"><a href="https://rdrr.io/r/stats/Distributions.html">d
 <div id="the-geometric-distribution" class="section level2">
 <h2 class="hasAnchor">
 <a href="#the-geometric-distribution" class="anchor"></a>The geometric distribution</h2>
-<p>We recreate the table in the lecture slides, of the observed frequencies and proportions and the corresponding estimated expected values under a geometric distribution fitted to the data.</p>
-<p>R’s <code>dgeom</code> function, and the function <code>Geometric</code> in the <strong>distributions</strong> package, are is based on the number of failures before the first success, not the number of trials. Therefore, we subtract 1 below when we call the function <code>dgeom</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="co"># Observed, adding a zero for greater than or equal to 6</span>
-<span class="er">&gt;</span><span class="st"> </span>geom &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/diff.html">diff</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">0</span>, <span class="kw"><a href="https://rdrr.io/r/base/which.html">which</a></span>(aussie_births<span class="op">$</span>sex <span class="op">==</span><span class="st"> "boy"</span>)))
-<span class="op">&gt;</span><span class="st"> </span>max_w &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(geom)
-<span class="op">&gt;</span><span class="st"> </span>geom &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span><span class="op">:</span>(max_w <span class="op">+</span><span class="st"> </span><span class="dv">1</span>), geom)
-<span class="op">&gt;</span><span class="st"> </span>obs_freq &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/table.html">table</a></span>(geom) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>
-<span class="op">&gt;</span><span class="st"> </span>obs_prop &lt;-<span class="st"> </span>obs_freq <span class="op">/</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(obs_freq)
-<span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Round.html">round</a></span>(obs_prop, <span class="dv">3</span>)
-geom
-    <span class="dv">1</span>     <span class="dv">2</span>     <span class="dv">3</span>     <span class="dv">4</span>     <span class="dv">5</span>     <span class="dv">6</span> 
-<span class="fl">0.692</span> <span class="fl">0.115</span> <span class="fl">0.154</span> <span class="fl">0.000</span> <span class="fl">0.038</span> <span class="fl">0.000</span> 
-<span class="op">&gt;</span><span class="st"> </span>
-<span class="er">&gt;</span><span class="st"> </span><span class="co"># Estimated expected, using dgeom</span>
-<span class="er">&gt;</span><span class="st"> </span>est_prob &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Geometric.html">dgeom</a></span>((<span class="dv">1</span><span class="op">:</span>max_w) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">prob =</span> phat)
-<span class="op">&gt;</span><span class="st"> </span>est_prob &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(est_prob, <span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(est_prob))
-<span class="op">&gt;</span><span class="st"> </span>exp_freq &lt;-<span class="st"> </span>nboys <span class="op">*</span><span class="st"> </span>est_prob
-<span class="op">&gt;</span><span class="st"> </span>
-<span class="er">&gt;</span><span class="st"> </span><span class="co"># The table</span>
-<span class="er">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Round.html">round</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="dt">w =</span> <span class="dv">1</span><span class="op">:</span>(max_w <span class="op">+</span><span class="st"> </span><span class="dv">1</span>), obs_freq, exp_freq, obs_prop, est_prob), <span class="dv">3</span>)
-  w obs_freq exp_freq obs_prop est_prob
-<span class="dv">1</span> <span class="dv">1</span>       <span class="dv">18</span>   <span class="fl">15.364</span>    <span class="fl">0.692</span>    <span class="fl">0.591</span>
-<span class="dv">2</span> <span class="dv">2</span>        <span class="dv">3</span>    <span class="fl">6.285</span>    <span class="fl">0.115</span>    <span class="fl">0.242</span>
-<span class="dv">3</span> <span class="dv">3</span>        <span class="dv">4</span>    <span class="fl">2.571</span>    <span class="fl">0.154</span>    <span class="fl">0.099</span>
-<span class="dv">4</span> <span class="dv">4</span>        <span class="dv">0</span>    <span class="fl">1.052</span>    <span class="fl">0.000</span>    <span class="fl">0.040</span>
-<span class="dv">5</span> <span class="dv">5</span>        <span class="dv">1</span>    <span class="fl">0.430</span>    <span class="fl">0.038</span>    <span class="fl">0.017</span>
-<span class="dv">6</span> <span class="dv">6</span>        <span class="dv">0</span>    <span class="fl">0.298</span>    <span class="fl">0.000</span>    <span class="fl">0.011</span></code></pre></div>
-<p>Alternatively, We could also use the <strong>distribtions3</strong> package to calculate the probabilities that we require.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>W &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Geometric.html">Geometric</a></span>(phat)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>phat &lt;-<span class="st"> </span><span class="dv">26</span> <span class="op">/</span><span class="st"> </span><span class="dv">44</span>
+<span class="op">&gt;</span><span class="st"> </span>W &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Geometric.html">Geometric</a></span>(phat)
 <span class="op">&gt;</span><span class="st"> </span>W
 Geometric <span class="kw"><a href="https://rdrr.io/r/stats/Distributions.html">distribution</a></span> (<span class="dt">p =</span> <span class="fl">0.590909090909091</span>)
 <span class="op">&gt;</span><span class="st"> </span><span class="co"># P(W = w), for w = 1, ..., 5 (note the -1)</span>
@@ -237,13 +213,12 @@ Geometric <span class="kw"><a href="https://rdrr.io/r/stats/Distributions.html">
 <div id="the-poisson-distribution" class="section level2">
 <h2 class="hasAnchor">
 <a href="#the-poisson-distribution" class="anchor"></a>The Poisson distribution</h2>
-<p>Here we use the <strong>distributions</strong> package to produce a plot of the p.m.f. of the Poisson(<span class="math inline">\(\hat{\lambda}\)</span>) distribution, where <span class="math inline">\(\hat{\lambda}\)</span> is equal to the sample mean of the numbers of babies born in each of the 24 hourly periods. We also calculate the probabilities involved in the table of observed and estimated expected frequencies given in the lecture.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>lambdahat &lt;-<span class="st"> </span><span class="dv">44</span> <span class="op">/</span><span class="st"> </span><span class="dv">24</span>
 <span class="op">&gt;</span><span class="st"> </span>N &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Poisson.html">Poisson</a></span>(lambdahat)
 <span class="op">&gt;</span><span class="st"> </span>N
 Poisson <span class="kw"><a href="https://rdrr.io/r/stats/Distributions.html">distribution</a></span> (<span class="dt">lambda =</span> <span class="fl">1.83333333333333</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="dv">0</span><span class="op">:</span><span class="dv">10</span>, <span class="kw">pmf</span>(N, <span class="dv">0</span><span class="op">:</span><span class="dv">10</span>), <span class="dt">type =</span> <span class="st">"h"</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">ylab =</span> <span class="st">"P(N = n)"</span>, <span class="dt">xlab =</span> <span class="st">"n"</span>)</code></pre></div>
-<p><img src="stat1004-ch5a-discrete-random-variables-vignette_files/figure-html/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;"></p>
+<p><img src="stat1004-ch5b-continous-random-variables-vignette_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>
 <span class="er">&gt;</span><span class="st"> </span><span class="kw">pmf</span>(N, <span class="dv">0</span><span class="op">:</span><span class="dv">4</span>)
 [<span class="dv">1</span>] <span class="fl">0.15987975</span> <span class="fl">0.29311287</span> <span class="fl">0.26868680</span> <span class="fl">0.16419749</span> <span class="fl">0.07525718</span>
