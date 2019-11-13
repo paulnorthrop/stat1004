@@ -1,0 +1,131 @@
+---
+title: "Chapter 5: uniform, exponential and normal distributions"
+author: "Paul Northrop"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Chapter 5: uniform, exponential and normal distributions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+bibliography: stat1004.bib
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(comment = "", prompt = TRUE, collapse = TRUE)
+knitr::opts_knit$set(global.par = TRUE)
+```
+
+```{r, include = FALSE}
+# Set a random number `seed'.  
+set.seed(2601)
+# Set margins globally
+par(mar = c(4, 4, 1, 1))
+```
+
+The purposes of this vignette are to direct you to R functions relating to the **continuous** probability distributions condsidered in Chapter 5 of the STAT0002 notes and to provide code to do some of the things that appear in the lecture slides.  We do this using the standard R functions (in the **stats** package) and using the **distributions3** package, which provides a neat way to work with random variables in R.  Please see the [Discrete Random Variables vignette](stat1004-ch5a-discrete-random-variables-vignette.html) for a brief introduction to these functions.
+
+We illustrate these functions using the Australian birth times data, which are available in the data frame `aussie_births`.
+
+```{r}
+library(stat1004)
+head(aussie_births)
+```
+
+## The uniform distribution
+
+We will not say much about the uniform distribution here.  However, it is a very important distribution because the standard uniform distribution, U(0, 1), is use widely to simulate values from probability distributions. See the [Stochastic Simulation vignette](stat1004-ch1b-stochastic-simulation.html) for details.
+
+First, we show two ways to produce a (pseudo-)random sample from a U(0, 1) distribution.  We use the same seed (use `?set.seed` to find out more) to show that these approaches are equivalent.  This is because the `distributions3` package actually uses the function `runif` in the background.
+
+```{r}
+# Using the runif() function in the stats package
+set.seed(13112019)
+n <- 10
+u1 <- runif(n)
+u1
+# Using the distributions3 package to define a U(0, 1) object U
+library(distributions3)
+set.seed(13112019)
+U <- Uniform(0, 1)
+u2 <- random(U, 10)
+u2
+```
+
+## The exponential distribution
+
+The inversion method (see [Stochastic Simulation vignette](stat1004-ch1b-stochastic-simulation.html) for details) means that we can easily transform the simulated values produced by `runif` in a way that produces a (pseudo-)random sample from an exponential distribution.
+
+```{r, fig.align='center', fig.width=7}
+lambda <- 2
+u <- runif(1000)
+e1 <- -log(u) / lambda
+hist(e1, prob = TRUE, main = "")
+```
+
+We produce a histogram of sample waiting times in the Australian birth times data, with a superimposed exponential density.
+
+```{r, fig.align='center', fig.width=7}
+# Calculate the sample waiting times, in minutes
+w <- diff(c(0, aussie_births$time)) 
+# Estimate lambda (rate of births per minute)
+lambdahat <- 1 / mean(w)
+# The estimate of the rate of births per hour
+lambdahat * 60
+# Histogram and superimposed exponential density
+hist(w, prob = TRUE, breaks = 8, axes = FALSE, col = 8, ylim = c(0, 0.03),
+     xlab = "time since last birth (minutes)", main = "")
+axis(1, at = seq(0, 160, 20))
+axis(2, at = seq(0, 0.03, 0.005))
+curve(dexp(x, rate = lambdahat), add = TRUE, lwd = 2)
+```
+
+## The normal distribution
+
+We use the birth weights in the Australian birth times data to illustrate how to perform calculations relating to the normal distribution.  
+
+```{r, fig.align='center', fig.width=7}
+# Convert weights from grams to pounds
+wt <- aussie_births$weight / 453.5
+# Produce a histogram of the birth weights
+hist(wt, prob = TRUE, xlab = "weight (pounds)", col = 8, main = "")
+```
+
+We suppose that the weight $W$ (in pounds) of a randomly chosen baby has a $N(\mu, \sigma^2)$ distribution, even though it seems clear from the histogram that this assumption may be inapropriate.
+
+```{r}
+# Estimate the mean, variance and (standard deviation) of W
+muhat <- mean(wt)
+sigma2hat <- var(wt)
+sigmahat <- sd(wt)
+```
+
+Suppose that $W$ has a normal distribution, with mean equal to `muhat` and standard deviation equal to `sigmahat`.  In an example in the notes we calculated $P(W > 10)$, using a tables of c.d.f. of the standard normal distribution.  To perform this calculation in R we could do either of the following.
+
+```{r}
+pnorm(10, mean = muhat, sd = sigmahat, lower.tail = FALSE)
+W <- Normal(mu = muhat, sigma = sigmahat)
+1 - cdf(W, 10)
+```
+
+The answer that we get is slightly different from the one in the lecture slides, because we rounded a number (to 2.38) before we looked up the value that we needed in the table.  Below we confirm that R gives the same answer as the table (to 5 decimal places).
+
+```{r}
+pnorm(2.38)
+1 - pnorm(2.38)
+```
+
+In the coffee example in the lecture slides we needed to calculate the 95\% quantile of a standard N(0, 1) normal random variable.  We could do this in one of the followin ways.
+
+```{r}
+qnorm(0.95)
+Z <- Normal(0, 1)
+quantile(Z, 0.95)
+```
+
+## References
+
+<script type="text/x-mathjax-config">
+   MathJax.Hub.Config({  "HTML-CSS": { minScaleAdjust: 125, availableFonts: [] }  });
+</script>

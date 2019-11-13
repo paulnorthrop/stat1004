@@ -23,7 +23,7 @@ This vignette contains ideas and techniques that are not covered until later in 
 
 For information about R see [STAT0004 Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=8581) (if you are taking STAT1006) or [Introduction to R Moodle page](https://moodle.ucl.ac.uk/course/view.php?id=10773) (if you are not taking STAT1006, e.g. Natural Sciences students).
 
-The R code used in this vignette are available [here](stat1004-ch1a-shuttle-vignette.R).  The functions `shuttle_sim` and `shuttle_sim_plot` can be viewed either by typing the name of the function at R command prompt `>` or at  [GitHub](https://github.com/paulnorthrop/stat1004/tree/master/R/shuttle_sim.R)
+The R code used in this vignette are available: [shuttle-vignette.R](stat1004-ch1a-shuttle-vignette.R).  The functions `shuttle_sim` and `shuttle_sim_plot` can be viewed either by typing the name of the function at R command prompt `>` or at  [GitHub](https://github.com/paulnorthrop/stat1004/tree/master/R/shuttle_sim.R)
 
 If you have any questions please ask them using the [STAT0002 discussion forum](https://moodle.ucl.ac.uk/mod/hsuforum/view.php?id=755813).
 

@@ -103,7 +103,7 @@
       <h1>Chapter 5: uniform, exponential and normal distributions</h1>
                         <h4 class="author">Paul Northrop</h4>
             
-            <h4 class="date">2019-11-12</h4>
+            <h4 class="date">2019-11-13</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/paulnorthrop/stat1004/blob/master/vignettes/stat1004-ch5b-continous-random-variables-vignette.Rmd"><code>vignettes/stat1004-ch5b-continous-random-variables-vignette.Rmd</code></a></small>
       <div class="hidden name"><code>stat1004-ch5b-continous-random-variables-vignette.Rmd</code></div>
@@ -112,7 +112,7 @@
 
     
     
-<p>The purposes of this vignette are to direct you to R functions relating to the <strong>continuous</strong> probability distributions condsidered in Chapter 5 of the STAT0002 notes and to provide code to do some of the things that appear in the lecture slides. First, we do this using the standard R functions (in the <strong>stats</strong> package). Then we repeat some of the calculations using the <strong>distributions3</strong> package, which provides a neat way to work with random variables in R.</p>
+<p>The purposes of this vignette are to direct you to R functions relating to the <strong>continuous</strong> probability distributions condsidered in Chapter 5 of the STAT0002 notes and to provide code to do some of the things that appear in the lecture slides. We do this using the standard R functions (in the <strong>stats</strong> package) and using the <strong>distributions3</strong> package, which provides a neat way to work with random variables in R. Please see the <a href="stat1004-ch5a-discrete-random-variables-vignette.html">Discrete Random Variables vignette</a> for a brief introduction to these functions.</p>
 <p>We illustrate these functions using the Australian birth times data, which are available in the data frame <code>aussie_births</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(stat1004)
 <span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(aussie_births)
@@ -123,52 +123,20 @@
 <span class="dv">4</span>  <span class="dv">115</span>  boy   <span class="dv">3838</span>
 <span class="dv">5</span>  <span class="dv">177</span>  boy   <span class="dv">3625</span>
 <span class="dv">6</span>  <span class="dv">245</span> girl   <span class="dv">2208</span></code></pre></div>
-<p>The <strong>stats</strong> package contains functions to evaluate the probability mass function (p.m.f.), cumulative distribution function (c.d.f.) and quantile function (which could also be called the inverse c.d.f.) of many discrete probability distributions, including the binomial, geometric and Poisson. It also contains functions to simulate random variates from these distributions. For a general description of these functions use <code><a href="https://rdrr.io/r/stats/Distributions.html">?Distributions</a></code>. These functions are named in the following way, where <code>xxx</code> is the name (perhaps abbreviated) of the distribution in question: <code>dxxx</code> (p.m.f), <code>pxxx</code> (c.d.f), <code>qxxx</code> (quantile function) and <code>rxxx</code> (random variate generation).</p>
-<div id="the-binomial-distribution" class="section level2">
+<div id="the-uniform-distribution" class="section level2">
 <h2 class="hasAnchor">
-<a href="#the-binomial-distribution" class="anchor"></a>The binomial distribution</h2>
-<p>Following the STAT0002 notes, let us suppose that (before we observe the data) the number <span class="math inline">\(Y\)</span> of boy babies is a random variable with a binomial(44, <span class="math inline">\(p\)</span>) distribution, where <span class="math inline">\(p\)</span> is the probability that a randomly chosen birth produces a boy. We use the data to estimate <span class="math inline">\(p\)</span>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>nboys &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(aussie_births[, <span class="st">"sex"</span>] <span class="op">==</span><span class="st"> "boy"</span>)
-<span class="op">&gt;</span><span class="st"> </span>ngirls &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(aussie_births[, <span class="st">"sex"</span>] <span class="op">==</span><span class="st"> "girl"</span>)
-<span class="op">&gt;</span><span class="st"> </span>phat &lt;-<span class="st"> </span>nboys <span class="op">/</span><span class="st"> </span>(nboys <span class="op">+</span><span class="st"> </span>ngirls)
-<span class="op">&gt;</span><span class="st"> </span>phat
-[<span class="dv">1</span>] <span class="fl">0.5909091</span></code></pre></div>
-<p>The function <code>dbinom</code> evaluates the p.m.f. of a binomial distribution. See <code><a href="https://rdrr.io/r/stats/Binomial.html">?Binomial</a></code> for information about this function and <code>pbinom</code>, <code>qbinom</code> and <code>rbinom</code>. The following code produces a plot that is similar to the ones we looked at in a lecture. You could vary <code>p</code>, perhaps setting it to be equal to <code>phat</code>, and see the effect on the p.m.f. of the binomial distribution.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="co"># Plot the binomial(44, 1/2) p.m.f. </span>
-<span class="er">&gt;</span><span class="st"> </span>n &lt;-<span class="st"> </span>nboys <span class="op">+</span><span class="st"> </span>ngirls
-<span class="op">&gt;</span><span class="st"> </span>p &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span>
-<span class="op">&gt;</span><span class="st"> </span>y &lt;-<span class="st"> </span><span class="dv">0</span><span class="op">:</span>n
-<span class="op">&gt;</span><span class="st"> </span><span class="co"># Note that dbinom calculates the probabilities all values in the vector y</span>
-<span class="er">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(y, <span class="kw"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span>(y, n, p), <span class="dt">type =</span> <span class="st">"h"</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">ylab =</span> <span class="st">"P(Y = y)"</span>, <span class="dt">xlab =</span> <span class="st">"y"</span>)</code></pre></div>
-<p><img src="stat1004-ch5b-continous-random-variables-vignette_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;"></p>
-<p>For the purposes of illustrating how the functions <code>pbinom</code>, <code>qbinom</code> and <code>rbinom</code> work, let us suppose that <span class="math inline">\(p = 1/2\)</span>. We used the values of the following probabilities during a lecture, when we considered how surprised we might to observe a number of boys 4 or more from the expected value of 22 under the hypothesis that <span class="math inline">\(p = 1/2\)</span>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="co"># Calculate P(Y &gt;= 26) = P(Y &gt; 25) and P(Y &lt;= 18)</span>
-<span class="er">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span>(<span class="dv">25</span>, <span class="dt">size =</span> n, <span class="dt">prob =</span> <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>)
-[<span class="dv">1</span>] <span class="fl">0.1456076</span>
-<span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span>(<span class="dv">18</span>, n, <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span>)
-[<span class="dv">1</span>] <span class="fl">0.1456076</span></code></pre></div>
-<p>Suppose that we want to find the median of <span class="math inline">\(Y\)</span>. We can use <code>qbinom</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Binomial.html">qbinom</a></span>(<span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, n, <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span>)
-[<span class="dv">1</span>] <span class="dv">22</span>
-<span class="op">&gt;</span><span class="st"> </span><span class="co"># A check (look at the definition of the median in the notes)</span>
-<span class="er">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span>(<span class="dv">21</span><span class="op">:</span><span class="dv">23</span>, n, <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span>)
-[<span class="dv">1</span>] <span class="fl">0.4401979</span> <span class="fl">0.5598021</span> <span class="fl">0.6742061</span></code></pre></div>
-<p>The following code simulates 100 values from a Binomial(44, 1/2) distribution.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>ysim &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span>(<span class="dv">100</span>, <span class="dv">44</span>, <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span>)
-<span class="op">&gt;</span><span class="st"> </span>ysim
-  [<span class="dv">1</span>] <span class="dv">22</span> <span class="dv">26</span> <span class="dv">22</span> <span class="dv">18</span> <span class="dv">22</span> <span class="dv">30</span> <span class="dv">24</span> <span class="dv">24</span> <span class="dv">20</span> <span class="dv">21</span> <span class="dv">18</span> <span class="dv">21</span> <span class="dv">22</span> <span class="dv">24</span> <span class="dv">19</span> <span class="dv">20</span> <span class="dv">26</span> <span class="dv">22</span> <span class="dv">24</span> <span class="dv">17</span> <span class="dv">23</span> <span class="dv">20</span> <span class="dv">16</span>
- [<span class="dv">24</span>] <span class="dv">24</span> <span class="dv">26</span> <span class="dv">24</span> <span class="dv">17</span> <span class="dv">24</span> <span class="dv">25</span> <span class="dv">18</span> <span class="dv">20</span> <span class="dv">18</span> <span class="dv">24</span> <span class="dv">24</span> <span class="dv">24</span> <span class="dv">27</span> <span class="dv">19</span> <span class="dv">22</span> <span class="dv">18</span> <span class="dv">21</span> <span class="dv">20</span> <span class="dv">25</span> <span class="dv">26</span> <span class="dv">22</span> <span class="dv">21</span> <span class="dv">25</span>
- [<span class="dv">47</span>] <span class="dv">22</span> <span class="dv">25</span> <span class="dv">23</span> <span class="dv">22</span> <span class="dv">21</span> <span class="dv">22</span> <span class="dv">26</span> <span class="dv">23</span> <span class="dv">21</span> <span class="dv">28</span> <span class="dv">20</span> <span class="dv">23</span> <span class="dv">22</span> <span class="dv">23</span> <span class="dv">26</span> <span class="dv">23</span> <span class="dv">22</span> <span class="dv">22</span> <span class="dv">19</span> <span class="dv">23</span> <span class="dv">23</span> <span class="dv">19</span> <span class="dv">27</span>
- [<span class="dv">70</span>] <span class="dv">23</span> <span class="dv">27</span> <span class="dv">21</span> <span class="dv">24</span> <span class="dv">21</span> <span class="dv">22</span> <span class="dv">25</span> <span class="dv">18</span> <span class="dv">22</span> <span class="dv">23</span> <span class="dv">23</span> <span class="dv">20</span> <span class="dv">24</span> <span class="dv">24</span> <span class="dv">28</span> <span class="dv">21</span> <span class="dv">21</span> <span class="dv">21</span> <span class="dv">25</span> <span class="dv">25</span> <span class="dv">23</span> <span class="dv">21</span> <span class="dv">24</span>
- [<span class="dv">93</span>] <span class="dv">23</span> <span class="dv">30</span> <span class="dv">28</span> <span class="dv">19</span> <span class="dv">26</span> <span class="dv">28</span> <span class="dv">20</span> <span class="dv">21</span>
-<span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(ysim)
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  <span class="fl">16.00</span>   <span class="fl">21.00</span>   <span class="fl">22.50</span>   <span class="fl">22.61</span>   <span class="fl">24.00</span>   <span class="fl">30.00</span> </code></pre></div>
-<div id="the-distributions3-package" class="section level3">
-<h3 class="hasAnchor">
-<a href="#the-distributions3-package" class="anchor"></a>The distributions3 package</h3>
-<p>In September 2019 the <strong>distributions3</strong> package <span class="citation">(Hayes and Moller-Trane 2019)</span> was released. A neat feature of this package is that it enables us to create an R object that corresponds to a particular random variable. Then we are able easily to use some simple R functions to perform calculations with this random variable. The way that this works is perhaps more intuitive than the way in which we use functions like <code><a href="https://rdrr.io/r/stats/Binomial.html">dbinom()</a></code> above.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(distributions3)
+<a href="#the-uniform-distribution" class="anchor"></a>The uniform distribution</h2>
+<p>We will not say much about the uniform distribution here. However, it is a very important distribution because the standard uniform distribution, U(0, 1), is use widely to simulate values from probability distributions. See the <a href="stat1004-ch1b-stochastic-simulation.html">Stochastic Simulation vignette</a> for details.</p>
+<p>First, we show two ways to produce a (pseudo-)random sample from a U(0, 1) distribution. We use the same seed (use <code><a href="https://rdrr.io/r/base/Random.html">?set.seed</a></code> to find out more) to show that these approaches are equivalent. This is because the <code>distributions3</code> package actually uses the function <code>runif</code> in the background.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="co"># Using the runif() function in the stats package</span>
+<span class="er">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">13112019</span>)
+<span class="op">&gt;</span><span class="st"> </span>n &lt;-<span class="st"> </span><span class="dv">10</span>
+<span class="op">&gt;</span><span class="st"> </span>u1 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(n)
+<span class="op">&gt;</span><span class="st"> </span>u1
+ [<span class="dv">1</span>] <span class="fl">0.6499195</span> <span class="fl">0.1472341</span> <span class="fl">0.5326011</span> <span class="fl">0.5731850</span> <span class="fl">0.1622124</span> <span class="fl">0.4371483</span> <span class="fl">0.5716510</span>
+ [<span class="dv">8</span>] <span class="fl">0.3743011</span> <span class="fl">0.2070426</span> <span class="fl">0.9377372</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="co"># Using the distributions3 package to define a U(0, 1) object U</span>
+<span class="er">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(distributions3)
 
 Attaching package<span class="op">:</span><span class="st"> 'distributions3'</span>
 The following objects are masked from <span class="st">'package:stats'</span><span class="op">:</span>
@@ -177,65 +145,76 @@ The following objects are masked from <span class="st">'package:stats'</span><sp
 The following object is masked from <span class="st">'package:grDevices'</span><span class="op">:</span>
 
 <span class="st">    </span>pdf
-<span class="op">&gt;</span><span class="st"> </span><span class="co"># (The warnings tell us that the distributions3 package has functions with the</span>
-<span class="er">&gt;</span><span class="st"> </span><span class="co"># same names as functions from other packages and has `masked' them, that is,</span>
-<span class="er">&gt;</span><span class="st"> </span><span class="co"># R will use these functions from distributions3, not the other functions.)</span>
-<span class="er">&gt;</span><span class="st"> </span><span class="co">#</span>
-<span class="er">&gt;</span><span class="st"> </span><span class="co"># Create an R object that is, effectively, a binomial(n, 1/2) random variable</span>
-<span class="er">&gt;</span><span class="st"> </span>Y &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Binomial.html">Binomial</a></span>(n, <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span>)
-<span class="op">&gt;</span><span class="st"> </span>Y
-Binomial <span class="kw"><a href="https://rdrr.io/r/stats/Distributions.html">distribution</a></span> (<span class="dt">size =</span> <span class="dv">44</span>, <span class="dt">p =</span> <span class="fl">0.5</span>)</code></pre></div>
-<p>We reproduce the plot and repeat the calculation of the probabilities.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="co"># Reproduce the plot.  </span>
-<span class="er">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="dv">0</span><span class="op">:</span>n, <span class="kw">pmf</span>(Y, <span class="dv">0</span><span class="op">:</span>n), <span class="dt">type =</span> <span class="st">"h"</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">ylab =</span> <span class="st">"P(X = x)"</span>, <span class="dt">xlab =</span> <span class="st">"x"</span>)</code></pre></div>
-<p><img src="stat1004-ch5b-continous-random-variables-vignette_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">cdf</span>(Y, <span class="dv">25</span>)
-[<span class="dv">1</span>] <span class="fl">0.1456076</span>
-<span class="op">&gt;</span><span class="st"> </span><span class="kw">cdf</span>(Y, <span class="dv">18</span>)
-[<span class="dv">1</span>] <span class="fl">0.1456076</span></code></pre></div>
-<p>Now we use the <strong>distributions</strong> package to performs some of the calculations that were involved in producing the lecture slides associated with the geometric and Poisson distributions.</p>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">13112019</span>)
+<span class="op">&gt;</span><span class="st"> </span>U &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">Uniform</a></span>(<span class="dv">0</span>, <span class="dv">1</span>)
+<span class="op">&gt;</span><span class="st"> </span>u2 &lt;-<span class="st"> </span><span class="kw">random</span>(U, <span class="dv">10</span>)
+<span class="op">&gt;</span><span class="st"> </span>u2
+ [<span class="dv">1</span>] <span class="fl">0.6499195</span> <span class="fl">0.1472341</span> <span class="fl">0.5326011</span> <span class="fl">0.5731850</span> <span class="fl">0.1622124</span> <span class="fl">0.4371483</span> <span class="fl">0.5716510</span>
+ [<span class="dv">8</span>] <span class="fl">0.3743011</span> <span class="fl">0.2070426</span> <span class="fl">0.9377372</span></code></pre></div>
 </div>
-</div>
-<div id="the-geometric-distribution" class="section level2">
+<div id="the-exponential-distribution" class="section level2">
 <h2 class="hasAnchor">
-<a href="#the-geometric-distribution" class="anchor"></a>The geometric distribution</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>phat &lt;-<span class="st"> </span><span class="dv">26</span> <span class="op">/</span><span class="st"> </span><span class="dv">44</span>
-<span class="op">&gt;</span><span class="st"> </span>W &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Geometric.html">Geometric</a></span>(phat)
-<span class="op">&gt;</span><span class="st"> </span>W
-Geometric <span class="kw"><a href="https://rdrr.io/r/stats/Distributions.html">distribution</a></span> (<span class="dt">p =</span> <span class="fl">0.590909090909091</span>)
-<span class="op">&gt;</span><span class="st"> </span><span class="co"># P(W = w), for w = 1, ..., 5 (note the -1)</span>
-<span class="er">&gt;</span><span class="st"> </span><span class="kw">pmf</span>(W, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span> <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)
-[<span class="dv">1</span>] <span class="fl">0.59090909</span> <span class="fl">0.24173554</span> <span class="fl">0.09889181</span> <span class="fl">0.04045574</span> <span class="fl">0.01655008</span>
-<span class="op">&gt;</span><span class="st"> </span><span class="co"># P(W &gt;= 6) = 1 - P(W &lt; 6) = 1 - P(W &lt;= 5)</span>
-<span class="er">&gt;</span><span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">cdf</span>(W, <span class="dv">5</span> <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)
-[<span class="dv">1</span>] <span class="fl">0.01145774</span></code></pre></div>
+<a href="#the-exponential-distribution" class="anchor"></a>The exponential distribution</h2>
+<p>The inversion method (see <a href="stat1004-ch1b-stochastic-simulation.html">Stochastic Simulation vignette</a> for details) means that we can easily transform the simulated values produced by <code>runif</code> in a way that produces a (pseudo-)random sample from an exponential distribution.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>lambda &lt;-<span class="st"> </span><span class="dv">2</span>
+<span class="op">&gt;</span><span class="st"> </span>u &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dv">1000</span>)
+<span class="op">&gt;</span><span class="st"> </span>e1 &lt;-<span class="st"> </span><span class="op">-</span><span class="kw"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(u) <span class="op">/</span><span class="st"> </span>lambda
+<span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(e1, <span class="dt">prob =</span> <span class="ot">TRUE</span>, <span class="dt">main =</span> <span class="st">""</span>)</code></pre></div>
+<p><img src="stat1004-ch5b-continous-random-variables-vignette_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;"></p>
+<p>We produce a histogram of sample waiting times in the Australian birth times data, with a superimposed exponential density.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="co"># Calculate the sample waiting times, in minutes</span>
+<span class="er">&gt;</span><span class="st"> </span>w &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/diff.html">diff</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">0</span>, aussie_births<span class="op">$</span>time)) 
+<span class="op">&gt;</span><span class="st"> </span><span class="co"># Estimate lambda (rate of births per minute)</span>
+<span class="er">&gt;</span><span class="st"> </span>lambdahat &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(w)
+<span class="op">&gt;</span><span class="st"> </span><span class="co"># The estimate of the rate of births per hour</span>
+<span class="er">&gt;</span><span class="st"> </span>lambdahat <span class="op">*</span><span class="st"> </span><span class="dv">60</span>
+[<span class="dv">1</span>] <span class="fl">1.839721</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="co"># Histogram and superimposed exponential density</span>
+<span class="er">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(w, <span class="dt">prob =</span> <span class="ot">TRUE</span>, <span class="dt">breaks =</span> <span class="dv">8</span>, <span class="dt">axes =</span> <span class="ot">FALSE</span>, <span class="dt">col =</span> <span class="dv">8</span>, <span class="dt">ylim =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">0</span>, <span class="fl">0.03</span>),
+<span class="op">+</span><span class="st">      </span><span class="dt">xlab =</span> <span class="st">"time since last birth (minutes)"</span>, <span class="dt">main =</span> <span class="st">""</span>)
+<span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span>(<span class="dv">1</span>, <span class="dt">at =</span> <span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="dv">0</span>, <span class="dv">160</span>, <span class="dv">20</span>))
+<span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span>(<span class="dv">2</span>, <span class="dt">at =</span> <span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="dv">0</span>, <span class="fl">0.03</span>, <span class="fl">0.005</span>))
+<span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/curve.html">curve</a></span>(<span class="kw"><a href="https://rdrr.io/r/stats/Exponential.html">dexp</a></span>(x, <span class="dt">rate =</span> lambdahat), <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</code></pre></div>
+<p><img src="stat1004-ch5b-continous-random-variables-vignette_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;"></p>
 </div>
-<div id="the-poisson-distribution" class="section level2">
+<div id="the-normal-distribution" class="section level2">
 <h2 class="hasAnchor">
-<a href="#the-poisson-distribution" class="anchor"></a>The Poisson distribution</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>lambdahat &lt;-<span class="st"> </span><span class="dv">44</span> <span class="op">/</span><span class="st"> </span><span class="dv">24</span>
-<span class="op">&gt;</span><span class="st"> </span>N &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Poisson.html">Poisson</a></span>(lambdahat)
-<span class="op">&gt;</span><span class="st"> </span>N
-Poisson <span class="kw"><a href="https://rdrr.io/r/stats/Distributions.html">distribution</a></span> (<span class="dt">lambda =</span> <span class="fl">1.83333333333333</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="dv">0</span><span class="op">:</span><span class="dv">10</span>, <span class="kw">pmf</span>(N, <span class="dv">0</span><span class="op">:</span><span class="dv">10</span>), <span class="dt">type =</span> <span class="st">"h"</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">ylab =</span> <span class="st">"P(N = n)"</span>, <span class="dt">xlab =</span> <span class="st">"n"</span>)</code></pre></div>
-<p><img src="stat1004-ch5b-continous-random-variables-vignette_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>
-<span class="er">&gt;</span><span class="st"> </span><span class="kw">pmf</span>(N, <span class="dv">0</span><span class="op">:</span><span class="dv">4</span>)
-[<span class="dv">1</span>] <span class="fl">0.15987975</span> <span class="fl">0.29311287</span> <span class="fl">0.26868680</span> <span class="fl">0.16419749</span> <span class="fl">0.07525718</span>
-<span class="op">&gt;</span><span class="st"> </span><span class="co"># P(N &gt;= 5)</span>
-<span class="er">&gt;</span><span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">cdf</span>(N, <span class="dv">4</span>)
-[<span class="dv">1</span>] <span class="fl">0.03886592</span></code></pre></div>
+<a href="#the-normal-distribution" class="anchor"></a>The normal distribution</h2>
+<p>We use the birth weights in the Australian birth times data to illustrate how to perform calculations relating to the normal distribution.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="co"># Convert weights from grams to pounds</span>
+<span class="er">&gt;</span><span class="st"> </span>wt &lt;-<span class="st"> </span>aussie_births<span class="op">$</span>weight <span class="op">/</span><span class="st"> </span><span class="fl">453.5</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="co"># Produce a histogram of the birth weights</span>
+<span class="er">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(wt, <span class="dt">prob =</span> <span class="ot">TRUE</span>, <span class="dt">xlab =</span> <span class="st">"weight (pounds)"</span>, <span class="dt">col =</span> <span class="dv">8</span>, <span class="dt">main =</span> <span class="st">""</span>)</code></pre></div>
+<p><img src="stat1004-ch5b-continous-random-variables-vignette_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;"></p>
+<p>We suppose that the weight <span class="math inline">\(W\)</span> (in pounds) of a randomly chosen baby has a <span class="math inline">\(N(\mu, \sigma^2)\)</span> distribution, even though it seems clear from the histogram that this assumption may be inapropriate.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="co"># Estimate the mean, variance and (standard deviation) of W</span>
+<span class="er">&gt;</span><span class="st"> </span>muhat &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(wt)
+<span class="op">&gt;</span><span class="st"> </span>sigma2hat &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/cor.html">var</a></span>(wt)
+<span class="op">&gt;</span><span class="st"> </span>sigmahat &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span>(wt)</code></pre></div>
+<p>Suppose that <span class="math inline">\(W\)</span> has a normal distribution, with mean equal to <code>muhat</code> and standard deviation equal to <code>sigmahat</code>. In an example in the notes we calculated <span class="math inline">\(P(W &gt; 10)\)</span>, using a tables of c.d.f. of the standard normal distribution. To perform this calculation in R we could do either of the following.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span>(<span class="dv">10</span>, <span class="dt">mean =</span> muhat, <span class="dt">sd =</span> sigmahat, <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>)
+[<span class="dv">1</span>] <span class="fl">0.008553284</span>
+<span class="op">&gt;</span><span class="st"> </span>W &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">Normal</a></span>(<span class="dt">mu =</span> muhat, <span class="dt">sigma =</span> sigmahat)
+<span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">cdf</span>(W, <span class="dv">10</span>)
+[<span class="dv">1</span>] <span class="fl">0.008553284</span></code></pre></div>
+<p>The answer that we get is slightly different from the one in the lecture slides, because we rounded a number (to 2.38) before we looked up the value that we needed in the table. Below we confirm that R gives the same answer as the table (to 5 decimal places).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span>(<span class="fl">2.38</span>)
+[<span class="dv">1</span>] <span class="fl">0.9913437</span>
+<span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span>(<span class="fl">2.38</span>)
+[<span class="dv">1</span>] <span class="fl">0.008656319</span></code></pre></div>
+<p>In the coffee example in the lecture slides we needed to calculate the 95% quantile of a standard N(0, 1) normal random variable. We could do this in one of the followin ways.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span>(<span class="fl">0.95</span>)
+[<span class="dv">1</span>] <span class="fl">1.644854</span>
+<span class="op">&gt;</span><span class="st"> </span>Z &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">Normal</a></span>(<span class="dv">0</span>, <span class="dv">1</span>)
+<span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span>(Z, <span class="fl">0.95</span>)
+[<span class="dv">1</span>] <span class="fl">1.644854</span></code></pre></div>
 </div>
 <div id="references" class="section level2">
 <h2 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h2>
 <script type="text/x-mathjax-config">
    MathJax.Hub.Config({  "HTML-CSS": { minScaleAdjust: 125, availableFonts: [] }  });
-</script><div id="refs" class="references">
-<div id="ref-distributions3">
-<p>Hayes, A., and R. Moller-Trane. 2019. <em>distributions3: Probability Distributions as S3 Objects</em>. <a href="https://github.com/alexpghayes/distributions3" class="uri">https://github.com/alexpghayes/distributions3</a>.</p>
-</div>
-</div>
+</script>
 </div>
   </div>
 
@@ -244,9 +223,9 @@ Poisson <span class="kw"><a href="https://rdrr.io/r/stats/Distributions.html">di
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#the-binomial-distribution">The binomial distribution</a></li>
-      <li><a href="#the-geometric-distribution">The geometric distribution</a></li>
-      <li><a href="#the-poisson-distribution">The Poisson distribution</a></li>
+<li><a href="#the-uniform-distribution">The uniform distribution</a></li>
+      <li><a href="#the-exponential-distribution">The exponential distribution</a></li>
+      <li><a href="#the-normal-distribution">The normal distribution</a></li>
       <li><a href="#references">References</a></li>
       </ul>
 </div>

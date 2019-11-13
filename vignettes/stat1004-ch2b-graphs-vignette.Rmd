@@ -20,7 +20,7 @@ knitr::opts_chunk$set(comment = "", prompt = TRUE, collapse = TRUE)
 The main purpose of this vignette is to provide R code to produce graphs that feature in Sections 2.4 and 2.5 of the [STAT0002 notes](https://moodle.ucl.ac.uk/course/view.php?id=8579&section=3).  All these graphs involve one variable only.
 See also the [Chapter 2: Graphs (more than one variable)](stat1004-ch2b-graphs-2-vignette.html).
 
-The R code used in this vignette are available [here](stat1004-ch2b-graphs-vignette.R).
+The R code used in this vignette are available: [graphs-vignette.R](stat1004-ch2b-graphs-vignette.R).
 
 ## The Oxford Birth Times data 
 

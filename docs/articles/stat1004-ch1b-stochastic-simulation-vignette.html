@@ -74,6 +74,9 @@
     <li>
       <a href="../articles/stat1004-ch5a-discrete-random-variables-vignette.html">Chapter 5: binomial, geometric and Poisson distributions</a>
     </li>
+    <li>
+      <a href="../articles/stat1004-ch5b-continous-random-variables-vignette.html">Chapter 5: uniform, exponential and normal distributions</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -100,7 +103,7 @@
       <h1>Chapter 1: Stochastic Simulation</h1>
                         <h4 class="author">Paul Northrop</h4>
             
-            <h4 class="date">2019-11-12</h4>
+            <h4 class="date">2019-11-13</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/paulnorthrop/stat1004/blob/master/vignettes/stat1004-ch1b-stochastic-simulation-vignette.Rmd"><code>vignettes/stat1004-ch1b-stochastic-simulation-vignette.Rmd</code></a></small>
       <div class="hidden name"><code>stat1004-ch1b-stochastic-simulation-vignette.Rmd</code></div>
@@ -111,11 +114,11 @@
     
 <p>Stochastic simulation uses computer-generated <em>pseudo-random numbers</em> to mimic a stochastic real event or dataset. Pseudo-random numbers are not random (they are produced by an algorithm) but the algorithm is constructed in order to imitate randomness closely enough. A typical use of stochastic simulation is to generate numbers that behave approximately like a random sample from an particular probability distribution.</p>
 <p>In this vignette we concentrate on using R to perform stochastic simulation. For a more general introduction to stochastic simulation, and a more detailed explanation of the ideas underlying the R code, see the short <a href="https://moodle.ucl.ac.uk/course/view.php?id=8579&amp;section=8">Stochastic simulation video</a>. If you want to know more then good sources of information are <span class="citation">Morgan (1984)</span> and <span class="citation">Jasra (2011)</span>.</p>
-<p>The R code used in this vignette are available <a href="stat1004-ch1b-stochastic-simulation-vignette.R">here</a>. The function <code>rbinomial</code> can be viewed either by typing <code>rbinomial</code> at R command prompt <code><a href="https://rdrr.io/r/base/Comparison.html">&gt;</a></code> or at <a href="https://github.com/paulnorthrop/stat1004/tree/master/R/stochastic_simulation.R">GitHub</a></p>
+<p>The R code used in this vignette are available: <a href="stat1004-ch1b-stochastic-simulation-vignette.R">stochastic-simulation-vignette.R</a>. The function <code>rbinomial</code> can be viewed either by typing <code>rbinomial</code> at R command prompt <code><a href="https://rdrr.io/r/base/Comparison.html">&gt;</a></code> or at <a href="https://github.com/paulnorthrop/stat1004/tree/master/R/stochastic_simulation.R">GitHub</a></p>
 <div id="pseudo-random-numbers-in-01" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pseudo-random-numbers-in-01" class="anchor"></a>Pseudo-random numbers in (0,1)</h2>
-<p>The basic building block of stochastic simulation methods is the ability to simulate numbers (pseudo-) randomly from the interval (0,1). As we will see in Section 5.7 of the <a href="https://moodle.ucl.ac.uk/course/view.php?id=8579&amp;section=3">STAT0003 notes</a> this is equivalent to generating numbers that behave approximately like a random sample from a standard uniform U(0,1) distribution. The function in R that does this is <code>runif</code>.</p>
+<p>The basic building block of stochastic simulation methods is the ability to simulate numbers (pseudo-) randomly from the interval (0,1). As we will see in Section 5.5 of the <a href="https://moodle.ucl.ac.uk/course/view.php?id=8579&amp;section=3">STAT0002 notes</a> this is equivalent to generating numbers that behave approximately like a random sample from a standard uniform U(0,1) distribution. The function in R that does this is <code>runif</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(stat1004)
 <span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dv">10</span>)
  [<span class="dv">1</span>] <span class="fl">0.2716465</span> <span class="fl">0.2459657</span> <span class="fl">0.7786462</span> <span class="fl">0.9790115</span> <span class="fl">0.4347586</span> <span class="fl">0.9141322</span> <span class="fl">0.4885213</span>

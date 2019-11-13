@@ -21,12 +21,12 @@ Stochastic simulation uses computer-generated *pseudo-random numbers* to mimic a
 
 In this vignette we concentrate on using R to perform stochastic simulation.  For a more general introduction to stochastic simulation, and a more detailed explanation of the ideas underlying the R code, see the short [Stochastic simulation video](https://moodle.ucl.ac.uk/course/view.php?id=8579&section=8).  If you want to know more then good sources of information are @Morgan and @Jasra.
 
-The R code used in this vignette are available [here](stat1004-ch1b-stochastic-simulation-vignette.R).
+The R code used in this vignette are available: [stochastic-simulation-vignette.R](stat1004-ch1b-stochastic-simulation-vignette.R).
  The function `rbinomial` can be viewed either by typing `rbinomial` at R command prompt `>` or at  [GitHub](https://github.com/paulnorthrop/stat1004/tree/master/R/stochastic_simulation.R)
 
 ## Pseudo-random numbers in (0,1)
 
-The basic building block of stochastic simulation methods is the ability to simulate numbers (pseudo-) randomly from the interval (0,1).  As we will see in Section 5.7 of the [STAT0003 notes](https://moodle.ucl.ac.uk/course/view.php?id=8579&section=3) this is equivalent to generating numbers that behave approximately like a random sample from a standard uniform U(0,1) distribution.
+The basic building block of stochastic simulation methods is the ability to simulate numbers (pseudo-) randomly from the interval (0,1).  As we will see in Section 5.5 of the [STAT0002 notes](https://moodle.ucl.ac.uk/course/view.php?id=8579&section=3) this is equivalent to generating numbers that behave approximately like a random sample from a standard uniform U(0,1) distribution.
 The function in R that does this is `runif`.
 
 ```{r, include = FALSE}
