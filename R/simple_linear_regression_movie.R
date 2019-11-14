@@ -4,7 +4,7 @@
 #'
 #' A movie to help to visualize the fitting of a regression line using
 #' least squares in the case of a simple linear regression, that is,
-#' a linear regression of one reponse variable on one explanatory variable.
+#' a linear regression of one response variable on one explanatory variable.
 #'
 #' @param data A data frame with two variables or a numeric matrix with
 #'   2 columns.  The first column must contain the response data, the second

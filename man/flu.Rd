@@ -7,7 +7,7 @@
 \format{A data frame with 494 observations on the following 2 variables.
 \itemize{
 \item{\code{date:}}{ the date.}
-\item{\code{visits:}}{ the number of people visitng their doctor with
+\item{\code{visits:}}{ the number of people visiting their doctor with
 symptoms of 'flu.}}}
 \usage{
 flu

@@ -52,7 +52,7 @@ paste("day", 1:7, sep = "")
 paste("day", 1:7, sep = " ")
 ```
 
-We return to this matrix later.  Until then we calculate summary statistics of the dataset containg the birth times from all days of the week.  
+We return to this matrix later.  Until then we calculate summary statistics of the dataset containing the birth times from all days of the week.  
 
 ```{r}
 birth_times <- ox_births[, "time"]

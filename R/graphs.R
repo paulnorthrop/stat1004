@@ -129,7 +129,7 @@ box_plot.formula <- function (formula, data = NULL, ..., subset,
 #' sample quantiles.
 #' @param x a numeric vector for which the boxplot will be constructed
 #'   (\code{\link{NA}}s and \code{\link{NaN}}s are allowed and omitted).
-#' @param coef this determines how far the plot ‘whiskers’ extend out from the
+#' @param coef this determines how far the plot whiskers extend out from the
 #'   box. If coef is positive, the whiskers extend to the most extreme data
 #'   point which is no more than coef times the length of the box away from
 #'   the box. A value of zero causes the whiskers to extend to the data
@@ -177,7 +177,7 @@ boxplot_stats <- function (x, coef = 1.5, do.conf = TRUE, do.out = TRUE,
 #'   a scalar then this value is used for both axes.
 #' @param type Argument \code{type} used in the call to
 #'   \code{\link{five_number}} to estimate the 25\%, 50\% and 75\% quantiles.
-#' @param na.rm A logical scalar.  If true, any \code{\link{NA}} and NaN's
+#' @param na.rm A logical scalar.  If true, any \code{\link{NA}} and NaNs
 #'   are removed before the sample quantiles are computed.
 #' @param ... Further arguments to be passed to \code{plot}.
 #' @return Nothing, just the plot.

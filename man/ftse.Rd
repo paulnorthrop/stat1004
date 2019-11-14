@@ -13,6 +13,6 @@ ftse
 }
 \description{
 Weekly closing prices of the FTSE 100 share index from 2nd April 1984 to
-13th Augugst 2007.
+13th August 2007.
 }
 \keyword{datasets}

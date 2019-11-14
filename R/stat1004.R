@@ -184,7 +184,7 @@ NULL
 #' FTSE 100 Share Index
 #'
 #' Weekly closing prices of the FTSE 100 share index from 2nd April 1984 to
-#' 13th Augugst 2007.
+#' 13th August 2007.
 #'
 #' @format A data frame with 1220 observations on the following 2 variables.
 #' \itemize{
@@ -202,7 +202,7 @@ NULL
 #' @format A data frame with 494 observations on the following 2 variables.
 #' \itemize{
 #' \item{\code{date:}}{ the date.}
-#' \item{\code{visits:}}{ the number of people visitng their doctor with
+#' \item{\code{visits:}}{ the number of people visiting their doctor with
 #' symptoms of 'flu.}}
 #'
 "flu"
@@ -307,7 +307,7 @@ NULL
 #' from Earth and the velocity relative to Earth of 24 nebulae.
 #' @format A data frame with 42 observations on the following 2 variables.
 #' \itemize{
-#' \item{\code{distance:}}{ the distance, in megparsecs, of the nebula
+#' \item{\code{distance:}}{ the distance, in megaparsecs, of the nebula
 #'   from Earth.}
 #' \item{\code{velocity:}}{ the velocity, in kilometres per second, of the
 #'   nebula relative to Earth.}

@@ -24,7 +24,7 @@ set.seed(2601)
 par(mar = c(4, 4, 1, 1))
 ```
 
-The purposes of this vignette are to direct you to R functions relating to the **discrete** probability distributions condsidered in Chapter 5 of the STAT0002 notes and to provide code to do some of the things that appear in the lecture slides.  First, we do this using the standard R functions (in the **stats** package).  Then we repeat some of the calculations using the **distributions3** package [@distributions3], which provides a neat way to work with random variables in R.
+The purposes of this vignette are to direct you to R functions relating to the **discrete** probability distributions considered in Chapter 5 of the STAT0002 notes and to provide code to do some of the things that appear in the lecture slides.  First, we do this using the standard R functions (in the **stats** package).  Then we repeat some of the calculations using the **distributions3** package [@distributions3], which provides a neat way to work with random variables in R.
 
 We illustrate these functions using the Australian birth times data, which are available in the data frame `aussie_births`.
 
@@ -133,7 +133,7 @@ exp_freq <- nboys * est_prob
 round(cbind(w = 1:(max_w + 1), obs_freq, exp_freq, obs_prop, est_prob), 3)
 ```
 
-Alternatively, We could also use the **distribtions3** package to calculate the probabilities that we require.
+Alternatively, We could also use the **distributions3** package to calculate the probabilities that we require.
 
 ```{r}
 W <- Geometric(phat)

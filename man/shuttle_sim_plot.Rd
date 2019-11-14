@@ -23,7 +23,7 @@ size 230.}
 
 \item{plot}{A logical scalar indicating whether or not to produce the plot.}
 
-\item{...}{Further argments to be passed to the \code{lines} function
+\item{...}{Further arguments to be passed to the \code{lines} function
 used to draw the curves for the simulated datasets.}
 }
 \value{

@@ -37,7 +37,7 @@
 #'   the sampling distributions of the sample mean (thin red line)
 #'   and the sample medians (thick blue line) are superimposed.
 #'
-#'   An extra sample is prodcued by clicking the + button next to
+#'   An extra sample is produced by clicking the + button next to
 #'   "number of samples of size n". [Ignore the - button.]
 #'   The value of the sample size can be changed using the +/-
 #'   buttons in the panel.
@@ -45,7 +45,7 @@
 #' @seealso \code{\link{movies}}: general information about the movies.
 #' @seealso  \code{\link{mean_vs_median_t_movie}}: compares the
 #'   sampling distributions of the sample mean and sample median based
-#'   on a random sample of size \eqn{n} from a Student't t distribution.
+#'   on a random sample of size \eqn{n} from a Student's t distribution.
 #' @examples
 #' # Load package rpanel
 #' # [Use install.packages("rpanel") if necessary]

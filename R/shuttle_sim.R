@@ -143,7 +143,7 @@ shuttle_sim <- function(n_sim = 1, temperature = NULL) {
 #'   For example, \code{n_reps = 10} means that we simulate a dataset of
 #'   size 230.
 #' @param plot A logical scalar indicating whether or not to produce the plot.
-#' @param ... Further argments to be passed to the \code{lines} function
+#' @param ... Further arguments to be passed to the \code{lines} function
 #'   used to draw the curves for the simulated datasets.
 #' @details For details of the linear logistic model see
 #'   \href{../doc/stat1004-shuttle-vignette.html}{Challenger Space Shuttle Disaster}

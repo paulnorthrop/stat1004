@@ -55,7 +55,7 @@
 #'   function (p.m.f.) of a binomial random variable depends on its two
 #'   parameters.
 #' @seealso  \code{\link{poisson_process_movie}}: illustrates the link between
-#'   the Poisson process and the Poisson distrbution for the number of events
+#'   the Poisson process and the Poisson distribution for the number of events
 #'   that occur during a time interval of fixed length.
 #' @seealso  \code{\link{poisson_process_check}}: uses the plots in
 #'   \code{\link{poisson_process_movie}} to perform informal graphical checks
@@ -70,7 +70,7 @@
 #'   constructed, using a small example dataset.
 #' @seealso  \code{\link{normal_sampling_distns_movie}}: shows how the
 #'   sampling distributions of the sample mean and sample variance based
-#'   on a randon sample from a normal distribution depend on the size
+#'   on a random sample from a normal distribution depend on the size
 #'   \eqn{n} of the sample.
 #' @seealso  \code{\link{clt_normal_movie}}: illustrates the ideas of a
 #'   sampling distribution of a random variable and the central limit
@@ -83,7 +83,7 @@
 #'   on a random sample of size \eqn{n} from a standard normal distribution.
 #' @seealso  \code{\link{mean_vs_median_t_movie}}: compares the
 #'   sampling distributions of the sample mean and sample median based
-#'   on a random sample of size \eqn{n} from a Student't t distribution.
+#'   on a random sample of size \eqn{n} from a Student's t distribution.
 #' @seealso  \code{\link{two_by_two_movie}}: studies the distribution
 #'   of the Pearson chi-squared test statistic used to test for lack of
 #'   association in a 2 by 2 contingency table.

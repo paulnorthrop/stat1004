@@ -73,7 +73,7 @@ This movie contains two displays of plots: one plot on the top and
 
   \strong{Note:} During the early stages of the simulations the
     heights of the black bars in the "numbers of events in each hour"
-    plot may be incorrected because they extend beyond the plot region.
+    plot may be incorrect because they extend beyond the plot region.
 }
 \examples{
 # Load package rpanel

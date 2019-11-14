@@ -6,7 +6,7 @@
 \title{Nebulae data from Hubble (1929)}
 \format{A data frame with 42 observations on the following 2 variables.
 \itemize{
-\item{\code{distance:}}{ the distance, in megparsecs, of the nebula
+\item{\code{distance:}}{ the distance, in megaparsecs, of the nebula
   from Earth.}
 \item{\code{velocity:}}{ the velocity, in kilometres per second, of the
   nebula relative to Earth.}

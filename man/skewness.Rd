@@ -16,7 +16,7 @@ skew(x, na.rm = FALSE)
 \item{type}{Relevant to \code{q_skew} only.  Argument \code{type} used in
 the call to \code{quantile} to estimate the 25\%, 50\% and 75\% quantiles.}
 
-\item{na.rm}{A logical scalar.  If true, any \code{\link{NA}} and NaN's
+\item{na.rm}{A logical scalar.  If true, any \code{\link{NA}} and NaNs
 are removed from \code{x} before the constituent parts of the sample
 skewness are computed.}
 }

@@ -9,7 +9,7 @@ two_by_two_movie(data, bin_width = 0.25, pos = 1,
 }
 \arguments{
 \item{data}{A numeric 2 by 2 matrix, giving the observed frequencies of
-a 2 by 2 contigency table.}
+a 2 by 2 contingency table.}
 
 \item{bin_width}{A numeric scalar.  The width of the bins in the histogram
 of the test statistics plotted on the bottom on the movie.}
@@ -38,7 +38,7 @@ The movie is split into three sections.
   simulated data.  The simulated data has the same grand total as
   \code{data}.  The data are simulated under the assumption that the
   value of the variable in the row of the table is not associated with
-  the value of the variable in the colum of the table.
+  the value of the variable in the column of the table.
   See Section 7.1.2 of the STAT0002 notes for details.
 
   Under each of these tables the calculation of the Pearson

@@ -11,7 +11,7 @@ boxplot_stats(x, coef = 1.5, do.conf = TRUE, do.out = TRUE,
 \item{x}{a numeric vector for which the boxplot will be constructed
 (\code{\link{NA}}s and \code{\link{NaN}}s are allowed and omitted).}
 
-\item{coef}{this determines how far the plot ‘whiskers’ extend out from the
+\item{coef}{this determines how far the plot whiskers extend out from the
 box. If coef is positive, the whiskers extend to the most extreme data
 point which is no more than coef times the length of the box away from
 the box. A value of zero causes the whiskers to extend to the data

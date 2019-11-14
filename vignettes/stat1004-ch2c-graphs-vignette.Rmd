@@ -17,7 +17,7 @@ knitr::opts_chunk$set(comment = "", prompt = TRUE, collapse = TRUE)
 #devtools::load_all()
 ```
 
-The main purpose of this vignette is to provide R code to produce graphs that involve more than one variable.  We consider two general situations: (i) plotting the values of a continuous variable for different values of a categorical variable (see [The Oxford Birth Times data](#the-oxford-birth-times-data)) and (ii) scatter plots of oner variable against another (see [The 2000 US Presidential Election data](#the-2000-us-presidential-election-data)).  The latter feature in Section 2.6 of the [STAT0002 notes](https://moodle.ucl.ac.uk/course/view.php?id=8579&section=3).  See also the [Chapter 2: Graphs (one variable)](stat1004-ch2b-graphs-vignette.html).
+The main purpose of this vignette is to provide R code to produce graphs that involve more than one variable.  We consider two general situations: (i) plotting the values of a continuous variable for different values of a categorical variable (see [The Oxford Birth Times data](#the-oxford-birth-times-data)) and (ii) scatter plots of one variable against another (see [The 2000 US Presidential Election data](#the-2000-us-presidential-election-data)).  The latter feature in Section 2.6 of the [STAT0002 notes](https://moodle.ucl.ac.uk/course/view.php?id=8579&section=3).  See also the [Chapter 2: Graphs (one variable)](stat1004-ch2b-graphs-vignette.html).
 
 The R code used in this vignette are available: [graphs-2-vignette.R](stat1004-ch2b-graphs-2-vignette.R).  
 

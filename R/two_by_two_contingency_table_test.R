@@ -6,7 +6,7 @@
 #' used to test for lack of association in a 2 by 2 contingency table.
 #'
 #' @param data A numeric 2 by 2 matrix, giving the observed frequencies of
-#'   a 2 by 2 contigency table.
+#'   a 2 by 2 contingency table.
 #' @param bin_width A numeric scalar.  The width of the bins in the histogram
 #'   of the test statistics plotted on the bottom on the movie.
 #' @param pos A numeric integer.  Used in calls to \code{\link{assign}}
@@ -23,7 +23,7 @@
 #'   simulated data.  The simulated data has the same grand total as
 #'   \code{data}.  The data are simulated under the assumption that the
 #'   value of the variable in the row of the table is not associated with
-#'   the value of the variable in the colum of the table.
+#'   the value of the variable in the column of the table.
 #'   See Section 7.1.2 of the STAT0002 notes for details.
 #'
 #'   Under each of these tables the calculation of the Pearson

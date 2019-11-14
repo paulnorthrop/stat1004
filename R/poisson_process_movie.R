@@ -58,7 +58,7 @@
 #'
 #'   \strong{Note:} During the early stages of the simulations the
 #'     heights of the black bars in the "numbers of events in each hour"
-#'     plot may be incorrected because they extend beyond the plot region.
+#'     plot may be incorrect because they extend beyond the plot region.
 #' @return Nothing is returned, only the animation is produced.
 #' @seealso \code{\link{movies}}: general information about the movies.
 #' @seealso \code{\link{poisson_process_check}}: for similar plots based on

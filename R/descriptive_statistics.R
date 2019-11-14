@@ -9,7 +9,7 @@
 #' @param x A numeric vector or matrix.
 #' @param type Argument \code{type} used in the call to
 #'   \code{\link{quantile}} to estimate the 25\%, 50\% and 75\% quantiles.
-#' @param na.rm A logical scalar.  If true, any \code{\link{NA}} and NaN's
+#' @param na.rm A logical scalar.  If true, any \code{\link{NA}} and NaNs
 #'   are removed from \code{x} before the sample quantiles are computed.
 #' @return A numeric vector (if the input was a vector) or matrix (if the input
 #'   was a matrix).
@@ -59,7 +59,7 @@ five_number <- function(x, type = 6, na.rm = FALSE) {
 #' @param x A numeric vector or matrix.
 #' @param type Relevant to \code{q_skew} only.  Argument \code{type} used in
 #'   the call to \code{quantile} to estimate the 25\%, 50\% and 75\% quantiles.
-#' @param na.rm A logical scalar.  If true, any \code{\link{NA}} and NaN's
+#' @param na.rm A logical scalar.  If true, any \code{\link{NA}} and NaNs
 #'   are removed from \code{x} before the constituent parts of the sample
 #'   skewness are computed.
 #' @details See Section 2.3 of the

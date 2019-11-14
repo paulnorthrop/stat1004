@@ -168,7 +168,7 @@ linear_predictor <- alpha_hat + beta_hat * temp
 fitted_curve <- exp(linear_predictor) / (1 + exp(linear_predictor))
 ```
 
-11. **Can you gues what the function `seq` does?  Use `?seq` to find out.**
+11. **Can you guess what the function `seq` does?  Use `?seq` to find out.**
 
 We plot the *proportions* of distressed O-rings against temperature with the fitted logistic probability curve $p(t)$ superimposed.  The second plot is the same as the plot in the lecture slides.
 

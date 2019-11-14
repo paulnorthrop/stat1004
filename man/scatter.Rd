@@ -18,7 +18,7 @@ a scalar then this value is used for both axes.}
 \item{type}{Argument \code{type} used in the call to
 \code{\link{five_number}} to estimate the 25\%, 50\% and 75\% quantiles.}
 
-\item{na.rm}{A logical scalar.  If true, any \code{\link{NA}} and NaN's
+\item{na.rm}{A logical scalar.  If true, any \code{\link{NA}} and NaNs
 are removed before the sample quantiles are computed.}
 
 \item{...}{Further arguments to be passed to \code{plot}.}

@@ -33,7 +33,7 @@ Nothing is returned, only the animation is produced.
 \description{
 A movie to help to visualize the fitting of a regression line using
 least squares in the case of a simple linear regression, that is,
-a linear regression of one reponse variable on one explanatory variable.
+a linear regression of one response variable on one explanatory variable.
 }
 \details{
 A scatter plot of response data against the explanatory data
