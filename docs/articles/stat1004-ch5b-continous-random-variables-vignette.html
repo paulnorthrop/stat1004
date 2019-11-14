@@ -103,7 +103,7 @@
       <h1>Chapter 5: uniform, exponential and normal distributions</h1>
                         <h4 class="author">Paul Northrop</h4>
             
-            <h4 class="date">2019-11-13</h4>
+            <h4 class="date">2019-11-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/paulnorthrop/stat1004/blob/master/vignettes/stat1004-ch5b-continous-random-variables-vignette.Rmd"><code>vignettes/stat1004-ch5b-continous-random-variables-vignette.Rmd</code></a></small>
       <div class="hidden name"><code>stat1004-ch5b-continous-random-variables-vignette.Rmd</code></div>
@@ -112,7 +112,7 @@
 
     
     
-<p>The purposes of this vignette are to direct you to R functions relating to the <strong>continuous</strong> probability distributions condsidered in Chapter 5 of the STAT0002 notes and to provide code to do some of the things that appear in the lecture slides. We do this using the standard R functions (in the <strong>stats</strong> package) and using the <strong>distributions3</strong> package <span class="citation">(Hayes and Moller-Trane 2019)</span>, which provides a neat way to work with random variables in R. Please see the <a href="stat1004-ch5a-discrete-random-variables-vignette.html">Discrete Random Variables vignette</a> for a brief introduction to these functions.</p>
+<p>The purposes of this vignette are to direct you to R functions relating to the <strong>continuous</strong> probability distributions considered in Chapter 5 of the STAT0002 notes and to provide code to do some of the things that appear in the lecture slides. We do this using the standard R functions (in the <strong>stats</strong> package) and using the <strong>distributions3</strong> package <span class="citation">(Hayes and Moller-Trane 2019)</span>, which provides a neat way to work with random variables in R. Please see the <a href="stat1004-ch5a-discrete-random-variables-vignette.html">Discrete Random Variables vignette</a> for a brief introduction to these functions.</p>
 <p>We illustrate these functions using the Australian birth times data, which are available in the data frame <code>aussie_births</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(stat1004)
 <span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(aussie_births)
@@ -186,7 +186,7 @@ The following object is masked from <span class="st">'package:grDevices'</span><
 <span class="op">&gt;</span><span class="st"> </span><span class="co"># Produce a histogram of the birth weights</span>
 <span class="er">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(wt, <span class="dt">prob =</span> <span class="ot">TRUE</span>, <span class="dt">xlab =</span> <span class="st">"weight (pounds)"</span>, <span class="dt">col =</span> <span class="dv">8</span>, <span class="dt">main =</span> <span class="st">""</span>)</code></pre></div>
 <p><img src="stat1004-ch5b-continous-random-variables-vignette_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;"></p>
-<p>We suppose that the weight <span class="math inline">\(W\)</span> (in pounds) of a randomly chosen baby has a <span class="math inline">\(N(\mu, \sigma^2)\)</span> distribution, even though it seems clear from the histogram that this assumption may be inapropriate.</p>
+<p>We suppose that the weight <span class="math inline">\(W\)</span> (in pounds) of a randomly chosen baby has a <span class="math inline">\(N(\mu, \sigma^2)\)</span> distribution, even though it seems clear from the histogram that this assumption may be inappropriate.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="co"># Estimate the mean, variance and (standard deviation) of W</span>
 <span class="er">&gt;</span><span class="st"> </span>muhat &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(wt)
 <span class="op">&gt;</span><span class="st"> </span>sigma2hat &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/cor.html">var</a></span>(wt)
@@ -202,7 +202,7 @@ The following object is masked from <span class="st">'package:grDevices'</span><
 [<span class="dv">1</span>] <span class="fl">0.9913437</span>
 <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span>(<span class="fl">2.38</span>)
 [<span class="dv">1</span>] <span class="fl">0.008656319</span></code></pre></div>
-<p>In the coffee example in the lecture slides we needed to calculate the 95% quantile of a standard N(0, 1) normal random variable. We could do this in one of the followin ways.</p>
+<p>In the coffee example in the lecture slides we needed to calculate the 95% quantile of a standard N(0, 1) normal random variable. We could do this in one of the following ways.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span>(<span class="fl">0.95</span>)
 [<span class="dv">1</span>] <span class="fl">1.644854</span>
 <span class="op">&gt;</span><span class="st"> </span>Z &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">Normal</a></span>(<span class="dv">0</span>, <span class="dv">1</span>)

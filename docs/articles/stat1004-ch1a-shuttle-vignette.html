@@ -103,7 +103,7 @@
       <h1>Chapter 1: The Challenger Space Shuttle Disaster</h1>
                         <h4 class="author">Paul Northrop</h4>
             
-            <h4 class="date">2019-11-13</h4>
+            <h4 class="date">2019-11-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/paulnorthrop/stat1004/blob/master/vignettes/stat1004-ch1a-shuttle-vignette.Rmd"><code>vignettes/stat1004-ch1a-shuttle-vignette.Rmd</code></a></small>
       <div class="hidden name"><code>stat1004-ch1a-shuttle-vignette.Rmd</code></div>
@@ -290,7 +290,7 @@ Number of Fisher Scoring iterations<span class="op">:</span><span class="st"> </
 <span class="op">&gt;</span><span class="st"> </span>linear_predictor &lt;-<span class="st"> </span>alpha_hat <span class="op">+</span><span class="st"> </span>beta_hat <span class="op">*</span><span class="st"> </span>temp
 <span class="op">&gt;</span><span class="st"> </span>fitted_curve &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Log.html">exp</a></span>(linear_predictor) <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Log.html">exp</a></span>(linear_predictor))</code></pre></div>
 <ol start="11" style="list-style-type: decimal">
-<li><strong>Can you gues what the function <code>seq</code> does? Use <code><a href="https://rdrr.io/r/base/seq.html">?seq</a></code> to find out.</strong></li>
+<li><strong>Can you guess what the function <code>seq</code> does? Use <code><a href="https://rdrr.io/r/base/seq.html">?seq</a></code> to find out.</strong></li>
 </ol>
 <p>We plot the <em>proportions</em> of distressed O-rings against temperature with the fitted logistic probability curve <span class="math inline">\(p(t)\)</span> superimposed. The second plot is the same as the plot in the lecture slides.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(shuttle<span class="op">$</span>temperature, shuttle<span class="op">$</span>damaged <span class="op">/</span><span class="st"> </span><span class="dv">6</span>, <span class="dt">ann =</span> <span class="ot">FALSE</span>, <span class="dt">ylim =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">0</span>, <span class="dv">1</span>))
